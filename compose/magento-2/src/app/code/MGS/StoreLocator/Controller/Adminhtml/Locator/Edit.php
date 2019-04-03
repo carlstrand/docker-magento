@@ -9,7 +9,7 @@
 namespace MGS\StoreLocator\Controller\Adminhtml\Locator;
 
 use MGS\StoreLocator\Model\StoreFactory;
-use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\Context;
 
 class Edit extends \Magento\Backend\App\Action {
 

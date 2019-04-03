@@ -17,11 +17,6 @@ class Delete extends \MGS\Portfolio\Controller\Adminhtml\Portfolio
      */
     public function execute()
     {
-		
-        // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('id');
-        $model = $this->_objectManager->create('MGS\Portfolio\Model\Category');
-		
 		$resultRedirect = $this->resultRedirectFactory->create();
         $id = $this->getRequest()->getParam('id');
 		if ($id) {
@@ -36,7 +31,6 @@ class Delete extends \MGS\Portfolio\Controller\Adminhtml\Portfolio
                 $this->messageManager->addError($e->getMessage());
             }
         }
-		
         return $resultRedirect->setPath('*/*/');
     }
 }

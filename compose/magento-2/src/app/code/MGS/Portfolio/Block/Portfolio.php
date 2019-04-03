@@ -17,17 +17,33 @@ class Portfolio extends Template
      */
     protected $_objectManager;
 	
+	/**
+     * @var \Magento\Framework\View\Page\Config
+     */
+    protected $pageConfig;
+	
+	/**
+     * Store manager
+     *
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $_storeManager;
+	
     /**
      * @param Template\Context $context
      * @param array $data
      */
     public function __construct(
 		Template\Context $context, array $data = [], 
-		\Magento\Framework\ObjectManagerInterface $objectManager
+		\Magento\Framework\ObjectManagerInterface $objectManager,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
+		\Magento\Framework\View\Page\Config $pageConfig
 	)
     {
         parent::__construct($context, $data);
 		$this->_objectManager = $objectManager;
+		$this->pageConfig = $pageConfig;
+		$this->_storeManager = $storeManager;
     }
 	
 	/**
@@ -66,20 +82,10 @@ class Portfolio extends Template
 	}
 	
 	public function getBaseImage($portfolio){
-		if($portfolio->getBaseImage()){
-			$result = [];
-			$gallery = $portfolio->getBaseImage();
-			$galleryArray = explode(',',$gallery);
-			if(count($galleryArray)>0){
-				foreach($galleryArray as $img){
-					$filePath = 'mgs/portfolio/image'.$img;
-					if($filePath!=''){
-						$imageUrl = $this->_urlBuilder->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . $filePath;
-						$result[] = $imageUrl;
-					}
-				}
-			}
-			return $result;
+		$filePath = 'mgs/portfolio/image/'.$portfolio->getBaseImage();
+		if($filePath!=''){
+			$imageUrl = $this->_urlBuilder->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . $filePath;
+			return $imageUrl;
 		}
 		return 0;
 	}
@@ -159,6 +165,10 @@ class Portfolio extends Template
 				}else{
 					$html .= '<a href="'.$this->getUrl('portfolio/category/view', ['id'=>$cate->getId()]).'">'.$item->getName().'</a>';
 				}
+				
+				if($i<count($collection)){
+					$html .= ', ';
+				}
 			}
 		}
 		return $html;
@@ -187,9 +197,6 @@ class Portfolio extends Template
 
 		return $portfolios;
 	}
-	
-	public function truncate($content, $length){
-		return $this->filterManager->truncate($content, ['length' => $length, 'etc' => '']);
-	}
+
 }
 

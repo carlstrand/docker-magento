@@ -105,6 +105,25 @@ class Portfolio extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
 			}
 		}
 		
+		if(isset($_FILES['base_image']['name']) && $_FILES['base_image']['name'] != '') {
+			try {
+				$uploader = $this->_fileUploaderFactory->create(['fileId' => 'base_image']);
+				$uploader->setAllowedExtensions(['jpg', 'jpeg', 'gif', 'png']);
+				$uploader->setAllowRenameFiles(true);
+				$uploader->setFilesDispersion(true);
+				
+			} catch (\Exception $e) {
+				return $this;
+			}
+			$path = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/portfolio/image/');
+			$uploader->save($path);
+			$fileName = $uploader->getUploadedFileName();
+			if ($fileName) {
+				$object->setData('base_image', $fileName);
+				$object->save();
+			}
+		}
+		
 		$oldCategories = $this->lookupCategoryIds($object->getId());
         $newCategories = (array)$object->getCategories();
 		

@@ -4,7 +4,7 @@
         <tab id="mgs" translate="label" sortOrder="600">
             <label>MGS</label>
         </tab>
-        <section id="brand" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+        <section id="brand" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
             <class>separator-top</class>
             <label>Shop By Brand</label>
             <tab>mgs</tab>
@@ -28,10 +28,12 @@
                     <label>Page Template</label>
                     <source_model>MGS\Brand\Model\System\Config\Template</source_model>
                 </field>
-				<field id="product_per_row" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-					<label>Number Of Product Per Row</label>
-					<source_model>MGS\Mpanel\Model\Config\Source\Perrow</source_model>
-				</field>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Small Image Width</label>
+                </field>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Small Image Height</label>
+                </field>
                 <field id="show_brand_name" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
                     <label>Show Brand Name</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -63,6 +65,12 @@
                     <label>Page Template</label>
                     <source_model>MGS\Brand\Model\System\Config\Template</source_model>
                 </field>
+                <field id="image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Image Width</label>
+                </field>
+                <field id="image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Image Height</label>
+                </field>
             </group>
             <group id="product_page_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
                 <label>Product Page Settings</label>
@@ -70,24 +78,16 @@
                     <label>Show Brand</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="show_brand_img" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="11">
-                    <label>Show Brand Name</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Small Image Width</label>
                     <depends>
                         <field id="show_brand">1</field>
                     </depends>
                 </field>
-                <field id="show_brand_img_sidebar" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="13">
-                    <label>Show Brand Img On Sidebar</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
+                    <label>Small Image Height</label>
                     <depends>
-                        <field id="show_brand_img">1</field>
-                    </depends>
-                </field>
-                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="12">
-                    <label>Small Image Max Width</label>
-                    <depends>
-                        <field id="show_brand_img">1</field>
+                        <field id="show_brand">1</field>
                     </depends>
                 </field>
                 <field id="show_related_products_by_brand" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
@@ -99,10 +99,6 @@
                     <depends>
                         <field id="show_related_products_by_brand">1</field>
                     </depends>
-                </field>
-                <field id="perrow_related_products" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="55">
-                    <label>Number Product Per Row</label>
-                    <source_model>MGS\Brand\Model\System\Config\Perrow</source_model>
                 </field>
                 <field id="limit_related_products" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
                     <label>Number Of Related Products By Brand Will Display</label>
@@ -117,11 +113,27 @@
                     <label>Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="show_brand_name" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="20">
+                    <label>Show Brand Name</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
                 <field id="show_product_count" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="30">
                     <label>Show Product Count</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <depends>
                         <field id="show_brand_name">1</field>
+                    </depends>
+                </field>
+                <field id="small_image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="40">
+                    <label>Small Image Width</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="small_image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Small Image Height</label>
+                    <depends>
+                        <field id="enabled">1</field>
                     </depends>
                 </field>
                 <field id="number_of_brands" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">

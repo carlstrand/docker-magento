@@ -120,8 +120,7 @@ class Post extends AbstractModel
     public function getCommentCount()
     {
         $comments = $this->comment->getCollection()
-            ->addFieldToFilter('post_id', ['eq' => $this->getId()])
-			->addFieldToFilter('status', ['eq' => 1]);
+            ->addFieldToFilter('post_id', ['eq' => $this->getId()]);
         return count($comments);
     }
 }

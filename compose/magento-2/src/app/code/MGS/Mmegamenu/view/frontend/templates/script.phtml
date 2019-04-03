@@ -2,13 +2,11 @@
 	function toggleEl(el, elId){
 		require([
 			'jquery',
-		], function($){
-            $(el).toggleClass('active');
-            if(elId != ''){
-                $('#'+elId).toggleClass('active').slideToggle();
-            }else{
-                $(el).parent().parent().find('> ul').toggleClass('active').slideToggle();
-            }
+		], function(jQuery){
+			(function($) {
+				$('#'+elId).toggleClass('active').slideToggle();
+				$(el).toggleClass('active');
+			})(jQuery);
 		});
 	}
 </script>

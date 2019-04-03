@@ -8,7 +8,7 @@ namespace MGS\Mpanel\Block\Products;
 /**
  * Main contact form block
  */
-class Tabs extends \MGS\Mpanel\Block\Products\AbstractProduct
+class Tabs extends \MGS\Mpanel\Block\Products\Attributes
 {
 	public function getAttributes(){
 		$result = [];
@@ -24,22 +24,18 @@ class Tabs extends \MGS\Mpanel\Block\Products\AbstractProduct
 		return $result;
 	}
 	
-	public function getLabels(){
+	public function getTitles(){
 		$result = [];
-		if($this->hasData('labels')){
-			$labels = $this->getData('labels');
-			$result = explode(',',$labels);
+		if($this->hasData('titles')){
+			$titles = $this->getData('titles');
+			$titleArray = explode(',',$titles);
+			if(count($titleArray)>0){
+				foreach($titleArray as $title){
+					$result[] = $title;
+				}
+			}
 		}
 		return $result;
-	}
-	
-	public function getTabs(){
-		$tabs = [];
-		if($this->hasData('tabs')){
-			$tabs = $this->getData('tabs');
-			$tabs = explode(',',$tabs);
-		}
-		return $tabs;
 	}
 }
 

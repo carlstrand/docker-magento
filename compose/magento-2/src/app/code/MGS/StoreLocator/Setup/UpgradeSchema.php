@@ -53,7 +53,6 @@ class UpgradeSchema implements UpgradeSchemaInterface {
                     ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
                     'Store Locator Store Id'
                 )
-				
                 ->addColumn(
                     'storelocator_id',
                     \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
@@ -89,18 +88,6 @@ class UpgradeSchema implements UpgradeSchemaInterface {
                     \Magento\Framework\DB\Ddl\Table::ACTION_CASCADE
                 )->setComment('Store Locators Store');
             $setup->getConnection()->createTable($table);
-        }
-		
-		if (version_compare($context->getVersion(), '0.0.4') < 0) {
-            $setup->getConnection()->addColumn(
-				$setup->getTable('store_locator'), 'url_key', [
-					'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-					'length' => '1M',
-					'nullable' => false,
-					'default' => '',
-					'comment' => 'Url Key'
-				]
-            );
         }
 
         $setup->endSetup();

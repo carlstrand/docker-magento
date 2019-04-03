@@ -73,7 +73,7 @@ class Comment extends Action
             if ($error) {
                 throw new \Exception();
             }
-
+            
             $comment = $this->comment;
             $comment->setData($post);
             $comment->setCreatedAt($this->_objectManager->get('Magento\Framework\Stdlib\DateTime\DateTime')->gmtDate());

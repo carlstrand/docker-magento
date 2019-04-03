@@ -1,0 +1,79 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$post = $block->getCurrentPost();
+$showImage = $this->getConfig('general_settings/show_image');
+if ($this->getConfig('general_settings/image_width') != '') {
+    $width = $this->getConfig('general_settings/image_width');
+} else {
+    $width = 1240;
+}
+if ($this->getConfig('general_settings/image_height') != '') {
+    $height = $this->getConfig('general_settings/image_height');
+} else {
+    $height = 600;
+}
+?>
+<div class="blog-post">
+	<?php if ($showImage): ?>
+            <div class="post-img">
+                <img width="<?php echo $width; ?>" height="<?php echo $height; ?>" alt="<?php echo $post->getTitle(); ?>"
+                     src="<?php echo $post->getImageUrl(); ?>" class="img-responsive"/>
+            </div>
+        <?php endif; ?>
+	<div class="postTitle margin-top40">
+		<h2><?php echo $post->getTitle();?></h2>
+	</div>
+	<div class="post-tag">
+		<span class="date"><i class="fa fa-calendar-o"></i><?php echo date('F d Y', strtotime($block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false))) ?></span>
+						<span class="user-admin">
+							<i class="fa fa-user"></i>
+						<?php if ($post->getUpdatedByUser()): ?>
+						
+							<span class="tip"><?php echo __('Post By: %1', $post->getUpdatedByUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></span>
+						<?php else: ?>
+							<span class="tip"><?php echo __('Post By: %1', $post->getUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></span>
+						<?php endif;?>
+						</span>
+						<?php $categories = $post->getCatetories(); ?>
+						<?php if(count($categories)): ?>
+							<span class="post-in">
+								<i class="fa fa-folder-open-o"></i>
+								<?php foreach ($categories as $category): ?>
+									<a class="tip" title="<?php echo $category->getTitle(); ?>" href="<?php echo $category->getCategoryUrl(); ?>"><?php echo $category->getTitle(); ?></a>
+								<?php endforeach; ?>
+							</span>
+						<?php endif;?>
+						<span class="comment">
+							<i class="fa fa-comments"></i>
+							<a class="tip" href="<?php echo $post->getPostUrlWithNoCategory(); ?>#comment-box"><?php echo __('%1 Comment(s)', $post->getCommentCount()) ?></a>
+						</span>
+	</div>
+	<?php if ($post->getContent()): ?>
+        <div class="post-content">
+            <?php echo $post->getContent(); ?>
+        </div>
+    <?php endif; ?>
+	
+	<?php if ($post->getTags()): ?>
+        <?php $tags = explode(',', $post->getTags()); ?>
+        <div class="tags">
+           <h4><?php echo __('Tags: '); ?></h4>
+            <?php foreach ($tags as $tag): ?>
+                <a title="<?php echo trim($tag); ?>" href="<?php echo $helper->getTagUrl(trim($tag)); ?>"><?php echo trim($tag); ?></a>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>	
+    
+    <?php if ($this->getConfig('general_settings/use_sharethis')): ?>
+        <div class="post-sharethis social-icons">
+            <span class="title text-uppercase margin-top5 margin-right10"> <?php echo __('Share This Post: ') ?></span>
+            <span class='st_facebook_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+            <span class='st_googleplus_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+            <span class='st_twitter_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+            <span class='st_linkedin_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+            <span class='st_pinterest_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+            <span class='st_email_large' st_url='<?php echo $block->getPostUrl(); ?>' st_title='<?php echo $post->getTitle(); ?>'></span>
+        </div>
+    <?php endif; ?>
+    <?php echo $block->getChildHtml('post_view_comment'); ?>
+</div>

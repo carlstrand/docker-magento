@@ -170,9 +170,6 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
             ]
         );
 		
-		$optionObject = new \MGS\Promobanners\Model\Config\Source\Effect;
-		$options = $optionObject->toOptionArray();
-		
 		$fieldset->addField(
             'effect',
             'select',
@@ -181,7 +178,22 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'name' => 'effect',
                 'required' => false,
 				'note' => __('Hover on preview image to see'),
-                'options' => $options
+                'options' => [
+					''=> __('No Effect'),
+					'zoom' => __('Effect 1'),
+					'border-zoom' => __('Effect 2'),
+					'flashed' => __('Effect 3'),
+					'zoom-flashed' => __('Effect 4'),
+					'shadow-corner' => __('Effect 5'),
+					'zoom-shadow' => __('Effect 6'),
+					'cup-border' => __('Effect 7'),
+					'flashed-zoom' => __('Effect 8'),
+					'zoom-out-shadow' => __('Effect 9'),
+					'mist' => __('Effect 10'),
+					'mist-text' => __('Effect 11'),
+					'shadow-black' => __('Effect 12'),
+					'shadow-white' => __('Effect 13'),
+				]
             ]
         );
 		

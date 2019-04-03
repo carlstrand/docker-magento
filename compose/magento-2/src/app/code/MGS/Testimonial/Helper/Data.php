@@ -9,7 +9,7 @@ namespace MGS\Testimonial\Helper;
 /**
  * Contact base helper
  */
-class Data extends \MGS\Mpanel\Helper\Data
+class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
 
 }

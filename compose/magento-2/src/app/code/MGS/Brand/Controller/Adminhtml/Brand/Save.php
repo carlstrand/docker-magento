@@ -111,53 +111,44 @@ class Save extends \MGS\Brand\Controller\Adminhtml\Brand
                     $productCollection->addFieldToFilter('brand_id', ['eq' => $brand->getId()]);
                     foreach ($productCollection as $product) {
                         $productIdsInBrand[] = (int)$product->getProductId();
-						$product->delete();
                     }
-                    $arrAttributeEmpty = ['mgs_brand'=>''];
-                    //print_r($productIdsInBrand); die();
-                    if(count($productIdsInBrand)){
-                        $this->_objectManager->get('Magento\Catalog\Model\Product\Action')
-                                ->updateAttributes($productIdsInBrand,  $arrAttributeEmpty, 0);
-                    }
-
-
-
                     $productIds = $jsHelper->decodeGridSerializedInput($data['product_ids']);
                     $productIdsInput = array();
                     foreach ($productIds as $key => $value) {
                         $productIdsInput[] = (int)$key;
                     }
-
-					if(count($productIdsInput)>0){
-
-						$arrAttributeData = ['mgs_brand'=>$optionId];
-						foreach($productIdsInput as $productId){
-							$brandProduct = $this->_objectManager->create('MGS\Brand\Model\Product');
-							$brandProduct->setBrandId($brand->getId())->setProductId($productId)->save();
-						}
-
-
-
-						$this->_objectManager->get('Magento\Catalog\Model\Product\Action')
-							->updateAttributes($productIdsInput,  $arrAttributeData, 0);
-					}
-
+                    $productIdsDelete = array_diff($productIdsInBrand, $productIdsInput);
+                    $productIdsInsert = array_diff($productIdsInput, $productIdsInBrand);
+                    $productsDelete = $this->_objectManager->create('MGS\Brand\Model\Product')->getCollection()
+                        ->addFieldToFilter('product_id', ['in' => $productIdsDelete])
+                        ->addFieldToFilter('brand_id', ['eq' => $brand->getId()]);
+                    foreach ($productsDelete as $product) {
+                        $productModel = $this->_objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
+                        $productModel->setMgsBrand('');
+                        $productModel->save();
+                        $product->delete();
+                    }
+                    foreach ($productIdsInsert as $id) {
+                        $p = $this->_objectManager->create('MGS\Brand\Model\Product');
+                        $p->setBrandId($brand->getId());
+                        $p->setProductId($id);
+                        $p->save();
+                        $productModel = $this->_objectManager->create('Magento\Catalog\Model\Product')->load($id);
+                        $productModel->setMgsBrand($optionId);
+                        $productModel->save();
+                    }
+                } else {
+                    if (isset($data['product_ids']) && ($data['product_ids'] == '' || $data['product_ids'] == null)) {
+                        $productCollection = $this->_objectManager->create('MGS\Brand\Model\Product')->getCollection();
+                        $productCollection->addFieldToFilter('brand_id', ['eq' => $brand->getId()]);
+                        foreach ($productCollection as $product) {
+                            $productModel = $this->_objectManager->create('Magento\Catalog\Model\Product')->load($product->getProductId());
+                            $productModel->setMgsBrand('');
+                            $productModel->save();
+                            $product->delete();
+                        }
+                    }
                 }
-
-				if (isset($data['product_ids']) && ($data['product_ids'] == '' || $data['product_ids'] == null)) {
-					$arrProductIds = [];
-					$productCollection = $this->_objectManager->create('MGS\Brand\Model\Product')->getCollection();
-					$productCollection->addFieldToFilter('brand_id', ['eq' => $brand->getId()]);
-					foreach ($productCollection as $product) {
-						$arrProductIds[] = $product->getProductId();
-						$product->delete();
-					}
-					$arrAttributeEmpty = ['mgs_brand'=>''];
-					$this->_objectManager->get('Magento\Catalog\Model\Product\Action')
-						->updateAttributes($arrProductIds,  $arrAttributeEmpty, 0);
-				}
-
-
                 $this->messageManager->addSuccess(__('You saved the brand.'));
                 $session->setPageData(false);
                 if ($this->getRequest()->getParam('back')) {

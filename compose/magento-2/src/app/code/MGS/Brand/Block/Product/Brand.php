@@ -19,6 +19,7 @@ class Brand extends \Magento\Framework\View\Element\Template
     protected $_coreRegistry = null;
     protected $_brandHelper;
     protected $_brand;
+    protected $_storeManager;
 
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -30,10 +31,12 @@ class Brand extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \MGS\Brand\Helper\Data $brandHelper,
         \MGS\Brand\Model\Brand $brand,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     )
     {
         $this->_brand = $brand;
+        $this->_storeManager = $storeManager;
         $this->_brandHelper = $brandHelper;
         $this->_coreRegistry = $registry;
         parent::__construct($context, $data);

@@ -23,6 +23,8 @@ class Category extends \Magento\Backend\Block\Widget\Form\Generic implements \Ma
      */
     protected $_systemStore;
 	
+	protected $_storeManager;
+	
 	protected $_ids;
 
     /**
@@ -38,10 +40,12 @@ class Category extends \Magento\Backend\Block\Widget\Form\Generic implements \Ma
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
 		\Magento\Framework\ObjectManagerInterface $objectManager,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     ) {
         $this->_systemStore = $systemStore;
 		$this->_objectManager = $objectManager;
+		$this->_storeManager = $storeManager;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 	

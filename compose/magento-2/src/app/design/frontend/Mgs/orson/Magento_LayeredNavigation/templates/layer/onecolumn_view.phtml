@@ -1,0 +1,77 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+	?>
+<?php $design = $themeHelper->checkLayoutPage($category); ?>
+<?php $design = $design->getPageLayout(); ?>
+<?php if($design == '1column'): ?>
+<?php if ($block->canShowBlock()): ?>
+	<div id="filter-one-column" class="filter-one-column">
+		<div class="block filter owl-top-text">
+			<div class="block-title filter-title">
+				<h3 class="title"><span><?php /* @escapeNotVerified */ echo __('Shop By') ?></span></h3>
+			</div>
+			<div class="block-content filter-content">
+				<?php echo $block->getChildHtml('state') ?>
+
+				<?php if ($block->getLayer()->getState()->getFilters()): ?>
+					<div class="block-actions filter-actions margin-bottom20">
+						<a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" style="margin: 0px" class="color-theme h6 action clear filter-clear"><span class="fa fa-trash"></span>&nbsp;&nbsp;<span><?php echo __('Clear All') ?></span></a>
+					</div>
+				<?php endif; ?>
+				<?php $wrapOptions = false; ?>
+				<?php $i=0; foreach ($block->getFilters() as $filter): ?>
+					<?php if (!$wrapOptions): ?>
+						<div class="filter-options row" id="narrow-by-list">
+					<?php $wrapOptions = true; endif; ?>
+						<?php if ($filter->getItemsCount()): $i++; ?>
+							<div class="col-md-3 col-sm-4 col-xs-6 margin-bottom15<?php if($i % 4 == 1): ?> first-row-item<?php endif ?><?php if($i % 3 == 1): ?> row-2sm-first<?php endif ?><?php if($i % 2 == 1): ?> row-2xs-first<?php endif ?>">
+								<div class="filter-content form-group">
+									<label role="heading" aria-level="3" class="filter-options-title">
+										<span class="block-sub-title"><?php echo $block->escapeHtml(__($filter->getName())) ?></span>
+									</label>
+									<?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?>
+								</div>
+							</div>
+						<?php endif; ?>
+				<?php endforeach; ?>
+					<?php if ($wrapOptions): ?>
+						</div>
+					<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+
+<script type="text/javascript">
+		require([
+		'jquery'
+	], function(jQuery){
+		(function($) {
+			$(document).ready(function() {
+				$('#filter-one-column select').on('change', function() {
+					if(this.value != ""){
+						setLocation(this.value);
+					}
+				});
+			});
+		})(jQuery);
+	});
+</script>
+<?php endif; ?>

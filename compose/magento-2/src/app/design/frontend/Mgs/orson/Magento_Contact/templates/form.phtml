@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="row">
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<?php echo $this->getLayout()->createBlock("Magento\Contact\Block\ContactForm")->setTemplate("Magento_Contact::map.phtml")->toHtml();?>
+	</div>
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		<div class="block-title">
+			<h3 class="title"><span><?php echo __('Contact Information') ?></span></h3>
+		</div>
+		<form class="form contact"
+		  action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+		  id="contact-form"
+		  method="post"
+		  data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>"
+		  data-mage-init='{"validation":{}}'>
+			<div class="form-group name required">
+				<div class="control">
+					<input name="name" id="name" placeholder="<?php /* @escapeNotVerified */ echo __('Name') ?> *" title="<?php /* @escapeNotVerified */ echo __('Name') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+				</div>
+			</div>
+			<div class="form-group email required">
+				<div class="control">
+					<input name="email" placeholder="<?php echo __('Email') ?> *" id="email" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+				</div>
+			</div>
+			<div class="form-group telephone">
+				<div class="control">
+					<input name="telephone" placeholder="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" id="telephone" title="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" />
+				</div>
+			</div>
+			<div class="form-group comment required">
+				<div class="control">
+					<textarea placeholder="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" name="comment" id="comment" title="<?php /* @escapeNotVerified */ echo __('What’s on your mind?') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+				</div>
+			</div>
+			<div class="actions-toolbar">
+				<input type="hidden" name="hideit" id="hideit" value="" />
+				<button type="submit" title="<?php /* @escapeNotVerified */ echo __('Send Message') ?>" class="action submit btn btn-lg btn-primary">
+					<span><?php /* @escapeNotVerified */ echo __('Send Message') ?></span>
+				</button>
+			</div>
+		</form>
+	</div>
+</div>
+<div class="margin-top50">
+	<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_contact_find_us')->toHtml();?>
+</div>

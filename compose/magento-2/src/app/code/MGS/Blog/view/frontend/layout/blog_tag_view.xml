@@ -3,8 +3,6 @@
     <body>
         <referenceBlock name="catalog.compare.sidebar" remove="true"/>
         <referenceBlock name="wishlist_sidebar" remove="true"/>
-        <referenceBlock name="sale.reorder.sidebar" remove="true"/>
-        
         <referenceContainer name="sidebar.additional">
             <block class="MGS\Blog\Block\Sidebar" name="blog.sidebar" template="MGS_Blog::sidebar.phtml" after="-"/>
         </referenceContainer>

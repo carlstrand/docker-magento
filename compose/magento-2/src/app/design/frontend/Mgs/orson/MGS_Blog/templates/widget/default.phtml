@@ -1,0 +1,102 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getPostCollection();
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$themeSettings = $themeHelper->getThemeSettings();
+?>
+<?php if (count($collection)): ?>
+    <?php
+    $blockId = rand() . time();
+    $title = $this->getConfig('title');
+    $numberOfPosts = $this->getConfig('number_of_posts');
+    $showThumbnail = $this->getConfig('show_thumbnail');
+    $width = $this->getConfig('thumbnail_width', 240);
+    $height = $this->getConfig('thumbnail_height', 180);
+    $showShortContent = $this->getConfig('show_short_content');
+    $viewAs = $this->getConfig('view_as');
+    $customClass = $this->getConfig('custom_class');
+    ?>
+	<?php if ($viewAs != 'list'): ?>
+	<div class="block widget-latest <?php if ($customClass): ?><?php echo $customClass; ?><?php endif ?>">
+		<?php if ($title): ?>
+			<div class="title-content margin-bottom50">
+				<h2 class="title"><?php echo $title ?></h2>
+			</div>
+		<?php endif ?>
+		<div class="row">
+			<div id="lastest-post-list-<?php echo $blockId; ?>" class="latest-post-carousel<?php if ($viewAs == 'owl_carousel'): ?> owl-carousel<?php endif ?>">
+				<?php $i=0; foreach ($collection as $post): $i++; ?>
+					<div class="item <?php if ($viewAs != 'owl_carousel'): ?><?php echo $themeHelper->getColClass($this->getConfig('items', 3)) ?> <?php echo $themeHelper->getClearClass($this->getConfig('items', 3), $i) ?><?php endif ?>">
+						<?php if ($showThumbnail): ?><div class="blog_link_img">
+							<img class="img-responsive" src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/>
+							<button onclick="setLocation('<?php echo $post->getPostUrlWithNoCategory(); ?>')" class="go-to-detail"><i class="fa fa-search"></i></button>
+						</div><?php endif ?>
+						<div class="post-info">
+							<span class="time"><span class="fa fa-clock-o"></span><?php echo date('d', strtotime($post->getCreatedAt())) ?>&nbsp;<?php echo date('M', strtotime($post->getCreatedAt())) ?>&nbsp;<?php echo date('y', strtotime($post->getCreatedAt())) ?></span>
+							<?php  if ($post->getUpdatedByUser()){ $author = $post->getUpdatedByUser(); }else { $author = $post->getUser(); } ?>
+							<span class="author"><span class="fa fa-user"></span><?php echo $author ?></span>
+						</div>
+						<h4><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></h4>
+						<div class="title"></div>
+						<?php if ($showShortContent): ?><div>
+							<?php echo substr($post->getShortContent(), 0, $this->getConfig('limit_characters_short_content')); ?>
+						</div><?php endif ?>
+						<a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" class="read-more"><?php echo __('Read more') ?> <i class="fa fa-arrow-right"></i></a>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+	</div>
+    <?php if ($viewAs == 'owl_carousel'): ?>
+        <?php $autoplay = 'false'; $stopOnHover = 'false'; 
+        if ($this->getConfig('autoplay')) { $autoplay = 'true'; }
+        if ($this->getConfig('stop_on_hover')) { $stopOnHover = 'true'; }
+        if ($this->getConfig('navigation')) { $navigation = 'true'; } else { $navigation = 'false'; } ?>
+        <script type="text/javascript">
+            require([
+				'jquery',
+				'mgs/owlcarousel'
+			], function ($) {
+                var owl = $('#lastest-post-list-<?php echo $blockId; ?>');
+                owl.owlCarousel({
+                    items: <?php echo $this->getConfig('items', 5); ?>,
+                    autoPlay: <?php echo $autoplay; ?>,
+                    stopOnHover: <?php echo $stopOnHover; ?>,
+                    nav: <?php echo $navigation; ?>,
+					dots: false,
+					navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+					responsive:{ 0 : {items: 1}, 480 : {items: 2}, 768 : {items: 2}, 991 : {items: <?php echo $this->getConfig('items', 5); ?>}, 1200 : {items: <?php echo $this->getConfig('items', 5); ?>} }
+                });
+            });
+        </script>
+    <?php endif; ?>
+	<?php else: ?>
+		<div class="widget-latest">
+			<?php if ($title): ?>
+				<div class="block-title">
+					<h3 class="title"><span><?php echo $title ?></span></h3>
+				</div>
+			<?php endif ?>
+			<div class="latest-post-list">
+				<?php $i=0; foreach ($collection as $post): $i++; ?>
+					<div class="item">
+						<?php if ($showThumbnail): ?>
+							<div class="blog_link_img">
+								<img class="img-responsive" src="<?php echo $post->getThumbnailUrl(); ?>" alt="<?php echo $post->getTitle(); ?>"/>
+								<button onclick="setLocation('<?php echo $post->getPostUrlWithNoCategory(); ?>')" class="go-to-detail"><i class="fa fa-search"></i></button>
+							</div>
+						<?php endif ?>
+						<div class="post-info">
+							<h4><a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>"><?php echo $post->getTitle() ?></a></h4>
+							<div class="date">
+								<span class="day"><?php echo date('d', strtotime($post->getCreatedAt())) ?></span>
+								<span class="month"><?php echo date('M', strtotime($post->getCreatedAt())) ?></span>
+							</div>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+	<?php endif ?>
+<?php endif; ?>
+

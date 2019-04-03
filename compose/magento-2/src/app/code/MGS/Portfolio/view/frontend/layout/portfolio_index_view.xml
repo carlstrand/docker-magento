@@ -5,15 +5,10 @@
  * See COPYING.txt for license details.
  */
 -->
-<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd" layout="1column">
     <body>
-		<referenceBlock name="head.additional">
-            <block class="Magento\Framework\View\Element\Template" name="script.sharethis" template="MGS_Mpanel::sharethis/sharethis_script.phtml" ifconfig="mpanel/share_config/share_portfolio"/>
-        </referenceBlock>
 		<referenceContainer name="content">
-			<block class="MGS\Portfolio\Block\Portfolio" name="portfolio.view" template="MGS_Portfolio::view.phtml">
-				<block class="Magento\Framework\View\Element\Template" name="portfolio.detail.sharethis" template="MGS_Mpanel::sharethis/sharethis.phtml" ifconfig="mpanel/share_config/share_portfolio"/>
-			</block>
+			<block class="MGS\Portfolio\Block\Portfolio" name="portfolio.view" template="MGS_Portfolio::view.phtml"/>
 		</referenceContainer>
     </body>
 </page>

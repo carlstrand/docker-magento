@@ -130,13 +130,11 @@ class Data extends \Magento\Swatches\Helper\Data
      * @param string $imageFile
      * @return array
      */
-    private function getAllSizeImages(ModelProduct $product, $imageFile, $mediaType = NULL, $vd_url = NULL)
+    private function getAllSizeImages(ModelProduct $product, $imageFile)
     {
 		$largeSize = $this->getImageSizeForDetails();
 		$mediumSize = $this->getImageSize();
 		$minSize = $this->getImageMinSize();
-		$zoom_magnify = $this->getStoreConfig('extragallery/general/zoom_magnify');
-        $zoom_magnify = $zoom_magnify ? $zoom_magnify : 1.5;
 		
         return [
             'large' => $this->imageHelper->init($product, 'product_page_image_large')
@@ -154,13 +152,6 @@ class Data extends \Magento\Swatches\Helper\Data
 				->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
                 ->setImageFile($imageFile)
                 ->getUrl(),
-			'zoom' => $this->imageHelper->init($product, 'product_page_image_large')
-				->resize(($largeSize['width'] * $zoom_magnify), ($largeSize['height'] * $zoom_magnify))
-				->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
-                ->setImageFile($imageFile)
-                ->getUrl(),
-            'media_type' => $mediaType,
-            'video_url' => $vd_url
         ];
     }
 	
@@ -361,25 +352,10 @@ class Data extends \Magento\Swatches\Helper\Data
             return [];
         }
 
-        $mediaGallery = $product->getMediaGalleryImages();
-        if(count($mediaGallery)){
-            $resultGallery = $this->getGalleryImages($product);
-        }else {
-            $resultGallery = $this->getAllSizeImages($product, $baseImage, "", "");
-        }
+        $resultGallery = $this->getAllSizeImages($product, $baseImage);
+        $resultGallery['gallery'] = $this->getGalleryImages($product);
 
         return $resultGallery;
-    }
-	
-	/**
-     * Is product main image
-     *
-     * @param \Magento\Framework\DataObject $image
-     * @return bool
-     */
-    public function isMainImage(ModelProduct $product, $image)
-    {
-        return $product->getImage() == $image->getFile();
     }
 	
 	/**
@@ -394,21 +370,12 @@ class Data extends \Magento\Swatches\Helper\Data
         $result = [];
         $mediaGallery = $product->getMediaGalleryImages();
         foreach ($mediaGallery as $media) {
-            $vd_url = $media->getData('video_url') ? $media->getData('video_url') : "";
-            
-            if($this->isMainImage($product, $media)){
-                $resultGallery = $this->getAllSizeImages($product, $media->getData('file'), $media->getData('media_type'), $vd_url);
-            }
             $result[$media->getData('value_id')] = $this->getAllSizeImages(
                 $product,
-                $media->getData('file'),
-                $media->getData('media_type'),
-                $vd_url
+                $media->getData('file')
             );
         }
-        
-        $resultGallery['gallery'] = $result;
-        return $resultGallery;
+        return $result;
     }
 	
 	public function getStoreConfig($node){

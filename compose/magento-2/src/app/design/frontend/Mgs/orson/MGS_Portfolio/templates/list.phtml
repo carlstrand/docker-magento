@@ -1,0 +1,193 @@
+<?php $portfolios = $this->getPortfolios() ?>
+
+<?php 
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$themeSettings = $themeHelper->getThemeSettings();
+$menu = $this->getMenu();
+$portfolio_layout = $themeSettings['portfolio_config']['portfolio_layout'];
+$portfolio_title = $themeSettings['portfolio_config']['portfolio_title'];
+$portfolio_column = $themeSettings['portfolio_config']['portfolio_column'];
+?>
+<?php if($this->getRequest()->getParam('id')){
+	$checkParam = true;
+	$id_param = $this->getRequest()->getParam('id');
+}else{
+	$checkParam = false;
+}
+
+?>
+
+
+<?php if(!$checkParam): ?>
+<div class="<?php if($portfolio_layout== 2): ?>tabs-center<?php endif;?>">
+	<ul class="tab-menu tab-products tabs_categories_portfolio">
+	<li><a class="button <?php if(!$checkParam): ?> is-checked<?php endif;?>" data-filter=".item_all"><?php echo __('All Project')?><i class="fa fa-plus"></i></a></li>
+	<?php $i=0;foreach($menu as $_menu): $i++;?>
+		<li>
+			<a class="button <?php if($checkParam && $_menu->getId()== $id_param): ?>is-checked<?php endif;?>" data-filter=".item_<?php echo $_menu->getId()?>"><?php echo $_menu->getCategoryName();?><i class="fa fa-plus"></i></a>
+		</li>
+	<?php endforeach;?>
+	</ul>
+	
+</div>
+<div class="tabs_categories_portfolio_content isotope row <?php if($portfolio_layout== 2): ?> portfolio-wide <?php endif;?>">
+	
+	<?php if(count($portfolios)> 0): ?>	
+		<div class="portfolio-grid">
+			<?php $i=0; foreach($portfolios as $portfolio): $i++; ?>	
+			<?php $thumbnailUrl = $this->getThumbnailSrc($portfolio) ?>
+			<?php $portfolioUrl = $this->getPortfolioAddress($portfolio) ?>
+				<div class="item item_all <?php echo $themeHelper->getClass($portfolio_column);?><?php if($portfolio_layout== 2): ?> no-padding<?php endif;?>">
+					<div class="portfolio-content <?php if($portfolio_title ==0 && $portfolio_layout==1): ?>portfolio-title<?php endif;?>">
+						<div class="portfolio-top-content <?php if($portfolio_title == 0 || $portfolio_layout == 2):?>portfolio-box<?php endif;?>">
+							<a class="portfolio-image" href="<?php echo $portfolioUrl ?>">
+								<img class="img-responsive" src="<?php echo $thumbnailUrl;?>" alt=""/>
+								
+							</a>
+							<?php if($portfolio_title ==1 && $portfolio_layout == 1): ?>
+									<a class="view" href="<?php echo $portfolioUrl;?>"><span class="hover-info"><i class="fa fa-search"></i></span></a>
+								<?php endif;?>
+						</div>
+						<div class="portfolio-bottom-content <?php if($portfolio_title == 0 || $portfolio_layout == 2): ?> portfolio-box-title<?php endif;?>">
+							<div>
+							<h5 class="portfolio-name text-uppercase"><a href="<?php echo $portfolioUrl?>"><?php echo $portfolio->getName();?></a></h5>
+							<p class="category-link text-desc"><?php echo $this->getCategoriesText($portfolio)?></p>
+							</div>
+							<?php if($portfolio_title == 0 || $portfolio_layout == 2): ?>
+								<a class="view pull-right" href="<?php echo $portfolioUrl?>"><span class="hover-info"><i class="fa fa-search"></i></span></a>
+							<?php endif;?>
+						</div>
+					</div>
+				</div>
+			<?php endforeach;?>
+		</div>
+	<?php else: ?>
+		<p class="note-msg"><?php echo $this->__('There are no portfolios matching the selection.') ?></p>
+	<?php endif;?>
+	<?php $i=0; foreach($menu as $_menu): $i ++;?>
+		<?php $cat_portfolios = $this->getPortfolioForCate($_menu->getId());		
+		?>
+		<?php if(count($cat_portfolios)> 0): ?>
+		<div class="portfolio-grid">
+			<?php $i=0; foreach($cat_portfolios as $portfolio): $i++; ?>	
+			<?php $thumbnailUrl = $this->getThumbnailSrc($portfolio) ?>
+			<?php $portfolioUrl = $this->getPortfolioAddress($portfolio) ?>
+				<div class="item item_<?php echo $_menu->getId();?> <?php echo $themeHelper->getClass($themeSettings['portfolio_config']['portfolio_column']);?><?php if($portfolio_layout== 2): ?> no-padding<?php endif;?>">
+					<div class="portfolio-content <?php if($portfolio_title ==0 && $portfolio_layout==1): ?>portfolio-title<?php endif;?>">
+						<div class="portfolio-top-content <?php if($portfolio_title == 0 || $portfolio_layout == 2):?>portfolio-box<?php endif;?>">
+							<a class="portfolio-image" href="<?php echo $portfolioUrl ?>">
+								<img class="img-responsive" src="<?php echo $thumbnailUrl;?>" alt=""/>
+								
+							</a>
+							<?php if($portfolio_title ==1 && $portfolio_layout == 1): ?>
+									<a class="view" href="<?php echo $portfolioUrl;?>"><span class="hover-info"><i class="fa fa-search"></i></span></a>
+								<?php endif;?>
+						</div>
+						<div class="portfolio-bottom-content <?php if($portfolio_title == 0 || $portfolio_layout == 2): ?> portfolio-box-title<?php endif;?>">
+							<div>
+							<h5 class="portfolio-name text-uppercase"><a href="<?php echo $portfolioUrl?>"><?php echo $portfolio->getName();?></a></h5>
+							<p class="category-link text-desc"><?php echo $this->getCategoriesText($portfolio)?></p>
+							</div>
+							<?php if($portfolio_title == 0 || $portfolio_layout == 2): ?>
+								<a class="view pull-right" href="<?php echo $portfolioUrl?>"><span class="hover-info"><i class="fa fa-search"></i></span></a>
+							<?php endif;?>
+						</div>
+					</div>
+				</div>
+			<?php endforeach;?>
+		</div>
+		<?php else: ?>
+		<p class="note-msg"><?php echo $this->__('There are no portfolios matching the selection.') ?></p>
+		<?php endif;?>
+	<?php endforeach;?>
+</div>
+<script type="text/javascript">
+require(
+ [ 'require',
+	'jquery', 
+	'mgs/portfolio' 
+ ], function( require, $, Isotope ) {
+    // require jquery-bridget, it's included in isotope.pkgd.js
+    require([ 'jquery-bridget' ],
+		function() {
+      // make Isotope a jQuery plugin
+      $.bridget( 'isotope', Isotope );
+      
+	  $(window).load(function() {
+		var container = $('.isotope').isotope({
+			itemSelector: '.item',
+			layoutMode: 'fitRows',
+			percentPosition: true,
+			masonry: {
+				columnWidth: '.item'
+			},
+			getSortData: {
+				name: '.item'
+			}
+		});
+			$('.tabs_categories_portfolio').each( function( i, buttonGroup ) {
+				var filterLoadValue = $(this).find('.is-checked').attr('data-filter');				
+				container.isotope({ filter: filterLoadValue });
+			});
+		});
+		$(window).ready(function(){			
+			var container = $('.isotope').isotope({
+				itemSelector: '.item',
+				layoutMode: 'fitRows',
+				 percentPosition: true,
+				masonry: {
+					columnWidth: '.item'
+				},
+				
+				getSortData: {
+					name: '.item'
+				}
+			});	
+			$('.tabs_categories_portfolio').on( 'click', '.button', function() {
+				var filterValue = $(this).attr('data-filter');
+				
+				container.isotope({ filter: filterValue });
+				});
+			$('.tabs_categories_portfolio').each( function( i, buttonGroup ) {
+				var buttonGroup = $(buttonGroup);
+				buttonGroup.on( 'click', '.button', function() {
+					buttonGroup.find('.is-checked').removeClass('is-checked');
+					$(this).addClass('is-checked');
+				});
+			});
+		});
+    });
+});
+</script>
+<?php else: ?>
+	<div class="row portfolio-container">
+	<?php if(count($portfolios)>0): ?>
+		<?php $helper = $this->helper('MGS\Portfolio\Helper\Data') ?>
+		<?php foreach($portfolios as $portfolio): ?>
+			<div class="col-md-4 col-sm-4 col-xs-12">
+				<div class="portfolio-top-content">
+					<?php $thumbnailUrl = $this->getThumbnailSrc($portfolio) ?>
+					<?php $portfolioUrl = $this->getPortfolioAddress($portfolio) ?>
+					<?php if($thumbnailUrl): ?>
+						<a href="<?php echo $portfolioUrl; ?>">
+							<img src="<?php echo $thumbnailUrl ?>" alt="" class="img-responsive"/>
+						</a>
+					<?php endif ?>
+					<span class="hover-info">
+						<span class="fa fa-search"></span>
+						<span class="project"><?php echo $portfolio->getServices() ?></span>
+						<span class="categories"><?php echo $this->getCategoriesText($portfolio)?></span>
+					</span>
+				</div>
+				<div class="portfolio-bottom-content">
+					<h4><a href="<?php echo $portfolioUrl; ?>"><?php echo $portfolio->getName() ?></a></h4>
+					<p class="category-link"><?php echo $this->getCategoriesLink($portfolio) ?></p>
+				</div>
+			</div>
+		<?php endforeach ?>
+	<?php else: ?>
+		
+	<?php endif ?>
+</div>
+
+<?php endif;?>

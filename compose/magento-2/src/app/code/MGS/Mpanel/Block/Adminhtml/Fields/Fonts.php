@@ -46,13 +46,13 @@ class Fonts extends \Magento\Config\Block\System\Config\Form\Field
 			], function(jQuery){
 				(function($) {
 					$('#".$element->getHtmlId()."').change(function  () {
-						$('#".$element->getHtmlId()."_view').css({fontFamily:  $('#".$element->getHtmlId()." option:selected').text()});
+						$('#".$element->getHtmlId()."_view').css({fontFamily:  $('#".$element->getHtmlId()."').val().replace('+', ' ')});
 						$('<link />', {href: '//fonts.googleapis.com/css?family=' + $('#".$element->getHtmlId()."').val(), rel: 'stylesheet', type:  'text/css'}).appendTo('head');
 					}).keyup(function () {
-						$('#".$element->getHtmlId()."_view').css({ fontFamily: $('#".$element->getHtmlId()." option:selected').text()});
+						$('#".$element->getHtmlId()."_view').css({ fontFamily: $('#".$element->getHtmlId()."').val().replace('+', ' ')});
 						$('<link />', {href: '//fonts.googleapis.com/css?family=' + $('#".$element->getHtmlId()."').val(), rel: 'stylesheet', type: 'text/css'}).appendTo('head');
 					}).keydown(function () {
-						$('#".$element->getHtmlId()."_ view').css({fontFamily: $('#".$element->getHtmlId()." option:selected').text()});
+						$('#".$element->getHtmlId()."_ view').css({fontFamily: $('#".$element->getHtmlId()."').val().replace('+', ' ')});
 						$('<link />', {href: '//fonts.googleapis.com/css?family=' + $('#".$element->getHtmlId()."').val(), rel: 'stylesheet', type: 'text/css'}).appendTo('head');
 					});
 					$('#".$element->getHtmlId()."').trigger('change');

@@ -38,16 +38,6 @@ class Deals extends \Magento\Catalog\Block\Product\AbstractProduct
 	protected $_count;
 	
 	protected $_date;
-	
-	/**
-     * @var \Magento\Framework\Url\Helper\Data
-     */
-    protected $urlHelper;
-	
-	/**
-     * @var \Magento\Framework\Data\Form\FormKey
-     */
-    protected $formKey;
     /**
      * @param Context $context
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
@@ -62,16 +52,12 @@ class Deals extends \Magento\Catalog\Block\Product\AbstractProduct
         \Magento\Framework\App\Http\Context $httpContext,
 		\Magento\Framework\ObjectManagerInterface $objectManager,
 		\Magento\Framework\Stdlib\DateTime\DateTime $date,
-		\Magento\Framework\Url\Helper\Data $urlHelper,
-		\Magento\Framework\Data\Form\FormKey $formKey,
         array $data = []
     ) {
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_catalogProductVisibility = $catalogProductVisibility;
 		$this->_objectManager = $objectManager;
         $this->httpContext = $httpContext;
-		$this->urlHelper = $urlHelper;
-		$this->formKey = $formKey;
 		$this->_date = $date;
         parent::__construct(
             $context,
@@ -88,17 +74,11 @@ class Deals extends \Magento\Catalog\Block\Product\AbstractProduct
      *
      * @return \Magento\Catalog\Model\ResourceModel\Product\Collection|Object|\Magento\Framework\Data\Collection
      */
-    public function getProductCollection($category)
+    public function getProductCollection()
     {
         /** @var $collection \Magento\Catalog\Model\ResourceModel\Product\Collection */
         $collection = $this->_productCollectionFactory->create();
         $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-		
-		if($category->getId()){
-			$categoryIdArray = [$category->getId()];
-			$categoryFilter = ['eq'=>$categoryIdArray];
-			$collection->addCategoriesFilter($categoryFilter);
-		}
 
         $collection = $this->_addProductAttributesAndPrices($collection)
 			->addAttributeToSelect(['image', 'name', 'short_description'])
@@ -108,37 +88,13 @@ class Deals extends \Magento\Catalog\Block\Product\AbstractProduct
 			->addAttributeToFilter('special_to_date', ['notnull'=>true]);
 		
 		$collection->getSelect()->where('price_index.final_price < price_index.price');
-
+		
+		//$this->_count = $collection->count();
+		
         $collection->setPageSize($this->getProductsCount())
             ->setCurPage($this->getCurrentPage());
         return $collection;
     }
-	
-	public function getDealsByCategories($categoryIds){
-		$collection = $this->_productCollectionFactory->create();
-        $collection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
-		
-		if($categoryIds!=''){
-			$categoryIdArray = explode(',',$categoryIds);
-			if(count($categoryIdArray)>0){
-				$categoryFilter = ['eq'=>$categoryIdArray];
-				$collection->addCategoriesFilter($categoryFilter);
-			}
-		}
-
-        $collection = $this->_addProductAttributesAndPrices($collection)
-			->addAttributeToSelect(['image', 'name', 'short_description'])
-            ->addStoreFilter()
-			->addFinalPrice()
-            ->addAttributeToSort('created_at', 'desc')
-			->addAttributeToFilter('special_to_date', ['notnull'=>true]);
-		
-		$collection->getSelect()->where('price_index.final_price < price_index.price');
-
-        $collection->setPageSize($this->getProductsCount())
-            ->setCurPage($this->getCurrentPage());
-        return $collection;
-	}
 	
 	public function getAllProductCount(){
 		//return $this->_count;
@@ -179,47 +135,6 @@ class Deals extends \Magento\Catalog\Block\Product\AbstractProduct
 	
 	public function getCurrentDate(){
 		return $this->_date->gmtDate();
-	}
-	
-	public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
-    {
-        $url = $this->getAddToCartUrl($product);
-        return [
-            'action' => $url,
-            'data' => [
-                'product' => $product->getEntityId(),
-                \Magento\Framework\App\ActionInterface::PARAM_NAME_URL_ENCODED =>
-                    $this->urlHelper->getEncodedUrl($url),
-            ]
-        ];
-    }
-	
-	/**
-     * Get form key
-     *
-     * @return string
-     */
-    public function getFormKey()
-    {
-        return $this->formKey->getFormKey();
-    }
-	
-	public function getCategoryByIds(){
-		$result = [];
-		if($this->hasData('category_ids')){
-			$categoryIds = $this->getData('category_ids');
-			$categoryArray = explode(',',$categoryIds);
-			if(count($categoryArray)>0){
-				foreach($categoryArray as $categoryId){
-					$category = $this->getModel('Magento\Catalog\Model\Category')->load($categoryId);
-					if($category->getId()){
-						$result[] = $category;
-					}
-					
-				}
-			}
-		}
-		return $result;
 	}
 }
 

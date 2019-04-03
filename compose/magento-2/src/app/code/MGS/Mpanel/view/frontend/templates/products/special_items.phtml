@@ -33,7 +33,7 @@
 					?>
 					<?php // Product Image ?>
 					<a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-						<img src="<?php echo $productImage; ?>" alt="<?php echo $_productNameStripped ?>" class="img-fluid product-image-photo img-thumbnail"/>
+						<img src="<?php echo $productImage; ?>" alt="<?php echo $_productNameStripped ?>" class="img-responsive product-image-photo img-thumbnail"/>
 						<?php echo $themeHelper->getProductLabel($_product) ?>
 					</a>
 					<div class="product details product-item-details">

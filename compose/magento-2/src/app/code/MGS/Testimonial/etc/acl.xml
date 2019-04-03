@@ -9,11 +9,10 @@
     <acl>
         <resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_Testimonial::testimonial" title="Testimonial" sortOrder="40">
-						<resource id="MGS_Testimonial::manage" title="Manage Items" sortOrder="10"/>
-					</resource>
-				</resource>
+                <resource id="MGS_Testimonial::testimonial" title="Testimonial" sortOrder="100">
+					<resource id="MGS_Testimonial::save" title="Save Item" sortOrder="10" />
+					<resource id="MGS_Testimonial::delete" title="Delete Item" sortOrder="20" />
+                </resource>
             </resource>
         </resources>
     </acl>

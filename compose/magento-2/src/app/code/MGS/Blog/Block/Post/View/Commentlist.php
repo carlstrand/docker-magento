@@ -3,6 +3,7 @@
 namespace MGS\Blog\Block\Post\View;
 
 use Magento\Customer\Model\Context as CustomerContext;
+use Magento\Framework\App\RequestInterface;
 
 class Commentlist extends \Magento\Framework\View\Element\Template
 {
@@ -10,6 +11,7 @@ class Commentlist extends \Magento\Framework\View\Element\Template
     protected $_blogHelper;
     protected $_post;
     protected $_category;
+    protected $_storeManager;
     protected $httpContext;
     protected $request;
     protected $_comment;
@@ -21,6 +23,8 @@ class Commentlist extends \Magento\Framework\View\Element\Template
         \MGS\Blog\Model\Post $post,
         \MGS\Blog\Model\Category $category,
         \MGS\Blog\Model\Comment $comment,
+        RequestInterface $request,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = []
     )
@@ -29,7 +33,8 @@ class Commentlist extends \Magento\Framework\View\Element\Template
         $this->_comment = $comment;
         $this->_category = $category;
         $this->_coreRegistry = $registry;
-        $this->request = $context->getRequest();
+        $this->request = $request;
+        $this->_storeManager = $storeManager;
         $this->_blogHelper = $blogHelper;
         $this->httpContext = $httpContext;
         parent::__construct($context, $data);

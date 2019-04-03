@@ -74,7 +74,7 @@ class Css extends \Magento\Framework\App\Action\Action
 		}
 	   
 	   $html .= '}';
-	   $custom_font = $helper->getStoreConfig('mgstheme/fonts/custom_fonts_element', $storeId);
+	   
 		$fontStyle = [
 			'.navigation li.level0 a.level-top, .navigation ul.container .level0 > a' => [
 				'font-family' => str_replace('+', ' ',$helper->getStoreConfig('mgstheme/fonts/menu', $storeId)),
@@ -107,14 +107,6 @@ class Css extends \Magento\Framework\App\Action\Action
 			'.price, .price-box .price' => [
 				'font-family' => str_replace('+', ' ', $helper->getStoreConfig('mgstheme/fonts/price', $storeId)),
 				'font-size' => $helper->getStoreConfig('mgstheme/fonts/price_font_size', $storeId),
-			],
-			'.btn' => [
-				'font-family' => str_replace('+', ' ', $helper->getStoreConfig('mgstheme/fonts/btn', $storeId)),
-				'font-size' => $helper->getStoreConfig('mgstheme/fonts/btn_font_size', $storeId),
-			],
-			$custom_font => [
-				'font-family' => str_replace('+', ' ', $helper->getStoreConfig('mgstheme/fonts/custom_font_fml', $storeId)),
-				'font-size' => $helper->getStoreConfig('mgstheme/fonts/custom_font_size', $storeId),
 			]
 		];
 		
@@ -156,6 +148,22 @@ class Css extends \Magento\Framework\App\Action\Action
 			$headerColorSetting = $helper->getHeaderColorSetting($storeId);
 			if (count($headerColorSetting) > 0) {
 				foreach ($headerColorSetting as $class => $style) {
+					$style = array_filter($style);
+					if (count($style) > 0) {
+						$html .= $class . '{';
+						foreach ($style as $_style => $value) {
+							$html .= $_style . ': ' . $value . ';';
+						}
+						$html .= '}';
+					}
+				}
+			}
+		}
+		
+		if($helper->getStoreConfig('color/footer/footer_custom', $storeId)){
+			$footerColorSetting = $helper->getFooterColorSetting($storeId);
+			if (count($footerColorSetting) > 0) {
+				foreach ($footerColorSetting as $class => $style) {
 					$style = array_filter($style);
 					if (count($style) > 0) {
 						$html .= $class . '{';

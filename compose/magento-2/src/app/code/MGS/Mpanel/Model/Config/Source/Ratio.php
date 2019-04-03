@@ -26,8 +26,7 @@ class Ratio implements \Magento\Framework\Option\ArrayInterface
 			['value' => 4, 'label' => __('3/4 Portrait')], 
 			['value' => 5, 'label' => __('2/1 Landscape')], 
 			['value' => 6, 'label' => __('3/2 Landscape')],
-			['value' => 7, 'label' => __('4/3 Landscape')],
-			['value' => 8, 'label' => __('Custom With & Height')]
+			['value' => 6, 'label' => __('4/3 Landscape')]
 		];
     }
 }

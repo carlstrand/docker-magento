@@ -9,19 +9,15 @@
     <acl>
         <resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_Mmegamenu::mmegamenu" title="Megamenu" sortOrder="10">
-						<resource id="MGS_Mmegamenu::parent" title="Manage Menu" sortOrder="10" />
-						<resource id="MGS_Mmegamenu::items" title="Manage Megamenu Items" sortOrder="20" />
-					</resource>
-				</resource>
+				<resource id="MGS_Mmegamenu::mmegamenu" title="Mmegamenu" sortOrder="100">
+					<resource id="MGS_Mmegamenu::save" title="Save Item" sortOrder="10" />
+					<resource id="MGS_Mmegamenu::delete" title="Delete Item" sortOrder="20" />
+                </resource>
 				
 				<resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-							<resource id="MGS_Mpanel::mpanel">
-								<resource id="MGS_Mmegamenu::config_megamenu" title="Megamenu Setting" sortOrder="20" />
-							</resource>
+                            <resource id="MGS_Mmegamenu::config_megamenu" title="Megamenu Setting" />
                         </resource>
                     </resource>
                 </resource>

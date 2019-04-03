@@ -18,7 +18,6 @@ class Mmegamenu extends \Magento\Backend\Block\Widget\Grid\Container
         $this->_blockGroup = 'MGS_Mmegamenu';
         $this->_headerText = __('Megamenu');
         $this->_addButtonLabel = __('Add Item');
-        $this->addButton('clear_cache', ['label'=>'Flush Menu Cache', 'class'=>'primary','onclick'=>'setLocation("'.$this->getUrl("adminhtml/mmegamenu/flushcacheitem").'")']);
         parent::_construct();
     }
 

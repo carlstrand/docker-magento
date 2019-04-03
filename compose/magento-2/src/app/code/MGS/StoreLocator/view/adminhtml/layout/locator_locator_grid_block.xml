@@ -71,14 +71,6 @@
                             <argument name="column_css_class" xsi:type="string">ccol-email</argument>
                         </arguments>
                     </block>
-					<block class="Magento\Backend\Block\Widget\Grid\Column" as="url_Key">
-                        <arguments>
-                            <argument name="header" xsi:type="string" translate="true">Store Url</argument>
-                            <argument name="index" xsi:type="string">url_key</argument>
-                            <argument name="header_css_class" xsi:type="string">col-url</argument>
-                            <argument name="column_css_class" xsi:type="string">ccol-url</argument>
-                        </arguments>
-                    </block>
                     <block class="Magento\Backend\Block\Widget\Grid\Column" as="country">
                         <arguments>
                             <argument name="header" xsi:type="string" translate="true">Country</argument>

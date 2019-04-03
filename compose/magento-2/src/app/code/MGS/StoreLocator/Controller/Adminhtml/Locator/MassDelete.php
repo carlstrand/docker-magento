@@ -17,7 +17,7 @@ class MassDelete extends \Magento\Backend\App\Action {
             try {
                 foreach ($locatorIds as $_id) {
                     $locator = $this->_objectManager->create(
-                                    'MGS\StoreLocator\Model\Store'
+                                    'MGS\StoreLocator\Model\store'
                             )->load(
                             $_id
                     );

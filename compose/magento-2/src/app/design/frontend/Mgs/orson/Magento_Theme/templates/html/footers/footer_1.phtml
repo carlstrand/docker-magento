@@ -1,0 +1,35 @@
+<?php $block = $this->getBlock() ?>
+<div class="footer-container footer-v1">
+	<section class="middle-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_ft_logo')->toHtml() ?>
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_ft_info')->toHtml() ?>
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_social_header')->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_ft_contact')->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_ft_product_tags')->toHtml() ?>
+				</div>
+				<div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_ft_tweets')->toHtml() ?>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="bottom-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<address><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></address>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_payment')->toHtml() ?>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

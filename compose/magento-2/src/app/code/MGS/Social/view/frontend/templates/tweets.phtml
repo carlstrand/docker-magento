@@ -1,7 +1,7 @@
 <?php 
 $helper = $this->helper('MGS\Social\Helper\Data');
 ?>
-<?php if ($helper->getConfig('twitter_settings/active')):?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('twitter_settings/active')):?>
 <?php if($helper->getConfig('twitter_settings/client_token') && $helper->getConfig('twitter_settings/client_tokenSecret')&& $helper->getConfig('twitter_settings/client_id') && $helper->getConfig('twitter_settings/client_secret')): ?>
 <?php echo $block->getLastTwitter();
 	?>

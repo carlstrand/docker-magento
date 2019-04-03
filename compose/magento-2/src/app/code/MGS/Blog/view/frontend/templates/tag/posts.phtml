@@ -2,62 +2,90 @@
 $helper = $this->helper('MGS\Blog\Helper\Data');
 $collection = $block->getCollection();
 $showThumbnail = $this->getConfig('general_settings/show_thumbnail');
+if ($this->getConfig('general_settings/thumbnail_width') != '') {
+    $width = $this->getConfig('general_settings/thumbnail_width');
+} else {
+    $width = 240;
+}
+if ($this->getConfig('general_settings/thumbnail_height') != '') {
+    $height = $this->getConfig('general_settings/thumbnail_height');
+} else {
+    $height = 180;
+}
 ?>
 <?php if (!count($collection)): ?>
-    <div class="message empty">
+    <div class="message info empty">
         <div><?php echo __('Have no posts.') ?></div>
     </div>
 <?php else: ?>
     <div class="blog-list">
         <?php foreach ($collection as $post): ?>
-            <div class="blog-post post-item-info">
+            <div class="blog-post">
                 <h2 class="post-title">
-                     <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a>
+                    <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a>
                 </h2>
-                <div class="entry-metas">
-                    <span class="entry-author entry-meta">
-                        <?php echo __('%1', $post->getUser()); ?>
-                    </span>
-                    <span class="entry-meta">
-                        <?php echo __('%1', $block->formatDate($post->getUpdatedAt(), \IntlDateFormatter::MEDIUM, false)); ?>
-					</span>
-                    <?php $categoryItem = $block->getParentCategory($post->getPostId()); ?>
-                    <?php if($categoryItem): ?>
-                        <span class="category-links entry-meta">
-                            <?php $i=0; foreach ($categoryItem as $category): $i++; ?>
-                                <?php if($i > 1): ?><span>, </span><?php endif ?><a href="<?php echo $block->getCategoryUrl($category->getUrlKey()); ?>"><?php echo $category->getTitle(); ?></a>
-                            <?php endforeach ?>
-                        </span>
-                    <?php endif ?>
-                </div>
-				<div class="post-image">
-                    <?php if($helper->getImageThumbnailPost($post) != ""): ?>
-                        <div class="post-thumbnail">
-                            <?php if($post->getThumbType() == "video" && $post->getVideoThumbId() != ""): ?>
-                                <a class="popup-video" href="<?php echo $helper->getVideoThumbUrl($post); ?>" title="<?php echo $post->getTitle(); ?>">
-                                    <img class="img-fluid" src="<?php echo $helper->getImageThumbnailPost($post); ?>" alt="<?php echo $post->getTitle(); ?>"/>
-                                </a>
-                            <?php else: ?>
-                                <a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" title="<?php echo $post->getTitle(); ?>">
-                                    <img class="img-fluid" src="<?php echo $helper->getImageThumbnailPost($post); ?>" alt="<?php echo $post->getTitle(); ?>"/>
-                                </a>
-                            <?php endif ?>
-                        </div>
-                    <?php endif ?>
-				</div>
-				
-				<?php if ($post->getShortContent()): ?>
-					<div class="post-content">
-						<div class="post-short-description">
-							<?php echo $post->getShortContent(); ?>
+                <div class="post-info">
+                    <?php if ($post->getUpdatedByUser()): ?>
+                        <div class="published-by"><?php echo __('Published By: %1', $post->getUpdatedByUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></div>
+                    <?php else: ?>
+                        <div class="published-by"><?php echo __('Published By: %1', $post->getUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></div>
+                    <?php endif; ?>
+					<?php $categories = $post->getCatetories(); ?>
+					<?php if (count($categories)): ?>
+						<div class="posted-in">
+							<?php echo __('Posted In: ') ?>
+							<?php foreach ($categories as $category): ?>
+								<a title="<?php echo $category->getTitle(); ?>" href="<?php echo $category->getCategoryUrl(); ?>"><?php echo $category->getTitle(); ?></a>
+							<?php endforeach; ?>
 						</div>
+					<?php endif; ?>
+					
+					<?php if ($this->getConfig('comment_settings/enabled')): ?>
+						<div class="comment-link">
+							<a href="<?php echo $post->getPostUrlWithNoCategory(); ?>#comment-box"><?php echo __('%1 Comment(s)', $post->getCommentCount()) ?></a>
+						</div>
+					<?php endif; ?>
+                </div>
+                <?php if ($showThumbnail): ?>
+                    <div class="post-thumbnail">
+                        <a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>">
+                            <img 
+                                 alt="<?php echo $post->getTitle(); ?>"
+                                 src="<?php echo $post->getThumbnailUrl(); ?>">
+                        </a>
+                    </div>
+                <?php endif; ?>
+                <?php if ($post->getShortContent()): ?>
+                    <div class="post-content">
+                        <?php echo $post->getShortContent(); ?>
+                    </div>
+					<div class="post-link">
+						<a title="<?php echo __('Read More'); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo __('Read More'); ?></a>
 					</div>
-				<?php endif; ?>
+                <?php endif; ?>
+                <?php if ($post->getTags()): ?>
+                    <?php $tags = explode(',', $post->getTags()); ?>
+                    <div class="post-tags">
+                        <?php echo __('Tags: '); ?>
+                        <?php foreach ($tags as $tag): ?>
+                            <a title="<?php echo trim($tag); ?>" href="<?php echo $helper->getTagUrl(trim($tag)); ?>"><?php echo trim($tag); ?></a>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
 				
+                <?php if ($this->getConfig('general_settings/use_sharethis')): ?>
+                    <div class="post-sharethis">
+						<span class="title"> <?php echo __('Share This: ') ?></span>
+                        <span class='st_facebook' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Facebook'); ?>'></span>
+                        <span class='st_googleplus' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Google +'); ?>'></span>
+                        <span class='st_twitter' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Tweet'); ?>'></span>
+                        <span class='st_linkedin' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('LinkedIn'); ?>'></span>
+                        <span class='st_pinterest' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Pinterest'); ?>'></span>
+                        <span class='st_email' st_url='<?php echo $post->getPostUrlWithNoCategory(); ?>' st_title='<?php echo $post->getTitle(); ?>' displayText='<?php echo __('Email'); ?>'></span>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
     </div>
-	<div class="bottom-pagination">
-		<div class="toolbar"><?php echo $block->getPagerHtml(); ?></div>
-	</div>
+    <div class="blog-post-list-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
 <?php endif; ?>

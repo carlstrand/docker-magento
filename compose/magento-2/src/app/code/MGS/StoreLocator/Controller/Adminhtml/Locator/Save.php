@@ -3,7 +3,7 @@
 namespace MGS\StoreLocator\Controller\Adminhtml\Locator;
 
 use MGS\StoreLocator\Model\StoreFactory;
-use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Action\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
 
 class Save extends \Magento\Backend\App\Action {
@@ -34,7 +34,6 @@ class Save extends \Magento\Backend\App\Action {
      * @SuppressWarnings(PHPMD.NPathComplexity)
      */
     public function execute() {
-		$new = true;
         $data = $this->getRequest()->getPostValue();
         if (!$data) {
             $this->_redirect('locator/*/');
@@ -44,7 +43,6 @@ class Save extends \Magento\Backend\App\Action {
         $model = $this->_objectManager->create('MGS\StoreLocator\Model\Store');
         if (!empty($data['id'])) {
             $model->load($data['id']);
-			$new = false;
         }
         if (!empty($data['id']) && $model->isObjectNew()) {
             $this->messageManager->addError(__('This Locator no longer exists.'));
@@ -52,23 +50,6 @@ class Save extends \Magento\Backend\App\Action {
             return;
         }
 
-		if (empty($data['url_key'])) {
-			$locatorUrlKey = str_replace(' ', '-',strtolower(trim($data['name'])));
-		}else {
-			$locatorUrlKey = $data['url_key'];
-		}
-		
-		if($new){
-			$data['url_key'] = $this->checkUrlKey($locatorUrlKey);
-		}else {
-			if ($locatorUrlKey == $model->getUrlKey()) {
-				$data['url_key'] = $locatorUrlKey;
-			}else {
-				$data['url_key'] = $this->checkUrlKey($locatorUrlKey);
-			}
-			
-		}
-		
         // Store logo Image upload
         if(isset($_FILES['image']['name']) && $_FILES['image']['name'] != '') {
             /** @var $uploader \Magento\MediaStorage\Model\File\Uploader */
@@ -111,7 +92,8 @@ class Save extends \Magento\Backend\App\Action {
             }
             $this->_redirect('locator/*/');
         } catch (\Exception $e) {
-            $this->messageManager->addError(__("Something when wrong. We can't save the store locator right now."));
+            $messages = $e->getMessages();
+            $this->messageManager->addMessages($messages);
             $this->redirectToEdit($model, $data);
         }
     }
@@ -127,20 +109,5 @@ class Save extends \Magento\Backend\App\Action {
         $arguments = array_merge($arguments, ['_current' => true, 'active_tab' => '']);
         $this->_redirect('locator/*/edit', $arguments);
     }
-	
-	public function checkUrlKey($urlKey){
-	
-		$modelCheck = $this->_objectManager
-							->create('MGS\StoreLocator\Model\Store')
-							->getCollection()
-							->addFieldToFilter ('url_key', $urlKey);
-		if(count($modelCheck)){
-			
-			$newModelCheck = $urlKey . '-' . rand(1,100);
-			return $this->checkUrlKey($newModelCheck);
-		}
-		
-		return $urlKey;
-	}
 
 }

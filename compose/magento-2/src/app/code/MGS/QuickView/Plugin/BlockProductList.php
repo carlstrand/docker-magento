@@ -5,6 +5,7 @@ namespace MGS\QuickView\Plugin;
 class BlockProductList {
 
     const XML_PATH_QUICKVIEW_ENABLED = 'mgs_quickview/general/enabled';
+    const XML_PATH_QUICKVIEW_BUTTONSTYLE = 'mgs_quickview/general/button_style';
 
     protected $urlInterface;
     protected $scopeConfig;
@@ -22,8 +23,9 @@ class BlockProductList {
         $result = $proceed($product);
         $isEnabled = $this->scopeConfig->getValue(self::XML_PATH_QUICKVIEW_ENABLED, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
         if ($isEnabled) {
+            $buttonStyle = 'mgs_quickview_button_' . $this->scopeConfig->getValue(self::XML_PATH_QUICKVIEW_BUTTONSTYLE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
             $productUrl = $this->urlInterface->getUrl('mgs_quickview/catalog_product/view', array('id' => $product->getId()));
-            return $result . '<button data-title="'. __("Quick View") .'" class="mgs-quickview action" data-quickview-url=' . $productUrl . ' href="javascript:void(0);"><span class="ion-ios-search-strong"></span></button>';
+            return $result . '<a class="mgs-quickview ' . $buttonStyle . '" data-quickview-url=' . $productUrl . ' href="javascript:void(0);"><span>' . __("Quick View") . '</span></a>';
         }
         return $result;
     }

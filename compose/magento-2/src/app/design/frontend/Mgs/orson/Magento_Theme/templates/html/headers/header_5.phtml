@@ -1,0 +1,73 @@
+<?php $block = $this->getBlock() ?>
+<?php $welcomeMessage = $block->getWelcome(); ?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<div class="header-v5 <?php if($themeHelper->getStoreConfig('mgstheme/general/sticky_menu')): ?> sticky-menu<?php endif;?>" id="header-v5">
+<div class="top-header-content">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-5 col-md-5 col-sm-5 col-xs-6">
+				<?php echo $block->getChildHtml('currency') ?>
+				<?php echo $block->getChildHtml('store_language') ?>
+				
+				<div class="greet welcome" data-bind="scope: 'customer'">
+					<i class="fa fa-key"></i>
+					<span data-bind="text: customer().fullname ? $t('Welcome, %1!').replace('%1', customer().fullname) : '<?php echo $block->escapeHtml($welcomeMessage) ?>'"><?php echo $block->escapeHtml($welcomeMessage) ?></span>
+				</div>
+			</div>
+			<div class="col-lg-7 col-md-7 col-sm-7 col-xs-6">
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_social_header')->toHtml(); ?>
+				<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_header_wishlist')->toHtml(); ?>
+				<div class="account-dropdown" id="top-links">
+                                <a href="#" class="action toggle top-links-trigger" id="top-links-trigger">
+                                    <i class="fa fa-user"></i>
+									<span class="hidden-sm hidden-xs"><?php echo __('My Account')?></span>
+                                </a>
+                                <div class="dropdown top-links-dropdown" style="display:none;" data-mage-init='{"dropdownDialog":{
+                                     "appendTo":"#top-links",
+                                     "triggerTarget":"#top-links-trigger",
+                                     "closeOnMouseLeave":false,
+                                     "triggerClass":"active",
+                                     "parentClass":"active",
+                                     "buttons":null,
+                                     "defaultDialogClass":"dropdown-menu"}}'>  
+                                         <?php echo $block->getChildHtml('top.links') ?>
+                                </div>
+                            </div>  
+				
+				<?php //echo $block->getChildHtml('social_header')?>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="middle-header-content">
+	<div class="container">
+	<div class="header-container">
+		
+		<div class="row">
+			<div class="col-md-3 col-sm-12 col-xs-12 sticky-logo"><?php echo $block->getChildHtml('logo') ?></div>
+			<div class="col-md-9 col-sm-12 col-xs-12">
+				<div class="row">
+					<div class="col-md-8 col-sm-8 col-xs-8"><?php echo $block->getChildHtml('top.search') ?></div>
+					<div class="col-md-4 col-sm-4 col-xs-4"><?php echo $block->getChildHtml('minicart') ?></div>
+				</div>			
+			</div>
+		</div>
+		</div>
+	</div>
+</div>
+<div class="header-menu header-sticky">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+				<div class="nav nav-main-collapse main-menu">
+					<i class="fa fa-times"></i>
+					<?php echo $block->getChildHtml('megamenu') ?>
+				</div>
+			</div>
+			<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+				<i class="fa fa-bars"></i>
+			</button>
+		</div>
+	</div>
+</div>
+</div>

@@ -1,11 +1,4 @@
-<?php $themeHelper = $this->helper('MGS\StoreLocator\Helper\Data'); ?>
-<?php if($themeHelper->getStoreConfig('locator/general/store_api_key')){
-	$apikey = $themeHelper->getStoreConfig('locator/general/store_api_key');
-}else{
-	$apikey = 'AIzaSyD11c9ZFjYyFvKmbp2eKkpRuiqkjkAUIG0';
-}
-?>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<?php echo $apikey ?>&libraries=places&sensor=false"></script>
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
 <style type="text/css">
     #locator_form_map{height:500px; border:1px solid #ddd;<?php if (!$this->getRequest()->getParam('id')): ?>display:none<?php endif ?>}
 </style>

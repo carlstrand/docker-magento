@@ -1,0 +1,72 @@
+<?php $block = $this->getBlock() ?>
+<?php $welcomeMessage = $block->getWelcome(); ?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<div class="header-v9 <?php if($themeHelper->getStoreConfig('mgstheme/general/sticky_menu')): ?> sticky-menu<?php endif;?>" id="header-v9">
+	<div class="middle-header-content">
+		<div class="row">
+			<div class="col-md-5  col-sm-4 col-xs-12">
+				<div class="top-bar top-header-content">
+					<?php echo $block->getChildHtml('currency') ?>
+					<?php echo $block->getChildHtml('store_language') ?>
+					
+					<div class="account-dropdown" id="top-links">
+						<a href="#" class="action toggle top-links-trigger" id="top-links-trigger">
+							<span class="hidden-sm"><?php echo __('My Account')?></span>
+							<span class="visible-sm"><i class="fa fa-user"></i></span>
+							<i class="fa fa-plus"></i>
+						</a>
+						<div class="dropdown top-links-dropdown" style="display:none;" data-mage-init='{"dropdownDialog":{
+							 "appendTo":"#top-links",
+							 "triggerTarget":"#top-links-trigger",
+							 "closeOnMouseLeave":false,
+							 "triggerClass":"active",
+							 "parentClass":"active",
+							 "buttons":null,
+							 "defaultDialogClass":"dropdown-menu"}}'>  
+								 <?php echo $block->getChildHtml('top.links') ?>
+						</div>
+					</div>  
+
+					
+					<div class="greet welcome" data-bind="scope: 'customer'">
+						<i class="fa fa-key"></i>
+						<span data-bind="text: customer().fullname ? $t('Welcome, %1!').replace('%1', customer().fullname) : '<?php echo $block->escapeHtml($welcomeMessage) ?>'"><?php echo $block->escapeHtml($welcomeMessage) ?></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-12">
+				<div class="header-logo">
+					<?php echo $block->getChildHtml('logo') ?>
+				</div>
+			</div>
+			<div class="col-md-5  col-sm-4 col-xs-12">
+				<div class="block-menu">
+					<div class="nav nav-main-collapse main-menu">
+						<i class="fa fa-times"></i>
+						<?php echo $block->getChildHtml('megamenu') ?>
+					</div>
+					<button class="btn btn-responsive-nav btn-inverse" data-toggle="collapse" data-target=".nav-main-collapse">
+						<i class="fa fa-bars"></i>
+					</button>
+					<div class="search-dropdown" id="top-search">
+						<a href="#" class="action toggle top-search-trigger" id="top-search-trigger">
+							<i class="fa fa-search"></i>
+						</a>
+						<div class="dropdown top-search-dropdown" style="display:none;" data-mage-init='{"dropdownDialog":{
+							 "appendTo":"#top-search",
+							 "triggerTarget":"#top-search-trigger",
+							 "closeOnMouseLeave":false,
+							 "triggerClass":"active",
+							 "parentClass":"active",
+							 "buttons":null,
+							 "defaultDialogClass":"dropdown-menu"}}'>  
+								 <?php echo $block->getChildHtml('top.search') ?>
+						</div>
+					</div> 
+					
+					<?php echo $block->getChildHtml('minicart') ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

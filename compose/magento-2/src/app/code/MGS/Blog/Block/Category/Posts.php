@@ -9,7 +9,7 @@ class Posts extends \Magento\Framework\View\Element\Template
     protected $_coreRegistry = null;
     protected $_blogHelper;
     protected $_post;
-    protected $_category;
+    protected $_storeManager;
     protected $httpContext;
 
     public function __construct(
@@ -17,14 +17,14 @@ class Posts extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \MGS\Blog\Helper\Data $blogHelper,
         \MGS\Blog\Model\Post $post,
-        \MGS\Blog\Model\Category $category,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = []
     )
     {
         $this->_post = $post;
-        $this->_category = $category;
         $this->_coreRegistry = $registry;
+        $this->_storeManager = $storeManager;
         $this->_blogHelper = $blogHelper;
         $this->httpContext = $httpContext;
         parent::__construct($context, $data);
@@ -85,13 +85,6 @@ class Posts extends \Magento\Framework\View\Element\Template
                 'link' => ''
             ]
         );
-    }
-
-    public function getParentCategory($postId){
-        $postCollection = $this->_category->getCollection()
-                                ->addFieldToFilter('status', 1)
-                                ->addPostFilter($postId);
-        return $postCollection;
     }
 
     public function setCollection($collection)

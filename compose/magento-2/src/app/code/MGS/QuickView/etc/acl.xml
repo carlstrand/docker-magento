@@ -3,17 +3,10 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_QuickView::QuickView" title="Quick View" sortOrder="80">
-						<resource id="MGS_QuickView::configuration" title="Configuration" sortOrder="10"/>
-					</resource>
-				</resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-							<resource id="MGS_Mpanel::mpanel">
-								<resource id="MGS_QuickView::config_quickview" title="Quick View" sortOrder="50" />
-							</resource>
+                            <resource id="MGS_QuickView::config_quickview" title="MGS Quick View" sortOrder="260" />
                         </resource>
                     </resource>
                 </resource>                              

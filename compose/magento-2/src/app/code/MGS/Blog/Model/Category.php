@@ -44,19 +44,6 @@ class Category extends AbstractModel
         return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
     }
 
-    
-    public function addPostFilter($postId)
-    {
-        $this->getSelect()
-            ->join(
-                ['category_table' => $this->getTable('mgs_portfolio_category')],
-                'main_table.category_id = category_table.category_id',
-                []
-            )
-            ->where('category_table.portfolio_id = ?', $postId);
-        return $this;
-    }
-    
     public function getCategoryUrl()
     {
         $route = $this->blogHelper->getRoute();

@@ -9,19 +9,8 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_StoreLocator::storelocator" title="Store Locator" sortOrder="40">
-						<resource id="MGS_StoreLocator::manage" title="Manage Stores" sortOrder="10"/>
-					</resource>
-				</resource>
-				<resource id="Magento_Backend::stores">
-                    <resource id="Magento_Backend::stores_settings">
-                        <resource id="Magento_Config::config">
-							<resource id="MGS_Mpanel::mpanel">
-								<resource id="MGS_StoreLocator::locator_manage" title="Store Locator" sortOrder="40"/>
-							</resource>
-                        </resource>
-                    </resource>
+                <resource id="Magento_Backend::mgs" title="Store Locator" sortOrder="10">
+                    <resource id="MGS_StoreLocator::locator_manage" title="Manage Stores" sortOrder="40"/>
                 </resource>
             </resource>
         </resources>

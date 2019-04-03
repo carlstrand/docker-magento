@@ -9,6 +9,7 @@ class Brands extends \Magento\Framework\View\Element\Template
     protected $_coreRegistry = null;
     protected $_brandHelper;
     protected $_brand;
+    protected $_storeManager;
     protected $httpContext;
     protected $_catalogProductVisibility;
 
@@ -17,6 +18,7 @@ class Brands extends \Magento\Framework\View\Element\Template
         \Magento\Framework\Registry $registry,
         \MGS\Brand\Helper\Data $brandHelper,
         \MGS\Brand\Model\Brand $brand,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Http\Context $httpContext,
         \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
         array $data = []
@@ -24,6 +26,7 @@ class Brands extends \Magento\Framework\View\Element\Template
     {
         $this->_brand = $brand;
         $this->_coreRegistry = $registry;
+        $this->_storeManager = $storeManager;
         $this->_brandHelper = $brandHelper;
         $this->httpContext = $httpContext;
         $this->_catalogProductVisibility = $catalogProductVisibility;

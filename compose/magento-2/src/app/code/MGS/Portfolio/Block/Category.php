@@ -17,17 +17,33 @@ class Category extends Template
      */
     protected $_objectManager;
 	
+	/**
+     * @var \Magento\Framework\View\Page\Config
+     */
+    protected $pageConfig;
+	
+	/**
+     * Store manager
+     *
+     * @var \Magento\Store\Model\StoreManagerInterface
+     */
+    protected $_storeManager;
+	
     /**
      * @param Template\Context $context
      * @param array $data
      */
     public function __construct(
 		Template\Context $context, array $data = [], 
-		\Magento\Framework\ObjectManagerInterface $objectManager
+		\Magento\Framework\ObjectManagerInterface $objectManager,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
+		\Magento\Framework\View\Page\Config $pageConfig
 	)
     {
         parent::__construct($context, $data);
 		$this->_objectManager = $objectManager;
+		$this->pageConfig = $pageConfig;
+		$this->_storeManager = $storeManager;
     }
 	
 	/**
@@ -64,26 +80,19 @@ class Category extends Template
 		return $this->_objectManager->create('MGS\Portfolio\Model\Category');
 	}
 	
-	public function getPortfolios($cateid = NULL){
+	public function getPortfolios(){
 		$portfolios = $this->_objectManager->create('MGS\Portfolio\Model\Portfolio')
 			->getCollection()
 			->addFieldToFilter('status', 1);
 		
-		if($cateid != null){
-			$resourceModel = $this->_objectManager->create('MGS\Portfolio\Model\ResourceModel\Portfolio');
-			$portfolios = $resourceModel->joinFilter($portfolios, $cateid);
-		}	
-		return $portfolios;
-	}
-	
-	
-	public function getCurrentPortfolios(){
-		$portfolios = $this->getPortfolios();
-		$id = $this->getRequest()->getParam('id');
-		if($id != ""){
+		if($id = $this->getRequest()->getParam('id')){
 			$resourceModel = $this->_objectManager->create('MGS\Portfolio\Model\ResourceModel\Portfolio');
 			$portfolios = $resourceModel->joinFilter($portfolios, $id);
 		}
+		
+		/* foreach ($portfolios as $portfolio) {
+            $portfolio->setAddress($this->getUrl($this->helper('portfolio')->getPortfolioUrl($portfolio)));
+        } */
 		
 		return $portfolios;
 	}
@@ -141,6 +150,10 @@ class Category extends Template
 				}else{
 					$html .= '<a href="'.$this->getUrl('portfolio/category/view', ['id'=>$cate->getId()]).'">'.$item->getName().'</a>';
 				}
+				
+				if($i<count($collection)){
+					$html .= ', ';
+				}
 			}
 		}
 		return $html;
@@ -159,23 +172,15 @@ class Category extends Template
         }
 		return $menu;
 	}
-	
-	public function truncate($content, $length){
-		return $this->filterManager->truncate($content, ['length' => $length, 'etc' => '']);
+	public function getPortfolioForCate($id){
+		$portfolios = $this->_objectManager->create('MGS\Portfolio\Model\Portfolio')
+			->getCollection()
+			->addFieldToFilter('status', 1);
+			
+		$resourceModel = $this->_objectManager->create('MGS\Portfolio\Model\ResourceModel\Portfolio');
+		$portfolios = $resourceModel->joinFilter($portfolios, $id);
+		return $portfolios;
 	}
 	
-	public function getFilterClass($portfolio){
-		$i = 0;
-		$html = "";
-		$collection = $this->getCategories($portfolio);
-		foreach($collection as $item){
-			$i++;
-			if($i > 1){
-				$html .= ' ';
-			}
-			$html .= 'item_'.$item->getCategoryId();
-		}
-		return $html;
-	}
 }
 

@@ -10,6 +10,7 @@ class Sidebar extends \Magento\Framework\View\Element\Template
     protected $_blogHelper;
     protected $_post;
     protected $_category;
+    protected $_storeManager;
     protected $httpContext;
 
     public function __construct(
@@ -18,6 +19,7 @@ class Sidebar extends \Magento\Framework\View\Element\Template
         \MGS\Blog\Helper\Data $blogHelper,
         \MGS\Blog\Model\Post $post,
         \MGS\Blog\Model\Category $category,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = []
     )
@@ -25,6 +27,7 @@ class Sidebar extends \Magento\Framework\View\Element\Template
         $this->_category = $category;
         $this->_post = $post;
         $this->_coreRegistry = $registry;
+        $this->_storeManager = $storeManager;
         $this->_blogHelper = $blogHelper;
         $this->httpContext = $httpContext;
         parent::__construct($context, $data);

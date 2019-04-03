@@ -18,7 +18,6 @@ class Parents extends \Magento\Backend\Block\Widget\Grid\Container
         $this->_blockGroup = 'MGS_Mmegamenu';
         $this->_headerText = __('Mmegamenu');
         $this->_addButtonLabel = __('Add Menu');
-        $this->addButton('clear_cache', ['label'=>'Flush Menu Cache', 'class'=>'primary','onclick'=>'setLocation("'.$this->getUrl("adminhtml/mmegamenu/flushcache").'")']);
         parent::_construct();
     }
 

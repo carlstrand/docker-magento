@@ -7,18 +7,21 @@ class Brand extends AbstractWidget
     protected $_brand;
     protected $_coreRegistry = null;
     protected $_brandHelper;
+    protected $_storeManager;
 
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Framework\Registry $registry,
         \MGS\Brand\Helper\Data $brandHelper,
         \MGS\Brand\Model\Brand $brand,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         array $data = []
     )
     {
         $this->_brand = $brand;
         $this->_brandHelper = $brandHelper;
         $this->_coreRegistry = $registry;
+        $this->_storeManager = $storeManager;
         parent::__construct($context, $brandHelper);
     }
 

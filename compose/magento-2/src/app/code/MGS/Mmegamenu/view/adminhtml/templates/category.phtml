@@ -428,16 +428,15 @@
 				document.documentElement.onmouseup = mouseUpEvent;
 			}
 			
-		
-			$(document).ready(function () {
-				setTimeout(initTree, 500);
-			});
+			window.onload = initTree;
+
+			
 			
 			
 			<?php if ($this->getRequest()->getParam('id')): ?>
 				<?php if($megamenu->getCategoryId()!=0): ?>
 					<?php $categoryId = $megamenu->getCategoryId(); ?>
-					$(document).ready(function () {
+					$(window).load(function () {
 						setCheckbox(<?php echo $categoryId ?>);
 						setTimeout(uncheckSelect(<?php echo $categoryId ?>), 1000);
 					});

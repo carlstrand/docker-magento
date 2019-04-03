@@ -34,36 +34,6 @@ class View extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
-		$baseUrl = $this->_storeManager->getStore()->getBaseUrl();
-		$breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
-		$breadcrumbs->addCrumb(
-            'home',
-            [
-                'label' => __('Home'),
-                'title' => __('Go to Home Page'),
-                'link' => $baseUrl
-            ]
-        );
-        $breadcrumbs->addCrumb(
-            'mgs_storelocator',
-            [
-                'label' => __('Store Locator'),
-                'title' => __('Store Locator'),
-                'link' => $baseUrl . 'storelocator/'
-            ]
-        );
-		
-		$store = $this->getStoreView();
-		
-        $breadcrumbs->addCrumb(
-            'mgs_storelocator_view',
-            [
-                'label' => $store->getName(),
-                'title' => $store->getName(),
-                'link' => ''
-            ]
-        );
-		
         return parent::_prepareLayout();
     }
 

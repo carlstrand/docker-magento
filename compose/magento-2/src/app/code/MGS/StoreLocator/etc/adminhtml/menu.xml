@@ -8,6 +8,6 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
 		<add id="MGS_StoreLocator::storelocator" title="Store Locator" module="MGS_StoreLocator" sortOrder="80" parent="Magento_Backend::mgs" resource="MGS_StoreLocator::storelocator"/>
-        <add id="MGS_StoreLocator::manage" title="Manage Stores" module="MGS_StoreLocator" sortOrder="10" parent="MGS_StoreLocator::storelocator" action="locator/locator/index/" resource="MGS_StoreLocator::locator_manage"/>
+        <add id="MGS_StoreLocator::locator_manage" title="Manage Stores" module="MGS_StoreLocator" sortOrder="10" parent="MGS_StoreLocator::storelocator" action="locator/locator/index/" resource="MGS_StoreLocator::locator_manage"/>
     </menu>
 </config>

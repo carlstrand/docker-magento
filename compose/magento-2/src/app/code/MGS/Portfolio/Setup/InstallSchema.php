@@ -63,8 +63,7 @@ class InstallSchema implements InstallSchemaInterface
             null,
             ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
             'Portfolio Id'
-        )
-		->addColumn(
+        )->addColumn(
             'name',
             Table::TYPE_TEXT,
             255,

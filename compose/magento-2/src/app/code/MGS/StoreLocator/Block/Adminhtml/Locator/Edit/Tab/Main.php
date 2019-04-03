@@ -62,15 +62,6 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic {
             'required' => true
                 ]
         );
-		$baseFieldset->addField(
-				'url_key', 'text', [
-            'name' => 'url_key',
-            'label' => __('Store Url'),
-            'id' => 'url_key',
-            'title' => __('Store Url'),
-            'required' => false
-                ]
-        );
         $baseFieldset->addField(
                 'image', 'image', [
             'name' => 'image',

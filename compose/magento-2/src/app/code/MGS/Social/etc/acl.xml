@@ -3,17 +3,11 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_Social::social" title="Social" sortOrder="70">
-						<resource id="MGS_Social::configuration" title="Configuration" sortOrder="10"/>
-					</resource>
-				</resource>
+                <resource id="MGS_Social::social" title="Social" sortOrder="10"/>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-							<resource id="MGS_Mpanel::mpanel">
-								<resource id="MGS_Social::config_social" title="Social" sortOrder="100"/>
-							</resource>
+                            <resource id="MGS_Social::config_social" title="Social"/>
                         </resource>
                     </resource>
                 </resource>

@@ -2,17 +2,42 @@
 
 namespace MGS\Blog\Helper;
 
-class Data extends \MGS\Mpanel\Helper\Data
+use Magento\Framework\App\Helper\AbstractHelper;
+use Magento\Framework\App\Helper\Context;
+use Magento\Store\Model\StoreManagerInterface;
+use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\UrlInterface;
+use Magento\Framework\App\ObjectManager;
+
+class Data extends AbstractHelper
 {
+    protected $storeManager;
+
+    public function __construct(
+        Context $context,
+        StoreManagerInterface $storeManager
+    )
+    {
+        $this->storeManager = $storeManager;
+        parent::__construct($context);
+    }
 
     public function getConfig($key, $store = null)
     {
-		return $this->getStoreConfig('blog/' . $key);
+        if ($store == null || $store == '') {
+            $store = $this->storeManager->getStore()->getId();
+        }
+        $store = $this->storeManager->getStore($store);
+        $config = $this->scopeConfig->getValue(
+            'blog/' . $key,
+            ScopeInterface::SCOPE_STORE,
+            $store);
+        return $config;
     }
 
     public function getBaseMediaUrl()
     {
-        return $this->_storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
+        return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA);
     }
 
     public function getRoute()
@@ -21,7 +46,7 @@ class Data extends \MGS\Mpanel\Helper\Data
         if ($this->getConfig('general_settings/route') == '') {
             $route = 'blog';
         }
-        return $this->_storeManager->getStore()->getBaseUrl() . $route;
+        return $this->storeManager->getStore()->getBaseUrl() . $route;
     }
 
     public function getTagUrl($tag)
@@ -30,7 +55,7 @@ class Data extends \MGS\Mpanel\Helper\Data
         if ($this->getConfig('general_settings/route') == '') {
             $route = 'blog';
         }
-        return $this->_storeManager->getStore()->getBaseUrl() . $route . '/tag/' . urlencode($tag);
+        return $this->storeManager->getStore()->getBaseUrl() . $route . '/tag/' . urlencode($tag);
     }
 
     public function convertSlashes($tag, $direction = 'back')
@@ -47,91 +72,7 @@ class Data extends \MGS\Mpanel\Helper\Data
 
     public function checkLoggedIn()
     {
-        return $this->_objectManager->get('Magento\Customer\Model\Session')->isLoggedIn();
+        $objectManager = ObjectManager::getInstance();
+        return $objectManager->get('Magento\Customer\Model\Session')->isLoggedIn();
     }
-	
-    public function getImageThumbnailPost($post)
-    {	
-		$imageUrl = "";
-        $mediaUrl = $this ->_storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
-        
-		if($post->getVideoThumbId() != "" && $post->getThumbType() == "video"){
-            if($post->getThumbnail() == ""){
-                return $this->getThumbnailImgVideoPost($post);
-            }else {
-                $imageUrl = $mediaUrl . $post->getThumbnail();
-            }
-        }else {
-            $imageUrl = $mediaUrl . $post->getThumbnail();
-        }
-        
-        return $imageUrl;
-    }
-	
-	public function getPostUrl($post) {
-		$store = $this->_storeManager->getStore()->getCode();
-		
-		if($store){
-			$url = $post->getPostUrlWithNoCategory() . '?___store=' . $store;
-		}else{
-			$url = $post->getPostUrlWithNoCategory();
-		}
-		
-		return $url;
-	}
-	
-    public function getImagePost($post)
-    {	
-		$imageUrl = "";
-        $mediaUrl = $this ->_storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
-        
-		if($post->getVideoBigId() != "" && $post->getImageType() == "video"){
-            if($post->getImageUrl() == ""){
-                return $this->getThumbnailImgVideoPost($post);
-            }else {
-                $imageUrl = $post->getImageUrl();
-            }
-        }else {
-            $imageUrl = $post->getImageUrl();
-        }
-        
-        return $imageUrl;
-    }
-    
-	public function getVideoThumbUrl($post)
-    {	
-        if($post->getVideoThumbType() == "youtube"){
-            $video_url = 'https://www.youtube.com/watch?v='.$post->getVideoThumbId();
-        }else {
-            $video_url = 'https://vimeo.com/'.$post->getVideoThumbId();
-        }
-        
-		return $video_url;
-    }
-	
-	
-	public function getThumbnailImgVideoPost($post)
-    {	
-		if($post->getThumbType() == "video"){
-			if($post->getVideoThumbId() != ""){
-				if($post->getVideoThumbType() == "youtube"){
-					return 'http://img.youtube.com/vi/'.$post->getVideoThumbId().'/hqdefault.jpg';
-				}else {
-					$info = 'thumbnail_medium';
-					$ch = curl_init();
-					curl_setopt($ch, CURLOPT_URL, 'vimeo.com/api/v2/video/'.$post->getVideoThumbId().'.php');
-					curl_setopt($ch, CURLOPT_HEADER, 0);
-					curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-					curl_setopt($ch, CURLOPT_TIMEOUT, 10);
-					$output = unserialize(curl_exec($ch));
-					$output = $output[0][$info];
-					curl_close($ch);
-					return $output;
-				}
-			}
-			
-		}
-		return;
-    }
-	
 }

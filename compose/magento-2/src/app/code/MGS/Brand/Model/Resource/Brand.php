@@ -51,27 +51,6 @@ class Brand extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
             }
             $this->getConnection()->insertMultiple($table, $data);
         }
-		
-		// Assign Products to item
-		if($object->getProductIds()){
-			$where = ['brand_id = ?' => (int)$object->getId()];
-            $this->getConnection()->delete($this->getTable('mgs_brand_product'), $where);
-			
-			$productData = [];
-			$productIds = (array)$object->getProductIds();
-			if(count($productIds)>0){
-				foreach($productIds as $productId => $pos){
-					$position = $pos['position'];
-					if($position==''){
-						$position = 0;
-					}
-					$productData[] = ['brand_id' => (int)$object->getId(), 'product_id' => $productId, 'position' => $position];
-				}
-				
-				$this->getConnection()->insertMultiple($this->getTable('mgs_brand_product'), $productData);
-			}
-		}
-		
         return parent::_afterSave($object);
     }
 

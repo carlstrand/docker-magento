@@ -1,0 +1,80 @@
+<?php
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getBrandCollection();
+?>
+<?php if (count($collection)): ?>
+    <?php
+    $title = $this->getConfig('title');
+    $blockId = rand() . time();
+    $viewAs = $this->getConfig('view_as');
+    $customClass = $this->getConfig('custom_class');
+    $showBrandName = $this->getConfig('show_brand_name');
+    $width = $this->getConfig('image_width', 240);
+    $height = $this->getConfig('image_height', 180);
+    ?>
+    <?php if ($viewAs == 'default'): ?>
+        <div class="block widget mgs-brand-widget <?php if ($customClass) {
+            echo $customClass;
+        } ?>">
+            <?php if ($title) { ?>
+				<div class="title-content margin-bottom50">
+					<h2 class="title"><?php echo $title ?></h2>
+				</div>
+            <?php } ?>
+            <div class="block-content">
+                <ul class="default mgs-brand-widget-list-<?php echo $blockId; ?>">
+                    <?php foreach ($collection as $brand) { ?>
+                        <li class="item">
+                            <div class="image"><a href="<?php echo $brand->getUrl(); ?>" title="<?php echo $brand->getName(); ?>"><img class="img-responsive" style="max-height: <?php echo $height; ?>px;" src="<?php echo $brand->getSmallImageUrl(); ?>" alt="<?php echo $brand->getName(); ?>"/></a></div>
+                            <?php if ($showBrandName) { ?>
+                                <div class="name"><a href="<?php echo $brand->getUrl(); ?>" title="<?php echo $brand->getName(); ?>"><?php echo $brand->getName() ?></a></div>
+                            <?php } ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if ($viewAs == 'owl_carousel'): ?>
+        <div class="block widget mgs-brand-widget <?php if ($customClass) { echo $customClass; } ?>">
+            <?php if ($title): ?>
+				<div class="title-content margin-bottom50">
+					<h2 class="title"><?php echo $title ?></h2>
+				</div>
+            <?php endif ?>
+            <div class="block-content row">
+                <div id="brand-<?php echo $blockId; ?>" class="owl-carousel">
+                    <?php foreach ($collection as $brand) { ?>
+                        <div class="item">
+                            <div class="image"><a href="<?php echo $brand->getUrl(); ?>" title="<?php echo $brand->getName(); ?>"><img class="img-responsive" style="max-height: <?php echo $height; ?>px;" src="<?php echo $brand->getSmallImageUrl(); ?>" alt="<?php echo $brand->getName(); ?>"/></a></div>
+                            <?php if ($showBrandName) { ?>
+                                <div class="name"><a href="<?php echo $brand->getUrl(); ?>" title="<?php echo $brand->getName(); ?>"><?php echo $brand->getName() ?></a></div>
+                            <?php } ?>
+                        </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+        <?php if ($this->getConfig('autoplay')) { $autoplay = 'true'; } else { $autoplay = 'false'; }
+        if ($this->getConfig('stop_on_hover')) { $stopOnHover = 'true'; } else { $stopOnHover = 'false'; }
+        if ($this->getConfig('navigation')) { $navigation = 'true'; } else { $navigation = 'false'; } ?>
+		<script type="text/javascript">
+			require([
+				'jquery',
+				'mgs/owlcarousel'
+				], function(jQuery){
+					(function($) {
+						$("#brand-<?php echo $blockId; ?>").owlCarousel({
+							items: <?php echo $this->getConfig('items', 5); ?>,
+							loop: true,
+							nav: <?php echo $navigation; ?>,
+							navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+							dots: false,
+							autoplay: <?php echo $autoplay; ?>,
+							responsive:{ 0 : {items: 1}, 480 : {items: 2}, 768 : {items: 3}, 991 : {items: 4}, 1200 : {items: <?php echo $this->getConfig('items', 5); ?>} }
+						});
+					})(jQuery);
+				});
+		</script>
+    <?php endif; ?>
+<?php endif; ?>

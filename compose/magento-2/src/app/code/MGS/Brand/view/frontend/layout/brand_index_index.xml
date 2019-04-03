@@ -8,8 +8,5 @@
                 <block class="MGS\Brand\Block\Brand\Featured" name="brand_list_featured" template="MGS_Brand::brand/featured.phtml"/>
             </block>
         </referenceContainer>
-        <referenceContainer name="sidebar.additional">
-            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml" before="-"/>
-        </referenceContainer>
     </body>
 </page>

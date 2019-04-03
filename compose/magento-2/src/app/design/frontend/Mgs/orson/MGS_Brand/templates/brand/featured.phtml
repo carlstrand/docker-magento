@@ -1,0 +1,97 @@
+<?php
+$params = $this->getRequest()->getParams();
+$helper = $this->helper('MGS\Brand\Helper\Data');
+$collection = $block->getCollection();
+if ($this->getConfig('list_page_settings/small_image_width') != '') {
+    $width = $this->getConfig('list_page_settings/small_image_width');
+} else {
+    $width = 240;
+}
+if ($this->getConfig('list_page_settings/small_image_height') != '') {
+    $height = $this->getConfig('list_page_settings/small_image_height');
+} else {
+    $height = 180;
+}
+?>
+<?php if ($collection->count()): ?>
+    <div class="featured-brands brand-list margin-bottom30 owl-top-text">
+		<div class="title-content margin-bottom50">
+            <h2 class="title"><?php echo __('Featured Brands'); ?></h2>
+        </div>
+        <div class="content row">
+            <ul class="featured-brand-list brands-grid">
+                <?php foreach ($collection as $brand): ?>
+                    <?php if (isset($params['char']) && $params['char'] != '' && $params['char'] == '0-9') : ?>
+                        <?php $letter = strtoupper(substr($brand->getName(), 0, 1)); ?>
+                        <?php if (ctype_digit($letter)): ?>
+                            <li class="item brands">
+								<div class="brand-content">
+									<div class="brand-image">
+										<a style="height: <?php echo $height; ?>px;" class="brand" title="<?php echo $brand->getName(); ?>"
+										   href="<?php echo $brand->getUrl(); ?>">
+											<img style="max-height: <?php echo $height; ?>px;" class="brand-small-image"
+												 alt="<?php echo $brand->getName(); ?>"
+												 src="<?php echo $brand->getSmallImageUrl(); ?>">
+										</a>
+									</div>
+									<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+										<div class="feature-brand-title text-center">
+											<a class="h6" title="<?php echo $brand->getName(); ?>" href="<?php echo $brand->getUrl(); ?>">
+												<?php echo $brand->getName(); ?>
+											</a>
+											<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+												<?php if($block->getProductCount($brand) > 1){ $text = __('items');}else{ $text = __('item');} ?>
+												<p><span><?php echo __('(%1 %2)', $block->getProductCount($brand), $text); ?></span></p>
+											<?php endif; ?>
+										</div>
+									<?php endif; ?>
+								</div>
+                            </li>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <li class="item brands">
+							<div class="brand-content">
+								<div class="brand-image">
+									<a style="height: <?php echo $height; ?>px;" class="brand" title="<?php echo $brand->getName(); ?>"
+									   href="<?php echo $brand->getUrl(); ?>">
+										<img style="max-height: <?php echo $height; ?>px;" class="brand-small-image"
+											 alt="<?php echo $brand->getName(); ?>"
+											 src="<?php echo $brand->getSmallImageUrl(); ?>">
+									</a>
+								</div>
+								<?php if ($this->getConfig('list_page_settings/show_brand_name')): ?>
+									<div class="feature-brand-title text-center">
+										<a class="h6" title="<?php echo $brand->getName(); ?>" href="<?php echo $brand->getUrl(); ?>">
+											<?php echo $brand->getName(); ?>
+										</a>
+										<?php if ($this->getConfig('list_page_settings/show_product_count')): ?>
+											<?php if($block->getProductCount($brand) > 1){ $text = __('items');}else{ $text = __('item');} ?>
+											<p><span><?php echo __('(%1 %2)', $block->getProductCount($brand), $text); ?></span></p>
+										<?php endif; ?>
+									</div>
+								<?php endif; ?>
+							</div>
+                        </li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    </div>
+	<script type="text/javascript">
+		require([
+			'jquery',
+			'mgs/owlcarousel'
+		], function ($) {
+			var owl = $('.featured-brand-list');
+			owl.owlCarousel({
+				items: 5,
+				autoPlay: false,
+				stopOnHover: false,
+				nav: true,
+				dots: false,
+				navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+				responsive:{ 0 : {items: 2}, 480 : {items: 2}, 768 : {items: 3}, 991 : {items: 5}, 1200 : {items: 5} }
+			});
+		});
+	</script>
+<?php endif; ?>

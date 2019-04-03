@@ -1,0 +1,42 @@
+<?php $block = $this->getBlock() ?>
+<div class="footer-container footer-v2">
+	<section class="top-footer">
+		<div class="text-center">
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_logo')->toHtml() ?>
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_social_btn')->toHtml() ?>
+		</div>
+	</section>
+	<section class="middle-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-2 col-sm-4 col-xs-12 col-xs-half footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_information')->toHtml() ?>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-12 col-xs-half footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_location')->toHtml() ?>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-12 col-xs-half footer-box row-half-first">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_useful_link')->toHtml() ?>
+				</div>
+				<div class="col-md-2 col-sm-4 col-xs-12 col-xs-half footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_menu')->toHtml() ?>
+				</div>
+				<div class="col-md-4 col-sm-8 col-xs-12 footer-box">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_get_in_touch')->toHtml() ?>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="bottom-footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 coppy-text">
+					<address><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></address>
+				</div>
+				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 payment-block">
+					<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_payment')->toHtml() ?>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>

@@ -16,9 +16,6 @@
                     <action method="setToolbarBlockName">
                         <argument name="name" xsi:type="string">product_list_toolbar</argument>
                     </action>
-					<arguments>
-						<argument name="page_type" xsi:type="string">catalog_brand</argument>
-					</arguments>
                 </block>
             </block>
             <block class="Magento\Cookie\Block\RequireCookie" name="require-cookie" template="Magento_Cookie::require_cookie.phtml">
@@ -30,7 +27,7 @@
             </block>
         </referenceContainer>
         <referenceContainer name="sidebar.additional">
-            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml" before="-" />
+            <block class="MGS\Brand\Block\Brand\Sidebar" name="brand.sidebar" template="MGS_Brand::brand/sidebar.phtml"/>
         </referenceContainer>
     </body>
 </page>

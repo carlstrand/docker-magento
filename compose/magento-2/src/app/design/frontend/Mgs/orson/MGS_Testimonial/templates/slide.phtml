@@ -1,0 +1,63 @@
+<?php $customClass = $this->getCustomClass() ?>
+<?php if($this->hasData('title')): ?>
+	<div class="carousel_wrapper">
+		<div class="block-title">
+			<h3 class="title"><span><?php echo $this->getData('title') ?></span></h3>
+		</div>
+	</div>
+<?php endif ?>
+<div class="testimonial-container">
+	<?php $_testimonialCollection = $this->getCollection(); ?>
+	<?php $_collectionSize = count($_testimonialCollection) ?>
+	
+
+	<?php if (!count($_testimonialCollection)): ?>
+		<div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find testimonials matching the selection.') ?></div></div>
+	<?php else: ?>
+	<?php if($customClass): ?><div class="<?php echo $customClass ?>"><?php endif ?>
+		<div class="owl-carousel testimonials-carousel">
+			<?php $i=0; foreach($_testimonialCollection as $_item): ?>
+				<div class="testimonial-item">
+					<div class="info">
+						<div class="testimonial-content">
+							<span class="ic">"</span><?php echo $_item->getContent() ?><span class="ic">"</span>
+						</div>
+						<?php if($this->getAvatarUrl($_item->getAvatar())): ?>
+							<div class="img-author">
+								<img class="img-responsive" src="<?php echo $this->getAvatarUrl($_item->getAvatar()) ?>" alt="">
+							</div>
+						<?php endif;?>
+						<div class="testimonial-author">
+							<div class="name"><?php echo $_item->getName() ?></div>
+							<div><?php echo $_item->getInformation() ?></div>
+						</div>
+					</div>
+				</div>
+			<?php endforeach ?>
+		</div>
+	<?php if($customClass != null): ?></div><?php endif ?>
+		<script type="text/javascript">
+			require([
+				'jquery',
+				'mgs/owlcarousel'
+			], function(jQuery){
+				(function($) {
+					$(".testimonials-carousel").owlCarousel({
+						items: 1,
+						nav: <?php echo $this->getNav() ?>,
+						dots: <?php echo $this->getDots() ?>,
+						autoplay: <?php echo $this->getAutoplay() ?>,
+						navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+						responsive:{
+							0 : {items: 1},
+							480 : {items: 1},
+							768 : {items: 1},
+							980 : {items: 1},
+							1200 : {items: 1}
+						}
+					});
+				})(jQuery);
+			});
+		</script>
+	<?php endif ?>
+</div>

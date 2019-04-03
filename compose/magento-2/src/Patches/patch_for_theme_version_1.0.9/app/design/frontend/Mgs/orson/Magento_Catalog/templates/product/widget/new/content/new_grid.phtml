@@ -1,0 +1,171 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Template for displaying new products widget
+ *
+ * @var $block \Magento\Catalog\Block\Product\Widget\NewWidget
+ */
+if ($exist = ($block->getProductCollection() && $block->getProductCollection()->getSize())) {
+    $type = 'widget-new-grid';
+
+    $mode = 'grid';
+
+    $image = 'category_page_grid';
+	$imageTwo = 'category_page_two_list';
+    $items = $block->getProductCollection()->getItems();
+
+    $showWishlist = true;
+    $showCompare = true;
+    $showCart = true;
+    $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::DEFAULT_VIEW;
+    $description = false;
+}
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$themeSettings = $themeHelper->getThemeSettings();
+?>
+<?php if($this->getData('per_row') != null){
+	$perRow = $this->getData('per_row');
+}else {
+	$perRow = $themeSettings['catalog']['per_row'];
+} ?>
+<?php if($this->getData('title') != null){
+	$title = $this->getData('title');
+}else {
+    $title = __('New Arrivals');
+} 
+$blockId = rand() . time();
+?>
+<?php $quickViewHelper = $this->helper('MGS\QuickView\Helper\Data'); ?>
+<?php if ($exist):?>
+    <div class="block widget block-new-products <?php /* @escapeNotVerified */ echo $mode; ?>">
+		<div class="title-content margin-bottom50">
+			<h2 role="heading" aria-level="2" class="title"><?php /* @escapeNotVerified */ echo $title; ?></h2>
+		</div>
+        <div class="block-content">
+            <?php /* @escapeNotVerified */ echo '<!-- ' . $image . '-->' ?>
+            <div class="row products-<?php /* @escapeNotVerified */ echo $mode; ?> <?php /* @escapeNotVerified */ echo $mode; ?>">
+                <ol id="new-products-list-<?php echo $blockId ?>" class="product-items <?php /* @escapeNotVerified */ echo $type; ?>">
+                    <?php $iterator = 1; ?>
+                    <?php $i=0; foreach ($items as $_item): $i++; ?>
+						<?php if($this->getData('slider_mode') == 1): ?>
+							<li class="product-item item">
+						<?php else: ?>
+							<li class="item <?php echo $themeHelper->getColClass($perRow) ?> <?php echo $themeHelper->getClearClass($perRow, $i) ?>">
+						<?php endif ?>
+							<?php $_itemNameStripped = $block->stripTags($_item->getName(), null, true); ?>
+							<div class="product-item-info product-content">
+								<div class="product-top">
+									<?php $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+										$size = $themeHelper->getImageSize();
+										$productImage = $_imagehelper->init($_item, $image)->resize($size['width'], $size['height'])->getUrl();  ?>
+									<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>" class="product-item-photo">
+										<?php //echo $block->getImage($_item, $image)->toHtml(); ?>
+										<img src="<?php echo $productImage; ?>" alt="<?php echo $_itemNameStripped ?>" class="img-responsive product-image-photo"/>
+										<?php if(basename($_item->getData('image')) !=  'no_selection'): ?>
+											<?php if(basename($_item->getData('image')) != basename($_item->getData('small_image'))): ?>
+												<?php $productImageTwo = $_imagehelper->init($_item, $imageTwo)->resize($size['width'], $size['height'])->getUrl(); ?>
+												<img src="<?php echo $productImageTwo; ?>" alt="<?php echo $_itemNameStripped ?>" class="img-responsive img-base product-image-photo"/>
+											<?php endif ?>
+										<?php endif ?>
+									</a>
+									<?php echo $themeHelper->getProductLabel($_item) ?>
+									<ul class="icon-links" data-role="add-to-links">
+										<li class="li-quickView"><?php echo $quickViewHelper->aroundQuickViewHtml($_item); ?></li>
+										<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $showWishlist): ?>
+											<li><button data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_item); ?>'
+											   class="action towishlist" data-action="add-to-wishlist"
+											   title="<?php /* @escapeNotVerified */ echo __('Add to Wish List') ?>">
+												<span class="fa fa-heart-o"></span>
+											</button></li>
+										<?php endif; ?>
+										<?php if ($block->getAddToCompareUrl() && $showCompare): ?>
+											<?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');?>
+											<li><button class="action tocompare"
+											   data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_item);?>'
+											   title="<?php /* @escapeNotVerified */ echo __('Add to Compare') ?>">
+												<span class="fa fa-retweet"></span>
+											</button></li>
+										<?php endif; ?>
+									</ul>
+								</div>
+								<div class="product-desc product-item-details">
+									<div class="cate-name"><?php echo $themeHelper->getCategoryName($_item,$title,'') ?></div>
+									<h5 class="product-item-name product-name">
+										<a title="<?php echo $block->escapeHtml($_item->getName()) ?>"
+										   href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"
+										   class="product-item-link">
+											<?php echo $block->escapeHtml($_item->getName()) ?>
+										</a>
+									</h5>
+									<div class="prar">
+										<?php echo $block->getProductPriceHtml($_item, $type); ?>
+										<?php if ($templateType): ?><?php echo $block->getReviewsSummaryHtml($_item, $templateType,true) ?><?php endif; ?>
+									</div>
+									<?php if ($showCart): ?>
+										<div class="controls">
+											<?php if ($_item->isSaleable()): ?>
+												<?php if ($_item->getTypeInstance()->hasRequiredOptions($_item)): ?>
+													<button class="action tocart btn-icon"
+															data-mage-init='{"redirectUrl":{"url":"<?php /* @escapeNotVerified */ echo $block->getAddToCartUrl($_item) ?>"}}'
+															type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+															<span class="icon"><i class="fa fa-shopping-cart"></i></span>
+															<span class="text"><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+													</button>
+												<?php else: ?>
+													<?php
+														$postDataHelper = $this->helper('Magento\Framework\Data\Helper\PostHelper');
+														$postData = $postDataHelper->getPostData($block->getAddToCartUrl($_item), ['product' => $_item->getEntityId()])
+													?>
+													<button class="action tocart btn-icon"
+															data-post='<?php /* @escapeNotVerified */ echo $postData; ?>'
+															type="button" title="<?php /* @escapeNotVerified */ echo __('Add to Cart') ?>">
+															<span class="icon"><i class="fa fa-shopping-cart"></i></span>
+															<span class="text"><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+													</button>
+												<?php endif; ?>
+											<?php else: ?>
+												<?php if ($_item->getIsSalable()): ?>
+													<div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+												<?php else: ?>
+													<div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+												<?php endif; ?>
+											<?php endif; ?>
+										</div>
+									<?php endif; ?>
+								</div>
+							</div>
+						</li>
+                    <?php endforeach ?>
+                </ol>
+				<?php if($this->getData('slider_mode') == 1): ?>
+					<script type="text/javascript">
+						require([
+							'jquery',
+							'mgs/owlcarousel'
+						], function ($) {
+							var owl = $('#new-products-list-<?php echo $blockId ?>');
+							owl.owlCarousel({
+								items: <?php echo $perRow ?>,
+								autoPlay: false,
+								stopOnHover: false,
+								nav: true,
+								navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+								dots: false,
+								responsive:{ 0 : {items: 2}, 480 : {items: 2}, 768 : {items: 3}, 991 : {items: 3}, 1200 : {items: <?php echo $perRow ?>} }
+							});
+						});
+					</script>
+				<?php endif ?>
+            </div>
+            <?php echo $block->getPagerHtml() ?>
+        </div>
+    </div>
+<?php endif;?>

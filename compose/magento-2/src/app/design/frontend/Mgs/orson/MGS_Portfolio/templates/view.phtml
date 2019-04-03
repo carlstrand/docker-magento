@@ -1,0 +1,103 @@
+<?php $portfolio = $this->getPortfolio() ?>
+<div class="row portfolio-details">
+	<div class="col-xs-12">
+		<div class="portfolio-image">
+			<img src="<?php echo $this->getBaseImage($portfolio)?>" alt="" class="img-responsive"/>
+		</div>
+	</div>
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<h2 class="title-portfolio text-uppercase"><span><?php echo __('Project Description')?></span></h2>
+		<div class="description"><?php echo nl2br($portfolio->getDescription()) ?></div>
+	</div>
+	
+	<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+		<div class="portfolio-content">
+			<table class="table portfolio-table">
+				<tbody>
+					<?php $date = $portfolio->getPortfolioDate() ?>
+					<?php if($date != ''): ?>
+						<tr>
+							<td><b><?php echo __('Date:') ?></b></td>
+							<td><?php echo date('F d, Y', strtotime($date))?></td>
+						</tr>
+					<?php endif ?>
+					
+					
+					<?php $client = $portfolio->getClient() ?>
+					<?php if($client != ''): ?>
+						<tr>
+							<td><b><?php echo __('Client:') ?></b></td>
+							<td><?php echo $client ?></td>
+						</tr>
+					<?php endif ?>
+					
+					<?php $categoryLinks = $this->getCategoriesLink($portfolio) ?>
+					<?php if($categoryLinks != ''): ?>
+						<tr>
+							<td><b><?php echo __('Categories:') ?></b></td>
+							<td><?php echo $categoryLinks ?></td>
+						</tr>
+					<?php endif ?>
+				</tbody>
+			</table>
+			<a href="<?php echo $portfolio->getProjectUrl() ?>" target="_blank" class="btn btn-primary bnt-full btn-lg"><?php echo __('Live Preview')?></a>
+			<div class="portfolio-share pull-right"><span class="title text-uppercase"><?php echo __('Share')?></span><?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_share_this')->toHtml(); ?></div>
+		</div>
+	</div>
+	
+	<?php $relatedPortfolio = $this->getRelatedPortfolio($portfolio) ?>
+	<?php if(count($relatedPortfolio)>0): ?>
+		<div class="portfolio-container col-md-12 col-sm-12 col-xs-12">
+			<div class="block-title">
+				<h3 class="title-portfolio text-uppercase"><span><?php echo __('Related Works') ?></span></h3>
+			</div>
+			<div class="owl-carousel portfolio-carousel" id="portfolio_carousel">
+			<?php foreach($relatedPortfolio as $_portfolio): ?>
+				<div class="item">
+					<div class="portfolio-content">
+					<?php $address = $this->getPortfolioAddress($_portfolio) ?>
+					<div class="portfolio-top-content">
+						<a href="<?php echo $address; ?>" class="portfolio-image"><img src="<?php echo $this->getThumbnailSrc($_portfolio)?>" alt="" class="img-responsive"/></a>
+						<a class="view" href="<?php echo $address; ?>">
+							<span class="hover-info">
+								<span class="fa fa-search"></span>							
+							</span>						
+						</a>
+					</div>
+					<div class="portfolio-bottom-content">
+						<h5 class="text-uppercase" style="margin:0;"><a href="<?php echo $address; ?>"><?php echo $_portfolio->getName() ?></a></h5>
+						<p class="category-link"><?php echo $this->getCategoriesLink($_portfolio)?></p>
+					</div>
+					</div>
+				</div>
+			<?php endforeach ?>
+			</div>
+		</div>
+		
+		<script type="text/javascript">
+			require([
+				'jquery',
+				'mgs/owlcarousel'
+			], function(jQuery){
+				(function($) {
+					$("#portfolio_carousel").owlCarousel({
+						items: 4,
+						nav: true,
+						loop:false,
+						dots: false,
+						autoplay: false,
+						navText: ["<i class='fa fa-arrow-left'></i>&nbsp;<span class='text'>BACK</span>","<span class='text'>NEXT</span>&nbsp;<i class='fa fa-arrow-right'></i>"],
+						margin: 30,						
+						responsive:{
+							0 : {items: 1},
+							480 : {items: 1},
+							768 : {items: 2},
+							980 : {items: 4},
+							1200 : {items: 4}
+						}
+					});
+				})(jQuery);
+			});
+		</script>
+	<?php endif ?>
+</div>

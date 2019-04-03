@@ -13,19 +13,17 @@ class Related extends \Magento\Catalog\Block\Product\AbstractProduct implements
     protected $httpContext;
     protected $_catalogProductVisibility;
     protected $_productCollectionFactory;
+    protected $_coreRegistry = null;
     protected $_brandHelper;
     protected $_brand;
-	
-	/**
-     * @var \Magento\Framework\Url\Helper\Data
-     */
-    protected $urlHelper;
+    protected $_storeManager;
 
     public function __construct(
         \Magento\Catalog\Block\Product\Context $context,
+        \Magento\Framework\Registry $registry,
         \MGS\Brand\Helper\Data $brandHelper,
         \MGS\Brand\Model\Brand $brand,
-		\Magento\Framework\Url\Helper\Data $urlHelper,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
         \Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
         \Magento\Framework\App\Http\Context $httpContext,
@@ -33,8 +31,9 @@ class Related extends \Magento\Catalog\Block\Product\AbstractProduct implements
     )
     {
         $this->_brand = $brand;
+        $this->_storeManager = $storeManager;
         $this->_brandHelper = $brandHelper;
-		$this->urlHelper = $urlHelper;
+        $this->_coreRegistry = $registry;
         $this->_productCollectionFactory = $productCollectionFactory;
         $this->_catalogProductVisibility = $catalogProductVisibility;
         $this->httpContext = $httpContext;
@@ -130,18 +129,5 @@ class Related extends \Magento\Catalog\Block\Product\AbstractProduct implements
             return $default;
         }
         return $result;
-    }
-	
-	public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product)
-    {
-        $url = $this->getAddToCartUrl($product);
-        return [
-            'action' => $url,
-            'data' => [
-                'product' => $product->getEntityId(),
-                \Magento\Framework\App\ActionInterface::PARAM_NAME_URL_ENCODED =>
-                    $this->urlHelper->getEncodedUrl($url),
-            ]
-        ];
     }
 }

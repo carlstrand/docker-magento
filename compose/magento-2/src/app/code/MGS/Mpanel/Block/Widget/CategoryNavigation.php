@@ -90,4 +90,18 @@ class CategoryNavigation extends \Magento\Framework\View\Element\Template implem
         }
         return;
     }
+	public function getCategoriesShow()
+    {
+		$result = [];
+		if($this->hasData('category_id')){
+			$categoryIds = $this->getData('category_id');
+			$categoryArray = explode(',',$categoryIds);
+			if(count($categoryArray)>0){
+				foreach($categoryArray as $categoryId){
+					$result[] = $categoryId;
+				}
+			}
+		}
+		return $result;
+    }
 }

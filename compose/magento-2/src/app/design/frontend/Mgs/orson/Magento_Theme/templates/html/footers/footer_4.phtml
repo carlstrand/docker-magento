@@ -1,0 +1,10 @@
+<?php $block = $this->getBlock() ?>
+<div class="footer-container footer-v4">
+	<div class="middle-footer text-center">
+		<div class="container">
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_4_logo')->toHtml() ?>
+			<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('orson_footer_4_menu')->toHtml() ?>
+			<address><?php /* @escapeNotVerified */ echo $block->getCopyright() ?></address>
+		</div>
+	</div>
+</div>

@@ -6,9 +6,5 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="MGS_Mmegamenu" setup_version="1.0.2" active="true">
-		<sequence>
-            <module name="Magento_Catalog"/>
-        </sequence>
-	</module>
+    <module name="MGS_Mmegamenu" setup_version="1.0.0.0" active="true"/>
 </config>

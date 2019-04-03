@@ -47,59 +47,5 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $html = $this->_filterProvider->getPageFilter()->filter($str);
         return $html;
     }
-	
-	public function convertPerRowtoCol($perRow){
-		switch ($perRow) {
-            case 1:
-                $result = 12;
-                break;
-            case 2:
-                $result = 6;
-                break;
-            case 3:
-                $result = 4;
-                break;
-            case 4:
-                $result = 3;
-                break;
-            case 5:
-                $result = 'custom-5';
-                break;
-            case 6:
-                $result = 2;
-                break;
-        }
-		
-		return $result;
-	}
-	
-	public function convertColClass($col, $type){
-		if(($type=='row') && ($col=='custom-5')){
-			return 'row-'.$col;
-		}
-		if($type=='col'){
-			$class = "";	
-			if(($col=='custom-5')){
-				$class .= 'col-md-'.$col;
-			}else{
-				$class .= 'col-lg-'.$col.' col-md-'.$col;
-			}
-			return $class;
-		}
-	}
-	
-	public function convertClearClass($perRow, $position){
-		$class = "";
-		if($position % $perRow == 1){
-			$class .= " first-row-item";
-		}
-		if($position % 3 == 1){
-			$class .= " first-sm-item";
-		}
-		if($position % 2 == 1){
-			$class .= " first-xs-item";
-		}
-		return $class;
-	}
 
 }

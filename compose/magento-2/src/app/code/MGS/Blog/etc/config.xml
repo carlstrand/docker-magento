@@ -9,7 +9,11 @@
                 <template>2columns-left</template>
                 <posts_per_page>6</posts_per_page>
                 <show_thumbnail>0</show_thumbnail>
+                <thumbnail_width>240</thumbnail_width>
+                <thumbnail_height>180</thumbnail_height>
                 <show_image>1</show_image>
+                <image_width>1240</image_width>
+                <image_height>600</image_height>
                 <meta_keywords>Blog by MGS</meta_keywords>
                 <meta_description>Blog by MGS</meta_description>
                 <default_sort>DESC</default_sort>
@@ -21,6 +25,8 @@
                 <show_recent_posts>1</show_recent_posts>
                 <number_of_recent_posts>6</number_of_recent_posts>
                 <show_thumbnail>0</show_thumbnail>
+                <thumbnail_width>40</thumbnail_width>
+                <thumbnail_height>20</thumbnail_height>
                 <show_tags>1</show_tags>
                 <number_of_tags>10</number_of_tags>
             </sidebar_settings>

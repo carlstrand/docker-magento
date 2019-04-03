@@ -15,7 +15,13 @@ use Magento\Framework\Filesystem;
 
 class Footer implements \Magento\Framework\Option\ArrayInterface
 {
-	protected $helper;
+	/**
+     * @var \Magento\MediaStorage\Helper\File\Storage\Database
+     */
+    protected $_fileStorageHelper;
+	
+	protected $_storeManager;
+	
 	protected $request;
 
     /**
@@ -24,12 +30,16 @@ class Footer implements \Magento\Framework\Option\ArrayInterface
      * @param array $data
      */
     public function __construct(
+        \Magento\Framework\Filesystem $filesystem,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
 		\Magento\Framework\App\Request\Http $request,
-		\MGS\Mpanel\Helper\Data $helper
+		\Magento\Framework\ObjectManagerInterface $objectManager
     ) {
+        $this->_filesystem = $filesystem;
 		$this->_scopeConfig = $scopeConfig;
-		$this->helper = $helper;
+		$this->_storeManager = $storeManager;
+		$this->_objectManager = $objectManager;
 		$this->request = $request;
     }
 	
@@ -39,6 +49,10 @@ class Footer implements \Magento\Framework\Option\ArrayInterface
 	
 	public function getRequest(){
 		return $this->request;
+	}
+	
+	public function getModel(){
+		return $this->_objectManager->create('Magento\Theme\Model\Theme');
 	}
 	
     /**
@@ -56,8 +70,33 @@ class Footer implements \Magento\Framework\Option\ArrayInterface
 			$themeId = $this->_scopeConfig->getValue('design/theme/theme_id', \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId);
 		}
 		
-		$result = $this->helper->getContentVersion('footers', $themeId);
+		$theme = $this->getModel()->load($themeId);
+		$themePath = $theme->getThemePath();
+		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('design/frontend/'.$themePath.'/Magento_Theme/templates/html/footers');
+		
+		$result = [];
+		$files = [];
+		if(is_dir($dir)) {
+            if ($dh = opendir($dir)) {
+                while ($files[] = readdir($dh));
+				sort($files);
+				foreach ($files as $file){
+					$file_parts = pathinfo($dir . $file);
+					if (isset($file_parts['extension']) && $file_parts['extension'] == 'phtml') {
+                        $fileName = str_replace('.phtml', '', $file);
+                        $result[] = array('value' => $fileName, 'label' => $this->convertFilename($fileName));
+                    }
+				}
+                closedir($dh);
+            }
+        }
 		
         return $result;
     }
+	
+	public function convertFilename($filename){
+		$filename = str_replace('_',' ',$filename);
+		$filename = ucfirst($filename);
+		return $filename;
+	}
 }

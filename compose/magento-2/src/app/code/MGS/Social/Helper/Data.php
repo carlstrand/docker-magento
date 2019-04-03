@@ -17,14 +17,9 @@ class Data extends AbstractHelper
         StoreManagerInterface $storeManager
     )
     {
-		
         $this->storeManager = $storeManager;
         parent::__construct($context);
     }
-	
-	public function getStoreId(){
-		return $this->storeManager->getStore()->getId();
-	}
 
     public function getConfig($key, $store = null)
     {
@@ -43,8 +38,5 @@ class Data extends AbstractHelper
     {
         return $this->_getUrl($value, ['_secure' => true]);
     }
-	public function getStoreConfig($node){
-		return $this->_scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-	}
 
 }

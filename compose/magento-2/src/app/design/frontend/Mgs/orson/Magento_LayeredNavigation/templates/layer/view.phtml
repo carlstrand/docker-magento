@@ -1,0 +1,73 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Category layered navigation
+ *
+ * @var $block \Magento\LayeredNavigation\Block\Navigation
+ */
+?>
+<?php $themeHelper = $this->helper('MGS\Mpanel\Helper\Data'); ?>
+<?php $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $category = $objectManager->get('Magento\Framework\Registry')->registry('current_category');
+	?>
+<?php $design = $themeHelper->checkLayoutPage($category); ?>
+<?php $design = $design->getPageLayout(); ?>
+<?php if($design != '1column'): ?>
+<?php if ($block->canShowBlock()): ?>
+	<div id="filter-sidebar">
+		<div class="block filter">
+			<div class="block-content filter-content">
+				<?php echo $block->getChildHtml('state') ?>
+
+				<?php if ($block->getLayer()->getState()->getFilters()): ?>
+					<div class="block-actions filter-actions text-right margin-bottom25 margin-top10">
+						<a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="btn btn-primary btn-lg action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+					</div>
+				<?php endif; ?>
+				<?php $wrapOptions = false; ?>
+				<?php $i=0; foreach ($block->getFilters() as $filter): $i++; ?>
+					<?php if (!$wrapOptions): ?>
+						<dl class="filter-options" id="narrow-by-list">
+					<?php $wrapOptions = true; endif; ?>
+						<?php if ($filter->getItemsCount()): ?>
+							<dt role="heading" aria-level="3" class="filter-options-title block-title">
+								<h3 class="title"><span><?php echo $block->escapeHtml(__($filter->getName())) ?></span></h3>
+							<button onclick="showHideFilter('<?php echo $i ?>')" class="hide-filter hide-filter<?php echo $i ?>"><i class="fa fa-minus"></i></button>
+							</dt>
+							<dd class="filter-options-content filter-options-content<?php echo $i ?>"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></dd>
+						<?php endif; ?>
+				<?php endforeach; ?>
+				<?php if ($wrapOptions): ?>
+					</dl>
+				<?php endif; ?>
+			</div>
+		</div>
+	</div>
+<?php endif; ?>
+<script type="text/javascript">
+	function showHideFilter(item) {
+		require([
+			'jquery'
+		], function (jQuery) {
+			(function ($) {
+				$('.filter-options-content'+item).slideToggle('fast');
+				if($('.hide-filter'+item+' .fa').hasClass('fa-plus')){
+					$('.hide-filter'+item+' .fa').removeClass('fa-plus');
+					$('.hide-filter'+item+' .fa').addClass('fa-minus');
+				}else{
+					$('.hide-filter'+item+' .fa').removeClass('fa-minus');
+					$('.hide-filter'+item+' .fa').addClass('fa-plus');
+				}
+			})(jQuery);
+		});
+	}
+</script>
+<?php endif; ?>

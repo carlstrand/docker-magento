@@ -1,0 +1,234 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Home 2 Newsletter</title>
+			<identifier>orson_home_2_newsletter</identifier>
+			<content><![CDATA[<div class="sidebar-newsletter">
+<div class="title-content margin-bottom15">
+<h3 class="title">SUBSCRIBE US!</h3>
+</div>
+<div class="margin-bottom25">Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</div>
+{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe-sidebar.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Testimonials</title>
+			<identifier>orson_home_4_testimonials</identifier>
+			<content><![CDATA[<div class="block-title">
+<h3 class="title"><span>Testimonials</span></h3>
+</div>
+<div>{{block class="MGS\Testimonial\Block\Testimonial" testimonials_count="3" row="1" nav="true" dots="false" autoplay="false" template="slide.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 1</title>
+			<identifier>orson_home_4_service_block_1</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-piggy" style="color: #33a752;">&nbsp;</span></div>
+<div class="text">
+<div><strong>MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 2</title>
+			<identifier>orson_home_4_service_block_2</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-cart" style="color: #ea4335;">&nbsp;</span></div>
+<div class="text">
+<div><strong>FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 3</title>
+			<identifier>orson_home_4_service_block_3</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-help2" style="color: #4285f4;">&nbsp;</span></div>
+<div class="text">
+<div><strong>ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Slider Home 2</title>
+			<identifier>orson_slider_home_2</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/home2_img_slider.jpg"}}" alt="" /></div>
+<div><img class="&quot;img-responsive" src="{{media url="wysiwyg/home2_img_slider.jpg"}}" alt="" /></div>
+<div><img class="&quot;img-responsive" src="{{media url="wysiwyg/home2_img_slider.jpg"}}" alt="" /></div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page Version 2</title>
+		<identifier>home_page_version_2</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- SECTION 1 -->
+<div class="container padding-top30">
+<div class="row"><!-- CATEGORY MENU -->
+<div class="col-md-3 col-xs-12">{{widget type="MGS\Mpanel\Block\Widget\CategoryNavigation" title="All Categories" category_id=",38,20,11,3,9,37,41,47,48,49"}}</div>
+<!-- SLIDER -->
+<div class="col-xs-12 visible-sm visible-xs">
+<div class="separator padding-top20">&nbsp;</div>
+</div>
+<div class="col-md-9 col-xs-12">{{widget type="MGS\Mpanel\Block\Widget\Slider"}}</div>
+</div>
+<!-- SECTION 2 -->
+<div class="row"><!-- SUBSCRIBE -->
+<div class="col-md-3 col-xs-12 padding-top20 dark-style">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_2_newsletter"}}</div>
+<div class="col-md-9 col-xs-12 padding-top20">
+<div class="row"><!-- FASHION TRENDING -->
+<div class="col-sm-6 col-xs-12 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_2_fashion_trending" template="banner.phtml"}}</div>
+<div class="col-xs-12 visible-sm visible-xs">
+<div class="separator padding-top20">&nbsp;</div>
+</div>
+<!-- WOMAN COLOR -->
+<div class="col-sm-6 col-xs-12 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_2_woman_color" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+<!-- SECTION 3 -->
+<div class="row">
+<div class="col-md-3 col-xs-12">
+<div class="row">
+<div class="col-xs-12">
+<div class="separator padding-top25 padding-bottom25">&nbsp;</div>
+</div>
+<!-- FEATURED -->
+<div class="col-xs-12 margin-bottom20">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Featured" view_mode="mode_list" type_list="attribute" attribute_filter_list="featured_product" number_show="3"}}</div>
+<!-- TESTIMONIALS -->
+<div class="col-md-12 col-sm-4 col-xs-12 testimo-sidebar">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_testimonials"}}</div>
+<div class="col-xs-12 hidden-sm">
+<div class="separator padding-top20">&nbsp;</div>
+</div>
+<!-- POST -->
+<div class="col-md-12 col-sm-8 col-xs-12 post-sidebar">
+<div class="block-title">
+<h3 class="title"><span>NEWS</span></h3>
+</div>
+{{widget type="MGS\Blog\Block\Widget\Lastest" number_of_posts="4" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="120" view_as="owl_carousel" items="1" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+</div>
+<div class="col-md-9 col-xs-12">
+<div class="row">
+<div class="col-xs-12">
+<div class="separator padding-top25 padding-bottom25">&nbsp;</div>
+</div>
+<!--NEW -->
+<div class="col-xs-12 owl-control-top desc-center">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="New Arrivals" view_mode="mode_grid" type_list="new" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>
+</div>
+<!-- PROMO BANNER -->
+<div class="col-xs-12 padding-top25 margin-top25">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_2_save_time" template="banner.phtml"}}</div>
+<!-- SALE -->
+<div class="col-xs-12 owl-control-top desc-center padding-bottom20 margin-bottom20" style="padding-top: 46px;">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Sale Products" view_mode="mode_grid" type_list="sale" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>
+<!-- SERVICE BLOCK 1 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_1"}}</div>
+<!-- SERVICE BLOCK 2 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_2"}}</div>
+<!-- SERVICE BLOCK 3 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_3"}}</div>
+<!-- BRAND -->
+<div class="owl-control-top col-xs-12">
+<div class="padding-top30">{{widget type="MGS\Brand\Block\Widget\Brand" title="Our Clients" brand_ids="9,10,11,12,13,14,15" view_as="owl_carousel" items="5" image_width="240" image_height="90" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+</div>
+</div>
+</div>
+<div class="separator" style="padding-top: 70px;">&nbsp;</div>]]></content>
+	</cms_page>
+	<promo_banner>
+		<item>
+			<title>Orson home 2 Fashion Trending</title>
+			<filename>/b/a/banner_men_h2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="padding25">
+<div style="color: #222;font-size: 30px;line-height: 1.1" class="margin-bottom50 padding-bottom15">
+<strong>FASHION</strong><br>
+<strong>TRENDING</strong><br>
+<strong style="color: #dd473f;">2016</strong>
+</div>
+<a href="#" style="text-decoration: underline;"><strong>SHOP NOW!</strong></a>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_2_fashion_trending</identifier>
+		</item>
+		<item>
+			<title>Orson home 2 Woman Color</title>
+			<filename>/b/a/banner_women_h2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="padding25">
+<div class="margin-bottom50 padding-bottom15" style="color: #222;font-size: 30px;line-height: 1.1">
+<strong>Woman's</strong><br>
+<strong>COLORS</strong><br>
+<strong style="color: #fb9f1c;">2016</strong>
+</div>
+<a href="#" style="text-decoration: underline;"><strong>SHOP NOW!</strong></a>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_2_woman_color</identifier>
+		</item>
+		<item>
+			<title>Orson Home 2 Save Time</title>
+			<filename>/b/a/banner_save_time.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_2_save_time</identifier>
+		</item>
+	</promo_banner>
+	<theme_setting>
+		<general>
+			<header>header_3</header>
+		</general>
+		<custom_style>
+			<style><![CDATA[.footer-v1 .footer-box h4:after{background-color:#fff;}]]></style>
+		</custom_style>
+		<banner_slider>
+			<identifier_block>orson_slider_home_2</identifier_block>
+		</banner_slider>
+		<blog_config>
+			<blog_layout>3</blog_layout>
+		</blog_config>
+		<portfolio_config>
+			<portfolio_layout>1</portfolio_layout>
+			<portfolio_title>1</portfolio_title>
+			<portfolio_column>3</portfolio_column>
+		</portfolio_config>
+	</theme_setting>
+	<panel_setting>
+		<form_mini_search>
+			<show_categories>0</show_categories>
+		</form_mini_search>
+	</panel_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#fec735]]></theme_color>
+		</general>
+		<header>
+			<header_custom>1</header_custom>
+			<search_input_border><![CDATA[#dddddd]]></search_input_border>
+			<search_button_background><![CDATA[#dddddd]]></search_button_background>
+		</header>
+		<footer>
+			<footer_custom>1</footer_custom>
+			<middle_background_color><![CDATA[#ffffff]]></middle_background_color>
+			<middle_text_color><![CDATA[#858585]]></middle_text_color>
+			<middle_border_color><![CDATA[#eeeeee]]></middle_border_color>
+			<middle_heading_color><![CDATA[#222222]]></middle_heading_color>
+			<middle_icon_color><![CDATA[#666666]]></middle_icon_color>
+			<bottom_background_color><![CDATA[#ffffff]]></bottom_background_color>
+			<bottom_text_color><![CDATA[#858585]]></bottom_text_color>
+			<bottom_border_color><![CDATA[#eeeeee]]></bottom_border_color>
+		</footer>
+	</color_setting>
+</home>

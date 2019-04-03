@@ -5,260 +5,73 @@
  */
 
 namespace MGS\Mpanel\Helper;
-use Magento\Customer\Model\Session as CustomerSession;
-use Magento\Framework\App\Filesystem\DirectoryList;
-use Magento\Framework\Filesystem;
 
 /**
  * Contact base helper
  */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+	protected $_scopeConfig;
+	
 	protected $_storeManager;
 	
 	protected $_date;
 	
+    protected $_catalogProductVisibility;
+	
 	protected $_url;
-	
-	protected $_filesystem;
-	
-	protected $_request;
-	
-	protected $_acceptToUsePanel = false;
-	
-	protected $_useBuilder = false;
-	
-	protected $_customer;
-    
-    protected $_moduleManager;
-	
-	/**
-	 * @var \Magento\Framework\Xml\Parser
-	 */
-	private $_parser;
-	
-	/**
-     * Asset service
-     *
-     * @var \Magento\Framework\View\Asset\Repository
-     */
-    protected $_assetRepo;
-	
-    protected $filterManager;
-	
-	/**
-     * Block factory
-     *
-     * @var \Magento\Cms\Model\BlockFactory
-     */
-    protected $_blockFactory;
-	/**
-     * Page factory
-     *
-     * @var \Magento\Cms\Model\PageFactory
-     */
-    protected $_pageFactory;
-	
-	protected $_file;
-	
-	/**
-     * @var \Magento\Framework\ObjectManagerInterface
-     */
-    protected $_objectManager;
-	
-	/**
-     * @var \Magento\Cms\Model\Template\FilterProvider
-     */
-    protected $_filterProvider;
-	
-    protected $_fullActionName;
-	
-    protected $_currentCategory;
-	
-    protected $_currentProduct;
-	
-    protected $_category;
-	
-    protected $scopeConfig;
-	
-	protected $_ioFile;
-	
-	protected $_layoutFactory;
+
 	
 	public function __construct(
+		\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
 		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		\Magento\Framework\Stdlib\DateTime\DateTime $date,
-		\Magento\Framework\ObjectManagerInterface $objectManager,
 		\Magento\Framework\Url $url,
-		\Magento\Framework\Filesystem $filesystem,
-		\Magento\Framework\App\Request\Http $request,
-		\Magento\Framework\View\Element\Context $context,
-		\Magento\Cms\Model\BlockFactory $blockFactory,
-		\Magento\Framework\View\LayoutFactory $layoutFactory,
+		\Magento\Catalog\Model\Product\Visibility $catalogProductVisibility,
+		\Magento\Widget\Helper\Conditions $conditionsHelper,
+		\Magento\CatalogWidget\Model\Rule $rule,
+		\Magento\Catalog\Model\CategoryFactory $categoryFactory,
+		\Magento\Catalog\Model\Design $catalogDesign,
 		\Magento\Catalog\Model\Category $category,
-		\Magento\Cms\Model\PageFactory $pageFactory,
-        \Magento\Framework\Module\Manager $moduleManager,
-		\Magento\Framework\Filesystem\Driver\File $file,
-		\Magento\Framework\Filesystem\Io\File $ioFile,
-		\Magento\Framework\Xml\Parser $parser,
-		\Magento\Cms\Model\Template\FilterProvider $filterProvider,
-		CustomerSession $customerSession
+		\Magento\Framework\ObjectManagerInterface $objectManager
 	) {
-		$this->scopeConfig = $context->getScopeConfig();
+		$this->_scopeConfig = $scopeConfig;
 		$this->_storeManager = $storeManager;
 		$this->_date = $date;
 		$this->_url = $url;
-		$this->_filesystem = $filesystem;
-		$this->customerSession = $customerSession;
-		$this->_objectManager = $objectManager;
-		$this->_layoutFactory = $layoutFactory;
+		$this->_catalogProductVisibility = $catalogProductVisibility;
+		$this->_categoryFactory = $categoryFactory;
+		$this->_catalogProductVisibility = $catalogProductVisibility;
+		$this->_catalogDesign = $catalogDesign;
+		$this->conditionsHelper = $conditionsHelper;
 		$this->_category = $category;
-		$this->_request = $request;
-        $this->_moduleManager = $moduleManager;
-		$this->filterManager = $context->getFilterManager();
-		$this->_assetRepo = $context->getAssetRepository();
-		$this->_blockFactory = $blockFactory;
-		$this->_pageFactory = $pageFactory;
-		$this->_file = $file;
-		$this->_ioFile = $ioFile;
-		$this->_filterProvider = $filterProvider;
-		$this->_parser = $parser;
-		
-		$this->_fullActionName = $this->_request->getFullActionName();
-		
-		if($this->_request->getFullActionName() == 'catalog_category_view'){
-			$this->_currentCategory = $this->getCurrentCategory();
-		}
-		
-		if($this->_request->getFullActionName() == 'catalog_product_view'){
-			$this->_currentProduct = $this->getCurrentProduct();
-		}
-	}
-	
-	public function generateContentFilter($string){
-		return $this->_filterProvider->getBlockFilter()->filter($string);
-	}
-	
-	public function getModel($model){
-		return $this->_objectManager->create($model);
-	}
-	
-	public function isActiveModule($module){
-		if($this->_moduleManager->isOutputEnabled($module) && $this->_moduleManager->isEnabled($module)){
-			return true;
-		}
-		return false;
-	}
-	
-	/**
-     * Retrieve current url in base64 encoding
-     *
-     * @return string
-     */
-	public function getCurrentBase64Url()
-    {
-		return strtr(base64_encode($this->_url->getCurrentUrl()), '+/=', '-_,');
-    }
-	
-	/**
-     * base64_decode() for URLs decoding
-     *
-     * @param    string $url
-     * @return   string
-     */
-    public function decode($url)
-    {
-        $url = base64_decode(strtr($url, '-_,', '+/='));
-        return $this->_url->sessionUrlVar($url);
-    }
-
-    /**
-     * Returns customer id from session
-     *
-     * @return int|null
-     */
-    public function getCustomerId()
-    {
-		$customerInSession = $this->_objectManager->create('Magento\Customer\Model\Session');
-        return $customerInSession->getCustomerId();
-    }
-	
-	/* Get current customer */
-	public function getCustomer(){
-		if(!$this->_customer){
-			$this->_customer = $this->getModel('Magento\Customer\Model\Customer')->load($this->getCustomerId());
-		}
-		return $this->_customer;
+		$this->_objectManager = $objectManager;
 	}
 	
 	public function getStore(){
 		return $this->_storeManager->getStore();
 	}
 	
-	/* Get system store config */
 	public function getStoreConfig($node, $storeId = NULL){
 		if($storeId != NULL){
-			return $this->scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId);
+			return $this->_scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $storeId);
 		}
-		return $this->scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->getStore()->getId());
+		return $this->_scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE, $this->getStore()->getId());
 	}
 	
-	// Check to accept to use builder panel
-    public function acceptToUsePanel() {
-		if($this->_acceptToUsePanel){
-			return true;
-		}else{
-			if ($this->showButton() && ($this->customerSession->getUsePanel() == 1)) {
-				$this->_acceptToUsePanel = true;
-				return true;
-			}
-			$this->_acceptToUsePanel = false;
-			return false;
-		}
-        
-    }
-
-	/* Check to visible panel button */
-    public function showButton() {
-
-        if ($this->getStoreConfig('mpanel/general/is_enabled')) {
-            $customer = $this->getCustomer();
-			if($customer->getIsBuilderAccount() == 1){
-				return true;
-			}
-			return false;
-        }
-
-        return false;
-    }
-	
-	/* Get all settings of the theme */
 	public function getThemeSettings(){
 		return [
 			'catalog'=> 
 			[
 				'per_row' => $this->getStoreConfig('mpanel/catalog/product_per_row'),
-				'per_row_mb' => $this->getStoreConfig('mpanel/catalog/product_per_row_mb'),
 				'featured' => $this->getStoreConfig('mpanel/catalog/featured'),
 				'hot' => $this->getStoreConfig('mpanel/catalog/hot'),
 				'ratio' => $this->getStoreConfig('mpanel/catalog/picture_ratio'),
 				'new_label' => $this->getStoreConfig('mpanel/catalog/new_label'),
 				'sale_label' => $this->getStoreConfig('mpanel/catalog/sale_label'),
 				'preload' => $this->getStoreConfig('mpanel/catalog/preload'),
-				'ajaxscroll' => $this->getStoreConfig('mpanel/catalog/ajaxscroll'),
 				'wishlist_button' => $this->getStoreConfig('mpanel/catalog/wishlist_button'),
-				'review_count' => $this->getStoreConfig('mpanel/catalog/review_count'),
-				'hover_change' => $this->getStoreConfig('mpanel/catalog/hover_change'),
-				'compare_button' => $this->getStoreConfig('mpanel/catalog/compare_button'),
-				'sub_categories' => $this->getStoreConfig('mpanel/catalog/sub_categories')
-			],
-			'catalogsearch'=> 
-			[
-				'per_row' => $this->getStoreConfig('mpanel/catalogsearch/product_per_row')
-			],
-			'catalog_brand'=> 
-			[
-				'per_row' => $this->getStoreConfig('brand/list_page_settings/product_per_row')
+				'compare_button' => $this->getStoreConfig('mpanel/catalog/compare_button')
 			],
 			'product_details'=> 
 			[
@@ -280,7 +93,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			'contact_google_map'=> 
 			[
 				'display_google_map' => $this->getStoreConfig('mpanel/contact_google_map/display_google_map'),
-				'api_key' => $this->getStoreConfig('mpanel/contact_google_map/api_key'),
 				'address_google_map' => $this->getStoreConfig('mpanel/contact_google_map/address_google_map'),
 				'html_google_map' => $this->getStoreConfig('mpanel/contact_google_map/html_google_map'),
 				'pin_google_map' => $this->getStoreConfig('mpanel/contact_google_map/pin_google_map')
@@ -295,7 +107,28 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 				'banner_owl_loop' => $this->getStoreConfig('mgstheme/banner_slider/banner_owl_loop'),
 				'banner_owl_nav' => $this->getStoreConfig('mgstheme/banner_slider/banner_owl_nav'),
 				'banner_owl_dot' => $this->getStoreConfig('mgstheme/banner_slider/banner_owl_dot')
+			],
+			'breadcrumbs_config'=> 
+			[
+				'breadcrumbs_type' => $this->getStoreConfig('mgstheme/breadcrumbs_config/breadcrumbs_type'),
+				'breadcrumbs_color' => $this->getStoreConfig('mgstheme/breadcrumbs_config/breadcrumbs_color'),
+				'breadcrumbs_bg' => $this->getStoreConfig('mgstheme/breadcrumbs_config/breadcrumbs_bg'),
+				'breadcrumbs_bg_color' => $this->getStoreConfig('mgstheme/breadcrumbs_config/breadcrumbs_bg_color'),
+				'breadcrumbs_bg_img' => $this->getStoreConfig('mgstheme/breadcrumbs_config/breadcrumbs_bg_img')
+			],
+			'blog_config'=>
+			[
+				'blog_column' => $this->getStoreConfig('mgstheme/blog_config/blog_layout'),
+				'blog_img'	=> $this->getStoreConfig('mgstheme/blog_config/blog_img')
+				
+			],
+			'portfolio_config'=>
+			[
+				'portfolio_layout'=>$this->getStoreConfig('mgstheme/portfolio_config/portfolio_layout'),
+				'portfolio_title'=>$this->getStoreConfig('mgstheme/portfolio_config/portfolio_title'),
+				'portfolio_column'=>$this->getStoreConfig('mgstheme/portfolio_config/portfolio_column')
 			]
+			
 		];
 	}
 	
@@ -304,19 +137,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		if(!$perrow){
 			$settings = $this->getThemeSettings();
 			$perrow = $settings['catalog']['per_row'];
-			
-			if($this->_request->getFullActionName() == 'catalog_category_view'){
-				$category = $this->getCurrentCategory();
-				$categoryPerrow = $category->getPerRow();
-				if($categoryPerrow!=''){
-					$perrow = $categoryPerrow;
-				}
-			}
-			
-			if($this->_request->getFullActionName() == 'catalogsearch_result_index'){
-				$perrow = $settings['catalogsearch']['per_row'];
-			}
-			
 		}
 		
 		switch($perrow){
@@ -327,56 +147,65 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 				return 'col-lg-4 col-md-4 col-sm-4 col-xs-6';
 				break;
 			case 4:
-				return 'col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-6';
-				break;
-			case 5:
-				return 'col-lg-custom-5 col-md-custom-5 col-sm-6 col-xs-6';
+				return 'col-lg-3 col-md-3 col-sm-6 col-xs-6';
 				break;
 			case 6:
 				return 'col-lg-2 col-md-2 col-sm-3 col-xs-6';
 				break;
-			case 7:
-				return 'col-lg-custom-7 col-md-custom-7 col-sm-6 col-xs-6';
-				break;
-			case 8:
-				return 'col-lg-custom-8 col-md-custom-8 col-sm-6 col-xs-6';
-				break;
 		}
 		return;
 	}
-	/* Get product image size */
-	public function getRatioClass(){
-		$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-		if($this->_request->getFullActionName() == 'catalog_category_view'){
-			$category = $this->getCurrentCategory();
-			$categoryRatio = $category->getPictureRatio();
-			if($categoryRatio!=''){
-				$ratio = $categoryRatio;
-			}
+	/* Get class clear left */
+	public function getClearClass($perrow = NULL, $nb_item){
+		if(!$perrow){
+			$settings = $this->getThemeSettings();
+			$perrow = $settings['catalog']['per_row'];
 		}
-		
-		$class = 'ratio-' . $ratio;
-		 
-		return $class;
-	}
-	/* Get product image size */
-	public function getImageSize($ratio = NULL){
-		if(!$ratio){
-			$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-			if($this->_request->getFullActionName() == 'catalog_category_view'){
-				$category = $this->getCurrentCategory();
-				$categoryRatio = $category->getPictureRatio();
-				if($categoryRatio!=''){
-					$ratio = $categoryRatio;
+		$clearClass = '';
+		switch($perrow){
+			case 2:
+				if($nb_item % 2 == 1){
+					$clearClass.= " first-row-item row-sm-first row-xs-first";
 				}
-			}
+				return $clearClass;
+				break;
+			case 3:
+				if($nb_item % 3 == 1){
+					$clearClass.= " first-row-item row-sm-first";
+				}
+				if($nb_item % 2 == 1){
+					$clearClass.= " row-xs-first";
+				}
+				return $clearClass;
+				break;
+			case 4:
+				if($nb_item % 4 == 1){
+					$clearClass.= " first-row-item";
+				}
+				if($nb_item % 2 == 1){
+					$clearClass.= " row-sm-first row-xs-first";
+				}
+				return $clearClass;
+				break;
+			case 6:
+				if($nb_item % 6 == 1){
+					$clearClass.= " first-row-item";
+				}
+				if($nb_item % 4 == 1){
+					$clearClass.= " row-sm-first";
+				}
+				if($nb_item % 2 == 1){
+					$clearClass.= " row-xs-first";
+				}
+				return $clearClass;
+				break;
 		}
-        
-        if($ratio == 8){
-            $customWidth = $this->getStoreConfig('mpanel/catalog/picture_ratio_width');
-            $customHeight = $this->getStoreConfig('mpanel/catalog/picture_ratio_height');
-        }
-		
+		return $clearClass;
+	}
+	
+	/* Get product image size */
+	public function getImageSize(){
+		$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
 		$maxWidth = $this->getStoreConfig('mpanel/catalog/max_width_image');
 		$result = [];
         switch ($ratio) {
@@ -408,90 +237,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             case 7:
                 $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*3) / 4));
                 break;
-            // Custom Width & Height
-            case 8:
-                $result = array('width' => round($customWidth), 'height' => round($customHeight));
-                break;
-                
         }
-
-        return $result;
-	}
-	
-	/* Get product Ratio */
-	public function getRatioCate(){
-        
-        $ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-        
-        if($this->_request->getFullActionName() == 'catalog_category_view'){
-            $category = $this->getCurrentCategory();
-            $categoryRatio = $category->getPictureRatio();
-            if($categoryRatio!=''){
-                $ratio = $categoryRatio;
-            }
-        }
-
-        return $ratio;
-	}
-    
-	/* Get product image padding */
-	public function getImagePadding($ratio = NULL){
-		if(!$ratio){
-			$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-			if($this->_request->getFullActionName() == 'catalog_category_view'){
-				$category = $this->getCurrentCategory();
-				$categoryRatio = $category->getPictureRatio();
-				if($categoryRatio!=''){
-					$ratio = $categoryRatio;
-				}
-			}
-		}
-        
-        if($ratio == 8){
-            $customWidth = $this->getStoreConfig('mpanel/catalog/picture_ratio_width');
-            $customHeight = $this->getStoreConfig('mpanel/catalog/picture_ratio_height');
-        }
-        
-		$result = "";
-        switch ($ratio) {
-            // 1/1 Square
-            case 1:
-                $result = 100;
-                break;
-            // 1/2 Portrait
-            case 2:
-                $result = 200;
-                break;
-            // 2/3 Portrait
-            case 3:
-                $result = 150;
-                break;
-            // 3/4 Portrait
-            case 4:
-				$value = (400 / 3);
-                $result = round($value, 4);
-                break;
-            // 2/1 Landscape
-            case 5:
-                $result = 50;
-                break;
-            // 3/2 Landscape
-            case 6:
-				$value = (200 / 3);
-                $result = round($value, 4);
-                break;
-            // 4/3 Landscape
-            case 7:
-                $result = 75;
-                break;
-            // Custom Width & Height
-            case 7:
-                $value = ($customHeight * 100 / $customWidth);
-                $result = round($value, 4);
-                break;
-        }
-		
-		$result .= "%";
 
         return $result;
 	}
@@ -499,18 +245,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	/* Get product image size for product details page*/
 	public function getImageSizeForDetails() {
 		$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-        $maxWidth = $this->getStoreConfig('mpanel/product_details/max_width_image_detail');
-        
-		if($maxWidth == ''){
-			$maxWidth = 600;
-		}
-        if($ratio == 8){
-            $customWidth = $this->getStoreConfig('mpanel/catalog/picture_ratio_width');
-            $customHeight = $this->getStoreConfig('mpanel/catalog/picture_ratio_height');
-            $customRatio = $customWidth / $customHeight;
-        }
-        
-		
+		$maxWidth = $this->getStoreConfig('mpanel/catalog/max_width_image_detail');
         $result = [];
         switch ($ratio) {
             // 1/1 Square
@@ -541,122 +276,86 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             case 7:
                 $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*3) / 4));
                 break;
-            // Custom Width & Height
-            case 8:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth / $customRatio));
+        }
+
+        return $result;
+    }
+	
+	public function getImageMinSize() {
+        $ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
+        $result = [];
+        switch ($ratio) {
+            // 1/1 Square
+            case 1:
+                $result = array('width' => 80, 'height' => 80);
+                break;
+            // 1/2 Portrait
+            case 2:
+                $result = array('width' => 80, 'height' => 160);
+                break;
+            // 2/3 Portrait
+            case 3:
+                $result = array('width' => 80, 'height' => 120);
+                break;
+            // 3/4 Portrait
+            case 4:
+                $result = array('width' => 80, 'height' => 107);
+                break;
+            // 2/1 Landscape
+            case 5:
+                $result = array('width' => 80, 'height' => 40);
+                break;
+            // 3/2 Landscape
+            case 6:
+                $result = array('width' => 80, 'height' => 53);
+                break;
+            // 4/3 Landscape
+            case 7:
+                $result = array('width' => 80, 'height' => 60);
                 break;
         }
 
         return $result;
     }
 	
-	public function getImageMinSize($ratio = NULL) {
-		if(!$ratio){
-			$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-		}
-        if($ratio == 8){
-            $customWidth = $this->getStoreConfig('mpanel/catalog/picture_ratio_width');
-            $customHeight = $this->getStoreConfig('mpanel/catalog/picture_ratio_height');
-            $customRatio = $customWidth / $customHeight;
-        }
-        $result = [];
-        switch ($ratio) {
-            // 1/1 Square
-            case 1:
-                $result = array('width' => 120, 'height' => 120);
-                break;
-            // 1/2 Portrait
-            case 2:
-                $result = array('width' => 120, 'height' => 240);
-                break;
-            // 2/3 Portrait
-            case 3:
-                $result = array('width' => 120, 'height' => 180);
-                break;
-            // 3/4 Portrait
-            case 4:
-                $result = array('width' => 120, 'height' => 160);
-                break;
-            // 2/1 Landscape
-            case 5:
-                $result = array('width' => 100, 'height' => 50);
-                break;
-            // 3/2 Landscape
-            case 6:
-                $result = array('width' => 120, 'height' => 80);
-                break;
-            // 4/3 Landscape
-            case 7:
-                $result = array('width' => 120, 'height' => 90);
-                break;
-            // Custom Width & Height
-            case 8:
-                $result = array('width' => 120, 'height' => round(120 / $customRatio));
-                break;
-        }
-		
-        return $result;
-    }
-	
-	public function getCurrentDateTime(){
-		$now = $this->_date->gmtDate();
-		return $now;
-	}
-	
 	public function getProductLabel($product){
 		$html = '';
 		$newLabel = $this->getStoreConfig('mpanel/catalog/new_label');
-        $saleLabel = $this->getStoreConfig('mpanel/catalog/sale_label');
-		$soldLabel = __('Out of Stock');
-		// Out of stock label
-		if (!$product->isSaleable()){
-			$html .= '<span class="product-label sold-out-label"><span>'.$soldLabel.'</span></span>';
-		}else {
-			// New label
-			$numberLabel = 0;
-			$now = $this->getCurrentDateTime();
-			$dateTimeFormat = \Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT;
-			$newFromDate = $product->getNewsFromDate();
-			if($newFromDate) {
-				$newFromDate = date($dateTimeFormat, strtotime($newFromDate));
-			}
-			$newToDate = $product->getNewsToDate();
-			if($newToDate) {
-				$newToDate = date($dateTimeFormat, strtotime($newToDate));
-			}
-			if($newLabel != ''){
-				if(!(empty($newToDate))){
-					if(!(empty($newFromDate)) && ($newFromDate < $now) && ($newToDate > $now)){
-						$html.='<span class="product-label new-label"><span>'.$newLabel.'</span></span>';
-						$numberLabel = 1;
-					}
-				}	
-			}
-			
-			// Sale label
-			$price = $product->getPrice();
-			$finalPrice = $product->getFinalPrice();
-			if($this->getStoreConfig('mpanel/catalog/sale_label_discount') == 1){
-				if(($finalPrice<$price)){
-					$save = $price - $finalPrice;
-					$percent = round(($save * 100) / $price);
-					if($numberLabel == 1){
-						$html .= '<span class="product-label sale-label multiple-label"><span>-'.$percent.'%</span></span>';
-					}else{
-						$html .= '<span class="product-label sale-label"><span>-'.$percent.'%</span></span>';
-					}
-				}
-			}else {
-				if(($finalPrice<$price) && ($saleLabel!='')){
-					if($numberLabel == 1){
-						$html .= '<span class="product-label sale-label multiple-label"><span>'.$saleLabel.'</span></span>';
-					}else{
-						$html .= '<span class="product-label sale-label"><span>'.$saleLabel.'</span></span>';
-					}
-				}
-			}
+		$saleLabel = "";
+		if($this->getStoreConfig('mpanel/catalog/sale_label') == 1){
+			$saleLabel = 1;
+		}
+		// Sale label
+		$price = $product->getPrice();
+		$finalPrice = $product->getFinalPrice();
+		$save = $price - $finalPrice;
+		if(($finalPrice<$price) && ($saleLabel!='')){
+			$percent = round(($save * 100) / $price);
+			$html .= '<span class="product-label sale-label"><span>-'.$percent.'%</span></span>';
+		}
+		
+		// New label
+		$now = $this->_date->gmtDate();
+		$dateTimeFormat = \Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT;
+		$newFromDate1 = $product->getNewsFromDate();
+        $newFromDate = date($dateTimeFormat, strtotime($newFromDate1));
+        $newToDate1 = $product->getNewsToDate();
+        $newToDate = date($dateTimeFormat, strtotime($newToDate1));
+		if((!(empty($newToDate1) && empty($newFromDate1)) && ($newFromDate1 < $now) && ($newToDate1 > $now) && $newLabel != '') || ($newLabel != '' && empty($newToDate1) && (!empty($newFromDate1)) && ($newFromDate1 < $now))){
+			$html.='<span class="product-label new-label"><span>'.$newLabel.'</span></span>';
 		}
 		return $html;
+	}
+	
+	//Check if product is in wishlist
+	public function getWishlistCount(){
+		$wishlist = $this->_wishlistItem->getWishlistItems();
+		if(count($wishlist) > 0){
+			$ct = count($wishlist);
+		}else {
+			$ct = 0;
+		}
+		return $ct;
 	}
 	
 	public function getUrlBuilder(){
@@ -665,10 +364,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 	
 	public function getCssUrl(){
 		return $this->_url->getUrl('mpanel/index/css',['store'=>$this->getStore()->getId()]);
-	}
-	
-	public function getPanelCssUrl(){
-		return $this->_url->getUrl('mpanel/index/panelstyle');
 	}
 	
 	public function getFonts() {
@@ -692,9 +387,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             ['css-name' => 'Bree+Serif', 'font-name' => __('Bree Serif')],
             ['css-name' => 'Vollkorn', 'font-name' => __('Vollkorn')],
             ['css-name' => 'Alegreya', 'font-name' => __('Alegreya')],
-            ['css-name' => 'Noto+Serif', 'font-name' => __('Noto Serif')],
-            ['css-name' => 'Libre+Baskerville', 'font-name' => __('Libre Baskerville')],
-            ['css-name' => 'Poppins', 'font-name' => __('Poppins')]
+            ['css-name' => 'Noto+Serif', 'font-name' => __('Noto Serif')]
         ];
     }
 	
@@ -709,8 +402,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			'h6' => $this->getStoreConfig('mgstheme/fonts/h6'),
 			'price' => $this->getStoreConfig('mgstheme/fonts/price'),
 			'menu' => $this->getStoreConfig('mgstheme/fonts/menu'),
-			'btn' => $this->getStoreConfig('mgstheme/fonts/menu'),
-			'custom_font_fml' => $this->getStoreConfig('mgstheme/fonts/custom_font_fml'),
 		];
         $fonts = [];
         $fonts[] = $setting['default_font'];
@@ -735,130 +426,242 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             $fonts[] = $setting['menu'];
         }
 
-        if (!in_array($setting['btn'], $fonts)) {
-            $fonts[] = $setting['btn'];
-        }
-
-        if (!in_array($setting['custom_font_fml'], $fonts)) {
-            $fonts[] = $setting['custom_font_fml'];
-        }
-
         $fonts = array_filter($fonts);
         $links = '';
 
         foreach ($fonts as $_font) {
-			$links .= "@import url('//fonts.googleapis.com/css?family=" . $_font . ":300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,900,900italic');";
+			$links .= '<link href="//fonts.googleapis.com/css?family=' . $_font . ':400,300,300italic,400italic,500,600,700,700italic,900,900italic" rel="stylesheet" type="text/css"/>';
         }
 
         return $links;
     }
 	
 	// get theme color
-    public function getThemecolorSetting($storeId, $themeName) {
-		$setting = [];
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('code/MGS/Mpanel/data/themes/'.$themeName);
-		$themeStyleFile = $dir.'/theme_style.xml';
-		if (is_readable($themeStyleFile)){
-			$parsedArray = $this->_parser->load($themeStyleFile)->xmlToArray();
-			if(isset($parsedArray['class_setting']['theme_color'])){
-				foreach($parsedArray['class_setting']['theme_color'] as $classAttribute=>$classString){
-					$classAttribute = str_replace('_', '-', $classAttribute);
-					$setting[$classString] = [$classAttribute=>$this->getStoreConfig('color/general/theme_color', $storeId)];
-				}
-			}
-		}
+    public function getThemecolorSetting($storeId) {
+        $setting = [
+			'.footer .footer-container .middle-footer .footer-box h4 span:after, .footer .footer-container .middle-footer .contact-box ul li .fa, .header .contact-header .fa, .vertical-menu-home .menu-title, .header .header-v2.sticky-menu .sticky-content .vertical-menu-home .menu-title .icon-vertical,.btn-default:hover, .btn-default:focus,.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary.disabled,
+			.btn-primary[disabled],fieldset[disabled] .btn-primary,.btn-primary.disabled:hover,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary:hover,.btn-primary.disabled:focus,.btn-primary[disabled]:focus,fieldset[disabled] .btn-primary:focus,.btn-primary.disabled:active,.btn-primary[disabled]:active,fieldset[disabled] .btn-primary:active,.btn-primary.disabled.active,.btn-primary.active[disabled],fieldset[disabled] .btn-primary.active,.slider_mgs_carousel.owl-theme .owl-dots .owl-dot.active span,.slider_mgs_carousel.owl-theme .owl-dots .owl-dot:hover span,.title-content .title:after,.products-grid .product-content .product-top .icon-links li button:hover,.products-grid .product-content .product-desc .tocart:hover,.owl-carousel .owl-controls .owl-nav > [class*="owl-"]:hover,.custom-owl .brands-grid.owl-carousel .owl-controls .owl-nav > div:hover,.widget-latest .item .go-to-detail:hover,.product-info-main .product-add-form .btn-icon,.product-info-main .product-addto-links a:hover .icon,.product-info-main a.action.mailto.friend:hover .icon,.characters-filter li a:hover,.social-icons > span .stButton .stLarge:hover,.block-title .title > span:after,.pagination li a:hover,.pagination li a:focus,.pagination li.current a,.pagination li.current a:focus,.pagination li.current a:hover,.products-list-mode .product-item .icon-links li button.action:hover,.panel-group .panel .panel-heading:hover,.panel-group .panel .panel-heading.active,.ch-info .ch-info-back,.address-info li .icon,.social-login-options .dropdown-menu a:hover,.checkout-index-index button,.checkout-index-index .opc-progress-bar .opc-progress-bar-item._active > span:before,.checkout-index-index .opc-progress-bar .opc-progress-bar-item._active:before,.checkout-index-index .opc-wrapper .step-title:after,.checkout-index-index .methods-shipping .actions-toolbar button,.blog-post .tags > a:hover,.tab-menu.tabs_categories_portfolio li a.is-checked,.tab-menu.tabs_categories_portfolio li a:hover,.portfolio-content .portfolio-bottom-content.portfolio-box-title a.view:hover,.portfolio-details .title-portfolio span:after,.btn-cart-sm .products-grid .product-content .product-desc .controls .tocart:hover,.icon-horizontal .products-grid .product-content .product-top .icon-links li button:hover,.fotorama .fotorama__arr .fotorama__arr__arr:hover, button.btn-responsive-nav:hover, button.btn-responsive-nav:active, button.btn-responsive-nav:focus,.menu-scroll-block .title-menu, .header-v4 .vertical-menu-button .menu-vertical-btn,.menu-home .title-menu,.checkout-cart-index .shopping-cart-bottom .checkout-methods-items .action.primary.checkout,.desc-center .products-grid .product-content .product-desc .controls .tocart:hover,.promobanner.type1 .btn-default:hover,.promobanner.btn-white .btn-default:hover,.background-date .latest-post-carousel .item .post-info,.scroll-to-top,.footer .social-btn a:hover'=> [
+				'background-color'=>  $this->getStoreConfig('color/general/theme_color', $storeId)
+			],
+			'.btn-default:hover, .btn-default:focus,.btn-primary,.btn-primary:hover,.btn-primary:focus,.btn-primary.disabled,
+			.btn-primary[disabled],fieldset[disabled] .btn-primary,.btn-primary.disabled:hover,.btn-primary[disabled]:hover,fieldset[disabled] .btn-primary:hover,.btn-primary.disabled:focus,.btn-primary[disabled]:focus,fieldset[disabled] .btn-primary:focus,.btn-primary.disabled:active,.btn-primary[disabled]:active,fieldset[disabled] .btn-primary:active,.btn-primary.disabled.active,.btn-primary.active[disabled],fieldset[disabled] .btn-primary.active,.products-grid .product-content .product-top .icon-links li button:hover,.widget-latest .item .go-to-detail:hover,.brands-grid .brands .brand:hover,.pagination li a:hover,.pagination li a:focus,.pagination li.current a,.pagination li.current a:focus,.pagination li.current a:hover,.panel-group .panel .panel-heading:hover,.panel-group .panel .panel-heading.active,.checkout-index-index button,.checkout-index-index .methods-shipping .actions-toolbar button,.icon-horizontal .products-grid .product-content .product-top .icon-links li button:hover,.fotorama .fotorama__nav-wrap .fotorama__nav__frame.fotorama__active .fotorama__thumb, .search-form .form-search .search-select, .search-form .form-search .search-select #select-cat-dropdown,.mgs-brand-widget .item:hover,.checkout-cart-index .shopping-cart-bottom .checkout-methods-items .action.primary.checkout,.promobanner.type1 .btn-default:hover,.promobanner.btn-white .btn-default:hover,.background-date .latest-post-carousel .item .read-more,.search-form .form-search'=> [
+				'border-color'=>  $this->getStoreConfig('color/general/theme_color', $storeId)
+			],
+			'.color-theme,a:hover, a:focus,.on-wishlist .fa:before,.widget-latest .item .read-more:hover,.widget-latest .item .read-more .fa,.product-info-main .product-info-price .price,.product-info-main .product-addto-links a:hover,.product-info-main a.action.mailto.friend:hover.product-info-main .product-info li a,.owl-top-text .owl-carousel .owl-controls .owl-nav > div:hover,.owl-bottom-text .owl-carousel .owl-controls .owl-nav > div:hover,.sidebar .block.related .block-actions .action.select,.toolbar .left .modes strong.modes-mode,.ch-item .icon,.button-link,.account-nav ul li.current,.testimo-sidebar .testimonial-item .info:after,.blog-post .post-tag .fa,.blog-post .post-tag a:hover,.portfolio-content .portfolio-top-content a.view:hover,.portfolio-content .portfolio-bottom-content.portfolio-box-title .portfolio-name a:hover,.portfolio-details .portfolio-table > tbody > tr > td a,.portfolio-details .portfolio-carousel.owl-carousel .owl-controls .owl-nav > div:hover .fa,.portfolio-details .portfolio-carousel.owl-carousel .owl-controls .owl-nav > div:hover .text, .main-menu ul.nav-main li.active a.level0, .main-menu ul.nav-main li:hover a.level0, .main-menu ul.nav-main li.dropdown a:hover, .main-menu ul.nav-main li.dropdown a:active, .header .top-header-content a:hover, .header .top-header-content .dropdown-menu a:hover, .vertical-menu-home .vertical-menu > li:hover > a, .vertical-menu-home .vertical-menu li.dropdown .dropdown-menu li ul li a:hover , .sidebar .block-blog-tags .tagcloud > span a:hover, .sidebar .block-blog-posts .post-list .item .post-name  a:hover, .main-menu ul.nav-main li a.level0:focus .icon-next, .main-menu ul.nav-main li a.level0:hover .icon-next, .header-v4 .minicart-wrapper .showcart:hover .icon-cart, .header .top-header-content .dropdown-menu li a:hover, .footer .footer-container .middle-footer .twitter_feed .tweet-container a,.product-tab-category .nav-tabs > li:hover a, .product-tab-category .nav-tabs > li.active a, .product-tab-category .nav-tabs > li:hover a::after, .product-tab-category .nav-tabs > li.active a::after,.coming-soon-event .countdown .timer > div > strong, .main-menu ul.nav-main li.active a.level0 .icon-next, .main-menu ul.nav-main li:hover a.level0 .icon-next,.hot-cate ul li > a:hover:after,.testimonials-center .testimonial-container .testimonial-item .info:after'=> [
+				'color'=>  $this->getStoreConfig('color/general/theme_color', $storeId)
+			],
+			'.button-link' => [
+				'border-bottom-color'=>  $this->getStoreConfig('color/general/theme_color', $storeId)
+			],
+			'.checkout-index-index .checkout-container .authentication-wrapper aside.authentication-dropdown' => [
+				'border-top-color'=>  $this->getStoreConfig('color/general/theme_color', $storeId)
+			],
+		];
         $setting = array_filter($setting);
         return $setting;
     }
 	
 	// get header custom color
-    public function getHeaderColorSetting($storeId, $themeName) {
-		
-		$setting = $arrAttribute = [];
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('code/MGS/Mpanel/data/themes/'.$themeName);
-		$themeStyleFile = $dir.'/theme_style.xml';
-		if (is_readable($themeStyleFile)){
-			$parsedArray = $this->_parser->load($themeStyleFile)->xmlToArray();
-			if(isset($parsedArray['class_setting']['header'])){
-				foreach($parsedArray['class_setting']['header'] as $configNote=>$classAttribute){
-					foreach($classAttribute as $attribute=>$classString){
-						$attribute = str_replace('_', '-', $attribute);
-						$arrAttribute[$classString] = [
-							$attribute => $this->getStoreConfig('color/header/'.$configNote, $storeId)
-						];
-						$setting = array_merge_recursive($setting,$arrAttribute);
-						$arrAttribute = [];
-					}
-				}
-			}
-		}
-		
+    public function getHeaderColorSetting($storeId) {
+        $setting = [
+            /* Header Top Section */
+            '.header .top-header-content' => [
+                'background-color' => $this->getStoreConfig('color/header/background_color', $storeId),
+                'color' => $this->getStoreConfig('color/header/text_color', $storeId)
+            ],
+			'.header .top-header-content .dropdown .action' => [
+                'color' => $this->getStoreConfig('color/header/text_color', $storeId)
+            ],
+			'.header .top-header-content a' => [
+                'color' => $this->getStoreConfig('color/header/link_color', $storeId)
+            ],
+			'.header .top-header-content a:hover' => [
+                'color' => $this->getStoreConfig('color/header/link_hover_color', $storeId)
+            ],
+			'.header .top-header-content .dropdown .ui-dialog' => [
+                'background-color' => $this->getStoreConfig('color/header/dropdown_background', $storeId)
+            ],
+			'.header .top-header-content .switcher .switcher-options .ui-widget-content ul.switcher-dropdown li a' => [
+                'color' => $this->getStoreConfig('color/header/dropdown_link_color', $storeId)
+            ],
+			'.header .top-header-content .switcher .switcher-options .ui-widget-content ul.switcher-dropdown li a:hover' => [
+                'color' => $this->getStoreConfig('color/header/dropdown_link_hover_color', $storeId)
+            ],
+			/* Header Middle Section */
+			'.middle-header-content' => [
+                'background-color' => $this->getStoreConfig('color/header/middle_background', $storeId)
+            ],
+			/* Top Search Section */
+			'#search_mini_form .input-text' => [
+                'background-color' => $this->getStoreConfig('color/header/search_input_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_input_border', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId),
+            ],
+			'.search-form .form-search .search-select,.search-form .form-search .search-select #select-cat-dropdown, .search-form .form-search' => [ 
+				'border-color' => $this->getStoreConfig('color/header/search_input_border', $storeId)
+			
+			],
+	
+			'#search_mini_form .input-text::-webkit-input-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text:-moz-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text::-moz-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text:-ms-input-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .btn-primary' => [
+                'background-color' => $this->getStoreConfig('color/header/search_button_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_button_background', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_button_text', $storeId)
+            ],
+			'#search_mini_form .btn-primary:hover' => [
+                'background-color' => $this->getStoreConfig('color/header/search_button_background_hover', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_button_background_hover', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_button_text_hover', $storeId)
+            ],
+			/* Top Cart Section */
+			'.minicart-wrapper .showcart .icon-cart,.minicart-wrapper .showcart .title-shopbag' => [
+                'color' => $this->getStoreConfig('color/header/cart_icon', $storeId)
+            ],
+			'.minicart-wrapper .showcart .icon-cart .count .counter-number' => [
+                'background-color' => $this->getStoreConfig('color/header/cart_number_background', $storeId),
+                'color' => $this->getStoreConfig('color/header/cart_number', $storeId)
+            ],
+			'.minicart-wrapper > .ui-widget-content.dropdown-menu' => [
+                'background-color' => $this->getStoreConfig('color/header/cart_dropdown_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/cart_dropdown_border', $storeId),
+            ],
+			'.minicart-wrapper .ui-widget-content .block-content, .minicart-wrapper .ui-widget-content .block-content .subtitle' => [
+                'color' => $this->getStoreConfig('color/header/cart_dropdown_text', $storeId)
+            ],
+			'.minicart-wrapper .ui-widget-content .block-content a' => [
+                'color' => $this->getStoreConfig('color/header/cart_dropdown_link', $storeId)
+            ],
+			'.minicart-wrapper .ui-widget-content .block-content a:hover' => [
+                'color' => $this->getStoreConfig('color/header/cart_dropdown_link_hover', $storeId)
+            ],
+			'.minicart-wrapper .ui-widget-content .block-content .actions button, .minicart-wrapper .ui-widget-content .block-content .actions .btn' => [
+                'background-color' => $this->getStoreConfig('color/header/cart_dropdown_button_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/cart_dropdown_button_background', $storeId),
+                'color' => $this->getStoreConfig('color/header/cart_dropdown_button_text', $storeId),
+            ],
+			'.minicart-wrapper .ui-widget-content .block-content .actions button:hover, .minicart-wrapper .ui-widget-content .block-content .actions .btn:hover,
+			.minicart-wrapper .ui-widget-content .block-content .actions button:focus, .minicart-wrapper .ui-widget-content .block-content .actions .btn:focus' => [
+                'background-color' => $this->getStoreConfig('color/header/cart_dropdown_button_background_hover', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/cart_dropdown_button_background_hover', $storeId),
+                'color' => $this->getStoreConfig('color/header/cart_dropdown_button_text_hover', $storeId),
+            ],
+			/* Top Search Section */
+			'.search-form .form-search' => [
+                'background-color' => $this->getStoreConfig('color/header/search_input_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_input_border', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId),
+            ],
+			'#search_mini_form .input-text::-webkit-input-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text:-moz-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text::-moz-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'#search_mini_form .input-text:-ms-input-placeholder' => [
+                'color' => $this->getStoreConfig('color/header/search_input_text', $storeId)
+            ],
+			'.search-form .form-search .btn' => [
+                'background-color' => $this->getStoreConfig('color/header/search_button_background', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_button_background', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_button_text', $storeId)
+            ],
+			'.search-form .form-search .btn:hover' => [
+                'background-color' => $this->getStoreConfig('color/header/search_button_background_hover', $storeId),
+                'border-color' => $this->getStoreConfig('color/header/search_button_background_hover', $storeId),
+                'color' => $this->getStoreConfig('color/header/search_button_text_hover', $storeId)
+            ],
+			/* Menu Section */
+			'.header .header-menu' => [
+                'background-color' => $this->getStoreConfig('color/header/menu_background', $storeId)
+            ],
+			'nav.nav-main #mainMenu > .level0' => [
+                'background-color' => $this->getStoreConfig('color/header/lv1_background', $storeId)
+            ],
+			'#mainMenu .level0 a.level0,.main-menu ul.nav-main li a.level0,.main-menu ul.nav-main li a.level0 .icon-next' => [
+                'color' => $this->getStoreConfig('color/header/lv1_color', $storeId)
+            ],
+			'nav.nav-main #mainMenu > .level0:hover,.main-menu ul.nav-main li a.level0:hover,.main-menu ul.nav-main li.active a.level0' => [
+                'background-color' => $this->getStoreConfig('color/header/lv1_background_hover', $storeId)
+            ],
+			'nav.nav-main #mainMenu .level0:hover > a, nav.nav-main #mainMenu .level0 > a.ui-state-focus,.main-menu ul.nav-main li a.level0:hover,.main-menu ul.nav-main li a.level0:focus,.main-menu ul.nav-main li.active a.level0,.main-menu ul.nav-main li a.level0:hover .icon-next,.main-menu ul.nav-main li a.level0:focus .icon-next,.main-menu ul.nav-main li.active a.level0 .icon-next' => [
+                'color' => $this->getStoreConfig('color/header/lv1_color_hover', $storeId)
+            ],
+			'nav.nav-main li.level0 ul.dropdown-menu, nav.nav-main #mainMenu .level0 ul.level0, nav.nav-main #mainMenu .level0 ul.level0 li.level1 ul.level1' => [
+                'background-color' => $this->getStoreConfig('color/header/menu_dropdown_background', $storeId)
+            ],
+			'nav.nav-main li.level0 ul.dropdown-menu li a' => [
+                'color' => $this->getStoreConfig('color/header/menu_dropdown_link_color', $storeId)
+            ],
+			'nav.nav-main li.level0 ul.dropdown-menu:hover' => [
+                'background-color' => $this->getStoreConfig('color/header/menu_dropdown_background_hover', $storeId)
+            ],
+			'nav.nav-main li.level0 ul.dropdown-menu > li:hover a' => [
+                'color' => $this->getStoreConfig('color/header/menu_dropdown_link_color_hover', $storeId)
+            ],
+        ];
         $setting = array_filter($setting);
         return $setting;
     }
 	
 	// get main content custom color
-    public function getMainColorSetting($storeId, $themeName) {
+    public function getMainColorSetting($storeId) {
         $setting = [
             /* Text & Link color */
-            'body' => [
+            '.page-main' => [
                 'color' => $this->getStoreConfig('color/main/text_color', $storeId)
             ],
-			'a:not(.action):not(.btn)' => [
+			'.page-main a' => [
                 'color' => $this->getStoreConfig('color/main/link_color', $storeId)
             ],
-			'a:not(.action):not(.btn):hover,a:not(.action):not(.btn):focus' => [
+			'.page-main a:hover' => [
                 'color' => $this->getStoreConfig('color/main/link_color_hover', $storeId)
             ],
-			'.price-box .price' => [
+			'.page-main .price, .page-main .price-box .price' => [
                 'color' => $this->getStoreConfig('color/main/price_color', $storeId)
             ],
-			'.price-box .old-price .price' => [
-                'color' => $this->getStoreConfig('color/main/price_old_color', $storeId)
-            ],
-			'.price-box .special-price .price' => [
-                'color' => $this->getStoreConfig('color/main/price_special_color', $storeId)
-            ],
 			/* Default button color */
-            '.btn-default, button.action.action-edit-address' => [
+            'button, button.btn, button.btn-default' => [
                 'color' => $this->getStoreConfig('color/main/button_text', $storeId),
                 'background-color' => $this->getStoreConfig('color/main/button_background', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/button_border', $storeId)
             ],
-			'button.action.action-edit-address:hover, button.action.action-edit-address:focus, button.action.action-edit-address:active,.btn-default:hover,.btn-default:focus,.btn-default:active' => [
+			'button:hover, button.btn:hover, button.btn-default:hover' => [
                 'color' => $this->getStoreConfig('color/main/button_text_hover', $storeId),
                 'background-color' => $this->getStoreConfig('color/main/button_background_hover', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/button_border_hover', $storeId)
             ],
-			/* Default button 2 color */
-            '.btn-default2' => [
-                'color' => $this->getStoreConfig('color/main/button_text_df', $storeId),
-                'background-color' => $this->getStoreConfig('color/main/button_background_df', $storeId),
-                'border-color' => $this->getStoreConfig('color/main/button_border_df', $storeId)
-            ],
-			'.btn-default2:hover,.btn-default2:focus,.btn-default2:active' => [
-                'color' => $this->getStoreConfig('color/main/button_text_hover_df', $storeId),
-                'background-color' => $this->getStoreConfig('color/main/button_background_hover_df', $storeId),
-                'border-color' => $this->getStoreConfig('color/main/button_border_hover_df', $storeId)
-            ],
 			/* Primary button color */
-            '.btn-primary, button.action.action-apply' => [
+            'button.btn-primary' => [
                 'color' => $this->getStoreConfig('color/main/primary_button_text'),
                 'background-color' => $this->getStoreConfig('color/main/primary_button_background', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/primary_button_border', $storeId)
             ],
-			'.button.action.action-apply:hover, button.action.action-apply:focus, button.action.action-apply:active,.btn-primary:hover,.btn-primary:focus,.btn-primary:active' => [
+			'button.btn-primary:hover' => [
                 'color' => $this->getStoreConfig('color/main/primary_button_text_hover', $storeId),
                 'background-color' => $this->getStoreConfig('color/main/primary_button_background_hover', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/primary_button_border_hover', $storeId)
             ],
 			/* Secondary button color */
-            '.btn-secondary' => [
+            'button.btn-secondary' => [
                 'color' => $this->getStoreConfig('color/main/secondary_button_text', $storeId),
                 'background-color' => $this->getStoreConfig('color/main/secondary_button_background', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/secondary_button_border', $storeId)
             ],
-			'.btn-secondary:hover,.btn-secondary:focus,.btn-secondary:active' => [
+			'button.btn-secondary:hover' => [
                 'color' => $this->getStoreConfig('color/main/secondary_button_text_hover', $storeId),
                 'background-color' => $this->getStoreConfig('color/main/secondary_button_background_hover', $storeId),
                 'border-color' => $this->getStoreConfig('color/main/secondary_button_border_hover', $storeId)
@@ -869,508 +672,114 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     }
 	
 	// get main content custom color
-    public function getFooterColorSetting($storeId, $themeName) {
-        $setting = $arrAttribute = [];
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('code/MGS/Mpanel/data/themes/'.$themeName);
-		$themeStyleFile = $dir.'/theme_style.xml';
-		if (is_readable($themeStyleFile)){
-			$parsedArray = $this->_parser->load($themeStyleFile)->xmlToArray();
-			if(isset($parsedArray['class_setting']['footer'])){
-				foreach($parsedArray['class_setting']['footer'] as $configNote=>$classAttribute){
-					foreach($classAttribute as $attribute=>$classString){
-						$attribute = str_replace('_', '-', $attribute);
-						$arrAttribute[$classString] = [
-							$attribute => $this->getStoreConfig('color/footer/'.$configNote, $storeId)
-						];
-						$setting = array_merge_recursive($setting,$arrAttribute);
-						$arrAttribute = [];
-					}
-				}
-			}
-		}
-		
+    public function getFooterColorSetting($storeId) {
+        $setting = [
+            /* Top Footer Section */
+            'footer .top-footer' => [
+                'background-color' => $this->getStoreConfig('color/footer/top_background_color', $storeId),
+                'color' => $this->getStoreConfig('color/footer/top_text_color', $storeId),
+                'border-color' => $this->getStoreConfig('color/footer/top_border_color', $storeId)
+            ],
+			'footer .top-footer label' => [
+                'color' => $this->getStoreConfig('color/footer/top_text_color', $storeId)
+            ],
+			'footer .top-footer h1,footer .top-footer h2,footer .top-footer h3,footer .top-footer h4,footer .top-footer h5,footer .top-footer h6' => [
+                'color' => $this->getStoreConfig('color/footer/top_heading_color', $storeId),
+            ],
+			'footer .footer-container .top-footer a' => [
+                'color' => $this->getStoreConfig('color/footer/top_link_color', $storeId),
+            ],
+			'footer .footer-container .top-footer a:hover' => [
+                'color' => $this->getStoreConfig('color/footer/top_link_color_hover', $storeId),
+            ],
+			'footer .footer-container .top-footer .fa' => [
+                'color' => $this->getStoreConfig('color/footer/top_icon_color', $storeId),
+            ],
+			/* Middle Footer Section */
+            '.footer .footer-container .middle-footer' => [
+                'background-color' => $this->getStoreConfig('color/footer/middle_background_color', $storeId),
+                'color' => $this->getStoreConfig('color/footer/middle_text_color', $storeId),
+                'border-color' => $this->getStoreConfig('color/footer/middle_border_color', $storeId)
+            ],
+			'.footer .footer-container .middle-footer label' => [
+                'color' => $this->getStoreConfig('color/footer/middle_text_color', $storeId)
+            ],
+			'.footer .footer-container .middle-footer .footer-box h4, .footer .footer-container .middle-footer .footer-box h2, .footer .footer-container .middle-footer .footer-box h3, .footer .footer-container .middle-footer .footer-box h5, .footer .footer-container .middle-footer .footer-box h6' => [
+                'color' => $this->getStoreConfig('color/footer/middle_heading_color', $storeId),
+            ],
+			'.footer .footer-container .middle-footer a' => [
+                'color' => $this->getStoreConfig('color/footer/middle_link_color', $storeId),
+            ],
+			'.footer .footer-container .middle-footer a:hover' => [
+                'color' => $this->getStoreConfig('color/footer/middle_link_color_hover', $storeId),
+            ],
+			'.footer .footer-container .middle-footer .fa' => [
+                'color' => $this->getStoreConfig('color/footer/middle_icon_color', $storeId),
+            ],
+			/* Bottom Footer Section */
+            '.footer .footer-container .bottom-footer' => [
+                'background-color' => $this->getStoreConfig('color/footer/bottom_background_color', $storeId),
+                'color' => $this->getStoreConfig('color/footer/bottom_text_color', $storeId),
+                'border-color' => $this->getStoreConfig('color/footer/bottom_border_color', $storeId)
+            ],
+			'.footer .footer-container .bottom-footer label' => [
+                'color' => $this->getStoreConfig('color/footer/bottom_text_color', $storeId)
+            ],
+			'.footer .footer-container .bottom-footer h1,.footer .footer-container .bottom-footer h2,.footer .footer-container .bottom-footer h3,.footer .footer-container .bottom-footer h4,.footer .footer-container .bottom-footer h5,.footer .footer-container .bottom-footer h6' => [
+                'color' => $this->getStoreConfig('color/footer/bottom_heading_color', $storeId),
+            ],
+			'.footer .footer-container .bottom-footer a' => [
+                'color' => $this->getStoreConfig('color/footer/bottom_link_color', $storeId),
+            ],
+			'.footer .footer-container .bottom-footer a:hover' => [
+                'color' => $this->getStoreConfig('color/footer/bottom_link_color_hover', $storeId),
+            ],
+			'.footer .footer-container .bottom-footer .fa' => [
+                'color' => $this->getStoreConfig('color/footer/bottom_icon_color', $storeId),
+            ],
+        ];
         $setting = array_filter($setting);
         return $setting;
     }
-	
-	/* Get css content of panel */
-	public function getPanelStyle(){
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('code/MGS/Mpanel/view/frontend/web/css/panel.css');
-		$content = file_get_contents($dir);
-		return $content;
+	public function getCountRelatedProduct($product) {
+		$this->_itemCollection = $product->getRelatedProductCollection()->addAttributeToSelect(
+            'required_options'
+        )->setPositionOrder()->addStoreFilter();
+		$this->_itemCollection->setVisibility($this->_catalogProductVisibility->getVisibleInCatalogIds());
+		$this->_itemCollection->load();
+		$countRelated = count($this->_itemCollection);
+		return $countRelated;
 	}
-	
-	/* Check store view has use homepage builder or not */
-	public function useBuilder(){
-		if($this->_useBuilder){
-			return true;
-		}else{
-			$storePanelCollection = $this->getModel('MGS\Mpanel\Model\Store')
-				->getCollection()
-				->addFieldToFilter('store_id', $this->getStore()->getId())
-				->addFieldToFilter('status', 1);
-			if(count($storePanelCollection)>0){
-				$this->_useBuilder = true;
-				return true;
-			}
-			$this->_useBuilder = false;
-			return false;
-		}
-		
+	public function checkLayoutPage($category) {
+		$settings = $this->_catalogDesign->getDesignSettings($category);
+		return $settings;
 	}
-	
-	/* Check current page is homepage or not */
-	public function isHomepage(){
-		if ($this->_request->getFullActionName() == 'cms_index_index') {
-			return true;
-		}
-		return false;
-	}
-	
-	/* Check current page is homepage or not */
-	public function isCmsPage(){
-		if ($this->_request->getFullActionName() == 'cms_page_view') {
-			return true;
-		}
-		return false;
-	}
-	
-	/* Get Animation Effect */
-	public function getAnimationEffect(){
-		return [
-			'bounce' => 'Bounce',
-			'flash' => 'Flash',
-			'pulse' => 'Pulse',
-			'rubberBand' => 'Rubber Band',
-			'shake' => 'Shake',
-			'swing' => 'Swing',
-			'tada' => 'Tada',
-			'wobble' => 'Wobble',
-			'bounceIn' => 'Bounce In',
-			'fadeIn' => 'Fade In',
-			'fadeInDown' => 'Fade In Down',
-			'fadeInDownBig' => 'Fade In Down Big',
-			'fadeInLeft' => 'Fade In Left',
-			'fadeInLeftBig' => 'Fade In Left Big',
-			'fadeInRight' => 'Fade In Right',
-			'fadeInRightBig' => 'Fade In Right Big',
-			'fadeInUp' => 'Fade In Up',
-			'fadeInUpBig' => 'Fade In Up Big',
-			'flip' => 'Flip',
-			'flipInX' => 'Flip In X',
-			'flipInY' => 'Flip In Y',
-			'lightSpeedIn' => 'Light Speed In',
-			'rotateIn' => 'Rotate In',
-			'rotateInDownLeft' => 'Rotate In Down Left',
-			'rotateInDownRight' => 'Rotate In Down Right',
-			'rotateInUpLeft' => 'Rotate In Up Left',
-			'rotateInUpRight' => 'Rotate In Up Right',
-			'rollIn' => 'Roll In',
-			'zoomIn' => 'Zoom In',
-			'zoomInDown' => 'Zoom In Down',
-			'zoomInLeft' => 'Zoom In Left',
-			'zoomInRight' => 'Zoom In Right',
-			'zoomInUp' => 'Zoom In Up',
-		];
-	}
-	
-	public function getViewFileUrl($fileId, array $params = [])
+	public function getConditions($conditions)
     {
-        try {
-            $params = array_merge(['_secure' => $this->_request->isSecure()], $params);
-            return $this->_assetRepo->getUrlWithParams($fileId, $params);
-        } catch (\Magento\Framework\Exception\LocalizedException $e) {
-            $this->_logger->critical($e);
-            return $this->_getNotFoundUrl();
+        if ($conditions) {
+            $conditions = $this->conditionsHelper->decode($conditions);
         }
+        return $conditions;
     }
-	
-	public function getColorAccept($type, $color = NULL) {
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::APP)->getAbsolutePath('code/MGS/Mpanel/view/frontend/web/images/panel/colour/');
-        $html = '';
-        if (is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                $html .= '<ul>';
-
-                while ($files[] = readdir($dh));
-                sort($files);
-                foreach ($files as $file) {
-                    $file_parts = pathinfo($dir . $file);
-                    if (isset($file_parts['extension']) && $file_parts['extension'] == 'png') {
-                        $colour = str_replace('.png', '', $file);
-                        $wrapper = str_replace('_', '-', $type);
-						$_color = explode('.', $colour);
-                        $colour = $wrapper . '-' . strtolower(end($_color));
-                        $html .= '<li>';
-                        $html .= '<a href="#" onclick="changeInputColor(\'' . $colour . '\', \'' . $type . '\', this, \'' . $wrapper . '-content\'); return false"';
-                        if ($color != NULL && $color == $colour) {
-                            $html .= ' class="active"';
-                        }
-                        $html .= '>';
-                         $html .= '<img src="' . $this->getViewFileUrl('MGS_Mpanel::images/panel/colour/'.$file) . '" alt=""/>';
-                        $html .= '</a>';
-                        $html .= '</li>';
-                    }
-                }
-                $html .= '</ul>';
-            }
-        }
-        return $html;
-    }
-	
-	public function convertPerRowtoCol($perRow){
-		
-		$result = '';
-		
-		switch ($perRow) {
-            case 1:
-                $result = 12;
-                break;
-            case 2:
-                $result = 6;
-                break;
-            case 3:
-                $result = 4;
-                break;
-            case 4:
-                $result = 3;
-                break;
-            case 5:
-                $result = 'custom-5';
-                break;
-            case 6:
-                $result = 2;
-				break;
-			case 7:
-                $result = 'custom-7';
-				break;
-			case 8:
-                $result = 'custom-8';
-                break;
-        }
-		
-		return $result;
-	}
-	
-	public function getRootCategory(){
-		$store = $this->getStore();
-		$categoryId = $store->getRootCategoryId();
-		$category = $this->getModel('Magento\Catalog\Model\Category')->load($categoryId);
+	public function getCategory($categoryId) 
+	{
+		$category = $this->_categoryFactory->create();
+		$category->load($categoryId);
 		return $category;
 	}
 	
-	public function getTreeCategory($category, $parent, $ids = array(), $checkedCat){
-		$rootCategoryId = $this->getRootCategory()->getId();
-		$children = $category->getChildrenCategories();
-		$childrenCount = count($children);
-		//$checkedCat = explode(',',$checkedIds);
-		$htmlLi = '<li lang="'.$category->getId().'">';
-		$html[] = $htmlLi;
-		//if($this->isCategoryActive($category)){
-		$ids[] = $category->getId();
-		//$this->_ids = implode(",", $ids);
-		//}
-		
-		$html[] = '<a id="node'.$category->getId().'">';
+	public function getCategoryProducts($categoryId) 
+	{
+		$products = $this->getCategory($categoryId)->getProductCollection();
+		$products->addAttributeToSelect('*');
+		return $products;
+	}
 
-		if($category->getId() != $rootCategoryId){
-			$html[] = '<input lang="'.$category->getId().'" type="checkbox" id="radio'.$category->getId().'" name="setting[category_id][]" value="'.$category->getId().'" class="checkbox'.$parent.'"';
-			if(in_array($category->getId(), $checkedCat)){
-				$html[] = ' checked="checked"';
-			}
-			$html[] = '/>';
-		}
-		
+	public function getModel($model)
+	{
+		return $this->_objectManager->create($model);
+	}
 
-		$html[] = '<label for="radio'.$category->getId().'">' . $category->getName() . '</label>';
-
-		$html[] = '</a>';
-		
-		$htmlChildren = '';
-		if($childrenCount>0){
-			foreach ($children as $child) {
-				$_child = $this->getModel('Magento\Catalog\Model\Category')->load($child->getId());
-				$htmlChildren .= $this->getTreeCategory($_child, $category->getId(), $ids, $checkedCat);
-			}
-		}
-		if (!empty($htmlChildren)) {
-            $html[] = '<ul id="container'.$category->getId().'">';
-            $html[] = $htmlChildren;
-            $html[] = '</ul>';
-        }
-
-        $html[] = '</li>';
-        $html = implode("\n", $html);
-        return $html;
-	}
-	
-	public function truncate($content, $length){
-		return $this->filterManager->truncate($content, ['length' => $length, 'etc' => '']);
-	}
-	
-	public function convertToLayoutUpdateXml($child){
-		$settings = json_decode($child->getSetting(), true);
-		$content = $child->getBlockContent();
-		$content = preg_replace('/(mgs_panel_title="")/i', '', $content);
-		$content = preg_replace('/(mgs_panel_title=".+?)+(")/i', '', $content);
-		$content = preg_replace('/(mgs_panel_note="")/i', '', $content);
-		$content = preg_replace('/(mgs_panel_note=".+?)+(")/i', '', $content);
-		$content = preg_replace('/(labels=".+?)+(")/i', '', $content);
-		$arrContent = explode(' ',$content);
-		$arrContent = array_filter($arrContent);
-		$class = $arrContent[1];
-		$class = str_replace('type=','class=',$class);
-		unset($arrContent[0], $arrContent[1]);
-		
-		$lastData = end($arrContent);
-		//print_r($arrContent); die();
-		array_pop($arrContent);
-		
-		$arrContent = array_values($arrContent);
-
-		$argumentString = '&nbsp;&nbsp;&nbsp;&nbsp;&lt;arguments&gt;<br/>';
-		
-		if(isset($settings['title']) && ($settings['title']!='')){
-			$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="mgs_panel_title" xsi:type="string"&gt;'.htmlspecialchars($this->encodeHtml($settings['title'])).'&lt;/argument&gt;<br/>';
-		}
-		if(isset($settings['additional_content']) && ($settings['additional_content']!='')){
-			$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="mgs_panel_note" xsi:type="string"&gt;'.htmlspecialchars($this->encodeHtml($settings['additional_content'])).'&lt;/argument&gt;<br/>';
-		}
-		if(isset($settings['tabs']) && ($settings['tabs']!='')){
-			usort($settings['tabs'], function ($item1, $item2) {
-				if ($item1['position'] == $item2['position']) return 0;
-				return $item1['position'] < $item2['position'] ? -1 : 1;
-			});
-			$tabType = $tabLabel = [];
-			foreach($settings['tabs'] as $tab){
-				$tabLabel[] = $tab['label'];
-			}
-			$labels = implode(',',$tabLabel);
-			$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="labels" xsi:type="string"&gt;'.$labels.'&lt;/argument&gt;<br/>';
-		}
-		$template = '';
-
-		foreach($arrContent as $argument){
-			$argumentData = explode('=',$argument);
-			if($argumentData[0]!='template' && isset($argumentData[0]) && isset($argumentData[1])){
-				$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="'.$argumentData[0].'" xsi:type="string"&gt;'.str_replace('"','',$argumentData[1]).'&lt;/argument&gt;<br/>';
-			}else{
-				$template = $argumentData[1];
-			}
-			
-		}
-		
-		
-		$html = '&lt;block '.$class;
-		
-		$lastDataArr = explode('=',$lastData);
-		if(isset($lastDataArr[0]) && isset($lastDataArr[1])){
-			if($lastDataArr[0]=='template'){
-				$template = str_replace('}}','',$lastDataArr[1]);
-			}else{
-				$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;argument name="'.$lastDataArr[0].'" xsi:type="string"&gt;'.str_replace('"','',str_replace('}}','',$lastDataArr[1])).'&lt;/argument&gt;<br/>';
-			}
-		}
-		
-		
-		$html .= ' template='.$template;
-		
-		$argumentString .= '&nbsp;&nbsp;&nbsp;&nbsp;&lt;/arguments&gt;';
-		
-		$html .= '&gt;<br/>';
-		$html .= $argumentString;
-		$html .= '<br/>&lt;/block&gt;';
-		
-		return $html;
-	}
-	
-	/* Get all images from pub/media/wysiwyg/$type folder */
-	public function getPanelUploadImages($type){
-		$path = 'wysiwyg/'.$type.'/';
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath($path);
-		$result = [];
-        if (is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while ($files[] = readdir($dh));
-                sort($files);
-                foreach ($files as $file) {
-                    $file_parts = pathinfo($dir . $file);
-                    if (isset($file_parts['extension']) && in_array(strtolower($file_parts['extension']), ['jpg', 'jpeg', 'png', 'gif'])) {
-                        $result[] = $file;
-                    }
-                }
-            }
-        }
-        return $result;
-	}
-	
-	/* Convert short code to insert image */
-	public function convertImageWidgetCode($type, $image){
-		return '&lt;img src="{{media url="wysiwyg/'.$type.'/'.$image.'"}}" alt=""/&gt;';
-	}
-	
-	public function encodeHtml($html){
-		$result = str_replace("<","&lt;",$html);
-		$result = str_replace(">","&gt;",$result);
-		$result = str_replace('"','&#34;',$result);
-		$result = str_replace("'","&#39;",$result);
-		return $result;
-	}
-	
-	public function decodeHtmlTag($content){
-		$result = str_replace("&lt;","<",$content);
-		$result = str_replace("&gt;",">",$result);
-		$result = str_replace('&#34;','"',$result);
-		$result = str_replace("&#39;","'",$result);
-		return $result;
-	}
-	
-	public function getCmsBlockByIdentifier($identifier){
-		$block = $this->_blockFactory->create();
-		$block->setStoreId($this->getStore()->getId())->load($identifier);
-		return $block;
-	}
-	
-	public function getPageById($id){
-		$page = $this->_pageFactory->create();
-		$page->setStoreId($this->getStore()->getId())->load($id, 'identifier');
-		return $page;
-	}
-	
-	public function getHeaderClass(){
-		$header = $this->getStoreConfig('mgstheme/header/header');
-		if($header!='') {
-			$class = str_replace('.phtml', '', $header);
-			$class = str_replace('_', '', $class);
-		}else {
-			$class= "header1";
-		}
-		if($this->_acceptToUsePanel){
-			$class .= ' builder-container header-builder';
-		}
-		return $class;
-	}
-	
-	public function getFooterClass(){
-		if($this->getStoreConfig('mgstheme/footer/footer')){
-			$footer = $this->getStoreConfig('mgstheme/footer/footer');
-			$class = str_replace('.phtml', '', $footer);
-			$class = str_replace('_', '', $class);
-		}else {
-			$class= "footer1";
-		}
-		if($this->_acceptToUsePanel){
-			$class .= ' builder-container footer-builder';
-		}
-		return $class;
-	}
-	
-	public function getContentVersion($type, $themeId){
-		$theme = $this->getModel('Magento\Theme\Model\Theme')->load($themeId);
-		$themePath = $theme->getThemePath();
-        $themePath = substr($themePath, (strpos($themePath, "/" ) + 1));
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/'.$themePath.'/'.$type);
-		
-		$result = [];
-		$files = [];
-		if(is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while ($files[] = readdir($dh));
-				sort($files);
-				foreach ($files as $file){
-					$file_parts = pathinfo($dir . $file);
-					if (isset($file_parts['extension']) && $file_parts['extension'] == 'png') {
-                        $fileName = str_replace('.png', '', $file);
-                        $result[] = array('value' => $fileName, 'label' => $this->convertFilename($fileName), 'path'=>$themePath);
-                    }
-				}
-                closedir($dh);
-            }
-        }
-		
-		if(count($result)==0){
-			$dir = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/mgsblank/'.$type);
-			if(is_dir($dir)) {
-				if ($dh = opendir($dir)) {
-					while ($files[] = readdir($dh));
-					sort($files);
-					foreach ($files as $file){
-						$file_parts = pathinfo($dir . $file);
-						if (isset($file_parts['extension']) && $file_parts['extension'] == 'png') {
-							$fileName = str_replace('.png', '', $file);
-							$result[] = array('value' => $fileName, 'label' => $this->convertFilename($fileName), 'path'=>'mgsblank');
-						}
-					}
-					closedir($dh);
-				}
-			}
-		}
-		return $result;
-	}
-	
-	public function convertFilename($filename){
-		$filename = str_replace('_',' ',$filename);
-		$filename = ucfirst($filename);
-		return $filename;
-	}
-	
-	public function isFile($path, $type, $fileName){
-		$path = str_replace('Mgs/','',$path);
-		$filePath = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/'.$path.'/'.$type.'s/') . $fileName.'.png';
-		if ($this->_file->isExists($filePath))  {
-			return $this->_url->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]).'mgs/'.$path.'/'.$type.'s/' . $fileName.'.png';
-		}
-		return false;
-	}
-	
-	public function getCurrentCategory(){
-		$id = $this->_request->getParam('id');
-		$this->_currentCategory = $this->getModel('Magento\Catalog\Model\Category')->load($id);
-		return $this->_currentCategory;
-	}
-	
-	public function getCurrentProduct(){
-		$id = $this->_request->getParam('id');
-		$this->_currentProduct = $this->getModel('Magento\Catalog\Model\Product')->load($id);
-		return $this->_currentProduct;
-	}
-	
-	public function isCategoryPage(){
-		if ($this->_request->getFullActionName() == 'catalog_category_view') {
-			return true;
-		}
-		return false;
-	}
-	
-	public function isSearchPage(){
-		if ($this->_request->getFullActionName() == 'catalogsearch_result_index') {
-			return true;
-		}
-		return false;
-	}
-	
-	public function isProductPage(){
-		if ($this->_request->getFullActionName() == 'catalog_product_view') {
-			return true;
-		}
-		return false;
-	}
-	
-	public function isPopup(){
-		if (
-			$this->_request->getFullActionName() == 'mgs_quickview_catalog_product_view' || 
-			$this->_request->getFullActionName() == 'mpanel_edit_section' || 
-			$this->_request->getFullActionName() == 'mpanel_create_block' || 
-			$this->_request->getFullActionName() == 'mpanel_create_element' || 
-			$this->_request->getFullActionName() == 'mpanel_edit_footer' || 
-			$this->_request->getFullActionName() == 'mpanel_edit_header' || 
-			$this->_request->getFullActionName() == 'mpanel_edit_staticblock'
-		) {
-			return true;
-		}
-		return false;
-	}
-	/* Search with categories */
 	public function getCategories()
 	{
 		$rootCategoryId = $this->_storeManager->getStore()->getRootCategoryId();
@@ -1385,30 +794,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 			->load()
 			->toArray();
 		$categories = array();
-		if(isset($categoriesArray['items'])){
-			foreach ($categoriesArray['items'] as $categoryId => $category) {
-				if (isset($category['name'])) {
-					$categories[] = array(
-						'label' => $category['name'],
-						'level' => $category['level'],
-						'value' => $category['entity_id']
-					);
-				}
-			}
-		}else {
-			foreach ($categoriesArray as $categoryId => $category) {
-				if (isset($category['name'])) {
-					$categories[] = array(
-						'label' => $category['name'],
-						'level' => $category['level'],
-						'value' => $category['entity_id']
-					);
-				}
+		foreach ($categoriesArray as $categoryId => $category) {
+			if (isset($category['name'])) {
+				$categories[] = array(
+					'label' => $category['name'],
+					'level' => $category['level'],
+					'value' => $categoryId
+				);
 			}
 		}
 		return $categories;
 	}
-	
+
 	public function getCurrentlySelectedCategoryId()
 	{
 		$params = $this->getModel('Magento\Framework\App\Request\Http')->getParams();
@@ -1417,360 +814,47 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 		}
 		return '';
 	}
-	
-	public function getProductLayout($product){
-		$pageLayout = $product->getPageLayout();
-		
-		if($pageLayout==''){
-			$pageLayout = $this->getStoreConfig('mpanel/product_details/product_layout');
-		}
-		
-		if($pageLayout==''){
-			$pageLayout = '1column';
-		}
-		
-		return $pageLayout;
-	}
-	
-	public function getRotateImages($productId){
-		$dir = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('wysiwyg/360/'.$productId);
-		
-		$result = [];
-		$files = [];
-		if(is_dir($dir)) {
-            if ($dh = opendir($dir)) {
-                while ($files[] = readdir($dh));
-				sort($files);
-				foreach ($files as $file){
-					$file_parts = pathinfo($dir . $file);
-					if (isset($file_parts['extension']) && (($file_parts['extension'] == 'jpg') || ($file_parts['extension'] == 'png'))) {
-                        $result[] = $this->getMediaUrl().'wysiwyg/360/'.$productId.'/'.$file;
-                    }
-				}
-                closedir($dh);
-            }
-        }
-		return $result;
-	}
-	
-	public function getMediaUrl(){
-		return $this ->_storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
-	}
-	
-	public function convertContent($layoutContent, $builderContent = NULL){
-		
-		if($this->_acceptToUsePanel){
-			$beginHeader = '<div class="edit-panel edit-header"><ul><li><a class="popup-link" href="'.$this->getUrlBuilder()->getUrl('mpanel/edit/header', ['type'=>'header']).'" title="' .__('Edit Header'). '"><em class="fa fa-gear"></em></a></li></ul></div>';
-			$layoutContent = str_replace('<header class="header">', '<header class="header">'.$beginHeader, $layoutContent);
-			
-			$beginFooter = '<div class="edit-panel edit-footer"><ul><li><a class="popup-link" href="' .$this->getUrlBuilder()->getUrl('mpanel/edit/footer', ['type'=>'footer']).'" title="'.__('Edit Footer').'"><em class="fa fa-gear"></em></a></li></ul></div>';
-			$layoutContent = str_replace('<footer class="footer">', '<footer class="footer">'.$beginFooter, $layoutContent);
-		}
-		
-		if($this->_acceptToUsePanel && ($this->isCmsPage() || $this->isHomepage())){
-			$arrContent = explode('<section id="maincontent" class="page-main container">',$layoutContent);
-			
-			$topContent = $arrContent[0];
-			
-			$arrContent = explode('</section>',$arrContent[1]);
-			
-			$bottomContent = $arrContent[1];
-			
-
-			$condition = '#<\!--\[if[^\>]*>\s*<script.*</script>\s*<\!\[endif\]-->#isU';
-			preg_match_all($condition, $arrContent[0], $matches);
-			$ifJs = implode('', $matches[0]);
-
-			$temp = preg_replace($condition, '' , $arrContent[0]);
-
-
-			$condition = '@(?:<script|<script)(.*)</script>@msU';
-			preg_match_all($condition,$temp,$matches);
-			$js = implode('',$matches[0]);
-			
-			$formKey = explode('<input name="form_key" type="hidden" value="',$layoutContent);
-			$formKey = explode('"',$formKey[1]);
-
-			$script = '<input name="form_key" type="hidden" value="' . $formKey[0] . '"/>'. $js . $ifJs;
-			
-			$builderContent = $script . $builderContent;
-			
-			$layoutContent = $topContent . $builderContent . $bottomContent;
-		}
-		
-		$layoutContent = str_replace('<header class="header">', '<header class="header '.$this->getHeaderClass().'">', $layoutContent);
-		$layoutContent = str_replace('<footer class="footer">', '<footer class="footer '.$this->getFooterClass().'">', $layoutContent);
-		
-		return $layoutContent;
-	}
-	
-	public function getAddToCartPostParams(\Magento\Catalog\Model\Product $product){
-		$blockProducts = $this->_layoutFactory->create()->createBlock('MGS\Mpanel\Block\Products\AbstractProduct');
-		
-		return $blockProducts->getAddToCartPostParams($product);
-	}
-	
-	public function generateCssForAll(){
-		$stores = $this->_storeManager->getWebsite()->getStores();
-		foreach($stores as $_store){
-			$this->generateCssByStore($_store->getId());
-		}
-	}
-	
-	public function generateCssByStore($storeId){
-		$html = $this->getLinksFont();
-		
-		if ($this->getStoreConfig('mgstheme/custom_style/style', $storeId) != '') {
-            $html .= $this->getStoreConfig('mgstheme/custom_style/style', $storeId).PHP_EOL;;
-        }
-		
-		$themeId = $this->getStoreConfig('design/theme/theme_id', $storeId);
-		$theme = $this->getModel('Magento\Theme\Model\Theme')->load($themeId);
-		$themePath = $theme->getThemePath();
-        $themeName = substr($themePath, (strpos($themePath, "/" ) + 1));
-		
-		$fontName = $this->getStoreConfig('mgstheme/custom_style/font_name', $storeId);
-		if($fontName!=''){
-			$fontDir = $this->getUrlBuilder()->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . \MGS\Mpanel\Model\Config\Backend\Font::UPLOAD_DIR.'/';
-			$ttfFile = $fontDir . $this->getStoreConfig('mgstheme/custom_style/ttf_file', $storeId);
-			$eotFile = $fontDir . $this->getStoreConfig('mgstheme/custom_style/eot_file', $storeId);
-			$woffFile = $fontDir . $this->getStoreConfig('mgstheme/custom_style/woff_file', $storeId);
-			$svgFile = $fontDir . $this->getStoreConfig('mgstheme/custom_style/svg_file', $storeId);
-
-			if ($ttfFile != '' && $eotFile != '') {
-				$html .= '@font-face {
-						font-family: "' . $fontName . '";
-						src: url("' . $eotFile . '");
-						src: url("' . $eotFile . '?#iefix") format("embedded-opentype"),
-							 url("' . $woffFile . '") format("woff"),
-							 url("' . $ttfFile . '") format("truetype"),
-							 url("' . $svgFile . '#' . $fontName . '") format("svg");
-						font-weight: normal;
-						font-style: normal;
-				}'.PHP_EOL;
+	public function getClass($column){
+		$class='';
+		if($column !=''){			
+			switch($column){
+				case 1:
+					$class = 'col-lg-12 col-md-12 col-sm-12 col-xs-12';
+					break;
+				case 2:
+					$class= 'col-lg-6 col-md-6 col-sm-6 col-xs-12';
+					break;
+				case 3:
+					$class = 'col-lg-4 col-md-4 col-sm-4 col-xs-12';
+					break;
+				case 4:
+					$class = 'col-lg-3 col-md-3 col-sm-6 col-xs-12';
 			}
-		}
-		
-		$notFoundBackgroundImage = $this->getStoreConfig('mpanel/page_404/background_image', $storeId);
-		if($notFoundBackgroundImage!=''){
-			$notFoundBgFolderName = \MGS\AmelyTheme\Model\Config\Backend\BgNotFound::UPLOAD_DIR;
-			$pathNotFoundBg = $notFoundBgFolderName . '/' . $notFoundBackgroundImage;
-			$notFoundBackgroundImageUrl = $this->getUrlBuilder()->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . $pathNotFoundBg;
 			
-			$html .= '.cms-noroute-index{ background-image:url('.$notFoundBackgroundImageUrl.'); }'.PHP_EOL;
 		}
-		
-		$html .= 'body{';
-		$backgroundColor = $this->getStoreConfig('mgstheme/background/background_color', $storeId);
-		$backgroundImage = $this->getStoreConfig('mgstheme/background/background_image', $storeId);
-		if($backgroundColor!=''){
-			$html .= 'background-color:'.$backgroundColor.';'.PHP_EOL;
-		}
-		if($backgroundImage!=''){
-			$folderName = \MGS\Mpanel\Model\Config\Backend\Image::UPLOAD_DIR;
-
-			$path = $folderName . '/' . $backgroundImage;
-			$backgroundImageUrl = $this->getUrlBuilder()->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . $path;
-
-			$html .= 'background-image:url('.$backgroundImageUrl.');'.PHP_EOL;
-			$backgroundCover = $this->getStoreConfig('mgstheme/background/background_cover', $storeId);
-			if($backgroundCover){
-				$html.= 'background-size:cover;'.PHP_EOL;
+		return $class;
+	}
+	
+	public function getCategoryName($product,$baseName,$categories){
+		if($categories != null){
+			$_catName = $categories->getName();
+		}else{
+			$cats = $product->getCategoryIds();
+			if(count($cats) > 0){
+				$j=0; 
+				foreach ($cats as $category_id){
+					$j++;
+					if($j == 2){
+						break;
+					}
+					$category = $this->_categoryFactory->create();
+					$category->load($category_id);
+					$_catName = $category->getName();
+				}
 			}else{
-				$backgroundRepeat = $this->getStoreConfig('mgstheme/background/background_repeat', $storeId);
-				$html.= 'background-repeat:'.$backgroundRepeat.';'.PHP_EOL;
-			}
-			$backgroundPositionX = $this->getStoreConfig('mgstheme/background/background_position_x', $storeId);
-			$backgroundPositionY = $this->getStoreConfig('mgstheme/background/background_position_y', $storeId);
-			$html.= 'background-position:'.$backgroundPositionX.' '.$backgroundPositionY.';'.PHP_EOL;
-		}
-	    
-		if($this->getStoreConfig('mgstheme/fonts/default_font', $storeId)!=''){
-			$html .= 'font-family: "' . str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/default_font', $storeId)) . '", arial, tahoma;font-weight: normal;'.PHP_EOL;
-		}
-		
-		$fontSize = $this->getStoreConfig('mgstheme/fonts/default_font_size', $storeId);
-		if ($fontSize != '') {
-			$html .= 'font-size:' . $fontSize . ';';
-		}
-	   
-	    $html .= '}'.PHP_EOL;
-	    $custom_font = $this->getStoreConfig('mgstheme/fonts/custom_fonts_element', $storeId);
-		$fontStyle = [
-			'#mainMenu li a.level0, .navigation ul.container .level0 > a' => [
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/menu_font_size', $storeId),
-			],
-			'#mainMenu' => [
-				'font-family' => str_replace('+', ' ',$this->getStoreConfig('mgstheme/fonts/menu', $storeId)),
-			],
-			'h1' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h1', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h1_font_size', $storeId),
-			],
-			'h2' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h2', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h2_font_size', $storeId),
-			],
-			'h3' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h3', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h3_font_size', $storeId),
-			],
-			'h4' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h4', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h4_font_size', $storeId),
-			],
-			'h5' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h5', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h5_font_size', $storeId),
-			],
-			'h6' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/h6', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/h6_font_size', $storeId),
-			],
-			'.price, .price-box .price' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/price', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/price_font_size', $storeId),
-			],
-			'.btn' => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/btn', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/btn_font_size', $storeId),
-			],
-			$custom_font => [
-				'font-family' => str_replace('+', ' ', $this->getStoreConfig('mgstheme/fonts/custom_font_fml', $storeId)),
-				'font-size' => $this->getStoreConfig('mgstheme/fonts/custom_font_size', $storeId),
-			]
-		];
-		
-		$fontStyle = array_filter($fontStyle);
-
-		foreach ($fontStyle as $class => $style) {
-			$style = array_filter($style);
-			if (count($style) > 0) {
-				$html .= $class . '{';
-				foreach ($style as $_style => $value) {
-					if($_style=='font-family'){
-						$html .= $_style . ': "' . $value . '";';
-					}else{
-						$html .= $_style . ': ' . $value . ';';
-					}
-				}
-				$html .= '}'.PHP_EOL;
+				$_catName = $baseName;
 			}
 		}
-		
-		if(($this->getStoreConfig('color/general/theme_color', $storeId) != '') && ($this->getStoreConfig('color/general/theme_color', $storeId) != 'transparent')){
-			$themeColorSetting = $this->getThemecolorSetting($storeId, $themeName);
-			if (count($themeColorSetting) > 0) {
-				foreach ($themeColorSetting as $class => $style) {
-					$style = array_filter($style);
-					if (count($style) > 0) {
-						$html .= $class . '{';
-						foreach ($style as $_style => $value) {
-							$html .= $_style . ': ' . $value . ';';
-						}
-						$html .= '}'.PHP_EOL;
-					}
-				}
-			}
-		}
-		
-		if($this->getStoreConfig('color/header/header_custom', $storeId)){
-			$headerColorSetting = $this->getHeaderColorSetting($storeId, $themeName);
-			if (count($headerColorSetting) > 0) {
-				foreach ($headerColorSetting as $class => $style) {
-					$style = array_filter($style);
-					if (count($style) > 0) {
-						$html .= $class . '{';
-						foreach ($style as $_style => $value) {
-							$html .= $_style . ': ' . $value . ' !important;';
-						}
-						$html .= '}'.PHP_EOL;
-					}
-				}
-			}
-		}
-		
-		if($this->getStoreConfig('color/main/main_custom', $storeId)){
-			$mainColorSetting = $this->getMainColorSetting($storeId, $themeName);
-			if (count($mainColorSetting) > 0) {
-				foreach ($mainColorSetting as $class => $style) {
-					$style = array_filter($style);
-					if (count($style) > 0) {
-						$html .= $class . '{';
-						foreach ($style as $_style => $value) {
-							$html .= $_style . ': ' . $value . ' !important;';
-						}
-						$html .= '}'.PHP_EOL;
-					}
-				}
-			}
-		}
-		
-		if($this->getStoreConfig('color/footer/footer_custom', $storeId)){
-			$footerColorSetting = $this->getFooterColorSetting($storeId, $themeName);
-			if (count($footerColorSetting) > 0) {
-				foreach ($footerColorSetting as $class => $style) {
-					$style = array_filter($style);
-					if (count($style) > 0) {
-						$html .= $class . '{';
-						foreach ($style as $_style => $value) {
-							$html .= $_style . ': ' . $value . ' !important;';
-						}
-						$html .= '}'.PHP_EOL;
-					}
-				}
-			}
-		}
-
-		$this->generateFile($storeId, $html);
-
-		return;
-	}
-	
-	public function generateFile($storeId, $content){
-		$filePath = $this->_filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath('mgs/css/' . $storeId . '/');
-		$io = $this->_ioFile;
-		$file = $filePath . 'custom_config.css';
-		$io->setAllowCreateFolders(true);
-		$io->open(array('path' => $filePath));
-		$io->write($file, $content, 0644);
-		$io->streamClose();
-	}
-	
-	public function getFullActionName() {
-		$request = $this->_objectManager->get('\Magento\Framework\App\Request\Http');
-		return $request->getFullActionName();
-	}
-	
-	public function getPageTitleBackground(){
-		$img = '';
-		
-		if($this->getStoreConfig('mpanel/page_title/background_image')){
-			$img = $this->getMediaUrl() . 'bg_pagetitle/' . $this->getStoreConfig('mpanel/page_title/background_image');
-		}
-        
-        if($this->isCategoryPage()){
-            $category = $this->getCurrentCategory();
-            $imgName = $category->getTitleCateImage();
-            if($imgName){
-                $img = $this->getMediaUrl() . 'catalog/category/' . $category->getTitleCateImage();
-            }
-        }
-        if($this->isProductPage()){
-            $product = $this->getCurrentProduct();
-            $attributeImage = $product->getCustomAttribute('title_page_image');
-            if($attributeImage){
-                $imgUrl = $this->_imageHelper->init($product, 'tile_page_image')->setImageFile($attributeImage->getValue())->getUrl();
-                $img = str_replace('\\', '/', $imgUrl);
-            }
-        }
-        if($this->isCmsPage()){
-            $imgName = $this->_page->getPageTitleBackground();
-            if($imgName){
-                $img = $this->getMediaUrl() . 'cms/tmp/background/' . $imgName;
-            }
-        }
-        
-        return $img;
+		return $_catName;
 	}
 }

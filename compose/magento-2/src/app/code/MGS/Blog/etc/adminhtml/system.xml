@@ -4,7 +4,7 @@
         <tab id="mgs" translate="label" sortOrder="600">
             <label>MGS</label>
         </tab>
-        <section id="blog" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+        <section id="blog" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
             <class>separator-top</class>
             <label>Blog</label>
             <tab>mgs</tab>
@@ -27,17 +27,41 @@
                     <label>Template</label>
                     <source_model>MGS\Blog\Model\System\Config\Template</source_model>
                 </field>
-                <field id="template_detail" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="45">
-                    <label>Blog Detail Template</label>
-                    <source_model>MGS\Blog\Model\System\Config\Template</source_model>
-                </field>
                 <field id="posts_per_page" type="text" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
                     <label>Posts Per Page</label>
                     <validate>validate-greater-than-zero</validate>
                 </field>
-                <field id="show_action" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="82">
-                    <label>Show Next Post and Prev Post on Post View Page</label>
+                <field id="show_thumbnail" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Show Thumbnail On Blog Post List Page</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="thumbnail_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+                    <label>Thumbnail Width</label>
+                    <depends>
+                        <field id="show_thumbnail">1</field>
+                    </depends>
+                </field>
+                <field id="thumbnail_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="80">
+                    <label>Thumbnail Height</label>
+                    <depends>
+                        <field id="show_thumbnail">1</field>
+                    </depends>
+                </field>
+                <field id="show_image" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="81">
+                    <label>Show Image On Blog Post View Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="image_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="82">
+                    <label>Image Width</label>
+                    <depends>
+                        <field id="show_image">1</field>
+                    </depends>
+                </field>
+                <field id="image_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="83">
+                    <label>Image Height</label>
+                    <depends>
+                        <field id="show_image">1</field>
+                    </depends>
                 </field>
                 <field id="meta_keywords" type="textarea" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="90">
                     <label>Meta Keywords</label>
@@ -48,6 +72,18 @@
                 <field id="default_sort" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="110">
                     <label>Default Sort For Posts</label>
                     <source_model>MGS\Blog\Model\System\Config\Sort</source_model>
+                </field>
+                <field id="use_sharethis" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="120">
+                    <label>Use ShareThis</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Go to <a href="http://www.sharethis.com/get-sharing-tools" target="_blank">http://www.sharethis.com/get-sharing-tools/</a> get pub key.]]></comment>
+                </field>
+                <field id="sharethis_pub_key" type="text" translate="label comment" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="130">
+                    <label>ShareThis Pub Key</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="use_sharethis">1</field>
+                    </depends>
                 </field>
             </group>
             <group id="sidebar_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
@@ -69,6 +105,27 @@
                     <validate>validate-greater-than-zero</validate>
                     <depends>
                         <field id="show_recent_posts">1</field>
+                    </depends>
+                </field>
+                <field id="show_thumbnail" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="50">
+                    <label>Show Thumbnail For Posts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="show_recent_posts">1</field>
+                    </depends>
+                </field>
+                <field id="thumbnail_width" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="60">
+                    <label>Thumbnail Width</label>
+                    <depends>
+                        <field id="show_recent_posts">1</field>
+                        <field id="show_thumbnail">1</field>
+                    </depends>
+                </field>
+                <field id="thumbnail_height" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="70">
+                    <label>Thumbnail Height</label>
+                    <depends>
+                        <field id="show_recent_posts">1</field>
+                        <field id="show_thumbnail">1</field>
                     </depends>
                 </field>
                 <field id="show_tags" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="80">

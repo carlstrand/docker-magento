@@ -9,14 +9,10 @@
     <acl>
         <resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_Promobanners::promobanners" title="Promo Banners" sortOrder="100">
-						<resource id="MGS_Promobanners::manage" title="Manage Banners" sortOrder="10">
-							<resource id="MGS_Promobanners::save" title="Save Item" sortOrder="10" />
-							<resource id="MGS_Promobanners::delete" title="Delete Item" sortOrder="20" />
-						</resource>
-					</resource>
-				</resource>
+                <resource id="MGS_Promobanners::promobanners" title="Promobanners" sortOrder="100">
+					<resource id="MGS_Promobanners::save" title="Save Item" sortOrder="10" />
+					<resource id="MGS_Promobanners::delete" title="Delete Item" sortOrder="20" />
+                </resource>
             </resource>
         </resources>
     </acl>

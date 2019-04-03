@@ -320,7 +320,7 @@
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>
                     <item name="add_field" xsi:type="boolean">true</item>
-                    <item name="label" xsi:type="string" translate="true">Author Post</item>
+                    <item name="label" xsi:type="string" translate="true">User</item>
                     <item name="sortOrder" xsi:type="number">100</item>
                 </item>
             </argument>
@@ -382,7 +382,7 @@
                     <item name="sortOrder" xsi:type="number">150</item>
                 </item>
             </argument>
-        </column>		
+        </column>
         <actionsColumn name="actions" class="MGS\Blog\Ui\Component\Listing\Columns\PostActions">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

@@ -21,6 +21,10 @@ class Viewas implements \Magento\Framework\Option\ArrayInterface
             array(
                 'label' => __('Owl Carousel'),
                 'value' => 'owl_carousel'
+            ),
+            array(
+                'label' => __('List'),
+                'value' => 'list'
             )
         );
         return $options;

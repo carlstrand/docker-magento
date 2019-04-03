@@ -125,27 +125,20 @@ class Save extends Blog
                     $model->setCreatedAt($this->_objectManager->get('Magento\Framework\Stdlib\DateTime\DateTime')->gmtDate());
                     $model->setUpdatedAt($this->_objectManager->get('Magento\Framework\Stdlib\DateTime\DateTime')->gmtDate());
                 }
-               $userData = $this->_objectManager->get('Magento\Backend\Model\Auth\Session')->getUser()->getData();
-				if (isset($data['post']['user']) && $data['post']['user']) {
-					$model->setUpdatedByUser($userData['username']);
-				} else {
-					$model->setUser($userData['username']);
-				}
-				
+                $userData = $this->_objectManager->get('Magento\Backend\Model\Auth\Session')->getUser()->getData();
+                if (isset($data['post']['user']) && $data['post']['user']) {
+                    $model->setUpdatedByUser($userData['username']);
+                } else {
+                    $model->setUser($userData['username']);
+                }
                 if (isset($data['categories'])) {
                     $model->setCategories($data['categories']);
                 } else {
                     $model->setCategories(null);
                 }
-				
                 $model->setStores($data['stores']);
                 $session = $this->_objectManager->get('Magento\Backend\Model\Session');
                 $session->setPageData($model->getData());
-                
-                if (isset($data['gallery_image'])) {
-                    $model->setGalleryImage($data['gallery_image']);
-                }
-                
                 $model->save();
                 $this->messageManager->addSuccess(__('You saved the post.'));
                 $session->setPageData(false);

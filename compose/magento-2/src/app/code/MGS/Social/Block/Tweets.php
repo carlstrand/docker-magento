@@ -133,6 +133,14 @@ class Tweets extends Template{
 			$count = $this->socialHelper->getConfig('twitter_settings/client_count');
 		}
 		
+		if($truncate == null || $truncate=='' || $truncate == 0){
+			$truncate = $this->socialHelper->getConfig('twitter_settings/client_truncate');
+		}
+		
+		if($truncate == ''){
+			$truncate = 10000;
+		}
+		
 		$twitter_data = $this->getTwitterData($tweetUser,$token,$token_secret,$consumer_key,$consumer_secret, $count);
 		
 		$twitter_data = json_decode(json_encode($twitter_data), true);
@@ -145,7 +153,7 @@ class Tweets extends Template{
 					if(count($twitter_data)>0){
 						$html .= '<div class="twitter_feed social-tweet">';
 						foreach ($twitter_data as $key => $value) {
-							$html .= '<div class="tweet-container"><div class="icon"><i class="fa fa-twitter"></i></div><div class="tweet-content">@ <a href="https://twitter.com/'.$twitter_data[$key]['user']['screen_name'].'/status/'.$twitter_data[$key]['id_str'].'">'.$twitter_data[$key]['user']['screen_name'].'</a><div>'.$this->formatTwitString($twitter_data[$key]['text']).'<p class="times"> <a href="https://twitter.com/'.$twitter_data[$key]['user']['screen_name'].'/status/'.$twitter_data[$key]['id_str'].'">about '.$this->relativeTime($twitter_data[$key]['created_at']).'</a></p></div></div></div>';
+							$html .= '<div class="tweet-container"><div class="icon"><i class="fa fa-twitter"></i></div><div class="tweet-content">@ <a href="https://twitter.com/'.$twitter_data[$key]['user']['screen_name'].'/status/'.$twitter_data[$key]['id_str'].'">'.$twitter_data[$key]['user']['screen_name'].'</a><div>'.$this->formatTwitString($twitter_data[$key]['text'], $truncate).'<p class="times"> <a href="https://twitter.com/'.$twitter_data[$key]['user']['screen_name'].'/status/'.$twitter_data[$key]['id_str'].'">about '.$this->relativeTime($twitter_data[$key]['created_at']).'</a></p></div></div></div>';
 						}
 						$html .= '</div>';
 					}

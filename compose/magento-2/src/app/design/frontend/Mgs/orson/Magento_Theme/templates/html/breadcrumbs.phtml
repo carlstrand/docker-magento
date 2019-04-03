@@ -1,0 +1,90 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php if ($crumbs && is_array($crumbs)) : ?>
+<?php 
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$themeSettings = $themeHelper->getThemeSettings();
+?>
+<?php $typeBreadcrumbs = $themeSettings['breadcrumbs_config']['breadcrumbs_type']; ?>
+<?php $color = $themeSettings['breadcrumbs_config']['breadcrumbs_color']; ?>
+<?php $breadcrumbsBg = $themeSettings['breadcrumbs_config']['breadcrumbs_bg']; ?>
+<?php $breadcrumbsBgCl = $themeSettings['breadcrumbs_config']['breadcrumbs_bg_color']; ?>
+<?php $breadcrumbsBgimg = $themeSettings['breadcrumbs_config']['breadcrumbs_bg_img']; ?>
+<?php if($breadcrumbsBg == 1 && $breadcrumbsBgCl): ?>
+	<div class="breadcrumbs breadcrumbs-v<?php echo $typeBreadcrumbs ?> bg-color" style="background-color: <?php echo $breadcrumbsBgCl ?> !important;">
+<?php elseif($breadcrumbsBg == 2 && $breadcrumbsBgimg): ?>
+	<?php $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+	$storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+	$currentStore = $storeManager->getStore(); ?>
+	<?php $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA); ?>
+	<?php $mediaUrl .= 'wysiwyg/'. $breadcrumbsBgimg; ?>
+	<div class="breadcrumbs breadcrumbs-v<?php echo $typeBreadcrumbs ?> bg-image" style="background-image: url('<?php echo $mediaUrl ?>') !important;">
+<?php else: ?>
+	<div class="breadcrumbs breadcrumbs-v<?php echo $typeBreadcrumbs ?><?php if($typeBreadcrumbs == 3): ?> bg-image<?php endif ?>">
+<?php endif ?>
+		<div class="container">
+		<?php if($typeBreadcrumbs == 2 || $typeBreadcrumbs == 3): ?>
+			<?php if($typeBreadcrumbs == 2): ?><div class="breadcrumbs-table"><?php endif ?>
+				<div class="breadcrumbs-title">
+					<?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Title")->setTemplate("Magento_Theme::html/title.phtml")->toHtml(); ?>
+				</div>
+				<ol class="breadcrumb breadcrumbs-menu">
+					<?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+						<?php if ($crumbInfo['link']) : ?>
+							<li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>">
+								<a <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?> href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+									<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+								</a>
+								<span <?php if($color): ?> style="color: <?php echo $color ?>;"<?php endif ?>><i class="fa fa-arrow-right"></i></span>
+							</li>
+						<?php elseif ($crumbInfo['last']) : ?>
+							<li class="active" <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?>>
+								<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+							</li>
+						<?php else: ?>
+							<li class="item" <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?>>
+								<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+								<span <?php if($color): ?> style="color: <?php echo $color ?>;"<?php endif ?>><i class="fa fa-arrow-right"></i></span>
+							</li>
+						<?php endif; ?>
+					<?php endforeach; ?>
+				</ol>
+			<?php if($typeBreadcrumbs == 2): ?></div><?php endif ?>
+		<?php else: ?>
+			<ol class="breadcrumb breadcrumbs-menu">
+				<?php foreach ($crumbs as $crumbName => $crumbInfo) : ?>
+					<?php if ($crumbInfo['link']) : ?>
+						<li class="item <?php /* @escapeNotVerified */ echo $crumbName ?>">
+							<a <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?> href="<?php /* @escapeNotVerified */ echo $crumbInfo['link'] ?>" title="<?php echo $block->escapeHtml($crumbInfo['title']) ?>">
+								<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+							</a>
+							<span <?php if($color): ?> style="color: <?php echo $color ?>;"<?php endif ?>><i class="fa fa-arrow-right"></i></span>
+						</li>
+					<?php elseif ($crumbInfo['last']) : ?>
+						<li class="active" <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?>>
+							<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+						</li>
+					<?php else: ?>
+						<li class="item" <?php if($color): ?> style="color: <?php echo $color ?>;" <?php endif ?>>
+							<?php echo $block->escapeHtml($crumbInfo['label']) ?>
+							<span <?php if($color): ?> style="color: <?php echo $color ?>;"<?php endif ?>><i class="fa fa-arrow-right"></i></span>
+						</li>
+					<?php endif; ?>
+				<?php endforeach; ?>
+			</ol>
+			<?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Title")->setTemplate("Magento_Theme::html/title.phtml")->toHtml(); ?>
+		<?php endif ?>
+		</div>
+	</div>
+<?php else: ?>
+	<div class="container heading-page1">
+		<?php echo $this->getLayout()->createBlock("Magento\Theme\Block\Html\Title")->setTemplate("Magento_Theme::html/title.phtml")->toHtml(); ?>
+	</div>
+<?php endif; ?>

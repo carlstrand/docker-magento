@@ -1,0 +1,2 @@
+This patch is patch for theme version 1.0.7, if you are using old version and want to update to version 1.0.7 please upload app folder to your magento root folder, remove this folder: var/generation, and refresh caches.
+If you are new, please ignore this patch.

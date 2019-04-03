@@ -9,12 +9,10 @@
     <acl>
         <resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="Magento_Backend::mgs">
-					<resource id="MGS_Portfolio::portfolio" title="Portfolio" sortOrder="50">
-						<resource id="MGS_Portfolio::category" title="Portfolio Categories" sortOrder="10"/>
-						<resource id="MGS_Portfolio::items" title="Portfolio Items" sortOrder="10"/>
-					</resource>
-				</resource>
+                <resource id="MGS_Portfolio::portfolio" title="Portfolio" sortOrder="100">
+					<resource id="MGS_Portfolio::save" title="Save Item" sortOrder="10" />
+					<resource id="MGS_Portfolio::delete" title="Delete Item" sortOrder="20" />
+                </resource>
             </resource>
         </resources>
     </acl>

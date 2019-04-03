@@ -146,16 +146,15 @@ class Items extends \Magento\Backend\Block\Widget\Form\Generic
                 'value' => $model->getThumbnailImage()
             ]
         );
-		$fieldset->addType('custommultipletype', '\MGS\Portfolio\Block\Adminhtml\Multiple\Images');
+		
 		$fieldset->addField(
             'base_image',
-            'custommultipletype',
+            'file',
             [
-                'label' => __('Bases Image'),
+                'label' => __('Base Image'),
                 'name' => 'base_image',
-				'type' => 'hidden',
                 'required' => false,
-				'note' => __('Upload base image first')
+                'value' => $model->getBaseImage()
             ]
         );
 		

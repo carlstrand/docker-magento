@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <container name="product.detail.wrapper.main" htmlTag="div" htmlClass="row" before="-">
+                <container name="product.detail.wrapper.media" htmlTag="div" htmlClass="col-md-6 col-sm-6 col-xs-12" />
+                <container name="product.detail.wrapper.info" htmlTag="div" htmlClass="product-info-main col-md-6 col-sm-6 col-xs-12">
+                    <block class="Magento\Catalog\Block\Product\View" name="product.info.name" before="-" template="product/view/name.phtml"/>
+                    <container name="product.detail.wrapper.first" htmlTag="div" htmlClass="product-detail-info-wrapper-top" after="product.info.name" />
+                    
+					<container name="product.detail.wrapper.table" label="Product auxiliary info" after="-" htmlTag="div" htmlClass="product-info-stock-sku">
+						<block class="Magento\Catalog\Block\Product\View\Description" name="product.info.sku.table" template="product/view/attribute_table.phtml" />
+					</container>
+                    
+					<container name="share.this" after="product.detail.wrapper.table" htmlTag="div" htmlClass="product-custom-share">
+						<block class="Magento\Cms\Block\Block" name="share.this.block">
+							<arguments><argument name="block_id" xsi:type="string">share_this_block</argument></arguments>
+						</block>
+					</container>
+                    
+					<container name="product.custom.block.top"  htmlTag="div" htmlClass="mgs_panel_static_custom" after="share.this">
+						<block class="Magento\Cms\Block\Block" name="product.custom.top">
+							<arguments><argument name="block_id" xsi:type="string">mgs_panel_product_static_block_top</argument></arguments>
+						</block>
+					</container>
+                </container>
+            </container>
+        </referenceContainer>
+        
+        
+		<referenceContainer name="sidebar.main">
+			<container name="product.custom.block.colright" after="-"  htmlTag="div">
+				<block class="Magento\Cms\Block\Block" name="product.custom.colright">
+					<arguments><argument name="block_id" xsi:type="string">orson_custom_static_block_sidebar</argument></arguments>
+				</block>
+			</container>
+			<container name="product.detail.block.related"  htmlTag="div" after="product.custom.block.colright" htmlClass="block">
+				<block class="Magento\Catalog\Block\Product\View" name="product.related.col" after="product.custom.block.colright" template="product/view/related_product.phtml"/>
+			</container>
+        </referenceContainer>
+        
+		<move element="product.info.media" destination="product.detail.wrapper.media"/>
+		<move element="product.info.review" destination="product.detail.wrapper.first" before="-" />
+		<move element="product.info.price" destination="product.detail.wrapper.first" after="product.info.review" />
+		<move element="product.info.overview" destination="product.detail.wrapper.first" after="product.info.price" />
+		<move element="product.info.main" destination="product.detail.wrapper.info" after="product.detail.wrapper.first" />
+		<move element="product.info.mailto" destination="product.detail.wrapper.table" after="-" />
+        
+		<referenceBlock name="catalog.product.related" remove="true"/>
+        <referenceContainer name="product.info.stock.sku" remove="true" />
+        <referenceContainer name="product.info.addto" remove="true" />
+    </body>
+</page>

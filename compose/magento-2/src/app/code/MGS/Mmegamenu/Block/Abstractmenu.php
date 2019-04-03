@@ -76,6 +76,8 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
 	
 	protected $_urlinterface;
 	
+	protected $_storeManager;
+	
 	/**
      * @var \Magento\Cms\Model\Template\FilterProvider
      */
@@ -103,6 +105,8 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
         \Magento\Framework\Registry $registry,
         \Magento\Catalog\Model\Indexer\Category\Flat\State $flatState,
 		\Magento\Framework\ObjectManagerInterface $objectManager,
+		\Magento\Framework\UrlInterface $urlinterface,
+		\Magento\Store\Model\StoreManagerInterface $storeManager,
 		\Magento\Cms\Model\Template\FilterProvider $filterProvider,
         array $data = []
     ) {
@@ -114,7 +118,8 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
         $this->flatState = $flatState;
         $this->_categoryInstance = $categoryFactory->create();
 		$this->_objectManager = $objectManager;
-		$this->_urlinterface = $context->getUrlBuilder();
+		$this->_urlinterface = $urlinterface;
+		$this->_storeManager = $storeManager;
 		$this->_filterProvider = $filterProvider;
         parent::__construct($context, $data);
     }
@@ -271,12 +276,12 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
         $class = $item->getSpecialClass();
         $class.=' ' . $item->getAlignMenu();
         if ($item->getColumns() > 1) {
-            $class.= ' mega-menu-item mega-menu-fullwidth menu-'. $item->getColumns() .'columns level0';
+            $class.= " mega-menu-item mega-menu-fullwidth";
         }
         if ($type == 2) {
-            $class.= " static-menu level0";
+            $class.= " static-menu";
             $currentUrl = $this->_urlinterface->getCurrentUrl();
-            if ($currentUrl == $item->getUrl()) {
+            if (($currentUrl == $item->getUrl()) || ($this->getUrl($item->getUrl())==$currentUrl)) {
                 $class.= " active";
             }
 
@@ -288,12 +293,17 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
             $categoryId = $item->getCategoryId();
             $category = $this->getModel('Magento\Catalog\Model\Category')->load($categoryId);
             $subCatAccepp = $this->getSubCategoryAccepp($categoryId, $item);
-            $currentCateClass = 'mmegamenu-' . $categoryId;
-            
-            $class.= " category-menu level0 " . $currentCateClass;
+
+            $class.= " category-menu";
 
             if (count($subCatAccepp) > 0) {
                 $class.= ' dropdown';
+            }
+            if ($this->isCategoryActive($category)) {
+				$store = $this->getStore();
+                if ($store->getRootCategoryId() != $category->getId()) {
+                    $class.= " active";
+                }
             }
         }
         return $class;
@@ -335,16 +345,10 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
             $category = $this->getModel('Magento\Catalog\Model\Category')->load($categoryId);
             $html.=' href="';
             if ($item->getUrl() != '') {
-				if (filter_var($item->getUrl(), FILTER_VALIDATE_URL)) { 
-					$html = $item->getUrl() . '"';
-				}else{
-					$html.= $this->getUrl($item->getUrl()) . '"';
-				}
-				
                 $html.= $this->getUrl($item->getUrl()) . '"';
             } else {
                 if ($this->getStore()->getRootCategoryId() == $category->getId()) {
-                    $html.='#" onclick="toggleMenu(this)"';
+                    $html.='#" onclick="return false"';
                 } else {
                     $html.= $this->getCategoryUrl($category) . '"';
                 }
@@ -357,24 +361,27 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
         }
 
         $html.='">';
-        if ($item->getHtmlLabel() != '') {
+        
+        $html.='<span>'.$item->getTitle().'</span>';
+        if (count($subCatAccepp) > 0) {
+            $html.= ' <span class="icon-next hidden-xs hidden-sm"><i class="fa fa-plus"></i></span>';
+        }
+		if ($item->getHtmlLabel() != '') {
             $html.=$item->getHtmlLabel();
         }
-        $html.='<span data-hover="'.$item->getTitle().'">'.$item->getTitle().'</span>';
         $html.= '</a>';
 
         if (count($subCatAccepp) > 0 || $item->getTopContent() != '' || $item->getBottomContent() != '') {
-            $html.='<span class="toggle-menu"><a onclick="toggleEl(this,\'mobile-menu-' . $item->getId() . '-'. $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="icon-plus"></span></a></span>';
+            $html.='<span class="toggle-menu visible-xs-block visible-sm-block"><a onclick="toggleEl(this,\'mobile-menu-' . $item->getId() . '-'. $item->getParentId() . '\')" href="javascript:void(0)" class=""><em class="fa fa-plus"></em><em class="fa fa-minus"></em></a></span>';
             $html.='<ul class="dropdown-menu" id="mobile-menu-' . $item->getId() . '-' . $item->getParentId() . '"><li>';
             $columnAccepp = count($subCatAccepp);
-			$arrColumn = [];
             if ($columnAccepp > 0) {
                 $columns = $item->getColumns();
-				if($columns > 1 && $item->getLeftContent()!='' && $item->getLeftCol()!=0){
+				if($item->getLeftContent()!='' && $item->getLeftCol()!=0){
 					$columns = $columns - $item->getLeftCol();
 				}
 				
-				if($columns > 1 && $item->getRightContent()!='' && $item->getRightCol()!=0){
+				if($item->getRightContent()!='' && $item->getRightCol()!=0){
 					$columns = $columns - $item->getRightCol();
 				}
 
@@ -393,14 +400,14 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
 
                 $newArrColumn = [];
                 $newCount = 0;
-				
-				for ($i = 0; $i < count($arrColumn); $i++) {
-					$newColumn = count($arrColumn[$i]);
-					for ($j = 0; $j < $newColumn; $j++) {
-						$newArrColumn[$i][$j] = $subCatAccepp[$newCount];
-						$newCount++;
-					}
-				}
+
+                for ($i = 0; $i < count($arrColumn); $i++) {
+                    $newColumn = count($arrColumn[$i]);
+                    for ($j = 0; $j < $newColumn; $j++) {
+                        $newArrColumn[$i][$j] = $subCatAccepp[$newCount];
+                        $newCount++;
+                    }
+                }
 
                 $arrColumn = $newArrColumn;
 
@@ -490,46 +497,24 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
 
         $htmlLi = '<li';
   
-        $htmlCateClass = 'mmegamenu-' . $category->getId();
-		$htmlLi .= ' class="level'.$level.' '.$htmlCateClass.'';
-        
+		$htmlLi .= ' class="level'.$level.'';
         if ($childrenCount > 0 && $item->getColumns() == 1) {
             $htmlLi .= ' dropdown-submenu';
-			$htmlA = ' onclick="toggleMenu(this)"';
-        }else{$htmlA = '';}
+        }
 
         $htmlLi .= '">';
 
         $html[] = $htmlLi;
-        $html[] = '<a href="' . $this->getCategoryUrl($category) . '"'.$htmlA.'>';
+        $html[] = '<a href="' . $this->getCategoryUrl($category) . '">';
         if ($item->getColumns() > 1 && $level == 1) {
             $html[] = '<span class="mega-menu-sub-title">';
         }
 
         $html[] = $category->getName();
 
-		if($category->getMgsMegamenuItemLabel()){
-			$backgroundLabel = "";
-			if($category->getMgsMegamenuItemBackground()){
-				$backgroundLabel = $category->getMgsMegamenuItemBackground();
-			}
-			if($backgroundLabel != ""){
-				$html[] = '<span class="label-menu" style="background-color: '.$backgroundLabel.'; border-color: '.$backgroundLabel.';">';
-			}else {
-				$html[] = '<span class="label-menu">';
-			}
-			$html[] = $category->getMgsMegamenuItemLabel();
-			$html[] = '</span>';
-		}
-		
         if ($item->getColumns() > 1 && $level == 1) {
             $html[] = '</span>';
         }
-		
-		if ($childrenCount > 0 && $item->getColumns() == 1) {
-            $html[] = '<span class="icon-next"><i class="fa fa-angle-right">&nbsp;</i></span>';
-        }
-		
         $html[] = '</a>';
 
         if ($level < $maxLevel) {
@@ -549,7 +534,7 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
                 }
             }
             if (!empty($htmlChildren)) {
-                $html[] = '<span class="toggle-menu"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="icon-plus"></span></a></span>';
+                $html[] = '<span class="toggle-menu visible-xs-block visible-sm-block"><a onclick="toggleEl(this,\'mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><em class="fa fa-plus"></em><em class="fa fa-minus"></em></a></span>';
 
                 $html[] = '<ul id="mobile-menu-cat-' . $category->getId() . '-' . $item->getParentId() . '"';
                 if ($item->getColumns() > 1) {
@@ -568,25 +553,23 @@ abstract class Abstractmenu extends \Magento\Framework\View\Element\Template imp
     }
 	
 	public function getStaticMenu($item) {
-
-		if (filter_var($item->getUrl(), FILTER_VALIDATE_URL)) { 
-			$html = '<a onclick="toggleMenu(this)" href="' . $item->getUrl() . '" class="level0';
-		}else{
-			$html = '<a onclick="toggleMenu(this)" href="' . $this->getUrl($item->getUrl()) . '" class="level0';
-		}
-
+        $html = '<a href="' . $this->getUrl($item->getUrl()) . '" class="level0';
         if ($item->getStaticContent() != '') {
             $html.= ' dropdown-toggle';
         }
         $html.= '">';
 
-        if ($item->getHtmlLabel() != '') {
+       
+        $html.='<span>'.$item->getTitle().'</span>';
+        if ($item->getStaticContent() != '') {
+            $html.= ' <span class="icon-next hidden-xs hidden-sm"><i class="fa fa-plus"></i></span>';
+        }
+		 if ($item->getHtmlLabel() != '') {
             $html.=$item->getHtmlLabel();
         }
-        $html.='<span>'.$item->getTitle().'</span>';
         $html.='</a>';
         if ($item->getStaticContent() != '') {
-            $html.='<span class="toggle-menu"><a onclick="toggleEl(this,\'mobile-menu-' . $item->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><span class="icon-plus"></span></a></span>';
+            $html.='<span class="toggle-menu visible-xs-block visible-sm-block"><a onclick="toggleEl(this,\'mobile-menu-' . $item->getId() . '-' . $item->getParentId() . '\')" href="javascript:void(0)" class=""><em class="fa fa-plus"></em><em class="fa fa-minus"></em></a></span>';
             $col = $item->getColumns();
 
             $html.='<ul class="dropdown-menu" id="mobile-menu-' . $item->getId() . '-' . $item->getParentId() . '"><li>';

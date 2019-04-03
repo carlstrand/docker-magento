@@ -34,7 +34,6 @@ class massDeletecategory extends \MGS\Portfolio\Controller\Adminhtml\Portfolio
                 $this->messageManager->addError($e->getMessage());
             }
         }
-		
-        return $resultRedirect->setPath('adminhtml/portfolio/category');
+        return $resultRedirect->setPath('*/*/');
     }
 }

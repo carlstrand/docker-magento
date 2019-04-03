@@ -11,6 +11,18 @@ class UpgradeSchema implements UpgradeSchemaInterface
     public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
     {
         $setup->startSetup();
-		 $setup->endSetup();
+        if (version_compare($context->getVersion(), '2.0.0', '<=')) {
+            $setup->getConnection()->addColumn(
+                $setup->getTable('mgs_blog_post'),
+                'image',
+                [
+                    'type' => \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+                    'nullable' => true,
+                    'default' => null,
+                    'comment' => 'Image'
+                ]
+            );
+        }
+        $setup->endSetup();
     }
 }

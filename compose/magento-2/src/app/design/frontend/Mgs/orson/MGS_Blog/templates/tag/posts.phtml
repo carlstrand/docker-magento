@@ -1,0 +1,86 @@
+<?php
+$helper = $this->helper('MGS\Blog\Helper\Data');
+$collection = $block->getCollection();
+$showThumbnail = $this->getConfig('general_settings/show_thumbnail');
+if ($this->getConfig('general_settings/thumbnail_width') != '') {
+    $width = $this->getConfig('general_settings/thumbnail_width');
+} else {
+    $width = 240;
+}
+if ($this->getConfig('general_settings/thumbnail_height') != '') {
+    $height = $this->getConfig('general_settings/thumbnail_height');
+} else {
+    $height = 180;
+}
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+$themeSettings = $themeHelper->getThemeSettings();
+$column = $themeSettings['blog_config']['blog_column'];
+?>
+<?php if (!count($collection)): ?>
+    <div class="message info empty">
+        <div><?php echo __('Have no posts.') ?></div>
+    </div>
+<?php else: ?>
+    <div class="blog-list<?php if($column != ''): ?> row <?php endif;?>">
+        <?php $i=0;foreach ($collection as $post): $i++; ?>
+            <div class="blog-post <?php echo $themeHelper->getClass($column);?> <?php if($column > 1 && $i % $column == 1):?> first-row-item<?php endif;?>">
+				<?php if($themeSettings['blog_config']['blog_img'] == 1): ?>
+				<div class="row">
+				<?php endif;?>
+					<?php if ($showThumbnail): ?>
+					<div class="post-image <?php if($themeSettings['blog_config']['blog_img'] == 1): ?> col-lg-6 col-md-6 col-sm-6 col-xs-12<?php endif;?>">
+						<a href="<?php echo $post->getPostUrlWithNoCategory();?>">
+							<img alt="<?php echo $post->getTitle(); ?>" class="img-responsive" src="<?php echo $post->getThumbnailUrl(); ?>">
+						</a>
+					</div>
+					<?php endif;?>
+					<div class="post-info <?php if($themeSettings['blog_config']['blog_img'] == 1): ?> col-lg-6 col-md-6 col-sm-6 col-xs-12<?php endif;?>">
+						<h2 class="post-title"><a class="post-title-link" title="<?php echo $post->getTitle(); ?>" href="<?php echo $post->getPostUrlWithNoCategory(); ?>"><?php echo $post->getTitle(); ?></a></h2>
+						<?php if ($post->getShortContent()): ?>
+						<div class="post-content">
+							<?php echo $post->getShortContent(); ?>							
+						</div>
+						<?php endif; ?>
+						
+					</div>
+				<div class="clear"></div>
+				<?php if($themeSettings['blog_config']['blog_img'] == 1): ?>
+				</div>
+				<?php endif;?>
+				<div class="post-tag">
+						<span class="date"><i class="fa fa-calendar-o"></i><?php echo date('F d Y', strtotime($block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false))) ?></span>
+						<span class="user-admin">
+							<i class="fa fa-user"></i>
+						<?php if ($post->getUpdatedByUser()): ?>
+						
+							<span class="tip"><?php echo __('Post By: %1', $post->getUpdatedByUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></span>
+						<?php else: ?>
+							<span class="tip"><?php echo __('Post By: %1', $post->getUser()); ?>&nbsp;&nbsp;&nbsp;<?php echo __('%1', $block->formatDate($post->getCreatedAt(), \IntlDateFormatter::MEDIUM, false)); ?></span>
+						<?php endif;?>
+						</span>
+						<?php $categories = $post->getCatetories(); ?>
+						<?php if(count($categories)): ?>
+							<span class="post-in">
+								<i class="fa fa-folder-open-o"></i>
+								<?php echo __('in ')?>
+								<?php foreach ($categories as $category): ?>
+									<a class="tip" title="<?php echo $category->getTitle(); ?>" href="<?php echo $category->getCategoryUrl(); ?>"><?php echo $category->getTitle(); ?></a>
+								<?php endforeach; ?>
+							</span>
+						<?php endif;?>
+						<span class="comment">
+							<i class="fa fa-comments"></i>
+							<a class="tip" href="<?php echo $post->getPostUrlWithNoCategory(); ?>#comment-box"><?php echo __('%1 Comment(s)', $post->getCommentCount()) ?></a>
+						</span>
+					</div>
+					<div class="clear"></div>
+                
+				<div class="post-link pull-right">
+					<a href="<?php echo $post->getPostUrlWithNoCategory(); ?>" class="btn btn-primary text-uppercase"><?php echo __('Read more')?></a>
+				</div>
+				<hr style="width: 100%;" />
+            </div>			
+        <?php endforeach; ?>
+    </div>
+    <div class="blog-post-list-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php endif; ?>

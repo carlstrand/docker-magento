@@ -32,25 +32,6 @@ class Stores extends \Magento\Framework\View\Element\Template
 
     public function _prepareLayout()
     {
-		$baseUrl = $this->_storeManager->getStore()->getBaseUrl();
-		$breadcrumbs = $this->getLayout()->getBlock('breadcrumbs');
-		$breadcrumbs->addCrumb(
-            'home',
-            [
-                'label' => __('Home'),
-                'title' => __('Go to Home Page'),
-                'link' => $baseUrl
-            ]
-        );
-        $breadcrumbs->addCrumb(
-            'mgs_storelocator',
-            [
-                'label' => __('Store Locator'),
-                'title' => __('Store Locator'),
-                'link' => ''
-            ]
-        );
-		
         return parent::_prepareLayout();
     }
 
@@ -178,17 +159,5 @@ class Stores extends \Magento\Framework\View\Element\Template
         }
         return;
     }
-	
-	// Return Url 
-	
-	public function getUrlKey($storelocator){
-		$urlKey = $storelocator->getUrlKey();
-		
-		if($urlKey!=''){
-			return $this->getUrl('storelocator/'. $urlKey);
-		}
-		return $this->getUrl('storelocator/index/view', ['id'=>$storelocator->getId()]);
-
-	}
 
 }

@@ -1,5 +1,5 @@
 <?php $helper = $this->helper('MGS\Social\Helper\Data'); ?>
-<?php if ($helper->getConfig('facebook_settings/active')): ?>
+<?php if ($helper->getConfig('general_settings/active') && $helper->getConfig('facebook_settings/active') && $helper->getConfig('facebook_page_plugin_settings/active')): ?>
 <?php $appId = $helper->getConfig('facebook_settings/client_id'); ?>
     <div id="fb-root"></div>
 	 <script>

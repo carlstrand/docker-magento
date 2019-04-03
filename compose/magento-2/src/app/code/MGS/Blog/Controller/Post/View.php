@@ -50,8 +50,8 @@ class View extends \Magento\Framework\App\Action\Action
         $post = $this->_initPost();
         if ($post) {
             $resultPage = $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-            if ($this->blogHelper->getConfig('general_settings/template_detail')) {
-                $resultPage->getConfig()->setPageLayout($this->blogHelper->getConfig('general_settings/template_detail'));
+            if ($this->blogHelper->getConfig('general_settings/template')) {
+                $resultPage->getConfig()->setPageLayout($this->blogHelper->getConfig('general_settings/template'));
             }
             return $resultPage;
         } else {

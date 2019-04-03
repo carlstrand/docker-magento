@@ -41,6 +41,18 @@
                     <label>Hide SKU</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="hide_product_social_links" translate="label" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide Product Social Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!--<field id="hide_product_details" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hide Product Details</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>                -->
+                <field id="button_style" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Style</label>
+                    <source_model>MGS\QuickView\Model\Config\Source\Buttonstyle</source_model>
+                </field>
             </group>            
         </section>
     </system>

@@ -1,0 +1,233 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php
+$_product = $block->getProduct();
+$_wishlistSubmitParams = $this->helper('Magento\Wishlist\Helper\Data')->getAddParams($_product);
+$compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare');
+$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+?>
+<?php $_product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($_product->isSaleable()): ?>
+<div class="box-tocart">
+    <div class="fieldset">
+        <div class="field quantity qty-product-buy">
+            <div class="form-group">
+                <?php if ($block->shouldRenderQuantity()): ?>
+                    <div class="box-qty <?php if ($_product->getTypeId() == 'grouped'): ?>grouped-product<?php endif ?>">
+                        <span class="edit-qty minus" onclick="minusQty('qty')"><i class="fa fa-minus"></i></span>
+                        <input type="text" name="qty" id="qty" maxlength="12"
+                               value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                               title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                               data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>" />
+                        <span class="edit-qty plus" onclick="plusQty('qty')"><i class="fa fa-plus"></i></span>
+                    </div>
+                <?php endif; ?>
+				<button type="submit"
+                        <?php if (!$block->shouldRenderQuantity()): ?> style="margin: 0;" <?php endif; ?>
+						title="<?php /* @escapeNotVerified */ echo $buttonTitle ?>"
+						class="action tocart btn-icon"
+						id="product-addtocart-button">
+						<span class="icon"><i class="fa fa-shopping-cart"></i></span>
+						<span class="text"><?php /* @escapeNotVerified */ echo $buttonTitle ?></span>
+				</button>
+            </div>
+        </div>
+        <div class="actions margin-top30">
+			<?php if($themeHelper->getStoreConfig('mpanel/product_details/wishlist') || $themeHelper->getStoreConfig('mpanel/product_details/compare') || $block->canEmailToFriend()): ?>
+				<div class="product-addto-links" data-role="add-to-links">
+					<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $themeHelper->getStoreConfig('mpanel/product_details/wishlist')) : ?>
+						<a href="#"
+							class="action towishlist <?php if($themeHelper->getStoreConfig('mpanel/product_details/compare')): ?>margin-right15<?php endif ?>"
+							data-post='<?php /* @escapeNotVerified */ echo $_wishlistSubmitParams; ?>'
+							data-action="add-to-wishlist"><span class="icon"><em class="fa fa-heart-o"></em></span><span class="text"><?php echo __('Add to wishlist') ?></span></a>
+					<?php endif; ?>
+					<?php if($themeHelper->getStoreConfig('mpanel/product_details/compare')): ?>
+						<a href="#" data-post='<?php /* @escapeNotVerified */ echo $compareHelper->getPostDataParams($_product);?>'
+							data-role="add-to-links"
+							class="action tocompare"><span class="icon"><em class="fa fa-retweet"></em></span><span class="text"><?php echo __('Add to compare') ?></span></a>
+					<?php endif ?>
+				</div>
+				<?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow() && $themeHelper->getStoreConfig('mpanel/product_details/wishlist')) : ?>
+					<script type="text/x-magento-init">
+						{
+							"body": {
+								"addToWishlist": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($block->getWishlistOptions())?>
+							}
+						}
+					</script>
+				<?php endif ?>
+			<?php endif ?>
+            <?php echo $block->getChildHtml('', true) ?>
+			<div class="clear"></div>
+        </div>
+		<div class="clear"></div>
+    </div>
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+        {
+        "#product_addtocart_form": {
+        "Magento_Catalog/product/view/validation": {
+        "radioCheckboxClosest": ".nested"
+        }
+        }
+        }
+    </script>
+<?php else : ?>
+    <script>
+        require([
+            'jquery',
+            'mage/mage',
+            'Magento_Catalog/product/view/validation',
+            'Magento_Catalog/js/catalog-add-to-cart'
+        ], function ($) {
+            'use strict';
+
+            $('#product_addtocart_form').mage('validation', {
+                radioCheckboxClosest: '.nested',
+                submitHandler: function (form) {
+                    var widget = $(form).catalogAddToCart({
+                        bindSubmit: false
+                    });
+
+                    widget.catalogAddToCart('submitForm', $(form));
+
+                    return false;
+                }
+            });
+
+            jQuery('.ajaxcart-popup .close').click(function () {
+                jQuery('.ajaxcart-popup').hide();
+            });
+        });
+    </script>
+<?php endif; ?>
+
+<div class="ajaxcart-popup" id="ajaxcartProcessing">
+    <div class="content">
+        <span class="step processing"></span><?php echo __('Product') . ': ' . $_product->getName() . ' ' . __('are being added to cart ...'); ?>
+        <div class="close"><?php echo __('x'); ?></div>
+    </div>
+
+</div>
+<div class="ajaxcart-popup" id="ajaxcartCompleted">
+    <div class="content">
+		<div class="close" style="margin-right: 10px; margin-top: 13px;"><?php echo __('x'); ?></div>
+		<div class="alert alert-success">
+			<span class="step completed"></span><?php echo __('Product') . ': ' . $_product->getName() . ' ' . __('was added to cart.'); ?>
+		</div>
+        <?php
+        $related_products = $_product->getRelatedProductIds();
+        shuffle($related_products);
+        ?>
+        <?php if (count($related_products) > 0): ?>
+            <div class="related-products-list">
+				<div style="margin-bottom: 17px;" class="title-inline">
+					<h4 class="heading full text-uppercase"><?php echo __('You also may like'); ?></h4>
+				</div>
+                <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+				$themeHelper = $this->helper('MGS\Mpanel\Helper\Data');
+				$themeSettings = $themeHelper->getThemeSettings();
+				$size = $themeHelper->getImageSize();
+                $image = 'category_page_grid';
+                ?>
+                <div class="row">
+                    <?php
+                    $count_related_products = count($related_products);
+                    foreach ($related_products as $product_id) {
+                        $product = $objectManager->get('Magento\Catalog\Model\Product')->load($product_id);
+                        if ($product->getVisibility() == 1 || $product->getVisibility() == 3) {
+                            $count_related_products--;
+                        }
+                    }
+                    ?>
+                    <?php
+                    $item_class = '';
+                    if ($count_related_products == 1) {
+                        $item_class = 'col-md-12 col-sm-12 col-xs-12';
+                    } elseif ($count_related_products == 2) {
+                        $item_class = 'col-md-6 col-sm-6 col-xs-6';
+                    } else {
+                        $item_class = 'col-md-4 col-sm-4 col-xs-4';
+                    }
+                    ?>
+                    <?php $i = 1; ?>
+                    <?php foreach ($related_products as $product_id): ?>
+                        <?php $product = $objectManager->get('Magento\Catalog\Model\Product')->load($product_id); ?>
+                        <?php if ($product->getVisibility() == 2 || $product->getVisibility() == 4): ?>
+                            <?php if ($i <= 3): ?>
+                                <div class="item <?php echo $item_class; ?>" style="text-align: center;">
+                                    <div class="image">
+                                        <?php
+                                        $productImage = $_imagehelper->init($product, $image)->resize($size['width'], $size['height']);
+                                        $productImageUrl = $productImage->getUrl();
+                                        ?>
+                                        <a style="display: block;" href="<?php echo $product->getProductUrl(); ?>">
+                                            <img style="margin: 0 auto;" class="default_image img-responsive" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
+                                        </a>
+                                    </div>
+                                    <div class="name">
+                                        <a href="<?php echo $product->getProductUrl(); ?>">
+                                            <?php echo $product->getName(); ?>
+                                        </a>
+                                    </div>
+                                    <div class="price">
+                                        <?php if ($product->getTypeId() != 'grouped'): ?>
+                                            <?php echo $block->getProductPrice($product); ?>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                                <?php $i++; ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<script type="text/javascript">
+function plusQty(qtyInput){
+	require([
+	'jquery'
+	], function(jQuery){
+		(function($) {
+			if($('#'+qtyInput).attr('disabled')!='disabled'){
+				qty = $('#'+qtyInput).attr('value');
+				qty = parseInt(qty);
+				qty++;
+				$('#'+qtyInput).val(qty);
+			}
+		})(jQuery);
+	});
+	
+}
+function minusQty(qtyInput){
+	require([
+	'jquery'
+	], function(jQuery){
+		(function($) {
+			if($('#'+qtyInput).attr('disabled')!='disabled'){
+				qty = $('#'+qtyInput).attr('value');
+				qty = parseInt(qty);
+				
+				if(qty>1){
+					qty--;
+					$('#'+qtyInput).val(qty);
+				}
+			}
+		})(jQuery);
+	});
+}
+</script>

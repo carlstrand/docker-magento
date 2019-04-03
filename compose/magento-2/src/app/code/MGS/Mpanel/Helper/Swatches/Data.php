@@ -6,19 +6,7 @@
 
 namespace MGS\Mpanel\Helper\Swatches;
 
-use Magento\Catalog\Helper\Image;
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
-use Magento\ConfigurableProduct\Model\Product\Type\Configurable;
-use Magento\Framework\App\Helper\Context;
-use Magento\Catalog\Api\Data\ProductInterface as Product;
 use Magento\Catalog\Model\Product as ModelProduct;
-use Magento\Store\Model\StoreManagerInterface;
-use Magento\Swatches\Model\ResourceModel\Swatch\CollectionFactory as SwatchCollectionFactory;
-use Magento\Swatches\Model\Swatch;
-use Magento\Catalog\Model\ResourceModel\Eav\Attribute;
-use Magento\Framework\Exception\InputException;
-use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 
 /**
  * Contact base helper
@@ -26,217 +14,67 @@ use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 class Data extends \Magento\Swatches\Helper\Data
 {
 	/**
-     * When we init media gallery empty image types contain this value.
-     */
-    const EMPTY_IMAGE_VALUE = 'no_selection';
-
-    /**
-     * Default store ID
-     */
-    const DEFAULT_STORE_ID = 0;
-
-    /**
-     * @var CollectionFactory
-     */
-    protected $productCollectionFactory;
-
-    /**
-     * @var ProductRepositoryInterface
-     */
-    protected $productRepository;
-
-    /**
-     * @var StoreManagerInterface
-     */
-    protected $storeManager;
-
-    /**
-     * @var SwatchCollectionFactory
-     */
-    protected $swatchCollectionFactory;
-
-    /**
-     * Catalog Image Helper
-     *
-     * @var Image
-     */
-    protected $imageHelper;
-
-    /**
-     * Data key which should populated to Attribute entity from "additional_data" field
-     *
-     * @var array
-     */
-    protected $eavAttributeAdditionalDataKeys = [
-        Swatch::SWATCH_INPUT_TYPE_KEY,
-        'update_product_preview_image',
-        'use_product_image_for_swatch'
-    ];
-	
-	public function __construct(
-        CollectionFactory $productCollectionFactory,
-        ProductRepositoryInterface $productRepository,
-        StoreManagerInterface $storeManager,
-        SwatchCollectionFactory $swatchCollectionFactory,
-        Image $imageHelper,
-		\Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
-    ) {
-        $this->productCollectionFactory   = $productCollectionFactory;
-        $this->productRepository = $productRepository;
-        $this->storeManager = $storeManager;
-        $this->swatchCollectionFactory = $swatchCollectionFactory;
-        $this->imageHelper = $imageHelper;
-		$this->_scopeConfig = $scopeConfig;
-    }
-	
-	/**
-     * @param ModelProduct $product
+     * @param Product $product
      * @param string $imageFile
      * @return array
      */
-    private function getAllSizeImages(ModelProduct $product, $imageFile, $mediaType = NULL, $vd_url = NULL)
+    protected function getAllSizeImages(ModelProduct $product, $imageFile)
     {
 		$largeSize = $this->getImageSizeForDetails();
 		$mediumSize = $this->getImageSize();
 		$minSize = $this->getImageMinSize();
-		$zoom_magnify = $this->getStoreConfig('extragallery/general/zoom_magnify');
-        $zoom_magnify = $zoom_magnify ? $zoom_magnify : 1.5;
-		
         return [
             'large' => $this->imageHelper->init($product, 'product_page_image_large')
-				->resize($largeSize['width'],$largeSize['height'])
-                ->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
+                ->resize($largeSize['width'],$largeSize['height'])
                 ->setImageFile($imageFile)
                 ->getUrl(),
             'medium' => $this->imageHelper->init($product, 'product_page_image_medium')
-				->resize($mediumSize['width'],$mediumSize['height'])
-                ->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
+                ->resize($mediumSize['width'],$mediumSize['height'])
                 ->setImageFile($imageFile)
                 ->getUrl(),
             'small' => $this->imageHelper->init($product, 'product_page_image_small')
 				->resize($minSize['width'],$minSize['height'])
-				->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
                 ->setImageFile($imageFile)
                 ->getUrl(),
-			'zoom' => $this->imageHelper->init($product, 'product_page_image_large')
-				->resize(($largeSize['width'] * $zoom_magnify), ($largeSize['height'] * $zoom_magnify))
-				->constrainOnly(true)->keepAspectRatio(true)->keepFrame(true)
-                ->setImageFile($imageFile)
-                ->getUrl(),
-            'media_type' => $mediaType,
-            'video_url' => $vd_url
         ];
     }
 	
-	public function getProductMediaGallery(ModelProduct $product)
-    {
-		
-        if (!in_array($product->getData('image'), [null, self::EMPTY_IMAGE_VALUE], true)) {
-            $baseImage = $product->getData('image');
-        } else {
-            $productMediaAttributes = array_filter($product->getMediaAttributeValues(), function ($value) {
-                return $value !== self::EMPTY_IMAGE_VALUE && $value !== null;
-            });
-            foreach ($productMediaAttributes as $attributeCode => $value) {
-                if ($attributeCode !== 'swatch_image') {
-                    $baseImage = (string)$value;
-                    break;
-                }
-            }
-        }
-		
-
-        if (empty($baseImage)) {
-            return [];
-        }
-
-		$mediaGallery = $product->getMediaGalleryImages();
-        if(count($mediaGallery)){
-            $resultGallery = $this->getGalleryImages($product);
-        }else {
-            $resultGallery = $this->getAllSizeImages($product, $baseImage, "", "");
-        }
-
-        return $resultGallery;
-    }
-	
-	/**
-     * Is product main image
-     *
-     * @param \Magento\Framework\DataObject $image
-     * @return bool
-     */
-    public function isMainImage(ModelProduct $product, $image)
-    {
-        return $product->getImage() == $image->getFile();
-    }
-	
-	/**
-     * @param ModelProduct $product
-     * @return array
-     */
-    private function getGalleryImages(ModelProduct $product)
-    {
-        //TODO: remove after fix MAGETWO-48040
-        $product = $this->productRepository->getById($product->getId());
-
-        $result = [];
-        $mediaGallery = $product->getMediaGalleryImages();
-        foreach ($mediaGallery as $media) {
-            $vd_url = $media->getData('video_url') ? $media->getData('video_url') : "";
-            
-            if($this->isMainImage($product, $media)){
-                $resultGallery = $this->getAllSizeImages($product, $media->getData('file'), $media->getData('media_type'), $vd_url);
-            }
-            $result[$media->getData('value_id')] = $this->getAllSizeImages(
-                $product,
-                $media->getData('file'),
-                $media->getData('media_type'),
-                $vd_url
-            );
-        }
-        
-        $resultGallery['gallery'] = $result;
-        return $resultGallery;
-    }
-	
 	public function getStoreConfig($node){
-		return $this->_scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+		return $this->scopeConfig->getValue($node, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
 	}
 	
 	/* Get product image size */
 	public function getImageSize(){
 		$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-		$maxWidth = $this->getStoreConfig('mpanel/catalog/max_width_image');
 		$result = [];
         switch ($ratio) {
             // 1/1 Square
             case 1:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth));
+                $result = array('width' => 400, 'height' => 400);
                 break;
             // 1/2 Portrait
             case 2:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth*2));
+                $result = array('width' => 400, 'height' => 800);
                 break;
             // 2/3 Portrait
             case 3:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth * 1.5)));
+                $result = array('width' => 400, 'height' => 600);
                 break;
             // 3/4 Portrait
             case 4:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth * 4) / 3));
+                $result = array('width' => 400, 'height' => 533);
                 break;
             // 2/1 Landscape
             case 5:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth/2));
+                $result = array('width' => 800, 'height' => 400);
                 break;
             // 3/2 Landscape
             case 6:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*2) / 3));
+                $result = array('width' => 400, 'height' => 267);
                 break;
             // 4/3 Landscape
             case 7:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*3) / 4));
+                $result = array('width' => 400, 'height' => 300);
                 break;
         }
 
@@ -245,37 +83,35 @@ class Data extends \Magento\Swatches\Helper\Data
 	
 	public function getImageSizeForDetails() {
 		$ratio = $this->getStoreConfig('mpanel/catalog/picture_ratio');
-		$maxWidth = $this->getStoreConfig('extragallery/general/max_size_image');
-		$maxWidth = $maxWidth ? $maxWidth : 600;
         $result = [];
         switch ($ratio) {
             // 1/1 Square
             case 1:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth));
+                $result = array('width' => 600, 'height' => 600);
                 break;
             // 1/2 Portrait
             case 2:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth*2));
+                $result = array('width' => 600, 'height' => 1200);
                 break;
             // 2/3 Portrait
             case 3:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth * 1.5)));
+                $result = array('width' => 600, 'height' => 900);
                 break;
             // 3/4 Portrait
             case 4:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth * 4) / 3));
+                $result = array('width' => 600, 'height' => 800);
                 break;
             // 2/1 Landscape
             case 5:
-                $result = array('width' => round($maxWidth), 'height' => round($maxWidth/2));
+                $result = array('width' => 600, 'height' => 300);
                 break;
             // 3/2 Landscape
             case 6:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*2) / 3));
+                $result = array('width' => 600, 'height' => 400);
                 break;
             // 4/3 Landscape
             case 7:
-                $result = array('width' => round($maxWidth), 'height' => round(($maxWidth*3) / 4));
+                $result = array('width' => 600, 'height' => 450);
                 break;
         }
 
@@ -288,36 +124,34 @@ class Data extends \Magento\Swatches\Helper\Data
         switch ($ratio) {
             // 1/1 Square
             case 1:
-                $result = array('width' => 120, 'height' => 120);
+                $result = array('width' => 80, 'height' => 80);
                 break;
             // 1/2 Portrait
             case 2:
-                $result = array('width' => 120, 'height' => 240);
+                $result = array('width' => 80, 'height' => 160);
                 break;
             // 2/3 Portrait
             case 3:
-                $result = array('width' => 120, 'height' => 180);
+                $result = array('width' => 80, 'height' => 120);
                 break;
             // 3/4 Portrait
             case 4:
-                $result = array('width' => 120, 'height' => 160);
+                $result = array('width' => 80, 'height' => 107);
                 break;
             // 2/1 Landscape
             case 5:
-                $result = array('width' => 120, 'height' => 60);
+                $result = array('width' => 80, 'height' => 40);
                 break;
             // 3/2 Landscape
             case 6:
-                $result = array('width' => 120, 'height' => 80);
+                $result = array('width' => 80, 'height' => 53);
                 break;
             // 4/3 Landscape
             case 7:
-                $result = array('width' => 120, 'height' => 90);
+                $result = array('width' => 80, 'height' => 60);
                 break;
         }
 
         return $result;
     }
-	
-	
 }

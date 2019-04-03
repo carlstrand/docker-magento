@@ -22,7 +22,6 @@ class Htmllayout implements \Magento\Framework\Option\ArrayInterface
         return [
 			['value' => 'wide', 'label' => __('Wide')], 
 			['value' => 'boxed', 'label' => __('Boxed')], 
-			['value' => 'boxed-full', 'label' => __('Boxed Full')], 
 		];
     }
 }

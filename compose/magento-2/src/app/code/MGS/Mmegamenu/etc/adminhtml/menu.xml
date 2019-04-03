@@ -11,6 +11,5 @@
 		
 		<add id="MGS_Mmegamenu::parent" title="Manage Menu" module="MGS_Mmegamenu" sortOrder="10" parent="MGS_Mmegamenu::megamenu" action="adminhtml/mmegamenu/parents" resource="MGS_Mmegamenu::parent"/>
 		<add id="MGS_Mmegamenu::items" title="Manage Megamenu Items" module="MGS_Mmegamenu" sortOrder="20" parent="MGS_Mmegamenu::megamenu" action="adminhtml/mmegamenu/index" resource="MGS_Mmegamenu::parent"/>
-		<add id="MGS_Mmegamenu::config" title="Configuration" module="MGS_Mmegamenu" sortOrder="30" parent="MGS_Mmegamenu::megamenu" action="adminhtml/system_config/edit/section/megamenu" resource="MGS_Mmegamenu::parent"/>
     </menu>
 </config>

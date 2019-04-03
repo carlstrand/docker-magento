@@ -23,7 +23,7 @@ class Preview extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Abstrac
 		/* $html = $this->getLayout()->createBlock('MGS\Promobanners\Block\Promobanners')->setBannerId($row->getId())->setTemplate('banner.phtml')->toHtml();
 		return $html; */
 		$html = '<div style="max-width:450px"><div class="promobanner'.$this->getCustomClass($row).'">';
-		$html .= '<a><img alt="" src="'.$this->getBannerImageUrl($row).'" class="img-fluid" /></a>';
+		$html .= '<a><img alt="" src="'.$this->getBannerImageUrl($row).'" class="img-responsive" /></a>';
 		
 		if(($row->getContent() != '') || ($row->getButton() != '')){
 			$html .= '<div class="text '.$row->getTextAlign().'">';

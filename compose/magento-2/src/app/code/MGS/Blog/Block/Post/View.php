@@ -11,6 +11,7 @@ class View extends \Magento\Framework\View\Element\Template
     protected $_blogHelper;
     protected $_post;
     protected $_category;
+    protected $_storeManager;
     protected $httpContext;
     protected $request;
 
@@ -20,6 +21,8 @@ class View extends \Magento\Framework\View\Element\Template
         \MGS\Blog\Helper\Data $blogHelper,
         \MGS\Blog\Model\Post $post,
         \MGS\Blog\Model\Category $category,
+        RequestInterface $request,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
         \Magento\Framework\App\Http\Context $httpContext,
         array $data = []
     )
@@ -27,7 +30,8 @@ class View extends \Magento\Framework\View\Element\Template
         $this->_post = $post;
         $this->_category = $category;
         $this->_coreRegistry = $registry;
-        $this->request = $context->getRequest();
+        $this->request = $request;
+        $this->_storeManager = $storeManager;
         $this->_blogHelper = $blogHelper;
         $this->httpContext = $httpContext;
         parent::__construct($context, $data);
@@ -161,92 +165,4 @@ class View extends \Magento\Framework\View\Element\Template
             return $this->getCurrentPost()->getPostUrlWithNoCategory();
         }
     }
-	
-	
-	public function getAllPost() {
-		$post = $this->_post;
-        $postCollection = $post->getCollection()
-            ->addFieldToFilter('status', 1)
-            ->addStoreFilter($this->_storeManager->getStore()->getId())
-            ->setOrder('created_at', $this->getConfig('general_settings/default_sort'));
-			
-		return $postCollection;
-	}
-	
-	
-	public function getAllPostId(){
-        $postCollection = $this->getAllPost();
-		$arrResult = [];
-		if(count($postCollection)>0){
-			foreach($postCollection as $item){
-				$arrResult[] = ['id'=>$item->getId(), 'value'=>$item->getUrlKey(), 'name'=>$item->getTitle()];
-			}
-		}
-		return $arrResult;
-	}
-	
-	public function getUrlPostById($id,$value,$name){
-		$arrResult = [];
-		$route = $this->_blogHelper->getRoute();
-		$route = $route . '/' . $value;
-		$arrResult = ['id'=>$id,'url'=>$route, 'name'=>$name];
-		return $arrResult;
-	}
-	
-	public function getNextPost($id){
-		$arrId = $this->getAllPostId();
-		if(is_array($arrId)){
-			$maxKey = count($arrId) - 1;
-			$key = array_search($id, array_column($arrId, 'id'));
-			if($key == $maxKey){
-				$nextKey = 0;
-			}else {
-				$nextKey = $key + 1;
-			}
-			$idNext = $arrId[$nextKey]['id'];
-			$valueNext = $arrId[$nextKey]['value'];
-			$nameNext = $arrId[$nextKey]['name'];
-			
-			return $this->getUrlPostById($idNext,$valueNext,$nameNext);
-		}
-		return;
-	}
-	
-	public function getPrevPost($id){
-		$arrId = $this->getAllPostId();
-		if(is_array($arrId)){
-			$maxKey = count($arrId) - 1;
-			$key = array_search($id, array_column($arrId, 'id'));
-			if($key == 0){
-				$nextKey = $maxKey;
-			}else {
-				$nextKey = $key - 1;
-			}
-			$idNext = $arrId[$nextKey]['id'];
-			$valueNext = $arrId[$nextKey]['value'];
-			$nameNext = $arrId[$nextKey]['name'];
-			
-			return $this->getUrlPostById($idNext,$valueNext,$nameNext);
-		}
-		return;
-	}
-    
-    public function getGalleryImage($post){
-		if($post->getGalleryImage()){
-			$result = [];
-			$gallery = $post->getGalleryImage();
-			$galleryArray = explode(',',$gallery);
-			if(count($galleryArray)>0){
-				foreach($galleryArray as $img){
-					$filePath = 'mgs_blog/gallery/image'.$img;
-					if($filePath!=''){
-						$imageUrl = $this->_urlBuilder->getBaseUrl(['_type' => \Magento\Framework\UrlInterface::URL_TYPE_MEDIA]) . $filePath;
-						$result[] = $imageUrl;
-					}
-				}
-			}
-			return $result;
-		}
-		return 0;
-	}
 }

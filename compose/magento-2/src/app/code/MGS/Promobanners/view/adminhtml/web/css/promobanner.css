@@ -8,7 +8,7 @@
 #promobannersGrid .col-status, #promobannersGrid .col-action, .col-promobanner-chooser_status{width:130px}
 #promobannersGrid .col-title{width:320px}
 .col-promobanner-chooser_title{width:370px}
-.img-fluid{max-width:100%}
+.img-responsive{max-width:100%}
 .promobanner {
 	position: relative;
 	margin-bottom: 20px;
