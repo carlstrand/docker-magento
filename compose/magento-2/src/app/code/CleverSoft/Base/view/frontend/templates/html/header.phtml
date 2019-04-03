@@ -1,0 +1,86 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverBase
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?>
+<?php
+$header_type = $this->getConfig('cleversoftbase/header/header_type');
+$full_header_width = $this->getConfig('cleversoftbase/header/full_header_width');
+$stickyEnable = $block->getConfig('cleversoftbase/header/sticky_enable');
+$stickyTitleProduct = $this->getConfig('cleversoftbase/product_page/enable_addtocart_sticky');
+$custom_css = $this->getConfig('cleversoftbase_custom_css/css_swing_editor/custom_css');
+$custom_css_enable = $this->getConfig('cleversoftbase_custom_css/css_swing_editor/custom_css_enable');
+//$pageLayout = $this->getConfig('cleversoftbase/responsive/page_layout');
+//$maxWidthpage = $this->getConfig('cleversoftbase/responsive/page_maxi_width');
+$this->cssTemplate($custom_css,$custom_css_enable);
+?>
+<header class="page-header zoo-header-<?php echo $header_type; ?>" id="page-header">
+    <?php if($header_type == 1): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_1.phtml') ?>
+	<?php elseif($header_type == 2): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_2.phtml') ?>
+	<?php elseif($header_type == 4): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_3.phtml') ?>
+    <?php elseif($header_type == 3): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_4.phtml') ?>
+    <?php elseif($header_type == 5): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_5.phtml') ?>
+    <?php elseif($header_type == 6): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_6.phtml') ?>
+	<?php elseif($header_type == 7): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_7.phtml') ?>
+	<?php elseif($header_type == 8): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_8.phtml') ?>
+	<?php elseif($header_type == 9): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_9.phtml') ?>
+	<?php elseif($header_type == 10): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_10.phtml') ?>
+    <?php endif; ?>
+</header>
+<?php if($stickyEnable || true){?>
+    <script>
+        (function($){
+            $('body').addClass("header<?php echo $header_type; ?>");
+        }(jQuery));
+        require([
+            "jquery",
+            "js/jquery.noconflict",
+            "CleverSoft_Base/js/jquery.lib.min"
+        ],function($){
+            $(window).load(function(){
+                $("#zoo-sticky-header").sticky({ topSpacing: 0, getWidthFrom: ''});
+            });
+        });
+    </script>
+<?php }?>
+
+<?php if($stickyTitleProduct == 1){?>
+    <script>
+        require([
+            "jquery",
+            "js/jquery.noconflict"
+        ],function($){
+            $(window).load(function(){
+                var aboveHeight = $("#zoo-sticky-header").outerHeight();
+                var previousScroll = 0;
+                $(window).scroll(function(event){
+                    var scroll = $(this).scrollTop();
+                    var elementOffset = $("#zoo-main-content").offset().top;
+                    var distance = (elementOffset - scroll);
+                    if (distance < 60){
+                        if(scroll > previousScroll) {
+                            $(".nav-title-cart").addClass("nav-title-cart-down");
+                        } else {
+                            $(".nav-title-cart").removeClass("nav-title-cart-down");
+                        }
+                    }
+                    previousScroll = scroll;
+                });
+            });
+        });
+    </script>
+<?php }?>

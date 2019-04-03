@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2017 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_cart_item_renderers"/>
+    <head>
+        <link src="CleverSoft_Base::js/owl.carousel.js"/>
+    </head>
+    <body>
+        <referenceContainer name="page.messages">
+            <block class="Magento\Checkout\Block\Cart\ValidationMessages" name="checkout.cart.validationmessages"/>
+        </referenceContainer>
+        
+		<referenceBlock name="breadcrumbs">
+			<action method="addCrumb">
+				<argument name="crumbName" xsi:type="string">Home</argument>
+				<argument name="crumbInfo" xsi:type="array">
+				<item name="title" xsi:type="string">Home</item>
+				<item name="label" xsi:type="string">Home</item>
+				<item name="link" xsi:type="string">/</item>
+				</argument>
+			</action>
+			<action method="addCrumb">
+				<argument name="crumbName" xsi:type="string">Shopping Cart</argument>
+				<argument name="crumbInfo" xsi:type="array">
+				<item name="title" xsi:type="string">Shopping Cart</item>
+				<item name="label" xsi:type="string">Shopping Cart</item>
+				<item name="link" xsi:type="string">/checkout/cart</item>
+				</argument>
+			</action>
+		</referenceBlock>
+        <referenceContainer name="checkout.cart.container">
+            <container name="cart.discount" label="Cart Discount Container" htmlTag="div" htmlClass="cart-discount" after="-" />
+            <container htmlClass="left_checkout_cart" htmlTag="div" after="cart.summary" name="left.checkout.cart" />
+        </referenceContainer>
+        <referenceBlock name="main.breadcrumbs" remove="true"/>
+        <move element="checkout.cart.crosssell" destination="left.checkout.cart" after="-" />
+        <move element="checkout.cart.coupon" destination="cart.discount" />
+        <move element="checkout.cart.shortcut.buttons" destination="checkout.cart.methods" after="checkout.cart.methods.onepage.bottom"/>
+        <referenceContainer name="footer-container">
+            <referenceBlock name="home01.footer.top" remove="true"/> 
+        </referenceContainer>
+        <move element="checkout.cart.form" destination="left.checkout.cart" after="-" />
+        <move element="cart.discount" destination="left.checkout.cart" after="checkout.cart.form" />
+
+        <block class="Magento\Checkout\Block\Cart\Additional\Info" name="additional.product.info" template="cart/additional/info.phtml"/>
+    </body>
+</page>

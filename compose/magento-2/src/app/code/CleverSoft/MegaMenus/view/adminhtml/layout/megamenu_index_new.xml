@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="editor"/>
+    <head>
+        <css src="jquery/fileUploader/css/jquery.fileupload-ui.css"/>
+        <css src="CleverSoft_MegaMenus::css/menu.css"/>
+        <css src="CleverSoft_MegaMenus::css/demo.css"/>
+        <css src="CleverSoft_MegaMenus::css/font-awesome/font-awesome.min.css"/>
+        <css src="CleverSoft_MegaMenus::css/cleversoft-front/style.css"/>
+        <css src="CleverSoft_MegaMenus::css/jquery-ui.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" template="newaction/fields/item/container.phtml" name="menu_items_container">
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction" name="megamenu_newaction"/>
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" name="menu_item_types" template="newaction/fields/item/types.phtml" />
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" name="menu_items_layout" template="newaction/fields/item/layout.phtml" />
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" name="menu_items_icons_panel" template="newaction/fields/item/icons.phtml" />
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" name="menu_items_clever_icons_panel" template="newaction/fields/item/clever_icons.phtml" />
+                <block class="CleverSoft\MegaMenus\Block\Adminhtml\Formfields\NewAction\Fields\MenuItems\Types" name="menu_col_templates_panel" template="newaction/fields/item/col.phtml" />
+            </block>
+        </referenceContainer>
+        <referenceContainer name="js">
+
+        </referenceContainer>
+    </body>
+</page>

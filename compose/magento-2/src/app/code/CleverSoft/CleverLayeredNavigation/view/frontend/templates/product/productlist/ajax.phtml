@@ -1,0 +1,22 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverLayeredNavigation
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+/**
+ * @var $block \CleverSoft\CleverLayeredNavigation\Block\Product\ProductList\Ajax
+ */
+if(!$block->canShowBlock()) {
+    return;
+}
+?>
+<script type="text/x-magento-init">
+{
+    "body.page-with-filter": {
+        "cleverLayeredNavigationAjax": {}
+        }
+}
+</script>

@@ -1,0 +1,39 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverMegaMenus
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?> 
+<?php
+$menu = $this->getMenuObject();
+?>
+
+<?php if(count($menu) > 1): ?>
+
+<?php
+$type = $menu->getData('type');
+$cssClass = $menu->getData('css_class');
+$dropdownAnimation = $menu->getData('dropdown_animation');
+$items = json_decode($menu->getContent());
+$categoryTree = $this->getLayout()->createBlock('CleverSoft\MegaMenus\Block\Widget\CatsTree');
+$uniqId = uniqid('menu-');
+?>
+
+    <div class="selections-container">
+        <div class="manage-menus">
+
+        </div>
+    </div>
+
+
+
+<?php else : ?>
+    <div class="selections-container">
+        <div class="manage-menus">
+            <span class="add-edit-menu-action">Edit your menu below, or <a class="blue" href="<?php echo $block->getUrl('megamenu/index/new'); ?>">create a new menu</a>.		</span>
+        </div>
+    </div>
+<?php endif ?>

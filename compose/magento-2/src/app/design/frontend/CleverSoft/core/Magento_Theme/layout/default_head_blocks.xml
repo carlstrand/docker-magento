@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+        <link href="//fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i|Poppins:300,400,500,600,700" rel='stylesheet' type='text/css'/>
+        <css src="css/layout.css"/>
+        <css src="css/bootstrap.min.css"/>
+        <css src="css/cleverfont.css"/>
+        <css src="css/effect.css" />
+        <css src="css/styles.css"/>
+        <css src="CleverSoft_Base::css/custom_css.css"/>
+        <script src="jquery/jquery.min.js" />
+        <script src="jquery/jquery-ui.js" />
+        <script src="js/jquery.noconflict.js" />
+        <script src="modernizr/modernizr.js" />
+        <script src="js/jquery.nav.js" />
+        <script src="js/jquery.jcarousellite.min.js" />
+        <script src="js/theia-sticky-sidebar.js" />
+    </head>
+</page>

@@ -1,0 +1,2181 @@
+<?xml version="1.0"?>
+<root>
+  <blocks>
+    <cms_block>
+      <title>Home 01 - Footer Bottom</title>
+      <identifier>home01-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content">{{block class="Magento\\Cms\\Block\\Block" block_id="home01-botbanner"}}
+<div class="row row-col-gap equal-height">
+<div class="col-md-6 col-xs-6">
+<h2 class="logo-text"><a href="index.php">novetty</a></h2>
+<p>Contrary to popular belief, Lorem Ipsum is not <br />simply random text. It has roots in a piece <br />of classical Latin literature from 45 BC, <br />making it over</p>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Middle Banner Block 01</title>
+      <identifier>home01-midbanner01</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie"><img src="{{media url="wysiwyg/images/image-1.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>tanks top</h2>
+<p>For Sexy</p>
+<a href="{{store direct_url="women.html"}}">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Newsletter</title>
+      <identifier>home01-botbanner</identifier>
+      <content><![CDATA[<div class="newsletters newsletters-home01 text-center">
+<h2>BE THE FIRST TO KNOW</h2>
+<p>Subscribe to our newsletter and get 10% off your first purchase</p>
+<div class="newsletter-footer">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Top Contact</title>
+      <identifier>top_contact</identifier>
+      <content><![CDATA[<div><span class="zoo-top-contact">Free Shipping On Orders Over $59</span></div>
+<div class="header-top-link hidden-xs">
+<ul>
+<li><a href="#">Buy Protection</a></li>
+<li><a href="#">Help <span class="cs-font clever-icon-down" style="font-size: 9px"></a></li>
+</ul>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>1,14,30,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,62,63</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Image block</title>
+      <identifier>home01_image_block</identifier>
+      <content><![CDATA[<div class="row zoo-widget-style2">
+<div class="home-collection-item home-collection-item-style2 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home01/block-img-1.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">Women’s </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-style2 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home01/block-img-2.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='women.html'}}"> <span class="lang1">accessories</span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='women.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-style2 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home01/block-img-3.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">men’s</span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">shop now</span> </a></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home01 - Footer Links</title>
+      <identifier>home01-footer-links</identifier>
+      <content><![CDATA[<ul class="zoo-footer-links">         
+<li><a href="#">Term of Uses </a></li>
+<li><a href="#">Privacy</a></li>
+<li><a href="#">Shipping</a></li>
+<li><a href="#">Policy</a></li> 
+</ul>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home01 - Footer Social Links</title>
+      <identifier>home01-footer-social-links</identifier>
+      <content><![CDATA[<ul class="zoo-footer-social-links style-1">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li><a class="fa fa-rss" href="#"></a>&zwj;</li>
+</ul>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Shop</title>
+      <identifier>shop</identifier>
+      <content><![CDATA[<div class="mtmenu-block mtmenu-block-center menu-items">
+<ul class="mega-sub-menu level0">
+<li class="level1 groups item col-xs-8"><a class="mega-menu-link" href="#">Category Page</a>
+<div class="groups-wrapper">
+<ul class="image-links-layout mega-sub-menu level1">
+<li class="col-xs-3"><span class="image-link"> <a href="{{store direct_url='women.html'}}"> <span class="figure"><img class="img-responsive" src="{{media url='wysiwyg/images/page_layout/left-column.png'}}" alt="" /></span> <span class="figcaption text-uppercase">left column</span> </a> </span></li>
+<li class="col-xs-3"><span class="image-link"> <a href="{{store direct_url='jewelry-2.html'}}"> <span class="figure"><img class="img-responsive" src="{{media url='wysiwyg/images/page_layout/left-right-column.png'}}" alt="" /></span> <span class="figcaption text-uppercase">left, right column</span> </a> </span></li>
+<li class="col-xs-3"><span class="image-link"> <a href="{{store direct_url='men.html'}}"> <span class="figure"><img class="img-responsive" src="{{media url='wysiwyg/images/page_layout/right-column.png'}}" alt="" /></span> <span class="figcaption text-uppercase">right column</span> </a> </span></li>
+<li class="col-xs-3"><span class="image-link"> <a href="{{store direct_url='electronics-2.html'}}"> <span class="figure"><img class="img-responsive" src="{{media url='wysiwyg/images/page_layout/no-column.png'}}" alt="" /></span> <span class="figcaption text-uppercase">without columns</span> </a> </span></li>
+</ul>
+</div>
+</li>
+<li class="level1 groups item col-xs-4"><a class="mega-menu-link" href="#">Product Page</a>
+<div class="groups-wrapper">
+<ul class="product-layout mega-sub-menu level1">
+<li><a class="mega-menu-link"><span>Related &amp; Upsell 4 Columns</span></a></li>
+<li><a href="{{store direct_url='woven-crepe-shorts.html'}}"> <span>Product &mdash; Simple</span></a></li>
+<li><a class="mega-menu-link"><span>Product &mdash; Configurable</span></a></li>
+<li><a class="mega-menu-link"><span>Product &mdash; Downloadable</span></a></li>
+<li><a class="mega-menu-link"><span>Product &mdash; Grouped</span></a></li>
+<li><a class="mega-menu-link"><span>Product &mdash; Virtual</span> </a></li>
+<li><a class="mega-menu-link"><span>Product &mdash; Bundle</span></a></li>
+</ul>
+</div>
+</li>
+</ul>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Service Category </title>
+      <identifier>zoo-service-category</identifier>
+      <content><![CDATA[<div class="container zoo-service-category clearfix text-center">
+<div class="zoo-bar-content border-right-0"><span class="fa fa-usd">&zwj;</span>
+<h5>Great Value</h5>
+<p>We offer competitive prices on our 100 million plus product range.</p>
+</div>
+<div class="zoo-bar-content border-right-0"><span class="fa fa-truck">&zwj;</span>
+<h5>Worldwide Delivery</h5>
+<p>With sites in 5 languages, we ship to over 200 countries &amp; regions.</p>
+</div>
+<div class="zoo-bar-content border-right-0"><span class="fa fa-cc-paypal">&zwj;</span>
+<h5>Safe Payment</h5>
+<p>Pay with the world&rsquo;s most popular and secure payment methods.</p>
+</div>
+<div class="zoo-bar-content border-right-0"><span class="fa fa-cart-plus">&zwj;</span>
+<h5>Shop with Confidence</h5>
+<p>Our Buyer Protection covers your purchase from click to deliver</p>
+</div>
+<div class="zoo-bar-content"><span class="fa fa-comments">&zwj;</span>
+<h5>24/7 Help Center</h5>
+<p>Round-the-clock assistance for a smooth shopping experience.</p>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Newsletters</title>
+      <identifier>home02-newsletters</identifier>
+      <content><![CDATA[<div class="newsletters row">
+<div class="col-md-4">
+<h2>Get Discount 20% Off</h2>
+<p>Subscribe our newsletter and get discount 20% off</p>
+</div>
+<div class="col-md-offset-2 col-md-6">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Customer Says 01</title>
+      <identifier>home02-customer-says-01</identifier>
+      <content><![CDATA[<p><img src="{{media url='wysiwyg/images/home02/icon-quotes.png'}}" /></p>
+<p class="content-text">"I'd be wary of buying a complete board from decathlon or any other sporting goods store. <br />Don't you have a skateshop you could visit?"</p>
+<p><strong>TYRION LANNISTER</strong></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Customer Says 02</title>
+      <identifier>home02-customer-says-02</identifier>
+      <content><![CDATA[<p><img src="{{media url='wysiwyg/images/home02/icon-quotes.png'}}" /></p>
+<p class="content-text">"I'd be wary of buying a complete board from decathlon or any other sporting goods store. <br />Don't you have a skateshop you could visit?"</p>
+<p><strong>TYRION LANNISTER</strong></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Customer Says 03</title>
+      <identifier>home02-customer-says-03</identifier>
+      <content><![CDATA[<p><img src="{{media url='wysiwyg/images/home02/icon-quotes.png'}}" /></p>
+<p class="content-text">"I'd be wary of buying a complete board from decathlon or any other sporting goods store. <br />Don't you have a skateshop you could visit?"</p>
+<p><strong>TYRION LANNISTER</strong></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Service Block 01</title>
+      <identifier>home02-service-block01</identifier>
+      <content><![CDATA[<div class="container">
+<div class="row">
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-paper-plane-o">&zwj;</span></p>
+<h4>Fast Delivery</h4>
+<p class="content-service">Gumbo beet greens corn soko <br /> endive gumbo gourd.</p>
+</div>
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-usd">&zwj;</span></p>
+<h4>Money Back</h4>
+<p class="content-service">Save money with Novetty theme <br /> purchase .</p>
+</div>
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-diamond">&zwj;</span></p>
+<h4>Qualified Support</h4>
+<p class="content-service">Enjoy the advantages of <br /> professional help.</p>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Images Block</title>
+      <identifier>home02-images-block</identifier>
+      <content><![CDATA[<div class="zoo-widget-style1 row">
+<div class="item-images-block item-images-block1 col-lg-4 col-sm-4 col-md-4 col-xs-12">
+<h2>Sale <br />off <br />50%</h2>
+<img class="img-responsive" src="{{media url="wysiwyg/images/home02/images-block-1.jpg"}}" alt="" /></div>
+<div class="item-images-block item-images-block2 col-lg-4 col-sm-4 col-md-4 col-xs-12">
+<h2>20 buck double up!</h2>
+<img class="img-responsive" src="{{media url="wysiwyg/images/home02/images-block-2.jpg"}}" alt="" /></div>
+<div class="item-images-block item-images-block3 col-lg-4 col-sm-4 col-md-4 col-xs-12">
+<div class="item-image-content">
+<h2>Penny <br />Carlton <br />2016</h2>
+<div class="price-box"><span class="old-price">$90.00</span>
+<h3 class="special-price">$50.00</h3>
+</div>
+</div>
+<img class="img-responsive" src="{{media url="wysiwyg/images/home02/images-block-3.jpg"}}" alt="" /></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Custom Block On Right Sidebar</title>
+      <identifier>home01-custom-block-on-right-sidebar</identifier>
+      <content><![CDATA[<p class="zoo-light-font">Lorem ipsum dolor sit amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna.</p>
+<ul class="zoo-marker-list">
+<li>Lorem ipsum dolor sit amet</li>
+<li>Conse ctetur adipisicing</li>
+<li>Elit sed do eiusmod tempor</li>
+</ul>
+<p class="zoo-light-font">Amet conse ctetur adipisicing elit, sed do eiusmod tempor incididunt ut labor.</p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Footer Bottom</title>
+      <identifier>home07-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-md-4 col-xs-12"><img class="footer-image" src="{{media url="wysiwyg/images/home07/logo_7.png"}}" alt="" />
+<p>Copyrights &copy; 2016 by ZooTemplate. <br /> All Rights Reserved.</p>
+</div>
+<div class="col-md-4 col-xs-12 text-center">
+<div class="newsletters-style-2 ">
+<span class="clever-icon-mail-1">&zwj;</span>
+<h3>Get all the latest <br /> information on Events,<br /> Sales and Offers.</h3>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}
+<p>Don&rsquo;t worry we don&rsquo;t spam</p>
+</div>
+</div>
+<div class="col-md-4 col-xs-12 collapsible mobile-collapsible f_contact">
+<h4 class="zoo-widget-title-sm">Contact</h4>
+<ul class="footer-contact">
+<li>Email: Hello@cleversoft.co</li>
+<li>Phone: +849 321 6996</li>
+<li>17 Princess Road, London, Greater London NW1 8JR, UK</li>
+</ul>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Footer Bottom</title>
+      <identifier>home05-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="#">Our Service</a></li>
+<li><a href="#">Help Center</a></li>
+<li><a href="#">Our Blog</a></li>
+<li><a href="#">Careers</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders &amp; Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Methods</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Newsletter Sign Up</h4>
+<p>Subscribe now and receive a 20% discount on your next shopping.</p>
+<div class="newsletters-style-3 text-center">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="signup.phtml"}}</div>
+<ul class="zoo-footer-social-links style-3">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li><a class="fa fa-rss" href="#">&zwj;</a></li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 17 - Footer Bottom</title>
+      <identifier>home17-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content">
+<div class="row-col-gap footer-bottom-accordion">
+<div class="col-md-4 col-xs-6">
+<h4 class="widget-title-sm">Sign Up For sale 20%</h4>
+<div class="newsletters-style-3 text-center">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="signup.phtml"}}</div>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li><a class="fa fa-rss" href="#">&zwj;</a></li>
+</ul>
+</div>
+<div class="col-md-offset-2 col-md-2 col-xs-2">
+<ul class="zoo-footer-link">
+<li><a href="#">Watches</a></li>
+<li><a href="#">Bicycles</a></li>
+<li><a href="#">Leather</a></li>
+<li><a href="#">Journals</a></li>
+<li><a href="#">Supply</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-2">
+<ul class="zoo-footer-link">
+<li><a href="#">Live Chat</a></li>
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Customer Care</a></li>
+<li><a href="#">Gift Cards</a></li>
+<li><a href="#">Our Story</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-2">
+<ul class="zoo-footer-link">
+<li><a href="#">TheGuarantee</a></li>
+<li><a href="#">Our Partners</a></li>
+<li><a href="#">Store Locator</a></li>
+<li><a href="#">Careers</a></li>
+<li><a href="#">Privacy &amp; Terms</a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>62,63</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 03 - Main Static Images</title>
+      <identifier>home03-main-static</identifier>
+      <content><![CDATA[<div class="container">
+<div class="row">
+<div class="col-sm-6 col-xs-12">
+<div class="main-static-image1 zoo-widget-style1"><img class="img-responsive" src=" {{media url='wysiwyg/images/home03-static-1.png'}}" /></div>
+<div class=" main-static-image2 zoo-widget-style1"><img class="img-responsive" src="{{media url='wysiwyg/images/home03-static-2.png'}} " /></div>
+</div>
+<div class="col-sm-offset-1 col-sm-5 col-xs-12 main-static-image-home03">
+<h4>All Made Up</h4>
+<h2>From Amped-Up Lips to <br /> Our Beauty Heroes</h2>
+<p class="zoo-widget-style1">NOVETTY Cosmetics invites you to become a part of <br />Select - our prestigious members-only</p>
+<div class=" main-static-image3 zoo-widget-style1"><img class="img-responsive" src=" {{media url='wysiwyg/images/home03-static-3.png'}}" /></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 03 - Static Banner Girl</title>
+      <identifier>home03-static-banner-girl</identifier>
+      <content><![CDATA[<div class="banner-image-girl">  </div>
+<div class="container">
+<div class="banner-content-gril">
+<h2>Dr. Dennis Gross Skincare<br> Sleeping Beauty Fix</h2>
+<p class="des-static">Free Shipping Worldwide</p>
+<h2 class="price-static">$45.00</h2>
+<a class="btn-novetty btn-raised button" href="javascript:void(0">Shop Now</a> 
+</div> 
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 03 - Newsletter</title>
+      <identifier>home03-newsletter</identifier>
+      <content><![CDATA[<div class="newsletters text-center" style="background: url({{media url='wysiwyg/images/home03/bg-newsletter-home03.jpg'}}); background-size: cover;">
+<div class="container">
+<h2>Free cosmetics for a year? Sign me up!</h2>
+<p>Enter your email for the chance to win</p>
+<div class="newsletter-footer  col-xs-12">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 04 - Static Images </title>
+      <identifier>home04-static-images</identifier>
+      <content><![CDATA[<div class="row">
+<div class="grid">
+<div class="col-xs-12 col-sm-6 padding-right-8">
+<div class="figure effect-bubba">
+<img src="{{media url="wysiwyg/images/home04/home04-static-img1.jpg"}}" alt="" />
+<div class="figcaption"> 
+  <h2>Romantic</h2>
+</div>     
+</div> 
+<div class="figure effect-bubba">
+<img src="{{media url="wysiwyg/images/home04/home04-static-img2.jpg"}}" alt="" />
+<div class="figcaption">
+  <h2>Italian</h2>
+</div>     
+</div>
+
+</div>
+<div class="col-xs-12 col-sm-6 padding-left-8">
+<div class="figure effect-bubba">
+<img src="{{media url="wysiwyg/images/home04/home04-static-img4.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>Malice</h2>
+                  </div>
+</div> 
+<div class="figure effect-bubba">
+<img src="{{media url="wysiwyg/images/home04/home04-static-img3.jpg"}}" alt="" />
+<div class="figcaption"> 
+  <h2>Monsillage</h2>
+</div>     
+</div>     
+
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 04 - Static Footer Top </title>
+      <identifier>home04-static-footer-top</identifier>
+      <content><![CDATA[<div class="footer-top-home04">
+<div class="container">
+<div class="sub-title">Ends Wednesday, Shop More, Save More...</div>
+<a class="button btn-novetty btn-raised pull-right" href="#">shop now</a>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05, 17 - Newsletter Left Home</title>
+      <identifier>home05-newsletter-left-home</identifier>
+      <content><![CDATA[<div class="newsletter-left-home">
+<div class="newsletter-border">
+<h3>Get all the latest information on Events, Sales and Offers.</h3>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}
+<p>Don’t worry we don’t spam</p>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Static Images </title>
+      <identifier>static-image-home-05</identifier>
+      <content><![CDATA[<div class="figure effect-sadie">
+<div class="static-image-home-05 figcaption">
+<p>Trend Collection</p>
+<h2>leather bag</h2>
+<img class="img-responsive" src="{{media url="wysiwyg/images/home05/home-05-block-left.jpg"}}" alt="" /></div></div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Static Shop</title>
+      <identifier>home05-static-shop</identifier>
+      <content><![CDATA[<div class="static-shop">
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 static-shop-item">
+<div class="img-static-shop"><img src="{{media url="wysiwyg/images/home05/static_img_01.png"}}" alt="" /></div>
+<div class="des-shop-item">
+<h2>Slim Brief case</h2>
+<a href="#">shop now</a></div>
+</div>
+<div class="col-md-6 col-lg-6 col-sm-6 col-xs-12 static-shop-item">
+<div class="img-static-shop"><img src="{{media url="wysiwyg/images/home05/static_img_02.png"}}" alt="" /></div>
+<div class="des-shop-item">
+<h2>Relaxed Hobo</h2>
+<a href="#">shop now</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Service Blocks</title>
+      <identifier>home05-serviceblocks</identifier>
+      <content><![CDATA[<div style="background: url({{media url='wysiwyg/images/home05/service-block-home05.jpg'}}); background-size: cover; padding: 20px; overflow: hidden; border-radius: 4px;">
+<div class="wrap-inside-service">
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-paper-plane-o">&zwj;</span></p>
+<h4>Fast Delivery</h4>
+<p class="content-service">Gumbo beet greens corn soko endive <br /> gumbo gourd.</p>
+</div>
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-usd">&zwj;</span></p>
+<h4>Money Back</h4>
+<p class="content-service">Save money with Novetty theme <br /> purchase .</p>
+</div>
+<div class="service-item text-center col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<p class="icon-service"><span class="fa fa-diamond">&zwj;</span></p>
+<h4>Qualified Support</h4>
+<p class="content-service">Enjoy the advantages of <br /> professional help.</p>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 06 - Static Banner Block</title>
+      <identifier>home06-static-banner-block</identifier>
+      <content><![CDATA[<div class="equal-height home06-static-banner-block row">
+<div class="col-xs-6 col-sm-6 col-md-3 grid">
+<div class="figure effect-sadie"><img src="{{media url='wysiwyg/images/home06/block-static-1.jpg'}}" alt="" />
+<div class="figcaption">
+<h2>kids style</h2>
+<p>New Item</p>
+<a href="{{store direct_url="women.html"}}">View more</a></div>
+</div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-3 grid">
+<div class="figure effect-sadie"><img src="{{media url='wysiwyg/images/home06/block-static-2.jpg'}}" alt="" />
+<div class="figcaption">
+<h2>man style</h2>
+<p>Trending 2016</p>
+<a href="{{store direct_url="men.html"}}">View more</a></div>
+</div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-3 grid">
+<div class="figure effect-sadie"><img src="{{media url='wysiwyg/images/home06/block-static-3.jpg'}}" alt="" />
+<div class="figcaption">
+<h2>street style</h2>
+<p>On Sale</p>
+<a href="{{store direct_url="women.html"}}">View more</a></div>
+</div>
+</div>
+<div class="col-xs-6 col-sm-6 col-md-3 grid">
+<div class="figure effect-sadie"><img src="{{media url='wysiwyg/images/home06/block-static-4.jpg'}}" alt="" />
+<div class="figcaption">
+<h2>Sunglass</h2>
+<p>New Collections</p>
+<a href="{{store direct_url="men.html"}}">View more</a></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 06 - Static Footer Top </title>
+      <identifier>home06-static-footer-top</identifier>
+      <content><![CDATA[<div class="footer-top-home06" style="background: #000 url({{media url='wysiwyg/images/home06/parallax-8.png'}}); background-size: cover; overflow: hidden; background-position: 100%; background-repeat: no-repeat; background-attachment: fixed;">
+<div class="container">
+<h2>Ends Wednesday, Shop More, Save More...</h2>
+<a class="btn-novetty btn-raised" href="#">shop now</a></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 06 - Block Pallarax</title>
+      <identifier>home06_block_pallarax</identifier>
+      <content><![CDATA[<div class="parallax-window block_parallax">
+<div class="container">
+<div class="pallarax_content">
+<h1 class="large-title">SEXY GIRL<br />COME BACK</h1>
+<div class="small-title">New Collection is Out in Our Online Store.</div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 10 - Image Block</title>
+      <identifier>home10-imageblock</identifier>
+      <content><![CDATA[<div class="row zoo-widget-style2">
+<div class="home-collection-item home-collection-item-1 col-xs-12 col-sm-3"><a href="{{store direct_url='men.html'}}"> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-1.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">hoodies</span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-2 col-xs-12 col-sm-6"><a href="{{store direct_url='women.html'}}"> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-2.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='women.html'}}"> <span class="lang1">cardigans</span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='women.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-5 col-xs-12 col-sm-3"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-3.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">jackets </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="row zoo-widget-style2">
+<div class="home-collection-item home-collection-item-3 col-xs-12 col-sm-9"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-4.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">jackets </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-4 col-xs-12 col-sm-3"><a href="{{store direct_url='women.html'}}"> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-5.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='women.html'}}"> <span class="lang1">tanks </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='women.html'}}"> <span class="lang2">Shop now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="row zoo-widget-style2">
+<div class="home-collection-item home-collection-item-6 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-6.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">accessory </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-7 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-7.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='women.html'}}"> <span class="lang1">couple hoodies </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='women.html'}}"> <span class="lang1">Shop now</span> </a></div>
+</div>
+</div>
+<div class="home-collection-item home-collection-item-8 col-xs-12 col-sm-4"><a> <img class="b-lazy b-loaded" src="{{media url="wysiwyg/images/home10/block-img-8.jpg"}}" alt="" width="auto" height="auto" /> </a>
+<div class="home-collection-title-wrapper text-middle">
+<div class="home-collection-title">
+<h3 class="h5"><a href="{{store direct_url='men.html'}}"> <span class="lang1">best combo </span> </a></h3>
+</div>
+<div class="button-view"><a href="{{store direct_url='men.html'}}"> <span class="lang1">shop now</span> </a></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Static Images</title>
+      <identifier>home07-static</identifier>
+      <content><![CDATA[<div class="home-block-category"> 
+    <div class="row">
+      
+      <div class="col-xs-12 col-sm-6 category-item-left">
+  <div class="item-category">
+    <div class="item-category-text">
+    
+      <h2><a href="#">New color for grand prix</a></h2>    	
+    
+    
+    	<span class="category--sub-title">Was $75 - Now $50</span>
+    
+    </div>
+    <div class="image">
+    	<img class="" src="{{media url="wysiwyg/images/home07/static-image-1-hom07.jpg"}}" width="100%" height="100%">
+    </div>
+  </div>
+  <div class="item-category">
+    <div class="item-category-text">
+    
+      <h2><a href="#">Living Room Furniture</a></h2>    	
+    
+    
+    	<span class="category--sub-title">Was $205 - Now $100</span>
+    
+    </div>
+    <div class="image">
+    	<img class="" src="{{media url="wysiwyg/images/home07/static-image-2-hom07.jpg"}}">
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-6 category-item-right">
+ 	<div class="item-category">
+      <div class="item-category-text">
+      
+        <h2><a href="#">Bedroom Furniture</a></h2>      
+      
+      
+      	<span class="category--sub-title">Was $125 - Now $90</span>
+      
+      </div>
+      <div class="image">
+          <img class="" src="{{media url="wysiwyg/images/home07/static-image-3-hom07.jpg"}}" width="100%" height="100%">
+      </div>
+    </div>
+    <div class="item-category">
+      <div class="item-category-text">
+      
+        <h2><a href="#">Dining Room &amp; Bar Furniture</a></h2>      
+      
+      
+      	<span class="category--sub-title">Was $175 - Now $150</span>
+      
+      </div>
+      <div class="image">
+          <img class="" src="{{media url="wysiwyg/images/home07/static-image-4-hom07.jpg"}}" width="100%" height="100%">
+      </div>
+    </div>
+</div>
+    </div> 
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Parallax Image 1</title>
+      <identifier>home07-parallax-image-1</identifier>
+      <content><![CDATA[<div class="parallax-1 home07">
+<h2>A home in Inslington</h2>
+<p>The best of decor 2016</p>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Middle Banner Block 02</title>
+      <identifier>home01-midbanner02</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie"><img src="{{media url="wysiwyg/images/image-2.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>top &amp; short</h2>
+<p>On Sale</p>
+<a href="{{store direct_url="women.html"}}">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 12 - Content Newsletter</title>
+      <identifier>home12-contentnewsletter</identifier>
+      <content><![CDATA[<div class="block-home-newsletter">
+<div class="container">
+<div class="row d-sm-flex align-items-stretch">
+<div class="align-self-center col-md-4 col-sm-4 col-xs-12">
+<div class="service-home">
+<h2>A Full Service Jewelry</h2>
+<p>At Jared we offer a full line of services - custom design, expert repair and exclusive in-store events.</p>
+<a>View All Services</a></div>
+</div>
+<div class="align-self-center col-md-4 col-sm-4 col-xs-12">
+<div class="service-home">
+<h2>Gift Cards</h2>
+<p>Give the perfect gift that always fits.</p>
+<a>Shop Gift Cards</a></div>
+</div>
+<div class="align-self-center col-md-4 col-sm-4 col-xs-12">
+<div class="newsletters ">
+<h2 class="title_newsletter">Newsletter</h2>
+<div class="subtitle_newsletter">Sign up for email updates to be sale off 20%</div>
+<div class="content">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 12 - Image Block 2</title>
+      <identifier>home12-imageblock2</identifier>
+      <content><![CDATA[<div class="row d-md-flex flex-nowrap text-center block-full">
+<div class="zoo-image-block grid__item col-xs-12 col-sm-6">
+<p><img src="{{media url="wysiwyg/images/home12/block-10.jpg"}}" alt="" /></p>
+<div class="collection-wrapper">
+<h3>gold Ring</h3>
+<a class="view-all" href="{{store direct_url="men.html"}}">View all</a>
+<div class="collection-button"><a href="{{store direct_url="men.html"}}">Shop Now</a></div>
+</div>
+</div>
+<div class="zoo-image-block grid__item col-xs-12 col-sm-6">
+<p><img src="{{media url="wysiwyg/images/home12/block-11.jpg"}}" alt="" /></p>
+<div class="collection-wrapper">
+<h3>earing</h3>
+<a class="view-all" href="{{store direct_url="women.html"}}">View all</a>
+<div class="collection-button"><a href="{{store direct_url="women.html"}}">Shop Now</a></div>
+</div>
+</div>
+<div class="zoo-image-block grid__item col-xs-12 col-sm-6">
+<p><img src="{{media url="wysiwyg/images/home12/block-12.jpg"}}" alt="" /></p>
+<div class="collection-wrapper">
+<h3>bracelets</h3>
+<a class="view-all" href="{{store direct_url="accessories.html"}}">View all</a>
+<div class="collection-button"><a href="{{store direct_url="accessories.html"}}">Shop Now</a></div>
+</div>
+</div>
+<div class="zoo-image-block grid__item col-xs-12 col-sm-6">
+<p><img src="{{media url="wysiwyg/images/home12/block-13.jpg"}}" alt="" /></p>
+<div class="collection-wrapper">
+<h3>neckless</h3>
+<a class="view-all" href="{{store direct_url="jewelry.html"}}">View all</a>
+<div class="collection-button"><a href="{{store direct_url="jewelry.html"}}">Shop Now</a></div>
+</div>
+</div>
+<div class="zoo-image-block grid__item col-xs-12 col-sm-6">
+<p><img src="{{media url="wysiwyg/images/home12/block-14.jpg"}}" alt="" /></p>
+<div class="collection-wrapper">
+<h3>accessories</h3>
+<a class="view-all" href="{{store direct_url="jewelry.html"}}">View all</a>
+<div class="collection-button"><a href="{{store direct_url="jewelry.html"}}">Shop Now</a></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 12 - Image Block</title>
+      <identifier>home12-imageblock</identifier>
+      <content><![CDATA[<div class="text-center block-full">
+<div class="row">
+<div class="zoo-image-block col-xs-12 col-sm-6">
+<div><img src="{{media url="wysiwyg/images/home12/block-1.jpg"}}" alt="feature-row__image" /></div>
+<div class="text-image-content">
+<h3>Continuous Connection</h3>
+<div class="rte-setting">
+<p>Browser Infinity Jewelry</p>
+</div>
+</div>
+</div>
+<div class="zoo-image-block col-xs-12 col-sm-6">
+<div><img src="{{media url="wysiwyg/images/home12/block-2.jpg"}}" alt="" /></div>
+<div class="text-image-content">
+<h3><a href="{{store direct_url="men.html"}}"> take a bow </a></h3>
+<div class="rte-setting">
+<p>Browser Infinity Jewelry</p>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Need Help shopping Online</title>
+      <identifier>home07-need-help-shopping-online</identifier>
+      <content><![CDATA[<div class="home07-block-help-shopping">
+<div class="container"><h2>Need Help shopping Online?  +88 758 420 66</h2></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 -Testimonial 1</title>
+      <identifier>Home 07 -Testimonial 1</identifier>
+      <content><![CDATA[<div class="container">
+<div class="testimonial_item">
+<h2>Clients Testimonials</h2>
+ 	<div class="des-testimonial"><p>The space is a rented 2 bedroom flat in a Victorian Mansion block which had to be furnished without doing any <br>general decoration to the space.</p></div> 
+        <h3 class="author">Jane Doe</h3> 
+</div>
+</div>
+]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 -Testimonial 2</title>
+      <identifier>home07-testimonial2</identifier>
+      <content><![CDATA[<div class="container">
+<div class="testimonial_item">
+<h2>Clients Testimonials</h2>
+ 	<div class="des-testimonial"><p>The space is a rented 2 bedroom flat in a Victorian Mansion block which had to be furnished without doing any <br>general decoration to the space.</p></div> 
+        <h3 class="author">Jane Doe</h3> 
+</div>
+</div>
+]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 -Testimonial 3</title>
+      <identifier>home07-testimonial3</identifier>
+      <content><![CDATA[<div class="container">
+<div class="testimonial_item">
+<h2>Clients Testimonials</h2>
+ 	<div class="des-testimonial"><p>The space is a rented 2 bedroom flat in a Victorian Mansion block which had to be furnished without doing any <br>general decoration to the space.</p></div> 
+        <h3 class="author">Jane Doe</h3> 
+</div>
+</div>
+]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Parallax Image</title>
+      <identifier>home07-parallax-image</identifier>
+      <content><![CDATA[<div class="parallax home07" style="background: url({{media url='wysiwyg/images/home07/parallax-home07.jpg'}}); background-size: cover; background-attachment: fixed; height: 650px; background-position: center center;">
+<div class="content-parallax">
+<h2>A home in Islington</h2>
+<p>The best of decor 2016</p>
+<a href="#">Shop Now</a>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Search Mini Block</title>
+      <identifier>home07-search-mini-block</identifier>
+      <content><![CDATA[<div class="container">{{block class="CleverSoft\Base\Block\Categories" template="Magento_Search::form.mini.phtml"}}</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 01</title>
+      <identifier>carousel_home_6_1</identifier>
+      <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/images/home06/1.png"}}" alt="" /></a>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 02</title>
+      <identifier>carousel_home_6_2</identifier>
+      <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/images/home06/2.png"}}" alt="" /></a>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 03</title>
+      <identifier>carousel_home_6_3</identifier>
+      <content><![CDATA[<p><a href="#"><img src="{{media url="wysiwyg/images/home06/3.png"}}" alt="" /></a></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 04</title>
+      <identifier>carousel_home_6_4</identifier>
+      <content><![CDATA[<p><a href="#"><img src="{{media url="wysiwyg/images/home06/4.png"}}" alt="" /></a></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 05</title>
+      <identifier>carousel_home_6_5</identifier>
+      <content><![CDATA[<a href="#"><img src="{{media url="wysiwyg/images/home06/5.png"}}" alt="" /></a>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 6 : Carousel image 06</title>
+      <identifier>carousel_home_6_6</identifier>
+      <content><![CDATA[<p><a href="#"><img src="{{media url="wysiwyg/images/home06/6.png"}}" alt="" /></a></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 08 - Banner Home Page 01</title>
+      <identifier>home08_banner01</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie" style="background-image: url({{media url="wysiwyg/images/home08/1.jpg"}});    background-repeat: no-repeat;    background-size: cover;">
+<div class="figcaption">
+<h2>Gym Wear</h2>
+<p>From $50.0 - $100.0</p>
+<a href="#">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 08 - Banner Home Page 02</title>
+      <identifier>home08_banner02</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie" style="background-image: url({{media url="wysiwyg/images/home08/2.jpg"}});    background-repeat: no-repeat;    background-size: cover;">
+<div class="figcaption">
+<h2>Lingerie</h2>
+<p>From $80.0</p>
+<a href="#">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 08 - Banner Home Page 03</title>
+      <identifier>home08_banner03</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie" style="background-image: url({{media url="wysiwyg/images/home08/3.jpg"}});    background-repeat: no-repeat;    background-size: cover;">
+<div class="figcaption">
+<h2>Design</h2>
+<p>From $50.0 - $100.0</p>
+<a href="#">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 08 - Banner Home Page 04</title>
+      <identifier>home08_banner04</identifier>
+      <content><![CDATA[<div class="grid">
+<div class="figure effect-sadie" style="background-image: url({{media url="wysiwyg/images/home08/4.jpg"}});    background-repeat: no-repeat;    background-size: cover;">
+<div class="figcaption">
+<h2>Lingerie</h2>
+<p>From $80.0</p>
+<a href="#">View more</a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 04, 06 - Footer Bottom</title>
+      <identifier>home0406-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content style-2">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-lg-3 col-md-4 col-xs-12"> 
+<h2 class="logo-text"><a href="index.php">Novetty</a></h2>
+<p>Get the latest fashion tips and outfit ideas from your favorite celebrities and designers.</p>
+<h4 class="zoo-widget-title-sm">Follow Us</h4>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-md-5 col-xs-12 ">
+<div class="newsletters-style-2 text-center"><span class="clever-icon-email-envelope">&zwj;</span>
+<h3>Get all the latest <br /> information on Events,<br /> Sales and Offers.</h3>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}
+<p>Don&rsquo;t worry we don&rsquo;t spam</p>
+</div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-2 col-xs-12 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02,03 - Footer Bottom</title>
+      <identifier>home0203-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content">
+<div class="row row-col-gap equal-height">
+<div class="col-md-4 col-xs-6"> 
+<h2 class="logo-text"><a href="index.php">Novetty</a></h2>
+<p>Contrary to popular belief, Lorem <br />Ipsum is not simply random text. It <br />has roots in a piece of classical Latin<br /> literature from 45 BC, making it over</p>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 08, 10, 11 - Main Menu</title>
+      <identifier>main_menu</identifier>
+      <content><![CDATA[<div>{{widget type="CleverSoft\MegaMenus\Block\Widget\Megamenu" menu="main_menu"}}</div>]]></content>
+      <is_active>1</is_active>
+      <stores>35,36,48,49,50,51</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 01 - Main Menu</title>
+      <identifier>main_menu</identifier>
+      <content><![CDATA[<div class="main-menu menu-style-2">{{widget type="CleverSoft\MegaMenus\Block\Widget\Megamenu" menu="main_menu"}}</div>
+<div class="zoo-customer-service text-right hidden-xs hidden-sm">
+<p>Customer Service: <span style="font-weight: 600;"> (+84) 123-456-789</span></p>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05, 14 - Main Menu</title>
+      <identifier>main_menu</identifier>
+      <content><![CDATA[<div class="top">
+<div class="main-menu">{{widget type="CleverSoft\MegaMenus\Block\Widget\Megamenu" menu="main_menu"}}</div>
+<div class="mini-cart-sticky hidden-sm">{{block class="Magento\Checkout\Block\Cart\Sidebar" name="minicart.sticky" template="Magento_Checkout::cart/minicart.phtml"}}</div>
+<div class="wishlist-sticky hidden-sm">{{block class="Magento\Wishlist\Block\Link" name="wishlist" template="Magento_Wishlist::link.phtml"}}</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>43,44,56,57</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 06 - Main Menu</title>
+      <identifier>main_menu</identifier>
+      <content><![CDATA[<div>{{widget type="CleverSoft\MegaMenus\Block\Widget\Megamenu" menu="main_menu"}}</div>]]></content>
+      <is_active>1</is_active>
+      <stores>37,38,58,59,60,61</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Main Menu</title>
+      <identifier>main_menu</identifier>
+      <content><![CDATA[<div class="main-menu">{{widget type="CleverSoft\MegaMenus\Block\Widget\Megamenu" menu="main_menu"}}</div>]]></content>
+      <is_active>1</is_active>
+      <stores>33,34</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 09 - Image Static</title>
+      <identifier>home09-imagestatic</identifier>
+      <content><![CDATA[<div><a href="#"><img style="width: 100%; height: 483px;" src="{{media url="wysiwyg/images/home09/objects1.jpg"}}" /></a></div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 07 - Static Images </title>
+      <identifier>home07-static-images</identifier>
+      <content><![CDATA[<div class="row">
+<div class="grid">
+<div class="col-xs-12 col-sm-6 padding-sm-right-3">
+<div class="figure effect-bubba"><img src="{{media url="wysiwyg/images/home07/home07-static-img1.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>Lamps</h2>
+</div>
+</div>
+<div class="figure effect-bubba"><img src="{{media url="wysiwyg/images/home07/home07-static-img3.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>Watch</h2>
+</div>
+</div>
+</div>
+<div class="col-xs-12 col-sm-6 padding-sm-left-3">
+<div class="figure effect-bubba"><img src="{{media url="wysiwyg/images/home07/home07-static-img2.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>Accessories</h2>
+</div>
+</div>
+<div class="figure effect-bubba"><img src="{{media url="wysiwyg/images/home07/home07-static-img4.jpg"}}" alt="" />
+<div class="figcaption">
+<h2>Bookcase</h2>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 09 - Image Static Men</title>
+      <identifier>home09-image-static-men</identifier>
+      <content><![CDATA[<p><a href="#"><span class="pic"><img src="{{media url="wysiwyg/images/home09/static-jewelry.jpg"}}" alt="" /> </span></a></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Product - secondary column bottom</title>
+      <identifier>block_product_secondary_bottom</identifier>
+      <content><![CDATA[<div class="feature feature-icon-hover indent first"><span class="ib ic ic-lg ic-plane"></span>
+<p class="no-margin ">We will send this product in 2 days. <a href="#">Read more...</a></p>
+</div>
+<div class="feature feature-icon-hover indent"><span class="ib ic ic-lg ic-phone"></span>
+<p class="no-margin ">Call us now for more info about our products.</p>
+</div>
+<div class="feature feature-icon-hover indent"><span class="ib ic ic-lg ic-reload"></span>
+<p class="no-margin ">Return purchased items and get all your money back.</p>
+</div>
+<div class="feature feature-icon-hover indent last"><span class="ib ic ic-lg ic-star"></span>
+<p class="no-margin ">Buy this product and earn 10 special loyalty points!</p>
+</div>
+<!-- Social bookmarks from http://www.addthis.com/get/sharing  -->
+<p></p>
+<!-- AddThis Button BEGIN -->
+<div class="feature-wrapper top-border">
+<div class="addthis_toolbox addthis_default_style "></div>
+<script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-5054e6c6502d114f" type="text/javascript" xml="space"></script>
+</div>
+<!-- AddThis Button END -->]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Custom Tab 1</title>
+      <identifier>block_product_tab1</identifier>
+      <content><![CDATA[<p>Custom CMS block displayed as a tab. You can use it to display info about returns and refunds, latest promotions etc. You can put your own content here: text, HTML, images - whatever you like. There are <strong>many similar blocks</strong> accross the store. All CMS blocks are editable from the admin panel.</p>
+<div class="feature indent first"><span class="ib ib-hover ic ic-right ic-2x"></span>
+<p class="no-margin"><strong>Magento Community Edition is the most powerful</strong> open source e-commerce software and can be downloaded 100% for free. Developers can modify the core code, add custom features and functionality by installing extensions from Magento Connect marketplace.</p>
+</div>
+<div class="feature indent"><span class="ib ib-hover ic ic-right ic-2x"></span>
+<p class="no-margin"><strong>Manage the fully dynamic catalog</strong> with the intutive admistrative interface. The flexible catalog system includes various options for the display of items. Magento is also integrated with a variety of major payment gateways out of the box.</p>
+</div>
+<div class="feature indent last"><span class="ib ib-hover ic ic-right ic-2x"></span>
+<p class="no-margin"><strong>Magento is a fully global platform</strong>, allowing for the expansion of business or simply offering multiple versions of your site to meet the needs of your customers. Translated into over 60 languages, supporting multiple currencies, payment methods and taxes, Magento allows for internationalization of your online stores.</p>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Customer Service</title>
+      <identifier>zoo-customer-service</identifier>
+      <content><![CDATA[<p>Customer Service: <span style="font-weight: 600;">(+84) 123-456-789</span></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 06 - Footer Bottom</title>
+      <identifier>home06-footerbottom</identifier>
+      <content><![CDATA[<div class="footer-bottom-content style-2">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-md-3 col-xs-4"><img class="footer-image" src="{{media url="wysiwyg/logo_home_6.png"}}" />
+<p>Get the latest fashion tips and outfit ideas <br /> from your favorite celebrities and<br /> designers.</p>
+<h4 class="widget-title-sm">Follow Us</h4>
+<ul class="footer-social-links style-2">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-4 col-xs-4 newsletters-style-2 text-center"><span class="cs-font clever-icon-email-envelope">&zwj;</span>
+<h3>Get all the latest <br /> information on Events,<br /> Sales and Offers.</h3>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}
+<p>Don&rsquo;t worry we don&rsquo;t spam</p>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-3 col-xs-4 collapsible mobile-collapsible">
+<h4 class="widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Main Slide</title>
+      <identifier>home05-main-slide</identifier>
+      <content><![CDATA[<img class="img-responsive" src="{{media url="wysiwyg/images/home05/hom05-slider-1.jpg"}}" alt="" />]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Main Slide 2</title>
+      <identifier>home05-main-slide-2</identifier>
+      <content><![CDATA[<p><img class="img-responsive" src="{{media url="wysiwyg/images/home05/hom05-slider-1.jpg"}}" alt="" /></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 05 - Main Slide 3</title>
+      <identifier>home05-main-slide-3</identifier>
+      <content><![CDATA[<p><img class="img-responsive" src="{{media url="wysiwyg/images/home05/hom05-slider-1.jpg"}}" alt="" /></p>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Footer Bottom</title>
+      <identifier>home02-footerbottom</identifier>
+      <content><![CDATA[<div class="footer-bottom-content"> 
+<div class="row row-col-gap equal-height">
+<div class="col-md-4 col-xs-6"><img class="footer-image" src="{{media url="wysiwyg/mato/logo/logo-home2-01.png"}}" alt="" width="170" height="25" />
+<p>Contrary to popular belief, Lorem <br />Ipsum is not simply random text. It <br />has roots in a piece of classical Latin<br /> literature from 45 BC, making it over</p>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="widget-title-sm">Services</h4>
+<ul class="footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="widget-title-sm">Your Account</h4>
+<ul class="footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 04 - Footer Bottom</title>
+      <identifier>home04-footerbottom</identifier>
+      <content><![CDATA[<div class="footer-bottom-content style-2">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-lg-3 col-md-4 col-xs-12"><img class="footer-image" src="{{media url="wysiwyg/mato/logo/logo-home3.png"}}" />
+<p>Get the latest fashion tips and outfit ideas <br /> from your favorite celebrities and<br /> designers.</p>
+<h4 class="widget-title-sm">Follow Us</h4>
+<ul class="footer-social-links style-2">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-md-5 col-lg-4 col-xs-12 ">
+<div class="newsletters-style-2 text-center">
+<h3>Get all the latest <br /> information on Events,<br /> Sales and Offers.</h3>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}
+<p>Don&rsquo;t worry we don&rsquo;t spam</p>
+</div>
+</div>
+<div class="col-md-1"></div>
+<div class="col-md-3 col-xs-12 collapsible mobile-collapsible">
+<h4 class="widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 03 - Footer Bottom</title>
+      <identifier>home03-footerbottom</identifier>
+      <content><![CDATA[<div class="footer-bottom-content"> 
+<div class="row row-col-gap equal-height">
+<div class="col-md-4 col-xs-6"><img class="footer-image" src="{{media url="wysiwyg/mato/logo/logo-home3.png"}}" alt="" width="170" height="25" />
+<p>Contrary to popular belief, Lorem <br />Ipsum is not simply random text. It <br />has roots in a piece of classical Latin<br /> literature from 45 BC, making it over</p>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="widget-title-sm">Services</h4>
+<ul class="footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="widget-title-sm">Your Account</h4>
+<ul class="footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 02 - Footer Top Content</title>
+      <identifier>home02_footer_top_content</identifier>
+      <content><![CDATA[<!-- newsletter-->
+<p>{{widget type="CleverSoft\CleverBlock\Block\Widget" block_ids="21" block_lg="21,12," block_md="21,12," block_sm="21,12," block_xs="21,12," template="widget/block.phtml" classes="col-lg-6 col-md-6 col-sm=6 col-xs-12"}}</p>
+<!-- End newsletter-->
+<p></p>
+<!-- testimonial -->
+<p>{{widget type="CleverSoft\CleverBlock\Block\Widget" classes="testimonial text-center col-lg-6 col-md-6 col-sm=6 col-xs-12" block_ids="22,23,24" block_lg="22,4,|23,4,|24,4," block_md="22,4,|23,4,|24,4," block_sm="22,4,|23,4,|24,4," block_xs="22,4,|23,4,|24,4," template="widget/block.phtml" scroll="1" autoplaytimeout="5000" enable_bullet="1" col_480="1" col_768="1" col_992="1" column="1"}}</p>
+<!-- End testimonial -->]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 13 - Image Parallax</title>
+      <identifier>home-13-image-parallax</identifier>
+      <content><![CDATA[<div class="zoo-parallax-home13 parallax-13" style="height: 650px">
+<div class="content-parallax">
+<h2>Shade Of The Days</h2>
+<p>Versace Sunglasess Men &amp; Women</p>
+<a class="button" href="#">Shop Now</a></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 13 - Content Static</title>
+      <identifier>home13-content-static</identifier>
+      <content><![CDATA[<div class="service-static clearfix text-center">
+<div class="col-md-4">
+<div class="zoo-bar-content"><span class="cs-font clever-icon-reload">&zwj;</span> <span>24 Hours Free Returns</span></div>
+</div>
+<div class="col-md-4">
+<div class="zoo-bar-content"><span class="cs-font clever-icon-truck">&zwj;</span> <span> Free Shipping Above $50</span></div>
+</div>
+<div class="col-md-4">
+<div class="zoo-bar-content"><span class="cs-font clever-icon-wallet">&zwj;</span> <span>Cash Only Delivery</span></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 10 - Footer Bottom</title>
+      <identifier>home10-footerbottom</identifier>
+      <content><![CDATA[<div class="row zoo-footer-layout-home10">
+<div class="col-md-4 col-sm-4 col-xs-12 col-foot-left">
+<h2 class="logo-text"><a href="{{config path="web/unsecure/base_url"}}"><img src="{{media url="wysiwyg/images/home10/logo-footer.png"}}" alt="" /></a></h2>
+<p>With a goal to become an $8 billion company by 2017 and open 600 stores in the next three years, it&rsquo;ll be exciting to see the company achieve in three years what it initially took 30 years to do.</p>
+<h4 class="zoo-widget-title-sm">Follow Us</h4>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+<div class="col-md-8 col-sm-8 col-xs-12 col-foot-right">
+<div class="newsleter-footer">
+<div class="home-newsletter">
+<div class="newsletters ">
+<h4 class="title_newsletter">Newsletter</h4>
+<div class="subtitle_newsletter">Be the first to know about the latest deals, style updates &amp; more!</div>
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+</div>
+<div class="footer-top-col-group">
+<div class="col-md-4 col-sm-4 col-xs-4">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-4">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 11 - Image Block 1</title>
+      <identifier>home11-imageblock1</identifier>
+      <content><![CDATA[<div class="zoo-widget-style2 zoo-home11-block">
+<div class="block-full">
+<div class="d-flex block-item-right">
+<div class="col-md-6 col-sm-6 col-xs-12 block-1 block-item">
+<div class="block-custom-container">
+<div class="images"><img src="{{media url="wysiwyg/images/home11/block-1.jpg"}}" alt="" /></div>
+<div class="block-custom-content">
+<h2>Reflective Snake Cavendish</h2>
+<p>Shaft measures approximately 4.5" from arch</p>
+<div class="button-link"><a class="button" href="#"> Shop Now </a></div>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12 block-2 block-item">
+<div class="images image-background" style="background-image: url('{{media url="wysiwyg/images/home11/block-2.jpg"}}'); height: 100%;"></div>
+</div>
+</div>
+<div class="d-flex block-item-left">
+<div class="col-md-6 col-sm-6 col-xs-12 block-2 block-item">
+<div class="images image-background" style="background-image: url('{{media url="wysiwyg/images/home11/block-3.jpg"}}'); height: 100%;"></div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12 block-1 block-item">
+<div class="block-custom-container">
+<div class="images"><img src="{{media url="wysiwyg/images/home11/block-4.jpg"}}" alt="" /></div>
+<div class="block-custom-content">
+<h2>Pascal Antique Temperly</h2>
+<p>100% Protection Against Harmful UVA/UVB Rays</p>
+<div class="button-link"><a class="button" href="#">shop now</a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="d-flex block-item-right">
+<div class="col-md-6 col-sm-6 col-xs-12 block-1 block-item">
+<div class="block-custom-container">
+<div class="images"><img src="{{media url="wysiwyg/images/home11/block-5.jpg"}}" alt="" /></div>
+<div class="block-custom-content">
+<h2>Panera Men Watch</h2>
+<p>Water resistant to 50m (165ft: in general, suitable)</p>
+<div class="button-link"><a class="button" href="#">shop now</a></div>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-6 col-xs-12 block-2 block-item">
+<div class="images image-background" style="background-image: url('{{media url="wysiwyg/images/home11/block-6.jpg"}}'); height: 100%;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="zoo-home11-block1 justify-content-around zoo-widget-style2 block-full text-center">
+<div class="block-custom-container">
+<div class="images"><img src="{{media url="wysiwyg/images/home11/block-7.jpg"}}" alt="" /></div>
+<div class="block-custom-content">
+<h2>1461 Ink Blot</h2>
+<p>The 2976 Chelsea boot has been refreshed this<br />season with soft, tumbled Carpathian leather&mdash;our premium...</p>
+<div class="button-link"><a class="button" href="{{store direct_url='women.html'}}"> Shop Now </a></div>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 11 - Footer Bottom</title>
+      <identifier>home11-footerbottom</identifier>
+      <content><![CDATA[<div class="row zoo-footer-layout-home11">
+<div class="col-md-5">
+<h2 class="logo-text"><a href="{{config path="web/unsecure/base_url"}}">novetty</a></h2>
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC. </p>
+
+<div class="newsleter-footer">
+<div class="home-newsletter">
+<div class="newsletters ">
+<h4 class="title_newsletter">Newsletter</h4> 
+{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+</div>
+
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div> 
+ 
+<div class="col-lg-offset-1 col-md-2">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Search Terms</a></li>
+
+</ul>
+</div>
+<div class="col-md-2">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div> 
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 12 - Footer Bottom</title>
+      <identifier>home12-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-home12-footer zoo-footer-bottom-content">
+<div class="row row-col-gap">
+<div class="col-md-4 col-xs-6 col-lg-3">
+<h4 class="zoo-widget-title-sm">About us</h4>
+<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical.</p>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+<div class="col-lg-1"></div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="btn zoo-accordion-footer visible-xs zoo-accordion-show"><span>accordion footer</span></div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 13 - Footer Bottom</title>
+      <identifier>home13-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content zoo-footer-home13">
+<div class="newsletters text-center">
+<h2 class="title_newsletter">Newsletter</h2>
+<div class="subtitle_newsletter">Sign up for email updates to be sale off 20%</div>
+<div class="content">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+<div class="row row-col-gap equal-height">
+<div class="col-md-4 col-xs-6">
+<h2 class="logo-text"><a href="index.php">novetty</a></h2>
+<p>Contrary to popular belief, Lorem <br />Ipsum is not simply random text. It <br />has roots in a piece of classical Latin<br /> literature from 45 BC, making it over</p>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-2 col-xs-6">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 11 - Image Block 2</title>
+      <identifier>home11-imageblock2</identifier>
+      <content><![CDATA[<div class="row zoo-home11-block1 justify-content-around zoo-widget-style2 block-full text-center">
+    <div class="col-sm-4">
+        <div class="block-custom-container">
+            <div class="images"><img src="{{media url="wysiwyg/images/home11/block-8.jpg"}}" alt="" /></div>
+            <div class="block-custom-content">
+                <h5>Heritage Backpack</h5>
+                <div class="button-link"><a class="button" href="#"> Shop Now </a></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="block-custom-container">
+            <div class="images"><img src="{{media url="wysiwyg/images/home11/block-9.jpg"}}" alt="" /></div>
+            <div class="block-custom-content">
+                <h5>Men White Black Leather</h5>
+                <div class="button-link"><a class="button" href="#"> Shop Now </a></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="block-custom-container">
+            <div class="images"><img src="{{media url="wysiwyg/images/home11/block-10.jpg"}}" alt="" /></div>
+            <div class="block-custom-content">
+                <h5>Madison Sunglasses</h5>
+                <div class="button-link"><a class="button" href="#"> Shop Now </a></div>
+            </div>
+        </div>
+    </div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 14 - Footer Bottom</title>
+      <identifier>home14-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content zoo-footer-home14">
+<div class="newsletters text-center">
+<h2 class="title_newsletter">Newsletter</h2>
+<div class="subtitle_newsletter">Be the first to know about the latest deals, style updates &amp; more!</div>
+<div class="content">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+<div class="row row-col-gap equal-height">
+<div class="col-md-3 col-xs-6">
+<ul class="zoo-footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+<li><a href="#">Term &amp; Conditions</a></li>
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Orders and Returns</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<ul class="zoo-footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders and Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<ul class="zoo-footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Method</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<ul>
+<li>Stay connect with us</li>
+</ul>
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li>
+<li>&zwj;</li>
+</ul>
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 14 - Image Block</title>
+      <identifier>home14-imageblock</identifier>
+      <content><![CDATA[<div class="zoo-image-home-14 row d-md-flex flex-nowrap text-center"> 
+	<div class="zoo-image-block padding-0 col-xs-12 col-sm-6">
+		<div class="zoo-image-wrapper">
+			<h3> tortoise</h3>
+			<p>Aark</p>
+		</div>
+		<a class="view-all" href="{{store direct_url="men.html"}}"><img src="{{media url="wysiwyg/images/home14/block-1.png"}}" alt="" /></a> 
+	</div> 
+	<div class="zoo-image-block padding-0 col-xs-12 col-sm-6">
+		<div class="zoo-image-wrapper">
+			<h3> dezeen</h3>
+			<p>Void</p>
+		</div>
+		<a class="view-all" href="{{store direct_url="men.html"}}"><img src="{{media url="wysiwyg/images/home14/block-2.png"}}" alt="" /></a> 
+	</div> 
+	<div class="zoo-image-block padding-0 col-xs-12 col-sm-6">
+		<div class="zoo-image-wrapper">
+			<h3> the bradley</h3>
+			<p>Eone</p>
+		</div>
+		<a class="view-all" href="{{store direct_url="men.html"}}"><img src="{{media url="wysiwyg/images/home14/block-3.png"}}" alt="" /></a> 
+	</div> 
+	<div class="zoo-image-block padding-0 col-xs-12 col-sm-6">
+		<div class="zoo-image-wrapper">
+			<h3> hagen</h3>
+			<p>Skagen</p>
+		</div>
+		<a class="view-all" href="{{store direct_url="men.html"}}"><img src="{{media url="wysiwyg/images/home14/block-4.png"}}" alt="" /></a> 
+	</div> 
+	<div class="zoo-image-block padding-0 col-xs-12 col-sm-6">
+		<div class="zoo-image-wrapper">
+			<h3> klok’ - blue</h3>
+			<p>Kloker</p>
+		</div>
+		<a class="view-all" href="{{store direct_url="men.html"}}"><img src="{{media url="wysiwyg/images/home14/block-5.png"}}" alt="" /></a> 
+	</div> 
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 15 - Footer Bottom</title>
+      <identifier>home15-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content zoo-footer-bottom-home15">
+<div class="row">
+<div class="col-xs-12">
+<div class="content custom-fotter-top">
+<div class="footer-icon-share"> 
+<ul class="zoo-footer-social-links style-4">
+<li><a class="fa fa-facebook" href="#">&zwj;</a></li>
+<li><a class="fa fa-twitter" href="#">&zwj;</a></li>
+<li><a class="fa fa-instagram" href="#">&zwj;</a></li>
+<li><a class="fa fa-google-plus" href="#">&zwj;</a></li> 
+</ul>
+</div>
+</div>
+</div>
+<div class="col-xs-12">
+<ul class="footer-6-link">
+<li><a href="#">Term of Uses </a></li>
+<li><a href="#">Privacy </a></li>
+<li><a href="#">Shipping </a></li>
+<li><a href="#">Policy </a></li>
+</ul>
+</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 15 - Newsletters</title>
+      <identifier>home15-newsletters</identifier>
+      <content><![CDATA[<div class="container">
+<div class="newsletters row">
+<div class="col-md-4">
+<h2>Newsletters</h2>
+<p>Subscribe our newsletter and get discount 20% off</p>
+</div>
+<div class="col-md-offset-2 col-md-6">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="subscribe.phtml"}}</div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 16 - Testimonial 1</title>
+      <identifier>home16-testimonial1</identifier>
+      <content><![CDATA[<div class="text-center container">
+<div class="rte-setting col-md-offset-2 col-md-8">
+<p>Add customer reviews and testimonials to showcase your store&rsquo;s happy customers.</p>
+<cite>Author's name</cite></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 16 - Testimonial 2</title>
+      <identifier>home16-testimonial2</identifier>
+      <content><![CDATA[<div class="text-center container">
+<div class="rte-setting col-md-offset-2 col-md-8">
+<p>I'm absolutely thrilled with the beautiful produce. What a treat to find your box at our door. It means the world to my kids and me. Thank you so much for the delicious fruits and veggies!</p>
+<cite>Sarah Doe</cite></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 16 - Testimonial 3</title>
+      <identifier>home16-testimonial3</identifier>
+      <content><![CDATA[<div class="text-center container">
+<div class="rte-setting col-md-offset-2 col-md-8">
+<p>Add customer reviews and testimonials to showcase your store&rsquo;s happy customers.</p>
+<cite>Author's name</cite></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 16 - Product Image</title>
+      <identifier>home16-product-image</identifier>
+      <content><![CDATA[<div class="col-xs-12 col-sm-7 ">
+<div class="product-sale"><span>Save</span> -8%</div>
+<div class="image"><a href="#"> <img src="{{media url="wysiwyg/images/home16/images-product.jpg"}}" /> </a></div>
+</div>
+<div class="col-xs-12  col-sm-4 col-sm-offset-1 product-shop">
+<div><header class="product-title">
+<h2><a href="#">Fresh Fruits Mix</a></h2>
+</header>
+<div class="prices"><span class="compare-price">$200.00</span> <span class="price on-sale">$184.00</span></div>
+<div class="short-description">
+<p class="home-description">An ice cream sundae would never be seen topless. And a bowl of oatmeal would bore you back.</p>
+<ul>
+<li>Eat More Healthfully.</li>
+<li>We Have Reputation.</li>
+<li>Fresh &amp; Pesticide Free.</li>
+</ul>
+</div>
+<button id="product-add-to-carts" class="btn-novetty ">Shop Now </button></div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 16 - Footer Bottom</title>
+      <identifier>home05-footerbottom</identifier>
+      <content><![CDATA[<div class="zoo-footer-bottom-content zoo-footer-bottom-home16">
+<div class="row row-col-gap footer-bottom-accordion">
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Information</h4>
+<ul class="footer-link">
+<li><a href="{{store direct_url="about-us"}}">About Us</a></li>
+<li><a href="#">Our Service</a></li>
+<li><a href="#">Help Center</a></li>
+<li><a href="#">Our Blog</a></li>
+<li><a href="#">Careers</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Services</h4>
+<ul class="footer-link">
+<li><a href="#">FAQ</a></li>
+<li><a href="#">Orders &amp; Returns</a></li>
+<li><a href="#">Shipping Rates &amp; Policies</a></li>
+<li><a href="#">International Shipping</a></li>
+<li><a href="{{store direct_url="contact"}}">Contact Us</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6 collapsible mobile-collapsible">
+<h4 class="zoo-widget-title-sm">Your Account</h4>
+<ul class="footer-link">
+<li><a href="#">Your Order</a></li>
+<li><a href="#">Your Wishlist</a></li>
+<li><a href="#">Payment Methods</a></li>
+<li><a href="#">Newsletter</a></li>
+<li><a href="#">Information</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-xs-6">
+<h4 class="zoo-widget-title-sm">Newsletter Sign Up</h4>
+<p>Subscribe now and receive a 20% discount on your next shopping.</p>
+<div class="newsletters-style-3 text-center">{{block class="Magento\Newsletter\Block\Subscribe" name="subscribe" as="subscribe" before="-" template="signup.phtml"}}</div> 
+</div>
+</div>
+</div> ]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Top Contact - Home 15</title>
+      <identifier>top_contact</identifier>
+      <content><![CDATA[<div><span class="zoo-top-contact">Free Shipping On Orders Over $59</span></div> ]]></content>
+      <is_active>1</is_active>
+      <stores>58,59</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 17 - Banner 3</title>
+      <identifier>home17-banner3</identifier>
+      <content><![CDATA[<div class="text">FREE SHOPPING on orders $59+</div>
+<div><img src="{{media url="wysiwyg/images/home17/kids-banner-3.png"}}" alt="" /></div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+    <cms_block>
+      <title>Home 17 - Images Block</title>
+      <identifier>home17-images-block</identifier>
+      <content><![CDATA[<div class="row">
+<div class=" col-sm-6 col-xs-12">
+<p><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/images/home17/kids-banner-1.jpg"}}" alt="" /></a></p>
+<div class="wrap-images-block wrap-images-block1">
+<h3>Winter Collection</h3>
+<h2>sale off 50%</h2>
+<a class="btn2" href="#">shop now </a></div>
+</div>
+<div class=" col-sm-6 col-xs-12">
+<p><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/images/home17/kids-banner-2.jpg"}}" alt="" /></a></p>
+<div class="wrap-images-block">
+<h3>Trending Now</h3>
+<h2>SMART &amp; SWEE</h2>
+<a class="btn2" href="#">shop now </a></div>
+</div>
+</div>]]></content>
+      <is_active>1</is_active>
+      <stores>0</stores>
+    </cms_block>
+  </blocks>
+</root>

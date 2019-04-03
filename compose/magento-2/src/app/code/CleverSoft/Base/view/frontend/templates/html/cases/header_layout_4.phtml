@@ -1,0 +1,50 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverBase
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?>
+<?php
+$full_header_width = $block->getData('full_header_width');
+$compareHeader = $block->getData('compare');
+$wishlistHeader = $block->getData('wishlist');
+?>
+
+
+<div class="panel wrapper">
+    <div class="header-panel <?php echo ($full_header_width == 1 ? '' : 'container')?>">
+        <div class="topbar-container">
+            <?php echo $this->getChildHtml("top.contact"); ?>
+            <?php echo $this->getChildHtml("currency"); ?>
+            <?php echo $this->getChildHtml("store_language"); ?>
+        </div>
+    </div>
+</div>
+<div class="header-content <?php echo ($full_header_width == 1 ? '' : 'container')?>">
+    <div class="zoo-header-content-block">
+        <?php echo $this->getChildHtml("top.search"); ?>
+    </div>
+    <div class="zoo-header-content-block">
+        <?php echo $this->getChildHtml("logo"); ?>
+    </div>
+    <div class="zoo-header-content-block">
+        <?php echo $this->getChildHtml("header.links"); ?>
+        <?php echo $this->getChildHtml("custom_block"); ?>
+        <?php echo $this->getChildHtml("minicart"); ?>
+        <?php if ($wishlistHeader) echo $this->getChildHtml("wishlist"); ?>
+        <?php if ($compareHeader) echo $this->getChildHtml("compare_link"); ?>
+    </div>
+</div>
+<div class="top-menu" id="zoo-sticky-header">
+    <div class="<?php echo ($full_header_width == 1 ? '' : 'container')?>">
+        <div class="zoo-menu-content">
+            <?php echo $this->getChildHtml("main.menu"); ?>
+            <?php echo $this->getChildHtml("minicart"); ?>
+            <?php if ($wishlistHeader) echo $this->getChildHtml("wishlist"); ?>
+            <?php if ($compareHeader) echo $this->getChildHtml("compare_link"); ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+@media (min-width: 1200px) {
+    .layout-1200 .container{
+        width: 1200px;
+    }
+}
+@media (min-width: 1440px) {
+    .layout-1440 .container{
+        width: 1440px;
+    }
+}
+@media (min-width: 1680px) {
+    .layout-1680 .container{
+        width: 1680px;
+    }
+}
+@media (min-width: 1920px) {
+    .layout-1920 .container{
+        width: 1920px;
+    }
+}
+.layout-fullwidth .container{
+    width: 100%;
+}

@@ -25,14 +25,14 @@ bin/clinotty bin/magento setup:install \
   --db-user=magento \
   --db-password=magento \
   --base-url=https://$BASE_URL/ \
-  --admin-firstname=John \
-  --admin-lastname=Smith \
-  --admin-email=john.smith@gmail.com \
-  --admin-user=john.smith \
-  --admin-password=password123 \
-  --language=en_US \
-  --currency=USD \
-  --timezone=America/New_York \
+  --admin-firstname=Mathias \
+  --admin-lastname=C \
+  --admin-email=mc@gmail.com \
+  --admin-user=mathias \
+  --admin-password=testpwd1234 \
+  --language=sv_SE \
+  --currency=SEK \
+  --timezone=Europe/Stockholm \
   --use-rewrites=1
 
 echo "Turning on developer mode.."

@@ -1,0 +1,150 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverSocialLogin
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?>
+<?php
+$openPopup = $this->helper('CleverSoft\CleverSocialLogin\Helper\Data');
+if($openPopup->popupEnabled() == 1):
+?>
+    <div id="zoo-login-form" style="display: none">
+        <h1 class="page-title">
+            <span><?php echo __('Customer Login'); ?></span>
+        </h1>
+        <div id="zoo-login-form-popup">
+            <div class="form-login-popup">
+                <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Form\Login")->setTemplate("Magento_Customer::form/login.phtml")->toHtml(); ?>
+                <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Form\Login\Info")->setTemplate("Magento_Customer::newcustomer.phtml")->toHtml(); ?>
+            </div>
+            <?php if($openPopup->positionButtonsLogin() == 'left'): ?>
+                <div class="button-login-left-form col-sm-6 button-login-social">
+            <?php elseif($openPopup->positionButtonsLogin() == 'right'): ?>
+                <div class="button-login-right-form col-sm-6 button-login-social">
+            <?php endif; ?>
+                <?php echo $this->getLayout()->createBlock("CleverSoft\CleverSocialLogin\Block\Buttons")->setTemplate("CleverSoft_CleverSocialLogin::customer/form/login/buttonspopup.phtml")->toHtml(); ?>
+            <?php if($openPopup->positionButtonsLogin() == 'left' || $openPopup->positionButtonsLogin() == 'right'): ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <div id="zoo-register-form" style="display: none">
+        <h1 class="page-title">
+            <span><?php echo __('Create New Customer Account'); ?></span>
+        </h1>
+        <div id="zoo-register-form-popup">
+            <div class="form-register-popup">
+            <?php echo $this->getLayout()->createBlock("Magento\Customer\Block\Form\Register")->setTemplate("Magento_Customer::form/register.phtml")->toHtml(); ?>
+            </div>
+            <?php if($openPopup->positionButtonsRegister() == 'left'): ?>
+                <div class="button-register-left-form col-sm-6 button-register-social">
+            <?php elseif($openPopup->positionButtonsRegister() == 'right'): ?>
+                <div class="button-register-right-form col-sm-6 button-register-social">
+            <?php endif; ?>
+                    <?php echo $this->getLayout()->createBlock("CleverSoft\CleverSocialLogin\Block\Buttons")->setTemplate("CleverSoft_CleverSocialLogin::customer/form/register/buttonspopup.phtml")->toHtml(); ?>
+            <?php if($openPopup->positionButtonsRegister() == 'left' || $openPopup->positionButtonsRegister() == 'right'): ?>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+
+    <script>
+        require(["jquery", "CleverSoft_CleverSocialLogin/js/jquery.fancybox"],function($) {
+            $(document).ready(function() {
+                jQuery('header').find('a').each(function () {
+                    var urlRedirect = $(this).attr('href');
+                    var urlLogin = "customer/account/login";
+                    var urlRegister = "customer/account/create";
+                    if (urlRedirect.indexOf(urlLogin) > -1) {
+                        //change href to '#zoo-login-form'
+                        this.setAttribute('href', '#zoo-login-form');
+                        //Add 'class' to element
+                        jQuery(this).addClass("loginpopup");
+                    }
+                    if (urlRedirect.indexOf(urlRegister) > -1) {
+                        //change href to '#zoo-register-form'
+                        this.setAttribute('href', '#zoo-register-form');
+                        //Add 'class' to element
+                        jQuery(this).addClass("registerpopup");
+                    }
+                });
+
+                jQuery('#zoo-login-form').find('a').each(function () {
+                    var urlRedirect = $(this).attr('href');
+                    var urlRegister = "customer/account/create";
+                    if (urlRedirect.indexOf(urlRegister) > -1) {
+                        //change href to '#zoo-register-form'
+                        this.setAttribute('href', '#zoo-register-form');
+                        //Add 'class' to element
+                        jQuery(this).addClass("registerpopup");
+                    }
+                });
+
+                jQuery('#zoo-register-form').find('a').each(function () {
+                    var urlRedirect = $(this).attr('href');
+                    var urlLogin = "customer/account/login";
+                    if (urlRedirect.indexOf(urlLogin) > -1) {
+                        //change href to '#zoo-login-form'
+                        this.setAttribute('href', '#zoo-login-form');
+                        //Add 'class' to element
+                        jQuery(this).addClass("loginpopup");
+                    }
+                });
+
+                jQuery('.registerpopup').fancybox({
+                    autoSize: false,
+                    width: 600,
+                });
+                jQuery('.loginpopup').fancybox({
+                    autoSize: false,
+                    width: 600,
+                });
+
+                <?php if($openPopup->positionButtonsRegister() == 'bottom'): ?>
+                    jQuery('.pslogin-register-popup').insertBefore('#zoo-register-form .form-register-popup a.action.create.loginpopup');
+                    jQuery('.pslogin-register-popup').before('<p class="hr-login"><span>Or</span></p>');
+                <?php endif; ?>
+                <?php if($openPopup->positionButtonsLogin() == 'bottom'): ?>
+                    jQuery('.pslogin-login-popup').insertBefore('#zoo-login-form .block-new-customer');
+                    jQuery('#zoo-login-form .block-customer-login').append('<p class="hr-login"><span>Or</span></p>');
+                <?php endif; ?>
+
+                <?php if($openPopup->positionButtonsRegister() == 'top'): ?>
+                    jQuery('#zoo-register-form-popup').prepend($('.pslogin-register-popup'));
+                    jQuery('.pslogin-register-popup').append('<p class="hr-login"><span>Or</span></p>');
+                <?php endif; ?>
+                <?php if($openPopup->positionButtonsLogin() == 'top'): ?>
+                    jQuery('.pslogin-login-popup').insertBefore('#zoo-login-form .form-login-popup');
+                    jQuery('.pslogin-login-popup').append('<p class="hr-login"><span>Or</span></p>');
+                <?php endif; ?>
+
+                <?php if($openPopup->positionButtonsLogin() == 'left' && $openPopup->popupEnabled() == 1): ?>
+                    jQuery('#zoo-login-form-popup .button-login-left-form').insertBefore('.form-login-popup');
+                    jQuery('.form-login-popup').addClass('col-sm-6');
+                    jQuery('#zoo-login-form-popup').addClass('login-container-flex');
+                <?php endif; ?>
+                <?php if($openPopup->positionButtonsRegister() == 'left' && $openPopup->popupEnabled() == 1): ?>
+                    jQuery('#zoo-register-form-popup .button-register-left-form').insertBefore('.form-register-popup');
+                    jQuery('.form-register-popup').addClass('col-sm-6');
+                    jQuery('#zoo-register-form-popup').addClass('register-container-flex');
+                <?php endif; ?>
+
+
+                <?php if($openPopup->positionButtonsLogin() == 'right' && $openPopup->popupEnabled() == 1): ?>
+                    jQuery('#zoo-login-form-popup .button-login-right-form').insertAfter('.form-login-popup');
+                    jQuery('.form-login-popup').addClass('col-sm-6');
+                    jQuery('#zoo-login-form-popup').addClass('login-container-flex');
+                <?php endif; ?>
+                <?php if($openPopup->positionButtonsRegister() == 'right' && $openPopup->popupEnabled() == 1): ?>
+                    jQuery('#zoo-register-form-popup .button-register-right-form').insertAfter('.form-register-popup');
+                    jQuery('.form-register-popup').addClass('col-sm-6');
+                    jQuery('#zoo-register-form-popup').addClass('register-container-flex');
+                <?php endif; ?>
+            })
+        });
+    </script>
+<?php endif; ?>

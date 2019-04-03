@@ -1,0 +1,164 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverBlock
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?>
+<?php
+
+$blocks = $block->getBlocks();
+$full_w  = $block->getConfig('enable_fullwidth')?$block->getConfig('enable_fullwidth'):$block->getData('enable_fullwidth');
+$id = $block->getConfig('id') ? $block->getConfig('id') : $block->getData('id');
+$scroll = $block->getConfig('scroll') ? $block->getConfig('scroll') : $block->getData('scroll');
+$title = $block->getConfig('widget_title') ? $block->getConfig('widget_title') : $block->getData('widget_title');
+$lazyload = $block->getData('lazyload');
+if (is_null($lazyload)) $lazyload = 'false';
+$_matoHelper = $this->helper('CleverSoft\Base\Helper\Data');
+$rtl_language = $_matoHelper->getCfg('responsive/rtl_language');
+?>
+<div class="<?php echo $block->getConfig('classes')? $block->getConfig('classes') : $block->getData('classes') ?>" id="<?php echo $id ?>">
+
+    <div class="block zoo-block-widget block-sample clearfix">
+        <?php if ($title): ?>
+            <div class="zoo-main-heading">
+                <div class="zoo-heading-wrapper-title">
+                    <h3><span><?php echo $title ?></span></h3>
+                </div>
+            </div>
+        <?php endif ?>
+
+        <div class="<?php echo $scroll == 1 ? 'owl-carousel ' : 'row' ?>">
+            <?php foreach ($blocks as $block): ?>
+                <div class="<?php echo $scroll == 1 ? 'block-content' : $block['class'] ?>">
+                    <?php echo $block['content'] ?>
+                </div>
+            <?php endforeach ?>
+        </div>
+
+    </div>
+    <?php if($full_w) { ?>
+        <script>
+            jQuery(function ($) {
+                var $left =  jQuery('#<?php echo $id; ?>').offset().left;
+                jQuery('#<?php echo $id; ?>').css({
+                    'left':'-'+$left+'px',
+                    'position':'relative',
+                    'width':$(window).width()+'px'
+                });
+				<?php if($rtl_language) : ?>
+					jQuery('#<?php  echo $id;  ?>').css({'left':'0','right':'-'+$left+'px' });
+				<?php else : ?>
+					jQuery('#<?php  echo $id;  ?>').css({'right':'0','left':'-'+$left+'px' });
+				<?php endif; ?>
+            });
+        </script>
+    <?php } ?>
+    <script>
+
+        require([
+            "CleverSoft_CleverBlock/js/block.frontend",
+            "prototype"
+        ], function (BlockWidget) {
+            jQuery(window).resize(function () {
+                updatesize();
+            });
+
+            function updatesize() {
+                var mediaAspect = 16 / 9;
+                <?php if($this->getData('parallax_video_layout') == 'fullscreen'):?>
+                var windowW = $mt(window).width();
+                var windowH = $mt(window).height();
+
+                var windowAspect = windowW / windowH;
+                if (windowAspect < mediaAspect) {
+                    // taller
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowH * mediaAspect)
+                        .height(windowH);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', 0)
+                        .css('left', -(windowH * mediaAspect - windowW) / 2)
+                        .css('height', windowH);
+                } else {
+                    // wider
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowW)
+                        .height(windowW / mediaAspect);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', -(windowW / mediaAspect - windowH) / 2)
+                        .css('left', 0)
+                        .css('height', windowW / mediaAspect);
+                }
+                <?php endif; ?>
+                <?php if($this->getData('parallax_video_layout') == 'fullwidth'):?>
+                var windowW = $mt(window).width();
+                var windowH =  <?php echo $this->getData('parallax_video_layout_height')?>;
+
+                var windowAspect = windowW / windowH;
+                if (windowAspect < mediaAspect) {
+                    // taller
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowH * mediaAspect)
+                        .height(windowH);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', 0)
+                        .css('left', -(windowH * mediaAspect - windowW) / 2)
+                        .css('height', windowH);
+                } else {
+                    // wider
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowW)
+                        .height(windowH);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', -(windowW / mediaAspect - windowH) / 2)
+                        .css('left', 0)
+                        .css('height', windowW / mediaAspect);
+                }
+                <?php endif; ?>
+                <?php if($this->getData('parallax_video_layout') == 'custom'):?>
+                var windowW = <?php echo $this->getData('parallax_video_layout_width')?>;
+                var windowH =  <?php echo $this->getData('parallax_video_layout_height')?>;
+
+                var windowAspect = windowW / windowH;
+                if (windowAspect < mediaAspect) {
+                    // taller
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowH)
+                        .height(windowH);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', 0)
+                        .css('left', -(windowH * mediaAspect - windowW) / 2)
+                        .css('height', windowH);
+                } else {
+                    // wider
+                    jQuery('#<?php echo $id ?>')
+                        .width(windowW)
+                        .height(windowH);
+                    jQuery('#<?php echo $id ?> video')
+                        .css('top', -(windowW / mediaAspect - windowH) / 2)
+                        .css('left', 0)
+                        .css('height', windowW / mediaAspect);
+                }
+                <?php endif; ?>
+
+            }
+
+            jQuery(document).ready(function () {
+                updatesize();
+                new BlockWidget('<?php echo $id ?>', {
+                    animation: <?php echo $this->getConfig('animation') ? $this->getConfig('animation') : $this->getData('animation') ?>,
+                    parallax: <?php echo $this->getConfig('parallax') ? $this->getConfig('parallax') : $this->getData('parallax') ?>,
+                    carousel: <?php echo $this->getConfig('carousel') ? $this->getConfig('carousel') : $this->getData('carousel') ?>,
+                    carouselConfig: {
+                        lazyload:<?php echo $lazyload; ?>,
+                        lazyEngineSrc:'<?php echo $this->getViewFileUrl('CleverSoft_Base::js/jquery.lazyload.js'); ?>'
+                    },
+                    kenburns: <?php echo $this->getConfig('kenburns') ? $this->getConfig('kenburns') : $this->getData('kenburns') ?>
+                });
+            });
+        });
+    </script>
+</div>

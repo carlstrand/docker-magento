@@ -1,0 +1,119 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverMegaMenus
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+
+$menu = $this->getMenuObject();
+?>
+
+<?php if(count($menu)): ?>
+
+    <?php
+    $type = $menu->getData('type');
+    $cssClass = $menu->getData('css_class');
+    $dropdownAnimation = $menu->getData('dropdown_animation');
+    $items = json_decode($menu->getContent());
+    $categoryTree = $this->getLayout()->createBlock('CleverSoft\MegaMenus\Block\Widget\CatsTree');
+    $uniqId = uniqid('menu-');
+    ?>
+
+    <div class="clever-menu <?php echo ($type == 1)?'clever-vertical-menu':'clever-horizontal-menu' ?> <?php echo $cssClass ?> <?php echo 'clever-'.$dropdownAnimation ?>" id="<?php echo $uniqId ?>">
+        <ul class="clever-mega-menu <?php echo ($type == 1)?'clever-vertical-menu':'clever-horizontal-menu' ?>">
+            <?php $i = 0;foreach($items as $item): ?>
+                <?php
+                $depth = (int)$item->depth;
+                $content = $item->content;
+                $itemType = $item->item_type;
+                if ($itemType == 'category') {
+                    if($content->display_type == 1){
+                        $extra_class = 'clever-mega-menu-nondrop';
+                    } else {
+                        $extra_class = ' slidedown';
+                    }
+                } else {$extra_class = '' ;}
+                ?>
+                <?php echo $this->openTag($items,$i) ?>
+                <?php if($itemType == 'link'|| $itemType =='page'): ?> class="<?php echo $this->getItemCSSClass($items,$i) ?>" >
+                    <?php /* Link */ if (!isset($content->disable_link_this_item) || $content->disable_link_this_item == 0 ) { ?>
+                        <a title="<?php echo $content->label; ?>" class="menu-link" href="<?php echo $itemType == 'page' ? ($block->getBaseUrl().$content->url) : $content->url;  ?>"><?php echo $this->getIcon($content) ?> <?php if(!isset($content->hide_text) || $content->hide_text == 0) { ?><span><?php echo $content->label ?></span><?php } ?></a>
+                    <?php } /* End Link */ ?>
+                <?php elseif($itemType == 'text'): ?>
+                    class="<?php echo $this->getItemCSSClass($items,$i) ?>">
+                    <?php /* Text */ ?>
+                    <?php
+                    $text = $content->content;
+                    $layout = explode(',',$content->layout);
+                    $totalPart = array_sum($layout);
+                    ?>
+                    <div class="<?php echo $content->class ?> clever-mega-menu-container <?php echo (isset($content->width_class))?'clever-mega-menu-width-'.$content->width_class:'' ?>" style=" <?php echo $content->style ?>;width:<?php echo isset($content->width_class) ? $content->width_class : '' ?>">
+                        <?php if($totalPart > 1): ?>
+                            <div class="row">
+                                <?php foreach($layout as $key => $column): ?>
+                                    <div class="col-sm-<?php echo (int)$column*(24/(int)$totalPart); ?>"><?php echo $text[$key] ?></div>
+                                <?php endforeach ?>
+                            </div>
+                        <?php else: ?>
+                            <?php echo $text ?>
+                        <?php endif ?>
+                    </div>
+                    <?php if($content->background): ?>
+                        <img class="clever-mega-menu-image" src="<?php echo $content->background ?>" style="<?php echo $this->getBackgroundStyle($content) ?>"  width="auto" height="auto"/>
+                    <?php endif ?>
+                    <?php /* End Text */ ?>
+                <?php elseif($itemType == 'category'): ?> class="<?php echo $this->getItemCSSClass($items,$i); ?>">
+                    <?php /* Category */ ?>
+                    <?php if($content->label): ?>
+                        <a class="<?php echo ($depth == 0)?'menu-link':'mega-block-title' ?>" href="<?php echo $content->url ?>"><?php echo $this->getIcon($content) ?> <span><?php echo $content->label ?></span></a>
+                    <?php endif ?>
+                    <?php $counter = $categoryTree->getChildrenNodes($content->category); ?>
+                    <?php if($counter > 0 ) { ?>
+                        <ul class="cat-tree clever-mega-menu-sub <?php echo $extra_class;  ?> <?php if(isset($content->hide_sub_menu_mobile) && $content->hide_sub_menu_mobile == 1 ) echo ' hidden-xs' ?>">
+                            <?php
+                            echo $categoryTree->setData('parent_id',$content->category)
+                                ->setData('level',$depth)
+                                ->getHtml('', 'submenu', 0) ?>
+                        </ul>
+                    <?php } ?>
+                    <?php /* End Category */ ?>
+                <?php elseif($itemType == 'row'): ?>
+                    <?php /* Row */ ?>
+                    class="<?php echo $this->getItemCSSClass($items,$i); ?>" style="<?php echo ($content->background)?"background-image:{$content->background}":"" ?> <?php echo $content->style ?>">
+                    <?php /* End Row */ ?>
+                <?php elseif($itemType == 'col'): ?>
+                    <?php /* Col */ ?>
+                    class="<?php echo $this->getItemCSSClass($items,$i); ?>" style="<?php echo $content->style ?>" >
+                    <?php /* End Col */ ?>
+                <?php endif ?>
+
+                <?php echo $this->closeTag($items,$i) ?>
+                <?php $i++; endforeach ?>
+        </ul>
+    </div>
+    <script>
+        require([
+            "jquery",
+            "js/jquery.noconflict",
+            "megamenu",
+            "CleverSoft_Base/js/jquery.lib.min"
+        ],function($){
+            $(function(){
+                <?php if ($type == 1) {?>
+                $("#<?php echo $uniqId; ?> .clever-mega-menu").vmegamenu({
+                    'animation':'<?php echo $dropdownAnimation;?>',
+                    'mm_timeout': 150
+                });
+                <?php } else { ?>
+                $("#<?php echo $uniqId; ?> .clever-mega-menu").megamenu({
+                    'animation':'<?php echo $dropdownAnimation;?>',
+                    'mm_timeout': 150
+                });
+                <?php  } ?>
+            });
+        });
+    </script>
+<?php endif ?>
+

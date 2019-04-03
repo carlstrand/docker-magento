@@ -1,0 +1,135 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverNewsletter
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+
+$helper = $this->helper('CleverSoft\Newsletter\Helper\Data');
+$width = $helper->getCfgWidth();
+$height = $helper->getCfgHeight();
+$backgroundColor = $helper->getCfgBackgroundColor();
+$backgroundImage = $helper->getCfgBackgroundImage();
+$desc = $helper->getCfgIntro();
+$enable = $helper->getCfgEnable();
+$routeName = $block->getRequest()->getRouteName();
+?>
+<?php if ($routeName != 'ajaxcart' && $routeName != 'quickview' && $enable) { ?>
+    <div style="display: none">
+        <style type="text/css">
+            #cboxContent.newsletterbox {
+            <?php if($backgroundImage){?> background-image: url(<?php echo $this->getUrl('pub/media/wysiwyg/mato/newsletter/', ['_secure' => $this->getRequest()->isSecure()]).$backgroundImage;?>);
+            <?php }?> background-position: right top;
+                background-repeat: no-repeat;
+                background-color: <?php echo $backgroundColor;?>;
+                background-size: cover;
+            }
+        </style>
+        <div id="zoo_newsletter" class="block block-subscribe clearfix">
+            <div class="zoo-popup-newsletter-inner">
+                <h2>
+                    <span><?php echo __('Newsletter!') ?></span></strong>
+                </h2>
+                <div class="row-none">
+                    <div class="popup_message">
+                        <h4 class="intro">
+                            <?php echo $desc; ?>
+                        </h4>
+                        <form action="<?php echo $this->getFormActionUrl() ?>" method="post"
+                              id="zoo-newsletter-validate-detail" novalidate
+                              data-mage-init='{"validation": {"errorClass": "mage-error"}}'>
+                            <div class="block-content">
+                                <div class="input-box">
+                                    <input name="email" type="text" id="zoo-newsletter"
+                                           value="<?php echo __('Enter your email address') ?>"
+                                           onclick="this.value=='<?php echo __('Enter your email address') ?>'?this.value='':''"
+                                           onblur="this.value==''?this.value='<?php echo __('Enter your email address') ?>':''"
+                                           class="input-text required-entry validate-email"
+                                           data-validate="{required:true, 'validate-email':true}"/>
+                                </div>
+                                <div class="actions">
+                                    <button type="submit" title="<?php echo __('Subscribe') ?>" class="waves-effect waves-light button">
+                                        <span><span><?php echo __('Subscribe') ?></span></span></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <label class="subcriper_label">
+                        <input type="checkbox">
+                        <?php echo __('Don\'t show this popup again'); ?>
+                    </label>
+                </div>
+                <script>
+                    require([
+                        "jquery",
+                        "js/jquery.noconflict",
+                        "jquery/jquery.cookie",
+                        "CleverSoft_Base/js/jquery.lib.min"
+                    ], function ($) {
+                        //<![CDATA[
+                        $(function () {
+                            isSuccess = $('ul.messages li.success-msg').length;
+                            subscribeFlag = $.cookie('mtNewsletterSubscribeFlag');
+                            function subsSetcookie() {
+                                $.cookie('mtNewsletterSubscribe', 'true', {
+                                    expires: 30,
+                                    path: '/'
+                                });
+                            }
+
+                            $('#zoo_newsletter .subcriper_label input').on('click', function () {
+                                if ($(this).parent().find('input:checked').length) {
+                                    subsSetcookie();
+                                } else {
+                                    $.removeCookie('mtNewsletterSubscribe', {path: '/'});
+                                }
+                            });
+                            $('#zoo_newsletter .input-box button.button').on('click', function () {
+                                var button = $(this);
+                                setTimeout(function () {
+                                    if (!button.parent().find('input#newsletter').hasClass('validation-failed')) {
+                                        $.cookie('mtNewsletterSubscribeFlag', 'true', {
+                                            path: '/'
+                                        });
+                                    }
+                                }, 500);
+                            });
+                            if (!(subscribeFlag && isSuccess) && !$.cookie('mtNewsletterSubscribe')) {
+                                $.colorbox({
+                                    inline: true,
+                                    href: $('#zoo_newsletter'),
+                                    opacity: 0.3,
+                                    speed: 500,
+                                    innerWidth: '<?php echo $width;?>px',
+                                    innerHeight: '<?php echo $height;?>px',
+                                    fixed: true,
+                                    onOpen: function () {
+                                        $('#cboxContent').addClass('newsletterbox');
+                                        $('#cboxLoadingGraphic').addClass('box-loading');
+                                    },
+                                    onComplete: function () {
+                                        setTimeout(function () {
+                                            $('#cboxLoadingGraphic').removeClass('box-loading');
+                                        }, 800);
+                                    },
+                                    onClosed: function () {
+                                        $('#cboxContent').removeClass('newsletterbox');
+                                    }
+                                });
+                            } else {
+                                $.removeCookie('mtNewsletterSubscribeFlag', {path: '/'});
+                                subsSetcookie();
+                            }
+                        });
+                        //]]>
+                    })
+
+                </script>
+            </div>
+        </div>
+    </div>
+<?php } ?>

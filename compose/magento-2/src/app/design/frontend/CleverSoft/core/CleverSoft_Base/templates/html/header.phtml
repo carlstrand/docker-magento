@@ -1,0 +1,184 @@
+<?php
+/**
+ * @category    CleverSoft
+ * @package     CleverBase
+ * @copyright   Copyright © 2017 CleverSoft., JSC. All Rights Reserved.
+ * @author 		ZooExtension.com
+ * @email       magento.cleversoft@gmail.com
+ */
+?>
+<?php
+$compareHeader = $block->getData('compare');
+$wishlistHeader = $block->getData('wishlist');
+$header_type = $this->getConfig('cleversoftbase/header/header_type');
+$full_header_width = $this->getConfig('cleversoftbase/header/full_header_width');
+$stickyEnable = $block->getConfig('cleversoftbase/header/sticky_enable');
+$sticky_logo = $block->getConfig('cleversoftbase/header/sticky_logo');
+$logoSrc = $this->getUrl('pub/media/wysiwyg/mato/logo/', ['_secure' => $this->getRequest()->isSecure(),'_type'=>\Magento\Framework\UrlInterface::URL_TYPE_WEB]).$sticky_logo;
+
+$stickyTitleProduct = $this->getConfig('cleversoftbase/product_page/enable_addtocart_sticky');
+$stickyInfoProduct = $this->getConfig('cleversoftbase/product_page/disable_sticky_info_product');
+$stickyThumbGallery = $this->getConfig('cleversoftbase/product_page/page_layout');
+$custom_css = $this->getConfig('cleversoftbase_custom_css/css_swing_editor/custom_css');
+$custom_css_enable = $this->getConfig('cleversoftbase_custom_css/css_swing_editor/custom_css_enable');
+$pro_box = $this->getConfig('cleversoftbase/responsive/promo_box_enable');
+$pro_text = $this->getConfig('cleversoftbase/responsive/promo_box_text');
+$pro_link = $this->getConfig('cleversoftbase/responsive/promo_box_link');
+$pro_position = $this->getConfig('cleversoftbase/responsive/promo_box_position');
+$this->cssTemplate($custom_css,$custom_css_enable);
+?>
+<?php if($pro_box == 1): ?>
+    <a href="<?php echo $pro_link ? $pro_link : '#' ?>" class="zoo-promo-msg">
+        <div class="zoo-promo-msg-inner">
+            <?php echo $pro_text ? $pro_text : '' ?>
+        </div>
+        <i class="clever-icon-close" id="zoo-promo-msg-close"></i>
+    </a>
+    <script>
+        require([
+            "jquery"
+        ],function(){
+            jQuery(document).ready(function() {
+                jQuery.ajaxSetup({'cache':true});
+                jQuery('.page-wrapper').addClass('<?php echo $pro_position; ?>' );
+                jQuery(document).on("click", "#zoo-promo-msg-close", function(a) {
+                    jQuery('.page-wrapper').removeClass('<?php echo $pro_position; ?>' );
+                    var b = jQuery(this).parent();
+                    return b.slideUp();
+                })
+            });
+        });
+    </script>
+<?php endif; ?>
+<header class="page-header zoo-header-<?php echo $header_type; ?>" id="page-header">
+    <?php if($header_type == 1): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_1.phtml') ?>
+    <?php elseif($header_type == 2): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_2.phtml') ?>
+    <?php elseif($header_type == 3): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_3.phtml') ?>
+    <?php elseif($header_type == 4): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_4.phtml') ?>
+    <?php elseif($header_type == 5): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_5.phtml') ?>
+    <?php elseif($header_type == 6): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_6.phtml') ?>
+    <?php elseif($header_type == 7): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_7.phtml') ?>
+    <?php elseif($header_type == 8): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_8.phtml') ?>
+    <?php elseif($header_type == 9): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_9.phtml') ?>
+    <?php elseif($header_type == 10): ?>
+        <?php echo $block->renderCollection('html/cases/header_layout_10.phtml') ?>
+    <?php endif; ?>
+
+</header>
+<?php if($stickyEnable == 1){?>
+    <script>
+        (function($){
+            $('body').addClass("header<?php echo $header_type; ?>");
+        }(jQuery));
+        require([
+            "jquery",
+            "js/jquery.noconflict",
+            "CleverSoft_Base/js/jquery.lib.min"
+        ],function($){
+            $(window).load(function(){
+                if($(window).width() >= 992){
+                    $("#zoo-sticky-header").sticky({ topSpacing: 0, getWidthFrom: ''});
+
+
+                    $(window).scroll(function (event) {
+                        var scroll = $(this).scrollTop();
+                        var elementOffset = $("#zoo-sticky-header").offset().top;
+                        if (scroll >= elementOffset) {
+                            $(".zoo-header-7 #zoo-sticky-header .zoo-menu-content, .zoo-header-8 #zoo-sticky-header .zoo-menu-content").addClass("container");
+                        }  else {
+                            $(".zoo-header-7 #zoo-sticky-header .zoo-menu-content, .zoo-header-8 #zoo-sticky-header .zoo-menu-content").removeClass("container");
+                        }
+                    });
+                }
+                else{
+                    $("#header-sticky-mobile").sticky({ topSpacing: 0, getWidthFrom: ''});
+                    $(".zoo-header-3 #zoo-sticky-header").sticky({ topSpacing: 0, getWidthFrom: ''});
+                }
+            });
+        });
+    </script>
+<?php }?>
+
+<?php if($stickyTitleProduct == 1){?>
+    <script>
+        require([
+            "jquery",
+            "js/jquery.noconflict"
+        ],function($){
+        	$( document ).ready(function() {
+
+                function addStickyDiv(){
+                    var previousScroll = $(window).scrollTop();
+
+                    $(window).scroll(function (event) {
+                        var scrollTitle = $(this).scrollTop();
+
+                        if (scrollTitle > previousScroll && scrollTitle >= 60) {
+                            <?php if($stickyEnable || true){?>
+                                if($(window).width() >= 992){
+                                    var heightStickymenu = $('#zoo-sticky-header').height();
+                                    $(".nav-title-cart").css("top",heightStickymenu);
+                                }
+                                else{
+                                    var heightStickymobile = $('#header-sticky-mobile').outerHeight();
+                                    $(".nav-title-cart").css("top",heightStickymobile);
+                                }
+                            <?php }?>
+                            $(".nav-title-cart").addClass("nav-title-cart-down");
+                        } else {
+                            $(".nav-title-cart").removeClass("nav-title-cart-down");
+                        }
+                        previousScroll = scrollTitle;
+                    });
+                }
+
+                setTimeout(function(){
+                    addStickyDiv();
+                }, 1000);
+			    
+			});
+        });
+    </script>
+<?php }?>
+<?php if($stickyInfoProduct == 1){?>
+    <script>
+        require([
+            "jquery",
+            "js/jquery.noconflict"
+        ],function($){
+            $(document).ready(function() {
+                if($('.product-info-main').length > 0){
+                    $('.product-info-main').theiaStickySidebar({
+                        additionalMarginTop: 100
+                    });
+                }
+            });
+        });
+    </script>
+<?php }?>
+<?php if($stickyThumbGallery == 'sticky_2'){?>
+    <script>
+        require([
+            "jquery",
+            "js/jquery.noconflict"
+        ],function($){
+            $(document).ready(function() {
+                if($('.gallery-sticky2-image-thumb-col').length > 0){
+                    $('.gallery-sticky2-image-thumb-col').theiaStickySidebar({
+                        additionalMarginTop: 100
+                    });
+                }
+            });
+        });
+    </script>
+<?php }?>
+

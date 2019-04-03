@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="CleverSoft_CleverBlock::widget_content" title="Widget" module="CleverSoft_CleverBlock" sortOrder="55" parent="Magento_Backend::marketing" resource="CleverSoft_CleverBlock::widget" />
+        <add id="CleverSoft_CleverBlock::post" title="Widget List" module="CleverSoft_CleverBlock" sortOrder="0" parent="CleverSoft_CleverBlock::widget_content" action="mtwidget/widget/categories" resource="CleverSoft_CleverBlock::widget"/>
+    </menu>
+</config>
