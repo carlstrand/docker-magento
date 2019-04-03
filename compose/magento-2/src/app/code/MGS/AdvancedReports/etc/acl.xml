@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="MGS_AdvancedReports::advancedreports" title="Advanced Reports" sortOrder="10">
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbycountry" title="Sales By Country" sortOrder="40"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbygroup" title="Sales By Customer Group" sortOrder="50"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbycoupon" title="Sales By Coupon Code" sortOrder="60"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbyproduct" title="Sales By Product" sortOrder="70"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbyhour" title="Sales By Hour" sortOrder="80"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbyday" title="Sales By Day Of Week" sortOrder="90"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesbynewandreturning" title="Sales By New And Returning Customers" sortOrder="100"/>
+                    <resource id="MGS_AdvancedReports::advancedreports_salesreport" title="Sales Report" sortOrder="110"/>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="MGS_AdvancedReports::config_advancedreports" title="Advanced Reports"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,51 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$requestData = $objectManager->get('Magento\Backend\Helper\Data')->prepareFilterString($this->getRequest()->getParam('filter'));
+?>
+<div class="reports-content">
+    <?php echo $block->getChildHtml('grid.filter.form') ?>
+</div>
+<?php echo $block->getGridHtml() ?>
+<script>
+    require([
+        'jquery',
+        'mage/backend/validation',
+        'mage/backend/suggest',
+        'prototype'
+    ], function ($) {
+        $('#filter_form').mage('validation', {errorClass: 'mage-error'});
+        function filterFormSubmit() {
+            var filters = $$('#filter_form input', '#filter_form select');
+            var elements = [];
+            for (var i in filters) {
+                if (filters[i].value && filters[i].value.length && !filters[i].disabled) elements.push(filters[i]);
+            }
+            if ($('#filter_form').valid()) {
+                setLocation('<?php echo $block->getFilterUrl(); ?>filter/' + Base64.encode(Form.serializeElements(elements)) + '/');
+            }
+        }
+
+        window.filterFormSubmit = filterFormSubmit;
+        <?php if(isset($requestData['date_used']) && $requestData['date_used'] != 'custom'): ?>
+        $('.field-from').hide();
+        $('.field-to').hide();
+        $('#sales_report_from').removeClass('required-entry');
+        $('#sales_report_to').removeClass('required-entry');
+        <?php endif; ?>
+        $('#sales_report_date_used').change(function () {
+            if ($(this).val() === 'custom') {
+                $('.field-from').show();
+                $('.field-to').show();
+                $('#sales_report_from').addClass('required-entry');
+                $('#sales_report_to').addClass('required-entry');
+            } else {
+                $('.field-from').hide();
+                $('.field-to').hide();
+                $('#sales_report_from').val('');
+                $('#sales_report_to').val('');
+                $('#sales_report_from').removeClass('required-entry');
+                $('#sales_report_to').removeClass('required-entry');
+            }
+        });
+    });
+</script>

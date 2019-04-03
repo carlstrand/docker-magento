@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <advancedreports>
+            <general_settings>
+                <enabled_google_charts>1</enabled_google_charts>
+            </general_settings>
+        </advancedreports>
+    </default>
+</config>

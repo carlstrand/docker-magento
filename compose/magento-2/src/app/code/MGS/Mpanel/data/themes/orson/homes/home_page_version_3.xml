@@ -1,0 +1,226 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Online Support Home 3</title>
+			<identifier>orson_online_support_home_3</identifier>
+			<content><![CDATA[<div class="service-block" style="border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-help2">&nbsp;</span></div>
+<div class="text">
+<div><strong>ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Free Shipping and Return Home 2</title>
+			<identifier>orson_free_shipping_and_return_home_2</identifier>
+			<content><![CDATA[<div class="service-block" style="border-right: 1px solid #ddd; border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-cart">&nbsp;</span></div>
+<div class="text">
+<div><strong>FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Money Back Guarantee Home 3</title>
+			<identifier>orson_money_back_guarantee_home_3</identifier>
+			<content><![CDATA[<div class="service-block" style="border-right: 1px solid #ddd; border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-piggy">&nbsp;</span></div>
+<div class="text">
+<div><strong>MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Kid Cate</title>
+			<identifier>orson_home_1_kid_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_kid.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Kid Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Men Cate</title>
+			<identifier>orson_home_1_men_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_men.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Man Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Women Cate</title>
+			<identifier>orson_home_1_women_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_women.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Women Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 3 Countdown</title>
+			<identifier>orson_home_3_countdown</identifier>
+			<content><![CDATA[<div class="text-center coming-soon-event"><img class="img-responsive" src="{{media url="wysiwyg/cms_logo.png"}}" alt="" /> <strong style="font-size: 30px;">Men&rsquo;s Line Shirt</strong> <br />
+<p style="font-size: 18px;">Our Products Are Best</p>
+<div class="countdown">
+<div id="timer-table" class="timer">
+<div id="count2" class="numbers" style="padding: 5px 0 0 0;">&nbsp;</div>
+<div><strong id="dday"></strong>DAYS</div>
+<div><strong id="dhour"></strong>HOURS</div>
+<div><strong id="dmin"></strong>MINS</div>
+<div class="last"><strong id="dsec"></strong>SECS</div>
+</div>
+</div>
+<div class="button-text-colour-white"><button class="btn btn-primary btn-lg">Find Out Now</button></div>
+</div>
+<script type="text/javascript" xml="space">
+countdown(2016,12,15,8,20);
+</script>]></script>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 3 Slider</title>
+			<identifier>orson_home_3_slider</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/slider_h3.jpg"}}" alt="" /></div>
+<div><img class="img-responsive" src="{{media url="wysiwyg/slider_h3.jpg"}}" alt="" /></div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page Version 3</title>
+		<identifier>home_page_version_3</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\Slider"}}</div>
+<div class="container padding-top30">
+<div class="row">
+<div class="col-md-8 col-sm-8 col-xs-12 hidden-mobile margin-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_3_fashion_trending" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12 hidden-xs-half margin-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_3_men_white" template="banner.phtml"}}</div>
+</div>
+</div>
+<hr style="margin-top: 10px; margin-bottom: 66px;" />
+<div class="container">
+<div class="center-content desc-center show-cate">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="New Arrivals" view_mode="mode_grid" type_list="new" slider_mode_grid="1" per_row_grid="4" number_show="8"}}</div>
+</div>
+<div class="margin-top40" style="background-image: url('http://m2.magesolution.com/orson/pub/media/wysiwyg/bg_comming_soon.jpg'); background-position: center center; background-size: cover; padding-top: 70px; padding-bottom: 80px;">
+<div class="container">
+<div class="row">
+<div class="col-md-5 pull-right col-lg-4 col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_3_countdown"}}</div>
+</div>
+</div>
+</div>
+<div class="container" style="padding-top: 66px;">
+<div class="center-content show-cate desc-center">{{widget type="MGS\Mpanel\Block\Widget\ProductTabCate" title="Features" category_id="23,24,25" type_list="attribute" attribute_filter_list="featured_product" slider_mode="1" per_row="3" number_show="5"}}</div>
+</div>
+<div class="container">
+<div class="no-border-img" style="padding-top: 47px; padding-bottom: 100px;">{{widget type="MGS\Brand\Block\Widget\Brand" brand_ids="9,10,11,12,13,14,15" view_as="owl_carousel" items="5" image_width="240" image_height="90" autoplay="1" template="widget/default.phtml"}}</div>
+</div>
+<!-- CATEGORY -->
+<div class="bg-center center-content" style="background-image: url('http://m2.magesolution.com/orson/media/mpanel/background/bg_category.jpg'); background-repeat: no-repeat; background-size: cover; padding-top: 66px;">
+<div class="container">
+<div class="title-content margin-bottom50">
+<h2 class="title" style="color: #fff;">SHOP BY CATEGORIES</h2>
+</div>
+<div class="row">
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_women_cate"}}</div>
+<div class="col-md-12 col-xs-12 visible-mobile">
+<div class="separator" style="padding-top: 20px;">&nbsp;</div>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_men_cate"}}</div>
+<div class="col-md-12 col-xs-12 visible-mobile">
+<div class="separator" style="padding-top: 20px;">&nbsp;</div>
+</div>
+<div class="col-md-4 hidden-sm hidden-xs-half col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_kid_cate"}}</div>
+</div>
+</div>
+</div>
+<!-- BLOG -->
+<div class="center-content " style="padding-top: 66px; padding-bottom: 64px;">
+<div class="container">{{widget type="MGS\Blog\Block\Widget\Lastest" title="Blog Updates" number_of_posts="4" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" custom_class="col-xs-12" items="3" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+<!-- SERVICE -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4 no-padding col-sm-12 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_money_back_guarantee_home_3"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_free_shipping_and_return_home_2"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_online_support_home_3"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Orson Home 3 Men White</title>
+			<filename>/b/a/banner_men_h3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-right</text_align>
+			<content><![CDATA[<div class="padding-right35 text-left">
+<div style="font-size: 30px;line-height: 1.1;" class="margin-bottom20">
+<strong style="color: #222;">MAN<em style="color: #ea7b45;">in</em></strong><br>
+<strong style="color: #222;">WHITE</strong>
+</div>
+<a href="#" style="text-decoration: underline;"><strong>SHOP NOW!</strong></a>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_3_men_white</identifier>
+		</item>
+		<item>
+			<title>Orson Home 3 Fashion Trending</title>
+			<filename>/b/a/banner_women_h3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="padding-left35">
+<div style="border-top: 3px solid #000;" class="margin-bottom30">
+<strong style="font-size: 30px; color: #222;">FASHION <em style="color: #ea7b45;">TRENDING</em></strong><br>
+<h5><strong style=" color: #222;">SALE OFF UP TO 70% ON ALL ITEMS</strong></h5>
+</div>
+<a href="#" style="text-decoration: underline;"><strong>SHOP NOW!</strong></a>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_3_fashion_trending</identifier>
+		</item>
+	</promo_banner>
+	
+	<panel_setting>
+		<form_mini_search>
+			<show_categories>0</show_categories>
+		</form_mini_search>
+	</panel_setting>
+	<theme_setting>
+		<general>
+			<header>header_4</header>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[orson_home_3_slider]]></identifier_block>
+		</banner_slider>
+		<blog_config>
+			<blog_layout>2</blog_layout>
+		</blog_config>
+		<portfolio_config>
+			<portfolio_layout>1</portfolio_layout>
+			<portfolio_title>1</portfolio_title>
+			<portfolio_column>4</portfolio_column>
+		</portfolio_config>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#e87b4c]]></theme_color>
+		</general>
+	</color_setting>
+</home>

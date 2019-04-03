@@ -1,0 +1,296 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Home 14 Service 1</title>
+			<identifier>orson_home_14_service_1</identifier>
+			<content><![CDATA[<div class="service-block" style="border-right: 1px solid #ddd; border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-piggy">&nbsp;</span></div>
+<div class="text">
+<div><strong class="color-theme">MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 14 Service 2</title>
+			<identifier>orson_home_14_service_2</identifier>
+			<content><![CDATA[<div class="service-block" style="border-right: 1px solid #ddd; border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-cart">&nbsp;</span></div>
+<div class="text">
+<div><strong class="color-theme">FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 14 Service 3</title>
+			<identifier>orson_home_14_service_3</identifier>
+			<content><![CDATA[<div class="service-block" style="border-top: 1px solid #ddd;">
+<div class="icon color-theme"><span class="pe-7s-help2">&nbsp;</span></div>
+<div class="text">
+<div><strong class="color-theme">ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 14 Title Shop By Category</title>
+			<identifier>orson_home_14_title_shop_by_category</identifier>
+			<content><![CDATA[<div class="center-content">
+<div class="title-content margin-bottom50 text-colour-white">
+<h2 class="title">SHOP BY CATEGORIES</h2>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson  Home 14 Slider</title>
+			<identifier>orson_home_14_slider</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/orson_new_slider_1.jpg"}}" alt="" /></div>
+<div><img class="img-responsive" src="{{media url="wysiwyg/orson_new_slider_2.jpg"}}" alt="" /></div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Orson Home Version 14</title>
+		<identifier>orson_home_page_version_14</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\Slider" animate="3"}}</div>
+<div class="padding-top30">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half padding-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_vintage_jacket" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half padding-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_high_heel" template="banner.phtml"}}</div>
+<div class="col-md-4 col-xs-12 hidden-sm hidden-xs-half padding-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_mini_handbag" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+<div style="padding-top: 53px; padding-bottom: 80px;">
+<div class="container center-content show-cate desc-center">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="New Arrivals" view_mode="mode_grid" type_list="new" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>
+</div>
+<div class="parallax" style="background-image: url('http://magesolution.com/orson/media/mpanel/background/bg_shop_by_category.jpg'); padding-top: 74px; padding-bottom: 80px;">
+<div class="container">
+<div class="row">
+<div class="col-md-3 col-sm-12 col-xs-12">
+<div class="row">
+<div class="col-xs-12 visible-sm visible-xs">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_14_title_shop_by_category"}}</div>
+<div class="col-xs-12 hidden-sm hidden-xs">
+<div class="separator" style="margin-top: 40px; margin-bottom: 43px;">&nbsp;</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-6 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_14_accessories" template="banner.phtml"}}</div>
+<div class="col-xs-12 hidden-sm hidden-xs-half">
+<div class="separator" style="margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+</div>
+<div class="col-md-12 col-xs-12 col-sm-6 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_14_man_category" template="banner.phtml"}}</div>
+</div>
+<div class="col-xs-12 visible-sm visible-xs">
+<div class="separator" style="margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+</div>
+</div>
+<div class="col-md-6 col-sm-8 col-xs-12">
+<div class="hidden-sm hidden-xs">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_14_title_shop_by_category"}}</div>
+{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_14_woman_category" template="banner.phtml"}}
+<div class="visible-xs">
+<div class="separator" style="margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-4 col-xs-12">
+<div class="row">
+<div class="col-xs-12 hidden-sm hidden-xs">
+<div class="separator" style="margin-top: 40px; margin-bottom: 43px;">&nbsp;</div>
+</div>
+<div class="col-xs-12 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_14_handbag" template="banner.phtml"}}</div>
+<div class="col-xs-12 hidden-xs-half">
+<div class="separator" style="margin-top: 10px; margin-bottom: 10px;">&nbsp;</div>
+</div>
+<div class="col-xs-12 col-xs-half">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_14_kids" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="center-content desc-center" style="padding-top: 74px;">
+<div class="container">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Featured Products" view_mode="mode_grid" type_list="attribute" attribute_filter_list="featured_product" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>
+</div>
+<hr style="margin-top: 80px; margin-bottom: 25px;" />
+<div class="no-border-img padding-bottom25">
+<div class="container">{{widget type="MGS\Brand\Block\Widget\Brand" brand_ids="1,2,3,4,5,6" view_as="owl_carousel" items="5" image_width="240" image_height="90" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+<div class="center-content show-cate desc-center" style="background-color: #f8f8f8; padding-top: 76px; padding-bottom: 80px;">
+<div class="container">{{widget type="MGS\Mpanel\Block\Widget\Deals" title="Sale Off" product_id="44,20,19,18,12" hide_add_to_cart="1" per_row="3" slider_mode="1" slider_control="1"}}</div>
+</div>
+<div class="center-content background-date" style="padding-top: 74px; padding-bottom: 80px;">
+<div class="container">{{widget type="MGS\Blog\Block\Widget\Lastest" title="Blog Updates" number_of_posts="4" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" items="3" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4 no-padding col-sm-12 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_14_service_1"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_14_service_2"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_14_service_3"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Orson banner high heel</title>
+			<filename>/h/i/high_heel.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Shop Now]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<p style="color: #a75720;"><strong>20% OFF</strong></p>
+<div style="font-size: 30px; line-height: 0.9; font-weight: 900;"><em>HIGH-HEEL<br><span class="color-theme">ADDICTED</span></em>
+<br><br>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_high_heel</identifier>
+		</item>
+		<item>
+			<title>Orson banner vintage jacket</title>
+			<filename>/v/i/vintage_jacket.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Shop Now]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<p style="color: #7e0016;"><strong>HOT ITEM!</strong></p>
+<div style="font-size: 30px; line-height: 0.9; font-weight: 900;"><em>VINTAGE<br>JACKET</em>
+<br><br>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_vintage_jacket</identifier>
+		</item>
+		<item>
+			<title>Orson banner mini handbag</title>
+			<filename>/m/i/mini_handbag.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Shop Now]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<p><strong>FLASH SALE</strong></p>
+<div style="font-size: 30px; line-height: 0.9; font-weight: 900;"><em><span style="color: #a6571f;">MINI</span><br>HANDBAG</em>
+<br><br>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_mini_handbag</identifier>
+		</item>
+		<item>
+			<title>Orson Home 14 Woman Category</title>
+			<filename>/w/o/women_cate.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Woman Category]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[banner-padding30 btn-white]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_14_woman_category</identifier>
+		</item>
+		<item>
+			<title>Orson Home 14 Kids</title>
+			<filename>/k/i/kid_cate.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Kids]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[banner-padding30 btn-white]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_14_kids</identifier>
+		</item>
+		<item>
+			<title>Orson Home 14 Handbag</title>
+			<filename>/h/a/hand_cate.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Handbag]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[banner-padding30 btn-white]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_14_handbag</identifier>
+		</item>
+		<item>
+			<title>Orson Home 14 Man Category</title>
+			<filename>/m/a/man_cate.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Man Category]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[banner-padding30 btn-white]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_14_man_category</identifier>
+		</item>
+		<item>
+			<title>Orson Home 14 Accessories</title>
+			<filename>/a/c/accessories_cate.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Accessories]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[banner-padding30 btn-white]]></custom_class>
+			<status>1</status>
+			<identifier>orson_home_14_accessories</identifier>
+		</item>
+	</promo_banner>
+	<theme_setting>
+		<general>
+			<header>header_6</header>
+			<footer>footer_2</footer>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[orson_home_14_slider]]></identifier_block>
+		</banner_slider>
+		<custom_style>
+			<style><![CDATA[.products-grid .product-content .product-top .icon-links li button:hover,.desc-center .products-grid .product-content .product-desc .controls .tocart:hover,.desc-center .products-grid .product-content .product-desc .controls .tocart:hover .icon,.widget-latest .item .go-to-detail:hover,.footer .footer-container .middle-footer .contact-box ul li .fa,.scroll-to-top {
+color: #fff;
+}
+.footer .footer-container .middle-footer .footer-box h4 span::after {
+background-color: rgba(255, 255, 255, 0.15);
+}
+.footer .footer-container .middle-footer .footer-box h4::after {
+content:none;
+}
+
+.search-form .form-search .search-select,.search-form .form-search .search-select #select-cat-dropdown,.search-form .form-search {
+	border-color: #000;
+}]]></style>
+		</custom_style>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#7e0016]]></theme_color>
+		</general>
+		<header>
+			<header_custom>1</header_custom>
+			<background_color><![CDATA[#f8f8f8]]></background_color>
+			<search_button_background><![CDATA[#000000]]></search_button_background>
+			<search_button_text><![CDATA[#ffffff]]></search_button_text>
+			<cart_number_background><![CDATA[#6fa2f7]]></cart_number_background>
+			<menu_background><![CDATA[#ffffff]]></menu_background>
+		</header>
+		<main>
+			<main_custom>1</main_custom>
+			<button_text_hover><![CDATA[#ffffff]]></button_text_hover>
+			<button_background_hover><![CDATA[#7e0016]]></button_background_hover>
+			<button_border_hover><![CDATA[#7e0016]]></button_border_hover>
+			<primary_button_text><![CDATA[#ffffff]]></primary_button_text>
+			<primary_button_text_hover><![CDATA[#ffffff]]></primary_button_text_hover>
+			<primary_button_background><![CDATA[#7e0016]]></primary_button_background>
+			<primary_button_background_hover><![CDATA[#7e0016]]></primary_button_background_hover>
+			<primary_button_border><![CDATA[#7e0016]]></primary_button_border>
+			<primary_button_border_hover><![CDATA[#7e0016]]></primary_button_border_hover>
+			<secondary_button_text_hover><![CDATA[#ffffff]]></secondary_button_text_hover>
+			<secondary_button_background_hover><![CDATA[#7e0016]]></secondary_button_background_hover>
+			<secondary_button_border_hover><![CDATA[#7e0016]]></secondary_button_border_hover>
+		</main>
+		<footer>
+			<footer_custom>1</footer_custom>
+			<top_link_color_hover><![CDATA[#ffffff]]></top_link_color_hover>
+			<top_link_color><![CDATA[#aaaaaa]]></top_link_color>
+			<middle_link_color_hover><![CDATA[#878787]]></middle_link_color_hover>
+			<bottom_border_color><![CDATA[#dddddd]]></bottom_border_color>
+		</footer>
+	</color_setting>
+</home>

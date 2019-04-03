@@ -1,0 +1,282 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Home 4 Brand</title>
+			<identifier>orson_home_4_brand</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Brand\Block\Widget\Brand" title="Our Clients" brand_ids="8,9,10,11,12,13,14,15" view_as="owl_carousel" items="5" image_width="240" image_height="90" autoplay="1" stop_on_hover="1" navigation="1" template="widget/default.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 3</title>
+			<identifier>orson_home_4_service_block_3</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-help2" style="color: #4285f4;">&nbsp;</span></div>
+<div class="text">
+<div><strong>ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 2</title>
+			<identifier>orson_home_4_service_block_2</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-cart" style="color: #ea4335;">&nbsp;</span></div>
+<div class="text">
+<div><strong>FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Service Block 1</title>
+			<identifier>orson_home_4_service_block_1</identifier>
+			<content><![CDATA[<div class="service-block inline" style="background: #f4f4f4;">
+<div class="icon"><span class="pe-7s-piggy" style="color: #33a752;">&nbsp;</span></div>
+<div class="text">
+<div><strong>MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Newsletter</title>
+			<identifier>orson_home_4_newsletter</identifier>
+			<content><![CDATA[<div class="sidebar-newsletter" style="margin-top: -47px;">
+<div class="title-content margin-bottom15">
+<h3 class="title">SUBSCRIBE US!</h3>
+</div>
+<div class="margin-bottom25">Keep up on our always evolving product features and technology. Enter your e-mail and subscribe to our newsletter.</div>
+{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe-sidebar.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Slider Banner</title>
+			<identifier>orson_home_4_slider_banner</identifier>
+			<content><![CDATA[<div id="banner-owl">
+<div class="item"><img class="img-responsive" src="{{media url="wysiwyg/banner_owl.jpg"}}" alt="" /></div>
+<div class="item"><img class="img-responsive" src="{{media url="wysiwyg/banner_owl_2.jpg"}}" alt="" /></div>
+</div>
+<script type="text/javascript" xml="space">
+sliderBanner('#banner-owl');
+</script>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Why Choose Us</title>
+			<identifier>orson_home_4_why_choose_us</identifier>
+			<content><![CDATA[<div id="banner-owl">
+<div class="item"><img class="img-responsive" src="{{media url="wysiwyg/banner_owl.jpg"}}" alt="" /></div>
+<div class="item"><img class="img-responsive" src="{{media url="wysiwyg/banner_owl_2.jpg"}}" alt="" /></div>
+</div>
+<script type="text/javascript" xml="space">sliderBanner('#banner-owl');]></script>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Testimonials</title>
+			<identifier>orson_home_4_testimonials</identifier>
+			<content><![CDATA[<div class="block-title">
+<h3 class="title"><span>Testimonials</span></h3>
+</div>
+<div>{{block class="MGS\Testimonial\Block\Testimonial" testimonials_count="3" row="1" nav="true" dots="false" autoplay="false" template="slide.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Post Sidebar</title>
+			<identifier>orson_home_4_post_sidebar</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Blog\Block\Widget\Lastest" title="Recent Post" number_of_posts="3" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" view_as="list" template="widget/default.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 New Arrivals</title>
+			<identifier>orson_home_4_new_arrivals</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="New Arrivals" view_mode="mode_grid" type_list="new" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Top Rate</title>
+			<identifier>orson_home_4_top_rate</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Top Rated" view_mode="mode_list" type_list="top_rate" number_show="3"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Featured Product</title>
+			<identifier>orson_home_4_featured</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\ProductList" title=" Featured" view_mode="mode_list" type_list="attribute" attribute_filter_list="featured_product" number_show="3"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 On Sale</title>
+			<identifier>orson_home_4_on_sale</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="On Sale" view_mode="mode_list" type_list="sale" number_show="3"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 4 Accessories</title>
+			<identifier>orson_home_4_accessories</identifier>
+			<content><![CDATA[<div>{{widget type="Magento\CatalogWidget\Block\Product\ProductsList" title="Accessories" per_row="4" products_count="7" template="product/widget/content/grid_slider.phtml" conditions_encoded="a:2:[i:1;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Combine`;s:10:`aggregator`;s:3:`all`;s:5:`value`;s:1:`1`;s:9:`new_child`;s:0:``;]s:4:`1--1`;a:4:[s:4:`type`;s:50:`Magento|CatalogWidget|Model|Rule|Condition|Product`;s:9:`attribute`;s:12:`category_ids`;s:8:`operator`;s:2:`==`;s:5:`value`;s:1:`4`;]]"}}</div>]]></content>
+		</item>
+	</static_block>
+	<cms_page>
+		<title>Home Page Version 4</title>
+		<identifier>home-page-version-4</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- SECTION 1 -->
+<div class="padding-top20">
+<div class="container">
+<div class="row"><!-- SEPARATOR -->
+<div class="col-md-3 hidden-sm hidden-xs col-xs-12">&nbsp;</div>
+<!-- SLIDER HOME -->
+<div class="col-md-9 col-xs-12">{{widget type="MGS\Mpanel\Block\Widget\Slider"}}</div>
+</div>
+</div>
+</div>
+<!-- SECTION 2 -->
+<div class="padding-top20" style="padding-bottom: 50px;">
+<div class="container">
+<div class="row"><!-- COL LEFT -->
+<div class="col-md-3 col-sm-12 col-xs-12">
+<div class="row"><!-- SEPARATOR -->
+<div class="col-md-12 col-xs-12 visible-sm visible-xs">
+<div class="separator" style="padding-top: 27px;">&nbsp;</div>
+</div>
+<!-- NEWSLETTER -->
+<div class="col-xs-12 margin-bottom30">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_newsletter"}}</div>
+<!-- SLIDER BANNER -->
+<div class="col-md-12 owl-bottom-text col-sm-5 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_slider_banner"}}</div>
+<!-- SEPARATOR -->
+<div class="col-md-12 col-xs-12 hidden-sm">
+<div class="separator padding-top30">&nbsp;</div>
+</div>
+<!-- WHY CHOOSE US -->
+<div class="col-md-12 col-xs-12 col-sm-7">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_why_choose_us"}}</div>
+<!-- SEPARATOR -->
+<div class="col-md-12 col-xs-12">
+<div class="separator" style="margin-top: 15px; margin-bottom: 21px;">&nbsp;</div>
+</div>
+<!-- TESTIMONIALS -->
+<div class="col-md-12 testimo-sidebar owl-bottom-text col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_testimonials"}}</div>
+<!-- SEPARATOR -->
+<div class="col-md-12 col-xs-12 hidden-sm">
+<div class="separator padding-top30">&nbsp;</div>
+</div>
+<!-- RECENT POST -->
+<div class="col-md-12 col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_post_sidebar"}}</div>
+</div>
+</div>
+<!-- COL RIGHT -->
+<div class="col-md-9 col-xs-12">
+<div class="row"><!-- SEPARATOR -->
+<div class="col-xs-12 visible-sm visible-xs">
+<div class="separator padding-top20">&nbsp;</div>
+</div>
+<!-- BANNER SHOPPING AT HOME -->
+<div class="col-sm-6 col-xs-12">
+<div class="padding-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="home_4_shopping_at_home" template="banner.phtml"}}</div>
+</div>
+<!-- BANNER MEN'S FASHION -->
+<div class="col-sm-6 col-xs-12">
+<div class="padding-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="home_4_men_fashion" template="banner.phtml"}}</div>
+</div>
+<!-- NEW ARRIVALS -->
+<div class="col-md-12 owl-top-text col-xs-12 icon-horizontal">
+<div class="padding-bottom30 padding-top25">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_new_arrivals"}}</div>
+</div>
+<!-- SERVICE BLOCK 1 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_1"}}</div>
+<!-- SERVICE BLOCK 2 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_2"}}</div>
+<!-- SERVICE BLOCK 3 -->
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_service_block_3"}}</div>
+<!-- FEATURED PRODUCT -->
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="padding-bottom30 padding-top10">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_featured"}}</div>
+</div>
+<!-- TOP RATE -->
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="padding-bottom30 padding-top10">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_top_rate"}}</div>
+</div>
+<!-- ON SALE -->
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div class="padding-bottom30 padding-top10">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_on_sale"}}</div>
+</div>
+<!-- BANNER SAVE MONEY -->
+<div class="col-xs-12">
+<div class="padding-top10 padding-bottom30">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="home_4_banner_save" template="banner.phtml"}}</div>
+</div>
+<!-- ACCESSORIES -->
+<div class="col-md-12 owl-top-text col-xs-12 icon-horizontal">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_accessories"}}</div>
+<!-- BRAND -->
+<div class="col-md-12 owl-top-text col-xs-12">
+<div class="padding-top30">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_4_brand"}}</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Orson Home 4 Save Time</title>
+			<filename>/b/a/banner_save_your_time.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>top-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home_4_banner_save</identifier>
+		</item>
+		<item>
+			<title>orson Home 4 Men Fashion</title>
+			<filename>/b/a/banner_h4_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[<div class="padding-left30"><strong style="font-weight: 900; color: #212121;" class="h2">MEN'S</strong><br>
+<strong style="font-weight: 900; color: #841f28;" class="h2">FASHION</strong><br>
+<span>Be a real man!</span>
+<br><br>
+<a href="#"><strong>SHOP NOW!</strong></a>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home_4_men_fashion</identifier>
+		</item>
+		<item>
+			<title>Orson Home 4 Shopping at home</title>
+			<filename>/b/a/banner_h4_1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-right</text_align>
+			<content><![CDATA[<div class="padding15 text-left">
+<strong style="font-weight: 900; color: #528dae;" class="h2">SHOPPING</strong><br>
+<strong style="font-weight: 900; color: #212121;" class="h2">AT HOME</strong><br>
+<span>Stay at home &amp; get your<br> favorite items</span>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>home_4_shopping_at_home</identifier>
+		</item>
+	</promo_banner>
+	
+	<theme_setting>
+		<general>
+			<header>header_2</header>
+			<sticky_menu>0</sticky_menu>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[orson_slider_home_2]]></identifier_block>
+		</banner_slider>
+		<blog_config>
+			<blog_layout>1</blog_layout>
+			<blog_img>1</blog_img>
+		</blog_config>
+		<portfolio_config>
+			<portfolio_layout>1</portfolio_layout>
+			<portfolio_title>0</portfolio_title>
+			<portfolio_column>2</portfolio_column>
+		</portfolio_config>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#34a853]]></theme_color>
+		</general>
+		<header>
+			<header_custom>1</header_custom>
+			<search_input_border><![CDATA[#34a853]]></search_input_border>
+		</header>
+	</color_setting>
+</home>

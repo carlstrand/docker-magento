@@ -1,0 +1,207 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson menu Footer 4</title>
+			<identifier>orson_footer_4_menu</identifier>
+			<content><![CDATA[<ul>
+<li><a href="#">HOME</a></li>
+<li><a href="#">ABOUT US</a></li>
+<li><a href="#">OUR PRODUCTS</a></li>
+<li><a href="#">OUR BRANDS</a></li>
+<li><a href="#">BLOG</a></li>
+<li><a href="#">FAQS</a></li>
+<li><a href="#">CONTACT US</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Orson Logo Footer 4</title>
+			<identifier>orson_footer_4_logo</identifier>
+			<content><![CDATA[<div class="logo-footer"><img class="img-resposive" src="{{media url="wysiwyg/footer_logo_white.png"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 8 Banner Slider</title>
+			<identifier>orson_home_8_banner_slider</identifier>
+			<content><![CDATA[<div><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/slider_orson_h8_1.jpg"}}" alt="" /></a></div>
+<div><a href="#"><img class="img-responsive" src="{{media url="wysiwyg/slider_orson_h8_1.jpg"}}" alt="" /></a></div>]]></content>
+		</item>
+		<item>
+			<title>orson Home 8 Title Post Block</title>
+			<identifier>orson_home_8_title_post_block</identifier>
+			<content><![CDATA[<div class="text-center title-boder">
+<div class="title-content">
+<h2 class="title">From Our Blog</h2>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 8 Title New Block</title>
+			<identifier>orson_home_8_title_new_block</identifier>
+			<content><![CDATA[<div class="text-center title-boder">
+<div class="title-content">
+<h2 class="title">NEW ARRIVALS</h2>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 8 Sale Block 2</title>
+			<identifier>orson_home_8_sale_block_2</identifier>
+			<content><![CDATA[<div class="sale-hot"><span class="label-hot">HOT</span>
+<div class="sale-percent color-theme">-50%</div>
+<div class="text">
+<p><strong>ALL ITEMS LAST SEASON</strong></p>
+<span>Ut id massa ligula. Vestibulum ultrices malesuada lorem, in maximus tellus lobortis bibendum.</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Service Block 8_3</title>
+			<identifier>orson_service_block_8_3</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #34a853;">
+<div class="icon"><span class="pe-7s-help2" style="color: #fff;">&nbsp;</span></div>
+<div class="text">
+<div><strong style="color: #fff;">ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px; color: #fff;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Service Block 8_2</title>
+			<identifier>orson_service_block_8_2</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #34a853;">
+<div class="icon"><span class="pe-7s-cart" style="color: #fff;">&nbsp;</span></div>
+<div class="text">
+<div><strong style="color: #fff;">FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px; color: #fff;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Service Block 8_1</title>
+			<identifier>orson_service_block_8_1</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #34a853;">
+<div class="icon"><span class="pe-7s-piggy" style="color: #fff;">&nbsp;</span></div>
+<div class="text">
+<div><strong style="color: #fff;">MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px; color: #fff;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 8 Sale Block 1</title>
+			<identifier>orson_home_8_sale_block_1</identifier>
+			<content><![CDATA[<div class="sale-hot"><span class="label-hot">HOT</span>
+<div class="sale-percent color-theme">-40%</div>
+<div class="text">
+<p><strong>WOMAN&rsquo;S TANKTOP &amp; CROPTOP</strong></p>
+<span>Ut id massa ligula. Vestibulum ultrices malesuada lorem, in maximus tellus lobortis bibendum.</span></div>
+</div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Orson Home Version 8</title>
+		<identifier>orson_home_page_version_8</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- BANNER -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-xs-12 no-padding">{{widget type="MGS\Mpanel\Block\Widget\Slider" animate="1"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12 no-padding">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_home_8_1" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12 no-padding">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_home_8_2" template="banner.phtml"}}</div>
+<div class="col-md-4 col-sm-4 col-xs-12 no-padding">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_home_8_3" template="banner.phtml"}}</div>
+</div>
+</div>
+<!-- NEW ARRIVALS -->
+<div style="padding-top: 36px;">
+<div class="container">
+<div class="margin-bottom30">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_8_title_new_block"}}</div>
+<div class="icon-horizontal">{{widget type="MGS\Mpanel\Block\Widget\ProductList" view_mode="mode_grid" type_list="new" per_row_grid="4" number_show="8"}}</div>
+</div>
+</div>
+<!-- SALE -->
+<div style="padding-top: 10px; padding-bottom: 20px;">
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-12 margin-bottom20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_8_sale_block_1"}}</div>
+<div class="col-md-6 col-sm-6 col-xs-12 margin-bottom20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_8_sale_block_2"}}</div>
+</div>
+</div>
+</div>
+<!-- TESTIMONIALS -->
+<div style="background-color: #f6f5f5; padding-top: 56px; padding-bottom: 58px;">
+<div class="container">
+<div class="testimonials-center">{{block class="MGS\Testimonial\Block\Testimonial" testimonials_count="3" row="1" nav="true" dots="false" autoplay="false" template="slide.phtml"}}</div>
+</div>
+</div>
+<!-- BLOG -->
+<div style="padding-top: 36px; padding-bottom: 44px;">
+<div class="container">
+<div class="margin-bottom30">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_8_title_post_block"}}</div>
+<div>{{widget type="MGS\Blog\Block\Widget\Lastest" number_of_posts="5" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="200" view_as="owl_carousel" items="3" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+</div>
+<!-- SERVICE -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4 col-sm-6 col-xs-12 no-padding">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_service_block_8_1"}}</div>
+<div class="col-md-4 col-sm-6 col-xs-12 no-padding">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_service_block_8_2"}}</div>
+<div class="col-md-4 col-sm-12 col-xs-12 no-padding">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_service_block_8_3"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Orson Banner Home 8_3</title>
+			<filename>/b/a/banner_h8_3.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_home_8_3</identifier>
+		</item>
+		<item>
+			<title>Orson Banner Home 8_2</title>
+			<filename>/b/a/banner_h8_2.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_home_8_2</identifier>
+		</item>
+		<item>
+			<title>Orson Banner Home 8_1</title>
+			<filename>/b/a/banner_h8_1.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[type1]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_home_8_1</identifier>
+		</item>
+	</promo_banner>
+	<theme_setting>
+		<general>
+			<header>header_9</header>
+			<footer>footer_4</footer>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[orson_home_8_banner_slider]]></identifier_block>
+		</banner_slider>
+		<custom_style>
+			<style><![CDATA[.vertical-menu-home .menu-content a.level0 .icon-next .fa-plus:before{content:"\f105";font-size: 14px;color: #222;}
+.service-block:hover {
+    background-color: #32a051 !important;
+}]]></style>
+		</custom_style>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#34a853]]></theme_color>
+		</general>
+	</color_setting>
+</home>

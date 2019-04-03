@@ -1,0 +1,216 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Home 6 Service Block Box 1</title>
+			<identifier>orson_home6_service_block_box_1</identifier>
+			<content><![CDATA[<div class="service-block box">
+<div class="icon"><span class="pe-7s-piggy" style="color: #33a752;">&nbsp;</span></div>
+<div class="text">
+<div><strong>MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Slider</title>
+			<identifier>orson_home-6_slider</identifier>
+			<content><![CDATA[<div><img class="img-responsive" src="{{media url="wysiwyg/orson_home_6_slider.jpg"}}" alt="" /></div>
+<div><img class="img-responsive" src="{{media url="wysiwyg/orson_home_6_slider2.jpg"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Testimonials</title>
+			<identifier>orson_home_6_testimonials</identifier>
+			<content><![CDATA[<div class="owl-bottom-text testimo-sidebar no-images">
+<div class="block-title">
+<h3 class="title"><span>Reviews</span></h3>
+</div>
+<div>{{block class="MGS\Testimonial\Block\Testimonial" testimonials_count="3" row="1" nav="true" dots="false" autoplay="false" template="slide.phtml"}}</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Our Service</title>
+			<identifier>orson_home_6_our_service</identifier>
+			<content><![CDATA[<div class="block-title">
+<h3 class="title"><span>Our Service</span></h3>
+</div>
+<ul class="service-list">
+<li><span class="icon color-theme pe-7s-shopbag">&nbsp;</span> <strong>DEDICATED SERVICE</strong><br /> Consult our specialists for help with an order, customization, or design advice ... <a class="color-theme" href="#">Get In Touch</a></li>
+<li><span class="icon color-theme pe-7s-repeat">&nbsp;</span> <strong>FREE RETURNS</strong><br /> Consult our specialists for help with an order, customization, or design advice ... <a class="color-theme" href="#">Get In Touch</a></li>
+<li style="border: none;"><span class="icon color-theme pe-7s-world">&nbsp;</span> <strong>INTERNATIONAL SHIPPING</strong><br /> Consult our specialists for help with an order, customization, or design advice ... <a class="color-theme" href="#">Get In Touch</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Men Category</title>
+			<identifier>orson_home_6_men_category</identifier>
+			<content><![CDATA[<div class="hot-cate">
+<div class="block-title">
+<h3 class="title"><span>Men Category</span></h3>
+<span class="hot">HOT</span></div>
+<div class="padding-left40 padding-right40">
+<div class="row">
+<div class="col-sm-6 col-xs-12 col-xs-half"><img class="img-responsive" src="{{media url="wysiwyg/hot_men_cate.jpg"}}" alt="" /></div>
+<div class="col-sm-6 col-xs-12 col-xs-half">
+<div class="padding-bottom20 padding-top15">
+<div class="margin-bottom15">Aliquam quis tincidunt quam. Aliquam et ligula eu est luctus malesuada. Aliquam varius dui eget.</div>
+<ul>
+<li><a href="#">Bags &amp; Accessories</a></li>
+<li><a href="#">Men&rsquo;s Products</a></li>
+<li><a href="#">Women&rsquo;s Products</a></li>
+<li><a href="#">Top Brands</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Women Category</title>
+			<identifier>orson_home_6_women_category</identifier>
+			<content><![CDATA[<div class="hot-cate">
+<div class="block-title">
+<h3 class="title"><span>Women Category</span></h3>
+<span class="hot">HOT</span></div>
+<div class="padding-left40 padding-right40">
+<div class="row">
+<div class="col-sm-6 col-xs-12 col-xs-half"><img class="img-responsive" src="{{media url="wysiwyg/hot_women_cate.jpg"}}" alt="" /></div>
+<div class="col-sm-6 col-xs-12 col-xs-half">
+<div class="padding-top15 padding-bottom20">
+<div class="margin-bottom15">Aliquam quis tincidunt quam. Aliquam et ligula eu est luctus malesuada. Aliquam varius dui eget.</div>
+<ul>
+<li><a href="#">Bags &amp; Accessories</a></li>
+<li><a href="#">Men&rsquo;s Products</a></li>
+<li><a href="#">Women&rsquo;s Products</a></li>
+<li><a href="#">Top Brands</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Welcome To Orson</title>
+			<identifier>orson_home6_welcome_to_orson</identifier>
+			<content><![CDATA[<div class="text-center">
+<div style="font-size: 42px; margin-bottom: 14px; font-weight: 300; color: #fff;">Welcome you to <span class="color-theme">Orson</span> Store!</div>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sit amet arcu id enim<br /> feugiat posuere quis non lorem. Pellentesque tristique bibendum elit,</p>
+{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe-center.phtml"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Service Block Box 3</title>
+			<identifier>orson_home6_service_block_box_3</identifier>
+			<content><![CDATA[<div class="service-block box">
+<div class="icon"><span class="pe-7s-help2" style="color: #4185f3;">&nbsp;</span></div>
+<div class="text">
+<div><strong>ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 6 Service Block Box 2</title>
+			<identifier>orson_home6_service_block_box_2</identifier>
+			<content><![CDATA[<div class="service-block box">
+<div class="icon"><span class="pe-7s-cart" style="color: #ea4334;">&nbsp;</span></div>
+<div class="text">
+<div><strong>FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Orson Home Version 6</title>
+		<identifier>orson_home_page_version_6</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- SECTION 1 -->
+<div>{{widget type="MGS\Mpanel\Block\Widget\Slider" animate="3"}}</div>
+<!-- SECTION 2 -->
+<div class="padding-top20">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home6_service_block_box_1"}}</div>
+<div class="col-md-4 col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home6_service_block_box_2"}}</div>
+<div class="col-md-4 col-sm-12 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home6_service_block_box_3"}}</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-6">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_6_banner_1" template="banner.phtml"}}</div>
+<div class="col-md-6 col-sm-6 col-xs-6">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_home_6_banner_2" template="banner.phtml"}}</div>
+</div>
+</div>
+<div class="owl-top-text icon-horizontal" style="padding-top: 31px; padding-bottom: 40px;">
+<div class="container">{{widget type="MGS\Mpanel\Block\Widget\ProductTabAttr" type_list_tab_attr="featured_product,new,sale" slider_mode="1" per_row="4" number_show="6"}}</div>
+</div>
+<div class="bg-center" style="background-image: url('http://magesolution.com/orson/media/mpanel/background/bg_welcome.jpg'); background-repeat: no-repeat; background-size: cover; padding-top: 64px; padding-bottom: 80px;">
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home6_welcome_to_orson"}}</div>
+</div>
+<div style="padding-bottom: 34px;">
+<div class="container">
+<div class="row">
+<div class="col-md-6 col-sm-12 col-xs-12 padding-top40">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_6_women_category"}}</div>
+<div class="col-md-6 col-sm-12 col-xs-12 padding-top40">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_6_men_category"}}</div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-4 col-xs-12 post-sidebar owl-top-text">{{widget type="MGS\Blog\Block\Widget\Lastest" number_of_posts="3" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" title="From The Blog" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" items="1" autoplay="1" template="widget/default.phtml"}}
+<div class="separator visible-xs" style="margin-top: 20px; margin-bottom: 20px;">&nbsp;</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_6_our_service"}}
+<div class="separator visible-xs" style="margin-top: 20px; margin-bottom: 20px;">&nbsp;</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_6_testimonials"}}</div>
+</div>
+</div>
+<div class="container padding-bottom40">
+<div class="row">
+<div class="col-xs-12"><hr style="margin-top: 30px; margin-bottom: 30px;" /></div>
+<div class="col-xs-12">{{widget type="MGS\Brand\Block\Widget\Brand" brand_ids="1,2,3,4,5,6" view_as="owl_carousel" items="5" image_width="240" image_height="90" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	
+	<promo_banner>
+		<item>
+			<title>Orson Home 6 Banner 2</title>
+			<filename>/b/a/banner_h6_2.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<status>1</status>
+			<identifier>orson_home_6_banner_2</identifier>
+		</item>
+		<item>
+			<title>Orson Home 6 Banner 1</title>
+			<filename>/b/a/banner_h6_1.jpg</filename>
+			<url><![CDATA[#]]></url>
+			<button><![CDATA[Shop Now]]></button>
+			<text_align>middle-left</text_align>
+			<content><![CDATA[]]></content>
+			<effect>zoom</effect>
+			<status>1</status>
+			<identifier>orson_home_6_banner_1</identifier>
+		</item>
+	</promo_banner>
+	<theme_setting>
+		<general>
+			<header>header_7</header>
+		</general>
+		<banner_slider>
+			<identifier_block><![CDATA[orson_home-6_slider]]></identifier_block>
+		</banner_slider>
+		<custom_style>
+			<style><![CDATA[.search-form .form-search .search-select, .search-form .form-search .search-select #select-cat-dropdown, .search-form .form-search{
+border-color: #34a853;}]]></style>
+		</custom_style>
+	</theme_setting>
+	<color_setting>
+		<general>
+			<theme_color><![CDATA[#34a853]]></theme_color>
+		</general>
+	</color_setting>
+</home>

@@ -1,0 +1,238 @@
+<home>
+	<static_block>
+		<item>
+			<title>Orson Slider Home 1</title>
+			<identifier>orson_slider_home_1</identifier>
+			<content><![CDATA[<div><img src="{{media url="wysiwyg/slider1.jpg"}}" alt="" width="858" height="430" /></div>
+<div><img src="{{media url="wysiwyg/slider1-1.jpg"}}" alt="" width="858" height="430" /></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Section 1</title>
+			<identifier>orson_home_1_section_1</identifier>
+			<content><![CDATA[<div class="container">
+<div class="row">
+<div class="col-md-9 col-xs-12 pull-right">{{widget type="MGS\Mpanel\Block\Widget\Slider"}}</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Section 2</title>
+			<identifier>orson_home_1_section_2</identifier>
+			<content><![CDATA[<div class="container">
+<div class="row">
+<div class="col-md-6 col-xs-12 margin-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_casual_men" template="banner.phtml"}}</div>
+<div class="col-md-6 col-xs-12">
+<div class="margin-bottom20">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_ladies_annivasary" template="banner.phtml"}}</div>
+<div class="margin-bottom20 sale-banner">{{widget type="MGS\Promobanners\Block\Widget\Banner" banner_id="orson_banner_sale_off" template="banner.phtml"}}</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Section 3</title>
+			<identifier>orson_home_1_section_3</identifier>
+			<content><![CDATA[<div class="container center-content">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="New Arrivals" view_mode="mode_grid" type_list="new" slider_mode_grid="1" per_row_grid="4" number_show="6"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Newsletter</title>
+			<identifier>orson_home_1_newsletter</identifier>
+			<content><![CDATA[<div class="row">
+<div class="col-md-7 col-md-push-5 col-sm-8 col-sm-push-4 col-xs-12">
+<div class="title-content margin-bottom20">
+<h2 class="title">Newsletter</h2>
+</div>
+<div class="margin-bottom25">Enjoy our newsletter to stay updated with the latest news and special sales.<br /> Let&rsquo;s your email address here!</div>
+<div class="block home-subscribe">{{block class="Magento\\Newsletter\\Block\\Subscribe" template="Magento_Newsletter::subscribe-home.phtml"}}</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Women Cate</title>
+			<identifier>orson_home_1_women_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_women.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Women Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Men Cate</title>
+			<identifier>orson_home_1_men_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_men.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Man Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Kid Cate</title>
+			<identifier>orson_home_1_kid_cate</identifier>
+			<content><![CDATA[<div class="category-block"><img class="img-responsive" src="{{media url="wysiwyg/category_kid.jpg"}}" alt="" />
+<div class="text-center cate-info">
+<div class="title-content margin-bottom20">
+<h4 class="title">Kid Category</h4>
+</div>
+<div class="margin-bottom15">Vestibulum non odio at tortor facilisis cursus eu ut turpis. Ut vehicula cursus elit. Nunc lacinia arcu.</div>
+<div><a class="btn btn-lg btn-default" href="#">Shop Now</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Sale Products</title>
+			<identifier>orson_home_1_sale_products</identifier>
+			<content><![CDATA[<div class="container">{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Sale Products" view_mode="mode_grid" type_list="sale" slider_mode_grid="1" per_row_grid="5" number_show="7"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Testimonials</title>
+			<identifier>orson_home_1_testimonials</identifier>
+			<content><![CDATA[<div class="row">
+<div class="col-md-6 col-xs-12">{{block class="MGS\Testimonial\Block\Testimonial" testimonials_count="3" row="1" nav="true" dots="false" autoplay="false" template="slide.phtml"}}</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Money Back</title>
+			<identifier>orson_home_1_money_back</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #bddcda;">
+<div class="icon"><span class="pe-7s-piggy">&nbsp;</span></div>
+<div class="text">
+<div><strong>MONEY BACK GUARANTEE</strong></div>
+<span style="font-size: 13px;">100% money back guarantee</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Free Ship</title>
+			<identifier>orson_home_1_free_ship</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #f4dee1;">
+<div class="icon"><span class="pe-7s-cart">&nbsp;</span></div>
+<div class="text">
+<div><strong>FREE SHIPPINGS &amp; RETURN</strong></div>
+<span style="font-size: 13px;">Free shipping on all orders over $99</span></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Home 1 Online Support</title>
+			<identifier>orson_home_1_online_support</identifier>
+			<content><![CDATA[<div class="service-block" style="background: #f7eed1;">
+<div class="icon"><span class="pe-7s-help2">&nbsp;</span></div>
+<div class="text">
+<div><strong>ONLINE SUPPORT 24/7</strong></div>
+<span style="font-size: 13px;">Lorem ipsum dolor sit amet</span></div>
+</div>]]></content>
+		</item>
+	</static_block>
+	
+	<cms_page>
+		<title>Home Page Version 1</title>
+		<identifier>home-page-version-1</identifier>
+		<page_layout>1column</page_layout>
+		<content><![CDATA[<!-- SLIDER -->
+<div class="padding-top20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_section_1"}}</div>
+<!-- GROUP BANNER -->
+<div class="padding-top20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_section_2"}}</div>
+<!-- NEW PRODUCT -->
+<div class="show-cate desc-center" style="padding-top: 64px; padding-bottom: 70px;">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_section_3"}}</div>
+<!-- SUBSCRIBE -->
+<div class=" bg-center " style="background-image: url('http://m2.magesolution.com/orson/pub/media/wysiwyg/bg_newsletter.jpg'); background-repeat: no-repeat; padding-top: 103px; padding-bottom: 106px;">
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_newsletter"}}</div>
+</div>
+<!-- THREE BANNER CATEGORY -->
+<div style="padding-top: 70px; padding-bottom: 39px;">
+<div class="container">
+<div class="row">
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half margin-bottom20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_women_cate"}}</div>
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half margin-bottom20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_men_cate"}}</div>
+<div class="col-md-4 hidden-sm hidden-xs-half col-xs-12 margin-bottom20">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_kid_cate"}}</div>
+</div>
+</div>
+</div>
+<!-- SALE PRODUCTS -->
+<div class="padding-bottom20 desc-center center-content">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_sale_products"}}</div>
+<!-- TESTIMONIALS -->
+<div class=" bg-center " style="background-image: url('http://m2.magesolution.com/orson/pub/media/wysiwyg/bg_testimonials.png'); background-repeat: no-repeat; padding-top: 145px; padding-bottom: 85px;">
+<div class="container">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_testimonials"}}</div>
+</div>
+<!-- LATEST POST-->
+<div style="padding-top: 66px; padding-bottom: 65px;">
+<div class="container center-content">{{widget type="MGS\Blog\Block\Widget\Lastest" title="Blog Updates" number_of_posts="10" show_thumbnail="1" thumbnail_width="240" thumbnail_height="180" show_short_content="1" limit_characters_short_content="150" view_as="owl_carousel" items="3" navigation="1" template="widget/default.phtml"}}</div>
+</div>
+<!-- THREE BLOCK SERVICE -->
+<div class="container-fluid">
+<div class="row">
+<div class="col-md-4 no-padding col-sm-12 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_money_back"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_free_ship"}}</div>
+<div class="col-md-4 no-padding col-sm-6 col-xs-12">{{widget type="Magento\Cms\Block\Widget\Block" template="widget/static_block/default.phtml" block_id="orson_home_1_online_support"}}</div>
+</div>
+</div>]]></content>
+	</cms_page>
+	<promo_banner>
+		<item>
+			<title>Orson Banner Casual Men</title>
+			<filename>/b/a/banner_1.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>bottom-center</text_align>
+			<content><![CDATA[<div class="padding-bottom40"><span style="font-size: 60px; font-weight: 900; line-height: 1; color: #fff;">Casual Men</span>
+<p><strong style="color: #f0d3b9; letter-spacing: 4px;">HOW TO WEAR CASUAL STYLE</strong></p></div>]]></content>
+			<effect>shadow-white</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_casual_men</identifier>
+		</item>
+		<item>
+			<title>Orson Banner Ladies Annivasary</title>
+			<filename>/b/a/banner_2.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-right</text_align>
+			<content><![CDATA[<div style="color: #222;" class="text-left padding-right40">
+<span style="line-height: 0.2;font-family: Quicksand;font-size: 40px;">Ladies</span>
+<div class="padding-left30">
+<strong style="line-height: 0.2;font-family: Quicksand;font-size: 30px;">anniversary</strong><br>
+<a href="#" style="color: #9e5c38;"><strong>SHOP WOMAN CLOTHING</strong></a>
+</div>
+</div>]]></content>
+			<effect>shadow-black</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_ladies_annivasary</identifier>
+		</item>
+		<item>
+			<title>Orson Banner Sale Off</title>
+			<filename>/b/a/banner_3.jpg</filename>
+			<url><![CDATA[]]></url>
+			<button><![CDATA[]]></button>
+			<text_align>middle-center</text_align>
+			<content><![CDATA[ <div class="padding-bottom15">
+<div style="color: #ffd24c; font-weight: 900; font-size: 60px;line-height: 1;">SALE OFF <span class="up-to-sale">UP TO <br><span style="font-size: 20px;">50%</span></span></div>
+</div>
+<div style="display: inline-block">
+<div class="col-xs-6">
+<ul style="width: 165px;" class="text-left">
+<li><a href="#"><span class="fa fa-arrow-right">&nbsp;</span>&nbsp;WOMEN'S CLOTHING</a></li>
+<li><a href="#"><span class="fa fa-arrow-right">&nbsp;</span>&nbsp;MEN'S CLOTHING</a></li>
+<li><a href="#"><span class="fa fa-arrow-right">&nbsp;</span>&nbsp;KID'S CLOTHING</a></li>
+</ul>
+</div>
+<div class="col-xs-6">
+<ul style="width: 165px;" class="text-left">
+<li><a href="#"><span class="fa fa-arrow-right"> </span>&nbsp;ACCESSORIES</a></li>
+<li><a href="#"><span class="fa fa-arrow-right">&nbsp;</span>&nbsp;BACK PACK &amp; BAGS</a></li>
+<li><a href="#"><span class="fa fa-arrow-right">&nbsp;</span>&nbsp;JEWELRY</a></li>
+</ul>
+</div>
+</div>]]></content>
+			<effect>zoom</effect>
+			<custom_class><![CDATA[]]></custom_class>
+			<status>1</status>
+			<identifier>orson_banner_sale_off</identifier>
+		</item>
+	</promo_banner>
+</home>

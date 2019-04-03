@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="mgs" translate="label" sortOrder="600">
+            <label>MGS</label>
+        </tab>
+        <section id="advancedreports" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+            <class>separator-top</class>
+            <label>Advanced Reports</label>
+            <tab>mgs</tab>
+            <resource>MGS_AdvancedReports::config_advancedreports</resource>
+            <group id="general_settings" translate="label" type="text" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="0">
+                <label>General Settings</label>
+                <field id="enabled_google_charts" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1" sortOrder="10">
+                    <label>Enabled Google Charts</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

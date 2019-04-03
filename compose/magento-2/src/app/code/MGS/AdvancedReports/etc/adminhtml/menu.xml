@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="MGS_AdvancedReports::advancedreports" title="Advanced Reports" module="MGS_AdvancedReports" sortOrder="80" parent="Magento_Backend::mgs" resource="MGS_AdvancedReports::advancedreports"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbycountry" title="Sales By Country" module="MGS_AdvancedReports" sortOrder="10" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/country" resource="MGS_AdvancedReports::advancedreports_salesbycountry"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbygroup" title="Sales By Customer Group" module="MGS_AdvancedReports" sortOrder="20" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/group" resource="MGS_AdvancedReports::advancedreports_salesbygroup"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbycoupon" title="Sales By Coupon Code" module="MGS_AdvancedReports" sortOrder="30" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/coupon" resource="MGS_AdvancedReports::advancedreports_salesbycoupon"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbyproduct" title="Sales By Product" module="MGS_AdvancedReports" sortOrder="40" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/product" resource="MGS_AdvancedReports::advancedreports_salesbyproduct"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbyhour" title="Sales By Hour" module="MGS_AdvancedReports" sortOrder="50" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/hour" resource="MGS_AdvancedReports::advancedreports_salesbyhour"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbyday" title="Sales By Day Of Week" module="MGS_AdvancedReports" sortOrder="60" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/day" resource="MGS_AdvancedReports::advancedreports_salesbyday"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesbynewandreturning" title="Sales By New And Returning Customers" module="MGS_AdvancedReports" sortOrder="70" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/newandreturning" resource="MGS_AdvancedReports::advancedreports_salesbynewandreturning"/>
+        <add id="MGS_AdvancedReports::advancedreports_salesreport" title="Sales Report" module="MGS_AdvancedReports" sortOrder="80" parent="MGS_AdvancedReports::advancedreports" action="advancedreports/report_sales/report" resource="MGS_AdvancedReports::advancedreports_salesreport"/>
+        <add id="MGS_AdvancedReports::configuration" title="Configuration" module="MGS_AdvancedReports" sortOrder="90" parent="MGS_AdvancedReports::advancedreports" action="adminhtml/system_config/edit/section/advancedreports" resource="MGS_AdvancedReports::configuration"/>
+    </menu>
+</config>

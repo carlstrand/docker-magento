@@ -1,0 +1,834 @@
+<install>
+	<static_block>
+		<item>
+			<title>Orson Footer 2 Help</title>
+			<identifier>orson_footer2_help</identifier>
+			<content><![CDATA[<div class="box-help">
+<h4 class="title">Help</h4>
+<div class="box-content">
+<ul>
+<li><a href="#">How to buy</a></li>
+<li><a href="#">General Information</a></li>
+<li><a href="#">Payment</a></li>
+<li><a href="#">Shipping</a></li>
+<li><a href="#">Returns</a></li>
+<li><a href="#">Gift Card</a></li>
+<li><a href="#">My Account</a></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer 2 Policies</title>
+			<identifier>orson_footer2_policies</identifier>
+			<content><![CDATA[<div class="box-help">
+<h4 class="title">Policies</h4>
+<div class="box-content">
+<ul>
+<li><a href="#">Enviromental Policy</a></li>
+<li><a href="#">Animal Welfare</a></li>
+<li><a href="#">Purchase Conditions</a></li>
+<li><a href="#">Gift Card Conditions</a></li>
+<li><a href="#">Warranty On Watches</a></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer 2 Company</title>
+			<identifier>orson_footer2_company</identifier>
+			<content><![CDATA[<div class="box-company">
+<h4 class="title">Company</h4>
+<div class="box-content">
+<ul>
+<li><a href="#">About us</a></li>
+<li><a href="#">Offices</a></li>
+<li><a href="#">Stores</a></li>
+<li><a href="#">Work With Us</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer 2 Working Hours</title>
+			<identifier>orson_footer2_working</identifier>
+			<content><![CDATA[<div class="box-working">
+<h4 class="title">Working Hours</h4>
+<div class="box-content">
+<p><strong>Monday - Friday: </strong>8.30AM - 5.30PM</p>
+<p><strong>Saturday: </strong>9.00AM - 2.00PM</p>
+<p><strong>Sunday: </strong>Cloesd</p>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Contact</title>
+			<identifier>orson_footer_contact</identifier>
+			<content><![CDATA[<div class="margin-bottom30"><span>30 South Avenue San Francisco</span> <span> <strong>Phone: </strong>+78 123 456 789<br /> </span> <span><strong>Email: </strong>Support@arrowhitech.com<br /></span> <a style="color: #34a853;" href="http://magesolution.com/">http://magesolution.com</a></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Logo</title>
+			<identifier>orson_footer_logo</identifier>
+			<content><![CDATA[<div><img src="{{media url="wysiwyg/orson_footer_logo_14.png"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Social Button</title>
+			<identifier>orson_footer_social_btn</identifier>
+			<content><![CDATA[<ul class="social-btn">
+<li><a href="#">&nbsp;<em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#">&nbsp;<em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#">&nbsp;<em class="fa fa-instagram">&nbsp;</em></a></li>
+<li><a href="#">&nbsp;<em class="fa fa-vine">&nbsp;</em></a></li>
+<li><a href="#">&nbsp;<em class="fa fa-dribbble">&nbsp;</em></a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Information</title>
+			<identifier>orson_footer_information</identifier>
+			<content><![CDATA[<h4 class="title"><span>INFORMATION</span></h4>
+<div class="box-content">
+<ul class="footer-menu">
+<li><a href="#">About Store</a></li>
+<li><a href="#">New Collection</a></li>
+<li><a href="#">Woman Dress</a></li>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Latest News</a></li>
+<li><a href="#">Our Sitemap</a></li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Location</title>
+			<identifier>orson_footer_location</identifier>
+			<content><![CDATA[<h4 class="title"><span>LOCATION</span></h4>
+<div class="box-content">
+<ul class="footer-menu">
+<li><a href="#">New York</a></li>
+<li><a href="#">London SF</a></li>
+<li><a href="#">Cockfosters BP</a></li>
+<li><a href="#">Los Angeles</a></li>
+<li><a href="#">Chicago</a></li>
+<li><a href="#">Las Vegas</a></li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Useful Link</title>
+			<identifier>orson_footer_useful_link</identifier>
+			<content><![CDATA[<h4 class="title"><span>USEFUL LINK</span></h4>
+<div class="box-content">
+<ul class="footer-menu">
+<li><a href="#">Privacy Policy</a></li>
+<li><a href="#">Returns</a></li>
+<li><a href="#">Terms &amp; Conditions</a></li>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Latest News</a></li>
+<li><a href="#">Our Sitemap</a></li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Menu</title>
+			<identifier>orson_footer_menu</identifier>
+			<content><![CDATA[<h4 class="title"><span>MENU</span></h4>
+<div class="box-content">
+<ul class="footer-menu">
+<li><a href="#">Instargram</a></li>
+<li><a href="#">Facebook</a></li>
+<li><a href="#">Contact Us</a></li>
+<li><a href="#">Latest News</a></li>
+<li><a href="#">Purchase Theme</a></li>
+<li><a href="#">F.A.Q</a></li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Footer Get In Touch</title>
+			<identifier>orson_footer_get_in_touch</identifier>
+			<content><![CDATA[<div class="contact-box">
+<h4 class="title"><span>Get in touch</span></h4>
+<div class="box-content">
+<ul>
+<li><em class="fa fa-map-marker" style="color: #fff;">&nbsp;</em>
+<div class="box-content"><span class="h4">ADDRESS</span>
+<p>1908 Street Name, City Name, United States</p>
+</div>
+</li>
+<li><em class="fa fa-phone" style="color: #fff;">&nbsp;</em>
+<div class="box-content"><span class="h4">PHONE</span>
+<p>+1 (008) 789 77 35</p>
+</div>
+</li>
+<li><em class="fa fa-envelope-o" style="color: #fff;">&nbsp;</em>
+<div class="box-content"><span class="h4">EMAIL</span>
+<p>info@orsontheme.com</p>
+</div>
+</li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson header hotline</title>
+			<identifier>orson_header_hotline</identifier>
+			<content><![CDATA[<div class="hotline">
+<div class="icon">&nbsp;<em class="fa fa-phone">&nbsp;</em></div>
+<div class="text">Hotline: <a href="tel:+8866668888">+88 6666 8888</a></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Header Our Location</title>
+			<identifier>orson_header_our_location</identifier>
+			<content><![CDATA[<div class="custom-link"><a href="{{store url="storelocator"}}"><em class="fa fa-map-marker">&nbsp;</em>&nbsp;&nbsp;Our Location</a></div>]]></content>
+		</item>
+		<item>
+			<title>Orson logo footer</title>
+			<identifier>orson_ft_logo</identifier>
+			<content><![CDATA[<div class="logo-footer"><img src="{{media url="wysiwyg/footer-logo2.png"}}" alt="" /></div>]]></content>
+		</item>
+		<item>
+			<title>Orson Vertical Button</title>
+			<identifier>orson_vertical_button</identifier>
+			<content><![CDATA[<div class="vertical-menu-home vertical-menu-button hidden-sm hidden-xs">
+<div class="menu-vertical-btn"><span><em class="fa fa-bars">&nbsp;</em></span></div>
+<div class="menu-content">{{block class="MGS\Mmegamenu\Block\Vertical" menu_id="2" template="MGS_Mmegamenu::vertical.phtml"}}</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Newsletter Popup</title>
+			<identifier>newsletter_popup</identifier>
+			<content><![CDATA[<p class="img-newsletter"><img src="{{media url="wysiwyg/newsletter-popup.jpg"}}" alt="" width="858" height="430" /></p>
+<div class="newsletter-popup-content"><span class="h2" style="font-style: 28px;">NEWSLETTER SIGN UP</span>
+<p class="desc-popup hidden-xs">Subscribe to the ORSON mailing list to receive updates on new arrivals,<br /> special offers and other discount information.</p>
+{{block class="Magento\Newsletter\Block\Subscribe" name="home.newsletter" as="home.newsletter" template="Magento_Newsletter::subscribe-popup.phtml"/}}
+<div class="checkbox"><label for="dont_show"> <input id="dont_show" onclick="dontShowPopup('dont_show')" type="checkbox" /> Don't show this popup again </label></div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Vertical Menu</title>
+			<identifier>orson_vertical_menu</identifier>
+			<content><![CDATA[<div class="vertical-menu-home">
+<div class="menu-title"><span>All Categories</span> <span class="icon-vertical pull-right"><em class="fa fa-bars">&nbsp;</em></span></div>
+<div class="menu-content">{{block class="MGS\Mmegamenu\Block\Vertical" menu_id="3" template="MGS_Mmegamenu::vertical.phtml"}}</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Custom Sidebar Category Page</title>
+			<identifier>orson_custom_static_block_sidebar_cate</identifier>
+			<content><![CDATA[<div>{{widget type="MGS\Mpanel\Block\Widget\ProductList" title="Featured" view_mode="mode_list" type_list="attribute" attribute_filter_list="featured_product" number_show="3"}}</div>]]></content>
+		</item>
+		<item>
+			<title>Orson contact header</title>
+			<identifier>orson_contact_header</identifier>
+			<content><![CDATA[<div class="contact-header">
+<ul>
+<li><em class="fa fa-phone">&nbsp;</em>
+<div class="box-content"><span class="h4">CALL US</span>
+<p>+1 (008) 789 77 35</p>
+</div>
+</li>
+<li><em class="fa fa-phone">&nbsp;</em>
+<div class="box-content"><span class="h4">EMAIL US</span>
+<p>info@orsontheme.com</p>
+</div>
+</li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson tweets footer</title>
+			<identifier>orson_ft_tweets</identifier>
+			<content><![CDATA[<div class="twitter-box">
+<h4><span>Recent tweets</span></h4>
+<div class="box-content">{{block class="MGS\Social\Block\Tweets" template="MGS_Social::tweets.phtml"}}</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Product Tags</title>
+			<identifier>orson_ft_product_tags</identifier>
+			<content><![CDATA[<div class="product-tag-box">
+<h4><span>Product tags</span></h4>
+<div class="box-content">
+<div class="tagcloud"><a href="#">Awesomeee</a> <a href="#">Clothing</a> <a href="#">Comfortable</a> <a href="#">Good</a> <a href="#">Perfect</a> <a href="#">Really</a> <a href="#">accessories</a> <a href="#">bag</a> <a href="#">grey</a> <a href="#">handbag</a> <a href="#">red</a> <a href="#">shirt</a> <a href="#">soya</a></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson contact footer</title>
+			<identifier>orson_ft_contact</identifier>
+			<content><![CDATA[<div class="contact-box">
+<h4><span>Get in touch</span></h4>
+<div class="box-content">
+<ul>
+<li><em class="fa fa-map-marker">&nbsp;</em>
+<div class="box-content"><span class="h4">ADDRESS</span>
+<p>1908 Street Name, City Name, United States</p>
+</div>
+</li>
+<li><em class="fa fa-phone">&nbsp;</em>
+<div class="box-content"><span class="h4">PHONE</span>
+<p>+1 (008) 789 77 35</p>
+</div>
+</li>
+<li><em class="fa fa-envelope-o">&nbsp;</em>
+<div class="box-content"><span class="h4">EMAIL</span>
+<p>info@orsontheme.com</p>
+</div>
+</li>
+<li><em class="fa fa-clock-o">&nbsp;</em>
+<div class="box-content"><span class="h4">WORKING DAYS/HOURS</span>
+<p>Mon - Sun / 9:00 AM - 8:00 PM</p>
+</div>
+</li>
+</ul>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson info footer</title>
+			<identifier>orson_ft_info</identifier>
+			<content><![CDATA[<div class="logo-footer-info">Maecenas rhoncus consequat magna, ut egestas lectus. Vivamus aliquet suscipit lacus quis pulvinar. Praesent turpis mi, tincidunt a sapien in.</div>]]></content>
+		</item>
+		<item>
+			<title>Orson header wishlist</title>
+			<identifier>orson_header_wishlist</identifier>
+			<content><![CDATA[<div class="header-wishlist"><a href="{{store url=""}}wishlist"><em class="fa fa-heart-o">&nbsp;</em><span class="hidden-sm hidden-xs"> My Wishlist</span></a></div>]]></content>
+		</item>
+		<item>
+			<title>Orson social header</title>
+			<identifier>orson_social_header</identifier>
+			<content><![CDATA[<div class="social-header"><span>Follow: </span>
+<ul>
+<li><a href="#"><em class="fa fa-facebook">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-twitter">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-instagram">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-vine">&nbsp;</em></a></li>
+<li><a href="#"><em class="fa fa-dribbble">&nbsp;</em></a></li>
+</ul>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Contact Find Us</title>
+			<identifier>orson_contact_find_us</identifier>
+			<content><![CDATA[<div class="row">
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="contact-info">
+<div class="block-title">
+<h3 class="title"><span>Main Office</span></h3>
+</div>
+<div class="contact-content">
+<ul class="address-info">
+<li><em class="icon fa fa-map-marker">&nbsp;</em> <span class="text">123 Suspendis mattis, Sollicitudin District,<br />Accums Fringilla</span></li>
+<li><em class="icon  fa fa-envelope-o">&nbsp;</em> <span class="text">Email: <a title="Send Email" href="mailto:support@domainstore.com">support@domainstore.com</a></span></li>
+<li><em class="icon  fa fa-phone">&nbsp;</em> <span class="text">Hotline: <a title="Call" href="tel:0123456789">0123456789</a></span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="contact-info">
+<div class="block-title">
+<h3 class="title"><span>Chicago Agent</span></h3>
+</div>
+<div class="contact-content">
+<ul class="address-info">
+<li><em class="icon fa fa-map-marker">&nbsp;</em> <span class="text">123 Suspendis mattis, Sollicitudin District,<br />Accums Fringilla</span></li>
+<li><em class="icon  fa fa-envelope-o">&nbsp;</em> <span class="text">Email: <a title="Send Email" href="mailto:support@domainstore.com">support@domainstore.com</a></span></li>
+<li><em class="icon  fa fa-phone">&nbsp;</em> <span class="text">Hotline: <a title="Call" href="tel:0123456789">0123456789</a></span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+<div class="contact-info">
+<div class="block-title">
+<h3 class="title"><span>New York Agent</span></h3>
+</div>
+<div class="contact-content">
+<ul class="address-info">
+<li><em class="icon fa fa-map-marker">&nbsp;</em> <span class="text">123 Suspendis mattis, Sollicitudin District,<br />Accums Fringilla</span></li>
+<li><em class="icon  fa fa-envelope-o">&nbsp;</em> <span class="text">Email: <a title="Send Email" href="mailto:support@domainstore.com">support@domainstore.com</a></span></li>
+<li><em class="icon  fa fa-phone">&nbsp;</em> <span class="text">Hotline: <a title="Call" href="tel:0123456789">0123456789</a></span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Custom Static Block Sidebar</title>
+			<identifier>orson_custom_static_block_sidebar</identifier>
+			<content><![CDATA[<ul class="service-list margin-bottom50">
+<li><span class="icon color-theme pe-7s-shopbag">&nbsp;</span> <strong>DEDICATED SERVICE</strong><br /> Consult our specialists for help with an order, customization, or design advice</li>
+<li><span class="icon color-theme pe-7s-repeat">&nbsp;</span> <strong>FREE RETURNS</strong><br /> Consult our specialists for help with an order, customization, or design advice</li>
+<li><span class="icon color-theme pe-7s-world">&nbsp;</span> <strong>INTERNATIONAL SHIPPING</strong><br /> Consult our specialists for help with an order, customization, or design advice</li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>MGS Panel Product Static Block Bottom</title>
+			<identifier>mgs_panel_product_static_block_bottom</identifier>
+			<content><![CDATA[<div class="margin-top30">
+<h4 style="margin-top: 0; color: #222;">CUSTOM STATIC BLOCK BOTTOM</h4>
+With the Fusion Backpack strapped on, every trek is an adventure - even a bus ride to work. That's partly because two large zippered compartments store everything you need, while a front zippered pocket and side mesh pouches are perfect for stashing those little extras, in case you change your mind and take the day off.</div>]]></content>
+		</item>
+		<item>
+			<title>MGS Panel Product Static Block Top</title>
+			<identifier>mgs_panel_product_static_block_top</identifier>
+			<content><![CDATA[<div class="margin-top30">
+<h4 style="margin-top: 0; color: #222;">CUSTOM STATIC BLOCK TOP</h4>
+With the Fusion Backpack strapped on, every trek is an adventure - even a bus ride to work. That's partly because two large zippered compartments store everything you need, while a front zippered pocket and side mesh pouches are perfect for stashing those little extras, in case you change your mind and take the day off.</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Share This Block</title>
+			<identifier>share_this_block</identifier>
+			<content><![CDATA[<div class="social-icons padding-top30"><span class="st_sharethis_large">&nbsp;</span> <span class="st_facebook_large">&nbsp;</span> <span class="st_twitter_large">&nbsp;</span> <span class="st_linkedin_large">&nbsp;</span> <span class="st_pinterest_large">&nbsp;</span> <span class="st_email_large">&nbsp;</span></div>
+<script type="text/javascript" xml="space"></script>
+<script src="http://w.sharethis.com/button/buttons.js" type="text/javascript" xml="space"></script>
+<script type="text/javascript" xml="space">
+stLight.options({publisher: "2d7bbd98-44f6-4bc2-8f76-d756c348fbb5", doNotHash: false, doNotCopy: false, hashAddressBar: false});</script>]]></content>
+		</item>
+		<item>
+			<title>Orson menu Footer 4</title>
+			<identifier>orson_footer_4_menu</identifier>
+			<content><![CDATA[<ul>
+<li><a href="#">HOME</a></li>
+<li><a href="#">ABOUT US</a></li>
+<li><a href="#">OUR PRODUCTS</a></li>
+<li><a href="#">OUR BRANDS</a></li>
+<li><a href="#">BLOG</a></li>
+<li><a href="#">FAQS</a></li>
+<li><a href="#">CONTACT US</a></li>
+</ul>]]></content>
+		</item>
+		<item>
+			<title>Orson Logo Footer 4</title>
+			<identifier>orson_footer_4_logo</identifier>
+			<content><![CDATA[<div class="logo-footer"><img class="img-resposive" src="{{media url="wysiwyg/footer_logo_white.png"}}" alt="" /></div>]]></content>
+		</item>
+	</static_block>
+
+	<cms_page>
+		<item>
+			<title>Orson 404 Not Found</title>
+			<identifier>orson-no-route</identifier>
+			<content_heading>Whoops, our bad...</content_heading>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="bg-center" style="padding-top: 150px; padding-bottom: 150px; background-image: url('http://mgs.arrowhitech.net/orson/media/wysiwyg/bg404.jpg');">
+<div class="container">
+<div class="text-right content404">
+<h1 class="title404">Error 404!</h1>
+<h3 style="margin-bottom: 30px;">Sorry! The page you requested was not found.</h3>
+<button class="btn btn-lg btn-primary" onclick="setLocation({{store url=""}})">Back to Orson</button></div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Our Services</title>
+			<identifier>orson-our-services</identifier>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="block-title">
+<h3 class="title"><span>Our Services</span></h3>
+</div>
+<div class="row margin-top30">
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half first-row-item row-2sm-first row-half-first">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-users">&nbsp;</span> <span class="title">Customer Support</span><br /> In sed nisl felis. Phasellus luctus vestibulum mi a rutrum. Nullam et eleifend ipsum. Proin eu est sed mauris scelerisque porttitor.</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-exapnd2">&nbsp;</span> <span class="title">Sliders</span><br /> Vivamus mollis, turpis sit amet mollis malesuada, ante urna sodales erat, a laoreet ipsum nisl ut ipsum.</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half row-half-first">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-config">&nbsp;</span> <span class="title">HTML 5</span><br /> Phasellus sit amet justo sodales, finibus quam eget, semper arcu. Mauris mattis, lacus ut rutrum luctus, mauris sem pulvinar enim.</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half first-row-item row-2sm-first">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-browser">&nbsp;</span> <span class="title">Lightboxes</span><br /> In sed nisl felis. Phasellus luctus vestibulum mi a rutrum. Nullam et eleifend ipsum. Proin eu est sed mauris scelerisque porttitor.</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half row-half-first">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-keypad">&nbsp;</span> <span class="title">Shortcodes</span><br /> Vivamus mollis, turpis sit amet mollis malesuada, ante urna sodales erat, a laoreet ipsum nisl ut ipsum.</div>
+</div>
+<div class="col-md-4 col-sm-4 col-xs-12 col-xs-half">
+<div class="service-inline margin-bottom40"><span class="icon color-theme pe-7s-film">&nbsp;</span> <span class="title">Videos</span><br /> Phasellus sit amet justo sodales, finibus quam eget, semper arcu. Mauris mattis, lacus ut rutrum luctus, mauris sem pulvinar enim.</div>
+</div>
+</div>
+<div class="block-title">
+<h3 class="title"><span>OUR FEATURES</span></h3>
+</div>
+<div class="row margin-top30">
+<div class="col-md-3 col-sm-6 col-xs-12 col-xs-half">
+<div class="ch-item">
+<div class="ch-info-wrap">
+<div class="ch-info">
+<div class="ch-info-front"><em class="icon pe-7s-shopbag">&nbsp;</em>
+<h4 class="title">DEDICATED SERVICE</h4>
+</div>
+<div class="ch-info-back">
+<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+<button class="btn btn-lg btn-secondary margin-top15">READ MORE</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12 col-xs-half">
+<div class="ch-item">
+<div class="ch-info-wrap">
+<div class="ch-info">
+<div class="ch-info-front"><em class="icon pe-7s-back-2">&nbsp;</em>
+<h4 class="title">MONEY BACK</h4>
+</div>
+<div class="ch-info-back">
+<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+<button class="btn btn-lg btn-secondary margin-top15">READ MORE</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12 col-xs-half">
+<div class="ch-item">
+<div class="ch-info-wrap">
+<div class="ch-info">
+<div class="ch-info-front"><em class="icon pe-7s-timer">&nbsp;</em>
+<h4 class="title">ICONS</h4>
+</div>
+<div class="ch-info-back">
+<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+<button class="btn btn-lg btn-secondary margin-top15">READ MORE</button></div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-md-3 col-sm-6 col-xs-12 col-xs-half">
+<div class="ch-item">
+<div class="ch-info-wrap">
+<div class="ch-info">
+<div class="ch-info-front"><em class="icon pe-7s-box2">&nbsp;</em>
+<h4 class="title">LIGHTBOX</h4>
+</div>
+<div class="ch-info-back">
+<p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum.</p>
+<button class="btn btn-lg btn-secondary margin-top15">READ MORE</button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row padding-top30">
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half">
+<ul class="info-list">
+<li><span class="icon pe-7s-users">&nbsp;</span>
+<h3 class="title">Customer Support</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+<li><span class="icon pe-7s-browser">&nbsp;</span>
+<h3 class="title">HTML5 / CSS3 / JS</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+<li><span class="icon pe-7s-tools">&nbsp;</span>
+<h3 class="title">500+ Google Fonts</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+<li><span class="icon pe-7s-anchor">&nbsp;</span>
+<h3 class="title">Colors</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-6 col-xs-12 col-xs-half">
+<ul class="info-list">
+<li><span class="icon pe-7s-paperclip">&nbsp;</span>
+<h3 class="title">Icon</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+<li><span class="icon pe-7s-plugin">&nbsp;</span>
+<h3 class="title">Buttons</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+<li><span class="icon pe-7s-box2">&nbsp;</span>
+<h3 class="title">Lightbox</h3>
+<span>In sed nisl felis. Phasellus luctus vestibulum</span></li>
+</ul>
+</div>
+<div class="col-md-4 col-sm-12 col-xs-12">
+<div id="accordion" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading active">
+<h4 class="panel-title"><a href="#collapse1" data-toggle="collapse" data-parent="#accordion"> WE ARE CREATIVE</a></h4>
+</div>
+<div id="collapse1" class="panel-collapse collapse in">
+<div class="panel-body">As a leader in our industry, we have always worked to develop advanced technology and innovative methods.</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse2" data-toggle="collapse" data-parent="#accordion"> HONEST AND DEPENDABLE</a></h4>
+</div>
+<div id="collapse2" class="panel-collapse collapse">
+<div class="panel-body">As a leader in our industry, we have always worked to develop advanced technology and innovative methods.</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse3" data-toggle="collapse" data-parent="#accordion"> QUALITY COMMITMENT</a></h4>
+</div>
+<div id="collapse3" class="panel-collapse collapse">
+<div class="panel-body">As a leader in our industry, we have always worked to develop advanced technology and innovative methods.</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse4" data-toggle="collapse" data-parent="#accordion"> WE ARE ALWAYS IMPROVING</a></h4>
+</div>
+<div id="collapse4" class="panel-collapse collapse">
+<div class="panel-body">As a leader in our industry, we have always worked to develop advanced technology and innovative methods.</div>
+</div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Our Office</title>
+			<identifier>orson-our-office</identifier>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="padding-bottom30"><img class="img-responsive" src="{{media url="wysiwyg/our_office.jpg"}}" alt="" /></div>
+<div class="padding-top30 padding-bottom20">
+<p style="color: #444444; font-size: 30px;"><strong>We are Orson!</strong> A place where excellent things get done!</p>
+<p style="font-size: 18px; font-weight: 300;">Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit<br /> consequat ipsum.</p>
+</div>
+<div class="row">
+<div class="col-md-6 col-sm-12 col-xs-12">
+<div class="office-post">
+<div class="content">
+<h3 class="title">15 years and still leading others.</h3>
+<p>In sed nisl felis. Phasellus luctus vestibulum mi a rutrum. Nullam et eleifend ipsum.</p>
+<a class="button-link" href="#">READ MORE <span class="fa fa-arrow-right">&nbsp;</span></a></div>
+<div class="img"><img class="img-responsive" src="{{media url="wysiwyg/our_office_p1.jpg"}}" alt="" /></div>
+</div>
+</div>
+<div class="col-md-6 col-sm-12 col-xs-12">
+<div class="office-post">
+<div class="content">
+<h3 class="title">We have 500+ happy clients in this year!</h3>
+<p>In sed nisl felis. Phasellus luctus vestibulum mi a rutrum. Nullam et eleifend ipsum.</p>
+<a class="button-link" href="#">READ MORE <span class="fa fa-arrow-right">&nbsp;</span></a></div>
+<div class="img"><img class="img-responsive" src="{{media url="wysiwyg/our_office_p2.jpg"}}" alt="" /></div>
+</div>
+</div>
+</div>
+<div class="padding-top30 margin-top20 padding-bottom30">
+<div class="box-office button-text-colour-white">
+<p class="full-width">Orson is a business theme which perfectly suited Corporate Company.</p>
+<p class="pull-right"><button class="btn btn-primary btn-lg">PURCHASE NOW</button></p>
+</div>
+</div>
+<div class="padding-top10">
+<div class="row">
+<div class="col-md-4 col-sm-12 col-xs-12 padding-top30">
+<div class="block-title">
+<h3 class="title"><span>OUR LOCATION</span></h3>
+</div>
+<div class="margin-top30"><img class="img-responsive" src="{{media url="wysiwyg/map.jpg"}}" alt="" /></div>
+</div>
+<div class="col-md-8 col-sm-12 col-xs-12 padding-top30">
+<div class="block-title">
+<h3 class="title"><span>OUR OFFICE</span></h3>
+</div>
+<div class="margin-top30">
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_1.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_2.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_3.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_4.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_5.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_6.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_7.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_8.jpg"}}" alt="" /></div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+		<item>
+			<title>Orson Careers</title>
+			<identifier>orson-careers</identifier>
+			<page_layout>1column</page_layout>
+			<content><![CDATA[<div class="block-title">
+<h3 class="title"><span>JOBS FOR YOU</span></h3>
+</div>
+<div id="accordion" class="panel-group margin-top30">
+<div class="panel panel-default">
+<div class="panel-heading active">
+<h4 class="panel-title"><a href="#collapse1" data-parent="#accordion" data-toggle="collapse"> Technical Support Representative</a></h4>
+</div>
+<div id="collapse1" class="panel-collapse collapse in">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse2" data-parent="#accordion" data-toggle="collapse"> Customer Care Specialist</a></h4>
+</div>
+<div id="collapse2" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse3" data-parent="#accordion" data-toggle="collapse"> Interactive Art Director</a></h4>
+</div>
+<div id="collapse3" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse4" data-parent="#accordion" data-toggle="collapse"> Mobile Developer</a></h4>
+</div>
+<div id="collapse4" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse5" data-parent="#accordion" data-toggle="collapse"> Customer Care Specialist</a></h4>
+</div>
+<div id="collapse5" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse6" data-parent="#accordion" data-toggle="collapse"> Interactive Art Director</a></h4>
+</div>
+<div id="collapse6" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="panel-title"><a href="#collapse7" data-parent="#accordion" data-toggle="collapse"> Mobile Developer</a></h4>
+</div>
+<div id="collapse7" class="panel-collapse collapse">
+<div class="panel-body">
+<ul class="margin-bottom20">
+<li><span style="color: #222;"><em class="fa fa-map-marker">&nbsp;</em> <strong>Location: </strong><span>New York</span></span></li>
+<li><span style="color: #222;"><em class="fa fa-building">&nbsp;</em> <strong>Department: </strong><span>Engineering</span></span></li>
+</ul>
+Praesent vel neque eleifend dolor dapibus molestie non eu dui. Curabitur suscipit facilisis nulla, a maximus massa suscipit id. Ut consequat metus ut congue scelerisque. Suspendisse sit amet commodo ligula, eget viverra nisl. Nulla accumsan mi quis ipsum gravida, sit amet feugiat mi ultricies. Quisque eu turpis rutrum.
+<div class="padding-top20"><a class="btn btn-primary btn-sm btn-icon" style="color: #fff;" href="#"> <span class="icon"><em class="fa fa-share">&nbsp;</em></span> <span class="text">Apply Now</span> </a></div>
+</div>
+</div>
+</div>
+</div>
+<div class="padding-top10">
+<div class="row">
+<div class="col-md-4 col-sm-12 col-xs-12 padding-top30">
+<div class="block-title">
+<h3 class="title"><span>OUR LOCATION</span></h3>
+</div>
+<div class="margin-top30"><img class="img-responsive" src="{{media url="wysiwyg/map.jpg"}}" alt="" /></div>
+</div>
+<div class="col-md-8 col-sm-12 col-xs-12 padding-top30">
+<div class="block-title">
+<h3 class="title"><span>OUR OFFICE</span></h3>
+</div>
+<div class="margin-top30">
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_1.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_2.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_3.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_4.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_5.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_6.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_7.jpg"}}" alt="" /></div>
+<div class="col-md-3 col-sm-3 col-xs-6 no-padding"><img class="img-responsive" src="{{media url="wysiwyg/office_8.jpg"}}" alt="" /></div>
+</div>
+</div>
+</div>
+</div>]]></content>
+		</item>
+	</cms_page>
+	
+	<theme_setting>
+		<general>
+			<width>width1200</width>
+			<header>header_1</header>
+			<footer>footer_1</footer>
+			<sticky_menu>1</sticky_menu>
+			<back_to_top>1</back_to_top>
+			<popup_newsletter>1</popup_newsletter>
+		</general>
+		<fonts>
+			<default_font><![CDATA[Roboto]]></default_font>
+			<h1><![CDATA[Roboto]]></h1>
+			<h2><![CDATA[Roboto]]></h2>
+			<h3><![CDATA[Roboto]]></h3>
+			<h4><![CDATA[Roboto]]></h4>
+			<h5><![CDATA[Roboto]]></h5>
+			<h6><![CDATA[Roboto]]></h6>
+			<btn><![CDATA[Roboto]]></btn>
+			<price><![CDATA[Roboto]]></price>
+			<menu><![CDATA[Roboto]]></menu>
+		</fonts>
+		<banner_slider>
+			<slider_tyle>2</slider_tyle>
+			<identifier_block><![CDATA[orson_slider_home_1]]></identifier_block>
+			<banner_owl_loop>1</banner_owl_loop>
+			<banner_owl_dot>1</banner_owl_dot>
+			<banner_owl_auto>1</banner_owl_auto>
+			<banner_owl_nav>1</banner_owl_nav>
+			<banner_owl_speed><![CDATA[6000]]></banner_owl_speed>
+		</banner_slider>
+	</theme_setting>
+	<panel_setting>
+		<catalog>
+			<product_per_row>3</product_per_row>
+			<max_width_image>400</max_width_image>
+			<max_width_image_detail>600</max_width_image_detail>
+			<sale_label>1</sale_label>
+			<new_label><![CDATA[New]]></new_label>
+			<picture_ratio>4</picture_ratio>
+		</catalog>
+		<form_mini_search>
+			<show_categories>1</show_categories>
+		</form_mini_search>
+		<contact_google_map>
+			<display_google_map>1</display_google_map>
+			<address_google_map><![CDATA[New York]]></address_google_map>
+			<html_google_map><![CDATA[<div class="infobox"><h3 class="title">Orson</h3><span>New York</span><br>NY, United States <br>+0123456789<p></p></div>]]></html_google_map>
+		</contact_google_map>
+	</panel_setting>
+</install>
